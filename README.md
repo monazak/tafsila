@@ -49,3 +49,25 @@ gzip on; gzip_types text/css application/javascript application/json image/svg+x
 - Preload للـ `app.js` والصورة، و preconnect للخطوط و cdnjs (اللي منه بتنحمّل مكتبات الأنيميشن).
 - كاش ذكي + Early Hints من `.htaccess`.
 - بـ Cloudflare فعّل: Brotli، HTTP/3، Early Hints، Always Use HTTPS. **لا تفعّل Rocket Loader** (بيكسر الأنيميشن).
+
+## التصاميم (designs/)
+كل تصميم صفحة دعوة كاملة: غلاف ظرف بينفتح، عدّاد تنازلي، التاريخ والساعة والمكان مع زر الخريطة، "أضف للتقويم"، تأكيد حضور عبر واتساب، وزر مشاركة.
+
+| المجلد | التصميم |
+|---|---|
+| `designs/gold/` | ذهب كلاسيك |
+| `designs/rose/` | ورد زهري |
+| `designs/olive/` | زيتوني ورقي |
+| `designs/ishhar/` | ليلة الإشهار |
+| `designs/grad/` | مبروك التخرج |
+| `designs/bday/` | عيد ميلاد سعيد |
+
+الصفحات بالموقع نسخ **معاينة** (`demo: true`): بيظهر شريط "اطلب التصميم" اللي بيفتح واتساب تفصيلة، وتأكيد الحضور بيعرض الرسالة بدل ما يبعتها.
+
+### كيف تعمل دعوة لزبون
+1. انسخ مجلد التصميم باسم جديد، مثلاً `designs/gold/` ← `i/ahmad-layan/`، وانسخ معه `designs/assets/` أو عدّل مسار `../assets/` حسب مكانه.
+2. افتح `index.html` وعدّل كتلة `window.INVITE` بس: الأسماء، `date` (بصيغة `2027-06-18T19:30:00+03:00`)، المكان، رابط الخريطة، `rsvpTo` (رقم واتساب صاحب المناسبة)، والنصوص.
+3. خلّي `demo: false` عشان يختفي شريط المعاينة ويشتغل تأكيد الحضور فعلياً.
+4. حقول اختيارية: `verse` (آية/عبارة)، `sub` (سطر تحت الاسم)، `age` (للعيد ميلاد)، `timeNote`، `rsvpNote`، `hosts`، `rsvp: false` لإخفاء التأكيد.
+
+الألوان والزخارف موجودة بـ `<style>` و `<template>` داخل كل صفحة، والمحرك المشترك بـ `designs/assets/invite.js` و `invite.css`.

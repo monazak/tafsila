@@ -121,7 +121,7 @@ function validate_data($d): ?string {
         foreach (['c1', 'c2'] as $col) {
             if (!isset($x[$col]) || !is_string($x[$col]) || !preg_match('/^#[0-9a-fA-F]{6}$/', $x[$col])) return "تصميم $k: اللون ($col) لازم يكون مثل #d9c29a";
         }
-        if (isset($x['l']) && (!is_string($x['l']) || !preg_match('~^https://~i', $x['l']))) return "تصميم $k: الرابط (l) لازم يبدأ بـ https://";
+        if (isset($x['l']) && (!is_string($x['l']) || !preg_match('~^(https://|/?designs/[a-z0-9-]+/?$)~i', $x['l']))) return "تصميم $k: الرابط (l) لازم يبدأ بـ https:// أو يكون designs/اسم-التصميم/";
     }
     foreach ($d['packages'] as $i => $p) {
         $k = '#' . ($i + 1);

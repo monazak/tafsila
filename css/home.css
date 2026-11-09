@@ -1,0 +1,144 @@
+/* ===== Tafsila homepage: deep wine gradient theme + distinct sections ===== */
+:root{--bg:#2c0912;--card:rgba(255,246,236,.05);--ink:#faf4ec;--mut:#e3c4bd;--gold:#f3dfc1;--g2:#d8b56f;--line:rgba(240,214,207,.16);--soft:rgba(255,246,236,.06);--bi:#3f0d18;--rose:#c46a7c;color-scheme:dark}
+
+/* background: layered wine gradient with soft rose and gold light, plus a fine grain */
+body{background:#2c0912}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60vw 50vw at 88% -8%,rgba(186,64,92,.62),transparent 62%),
+    radial-gradient(45vw 40vw at -6% 28%,rgba(201,163,90,.2),transparent 64%),
+    radial-gradient(60vw 55vw at 105% 78%,rgba(132,34,56,.5),transparent 62%),
+    radial-gradient(50vw 40vw at 20% 110%,rgba(201,163,90,.12),transparent 64%),
+    linear-gradient(165deg,#4d1020 0%,#330b16 42%,#260810 70%,#3a0c18 100%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#root,#pg{background:transparent}
+
+/* header */
+.nav{background:rgba(44,9,18,.55);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line)}
+.nav.sc{box-shadow:0 10px 30px rgba(10,2,5,.35)}
+.logo .lg{background:var(--gold)}
+.nl b{display:none}
+.nav a.l:hover{background:rgba(255,246,236,.07)}
+.btn{background:linear-gradient(135deg,#f6e6c9,#d8b56f);border-color:transparent;color:#3f0d18}
+.btn.alt{background:transparent;color:var(--gold);border-color:rgba(243,223,193,.55)}
+.btn.alt:hover{background:rgba(243,223,193,.08)}
+
+/* hero */
+.hero{background:transparent}
+.hero h1{background:linear-gradient(100deg,#faf4ec 0%,#f3dfc1 36%,#fff6e4 46%,#d8b56f 52%,#f3dfc1 60%,#e8b9b9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eb2,.hero p{color:var(--mut)}
+.fbase{box-shadow:-1px 1px 0 #f1dfb4,-2px 2px 0 #d8b670,-3px 3px 0 #efd9a6,-4px 4px 0 #c99f55,-5px 5px 0 #e2c27f,-6px 6px 0 #b68b45,0 34px 50px -12px rgba(8,1,3,.6)}
+.hstage::after{background:radial-gradient(closest-side,rgba(8,1,3,.55),rgba(8,1,3,.18) 60%,transparent)}
+.tick{background:rgba(20,4,9,.35);border-block:1px solid rgba(216,181,111,.45);color:var(--gold)}
+.tick i{background:var(--g2)}
+
+/* no numbers, no English labels */
+.chap,.sbn,.pk-n,.sn,section .eb{display:none!important}
+
+/* ---------- 1. Designs: header split across the row, bento gallery ---------- */
+#designs{padding-top:84px}
+#designs .sh{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:30px}
+#designs .sh h2{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;font-size:clamp(44px,8vw,86px);line-height:1.2;color:var(--gold)}
+#designs .sh .sub{max-width:24ch;margin:0 0 18px;font-size:18px;color:var(--mut);border-inline-start:2px solid var(--g2);padding-inline-start:14px}
+#designs .ctile{background:linear-gradient(160deg,rgba(255,246,236,.09),rgba(255,246,236,.02));border:1px solid var(--line);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:inset 0 1px 0 rgba(255,246,236,.08)}
+#designs .ctile:hover{box-shadow:0 22px 44px -16px rgba(8,1,3,.6),inset 0 1px 0 rgba(255,246,236,.1);border-color:rgba(216,181,111,.45)}
+#designs .ctile::after{background:linear-gradient(105deg,transparent 40%,rgba(255,240,220,.12) 50%,transparent 60%)}
+#designs .ct b{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;color:var(--gold)}
+#designs .ct em{color:var(--g2)}
+@media(min-width:900px){
+  #designs .cats{grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:auto auto;gap:18px}
+  #designs .cats>.cw:first-child{grid-row:span 2}
+  #designs .cats>.cw:first-child .ctile{justify-content:space-between;padding:26px}
+  #designs .cats>.cw:first-child .c3d{height:300px}
+  #designs .cats>.cw:first-child .ct b{font-size:40px}
+  #designs .cats>.cw:first-child .c3d{transform:scale(1.65)}
+  #designs .cats>.cw:last-child:nth-child(4){grid-column:span 2}
+  #designs .cats>.cw:last-child:nth-child(4) .ctile{flex-direction:row-reverse;align-items:center}
+  #designs .cats>.cw:last-child:nth-child(4) .c3d{flex:1}
+  #designs .cats>.cw:last-child:nth-child(4) .ct{flex:1}
+}
+
+/* ---------- 2. Packages: centred title, cards printed on cream card stock ---------- */
+#packages{padding:90px 0 70px}
+#packages .sh{text-align:center;margin-bottom:46px}
+#packages .sh h2{text-align:center;font-weight:300;font-size:clamp(34px,6vw,58px);color:var(--ink);display:flex;align-items:center;justify-content:center;gap:22px}
+#packages .sh h2::before,#packages .sh h2::after{content:"";display:block;flex:0 1 120px;height:1px;margin:0;font-size:0;background:linear-gradient(90deg,transparent,var(--g2))}
+#packages .sh h2::after{background:linear-gradient(270deg,transparent,var(--g2))}
+#packages .sh .sub{text-align:center}
+#packages .pk{max-width:980px;margin:0 auto;gap:26px;align-items:center}
+#packages .pc{position:relative;background:radial-gradient(120% 80% at 50% 0,#fffdf8,#f6ecdd 70%,#ecdcc6);color:#3f0d18;border:0;border-radius:6px;padding:34px 26px 28px;
+  box-shadow:0 30px 50px -22px rgba(8,1,3,.7)}
+#packages .pc::before{content:"";position:absolute;inset:9px;border:1px solid rgba(201,163,90,.7);border-radius:3px;pointer-events:none}
+#packages .pn{font:600 18px "Cairo",sans-serif;color:#7a5c60}
+#packages .pp{font:700 clamp(40px,5vw,52px)/1.2 "Aref Ruqaa","Amiri",serif;color:#6b1a2a;padding-bottom:12px;margin-bottom:6px;
+  background:linear-gradient(90deg,transparent,#c9a35a,transparent) bottom/50% 1px no-repeat}
+#packages .pf{display:flex;flex-direction:column;gap:6px;color:#4a3236;margin-bottom:10px}
+#packages .pf div::before{content:"";display:inline-block;width:6px;height:6px;margin-inline-end:9px;vertical-align:middle;background:#c9a35a;transform:rotate(45deg)}
+#packages .pc .btn{background:#6b1a2a;color:#faf4ec;border-color:#6b1a2a;position:relative}
+#packages .pc.hot{background:radial-gradient(120% 90% at 50% 0,#8c2a3f,#6b1a2a 55%,#4a0f1c);color:#faf4ec;border:0;padding:46px 26px 36px;
+  box-shadow:0 0 0 1px rgba(216,181,111,.6),0 40px 60px -20px rgba(8,1,3,.8)}
+#packages .pc.hot::before{border-color:rgba(230,203,146,.75)}
+#packages .pc.hot::after{content:"الأكثر طلباً";position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;
+  font:600 13px/1 "Cairo",sans-serif;padding:7px 16px;border-radius:30px;background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18}
+#packages .pc.hot .pn{color:#f0d6cf}
+#packages .pc.hot .pp{color:#f3dfc1;background-image:linear-gradient(90deg,transparent,#e6cb92,transparent)}
+#packages .pc.hot .pf{color:#f6e8e2}
+#packages .pc.hot .pf div::before{background:#e6cb92}
+#packages .pc.hot .btn{background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18;border-color:transparent}
+#packages .pc:hover{transform:translateY(-6px)}
+#packages .pc input,#packages .pc textarea{background:#fffaf2;color:#3f0d18;border:1px solid #e2d3bd}
+
+/* ---------- 3. How: sticky title on one side, a gold thread through the steps ---------- */
+#how{padding:80px 0}
+#how .step{background:none;border:0;border-radius:0;box-shadow:none;padding:0 0 38px;position:relative;padding-inline-start:46px}
+#how .step:hover{transform:none;box-shadow:none}
+#how .step::before{content:"";position:absolute;inset-inline-start:7px;top:12px;width:12px;height:12px;background:var(--g2);transform:rotate(45deg);box-shadow:0 0 0 6px rgba(216,181,111,.14)}
+#how .step::after{content:"";position:absolute;inset-inline-start:12.5px;top:34px;bottom:4px;width:1px;background:linear-gradient(var(--g2),rgba(216,181,111,.15))}
+#how .cw:last-child .step::after{display:none}
+#how .cw:last-child .step{padding-bottom:0}
+#how .step h3{font:700 30px/1.35 "Aref Ruqaa","Amiri",serif;color:var(--gold);margin:0}
+#how .step h3::before{display:block;font:500 14px "Cairo",sans-serif;color:var(--g2);margin-bottom:2px}
+#how .cw:nth-child(1) .step h3::before{content:"أولاً"}
+#how .cw:nth-child(2) .step h3::before{content:"ثانياً"}
+#how .cw:nth-child(3) .step h3::before{content:"ثالثاً"}
+#how .cw:nth-child(4) .step h3::before{content:"وأخيراً"}
+#how .step p{font-size:17px;max-width:46ch}
+#how .step a{color:var(--g2);padding-top:6px}
+#how .hows{display:block}
+#how .sh h2{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;color:var(--gold)}
+@media(min-width:900px){
+  #how .w{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start}
+  #how .sh{position:sticky;top:120px;margin:0}
+  #how .sh h2{font-size:clamp(48px,6vw,80px)}
+  #how .hows{padding-top:18px}
+}
+
+/* ---------- 4. Promise: an open line of calligraphy, no box ---------- */
+.band{background:none;padding:80px 0 90px;position:relative}
+.band blockquote{position:relative;font:700 clamp(30px,5.4vw,60px)/1.6 "Aref Ruqaa","Amiri",serif;max-width:860px;
+  background:linear-gradient(100deg,#f3dfc1,#fff6e4 40%,#d8b56f 60%,#f3dfc1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.band blockquote::before{content:"”";display:block;font:400 120px/0.6 "Aref Ruqaa",serif;color:rgba(216,181,111,.35);-webkit-text-fill-color:rgba(216,181,111,.35);margin-bottom:10px}
+.band .dm i{background:rgba(216,181,111,.45)}
+
+/* ---------- 5. Contact: a cream invitation card with a wax seal ---------- */
+#contact{padding:40px 0 90px}
+#contact .w.cta{position:relative;max-width:760px;padding:76px 28px 54px;border-radius:8px;color:#3f0d18;overflow:visible;
+  background:radial-gradient(120% 90% at 50% 0,#fffdf8,#f6ecdd 70%,#ecdcc6);box-shadow:0 40px 70px -26px rgba(8,1,3,.75)}
+#contact .w.cta::before{content:"";position:absolute;inset:12px;border:1px solid rgba(201,163,90,.75);border-radius:4px;pointer-events:none}
+#contact .w.cta::after{content:"";position:absolute;top:-34px;left:50%;width:68px;height:68px;margin-left:-34px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#a8384f,#6b1a2a 55%,#4a0f1c);
+  box-shadow:inset 0 0 0 5px rgba(0,0,0,.14),inset 0 0 0 7px rgba(230,203,146,.5),0 10px 20px rgba(8,1,3,.45)}
+#contact .cta h2{color:#6b1a2a;font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;font-size:clamp(36px,6vw,56px)}
+#contact .cta h2::after{color:#c9a35a}
+#contact .cta .sub{color:#7a5c60}
+#contact .cta .btn{background:#6b1a2a;color:#faf4ec;border-color:#6b1a2a;padding:12px 28px}
+
+/* footer */
+footer{background:rgba(20,4,9,.35);border-top:1px solid rgba(216,181,111,.3)}
+footer .lg{background:var(--gold)}
+footer .btn{background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18;border-color:transparent}
+
+/* dialogs keep a solid surface */
+dialog{background:#3a0c18;color:var(--ink);border:1px solid var(--line)}
+dialog input,dialog select,dialog textarea{background:#2c0912;color:var(--ink);border-color:var(--line)}

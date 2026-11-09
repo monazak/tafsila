@@ -334,3 +334,6 @@ footer .pl:hover{opacity:1}
 .fcv .fb::after{background:none}
 .fcv .fb .fn{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#6b1a2a;animation:none}
 .fcv .fb .dm i{background:#c9a35a}
+/* no dark spine shadow between the pages */
+.fbase{background:radial-gradient(120% 80% at 70% 20%,#fffdf8,#f6ecdd 70%,#efe2cf)}
+.fcv .fb{background:radial-gradient(120% 80% at 30% 20%,#fffdf8,#f6ecdd 70%,#efe2cf)}

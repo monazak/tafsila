@@ -75,8 +75,118 @@
     if (cp && !cp.dataset.y) { cp.dataset.y = 1; cp.textContent = '© ' + new Date().getFullYear() + ' تفصيلة · ' + cp.textContent; }
   }
 
-  function scan() { decoratePreviews(); decorateContact(); decorateFooter(); }
+
+  /* 4. ambient motion in the hero and behind the prices */
+  function decorateAmbient() {
+    var hero = document.querySelector('.hero');
+    if (hero && !hero.querySelector('.h-amb')) {
+      var a = document.createElement('div'); a.className = 'h-amb'; a.setAttribute('aria-hidden', 'true'); a.innerHTML = '<i></i><i></i><i></i>';
+      hero.insertBefore(a, hero.firstChild);
+      if (!reduce) {
+        var fx = document.createElement('div'); fx.className = 'h-fx'; fx.setAttribute('aria-hidden', 'true');
+        for (var i = 0; i < 14; i++) {
+          var b = document.createElement('b');
+          b.style.left = (4 + Math.random() * 92).toFixed(1) + '%';
+          b.style.setProperty('--s', (3 + Math.random() * 5).toFixed(1) + 'px');
+          b.style.setProperty('--t', (11 + Math.random() * 10).toFixed(1) + 's');
+          b.style.setProperty('--dl', (-Math.random() * 20).toFixed(1) + 's');
+          b.style.setProperty('--x', ((Math.random() - .5) * 120).toFixed(0) + 'px');
+          fx.appendChild(b);
+        }
+        hero.insertBefore(fx, a.nextSibling);
+      }
+    }
+    var pk = document.getElementById('packages');
+    if (pk && !pk.querySelector('.pk-orbs')) {
+      var o = document.createElement('div'); o.className = 'pk-orbs'; o.setAttribute('aria-hidden', 'true'); o.innerHTML = '<i></i><i></i><i></i>';
+      pk.insertBefore(o, pk.firstChild);
+    }
+    document.querySelectorAll('#packages .pc').forEach(function (pc) {
+      if (pc.querySelector('.pc-ring')) return;
+      ['pc-ring', 'pc-spot', 'pc-shine'].forEach(function (c) { var s = document.createElement('span'); s.className = c; s.setAttribute('aria-hidden', 'true'); pc.insertBefore(s, pc.firstChild); });
+    });
+  }
+
+  /* 5. pointer tilt for price cards and gallery tiles */
+  if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var tiltSel = '#packages .pc, #designs .ctile';
+    document.addEventListener('pointermove', function (e) {
+      var el = e.target.closest && e.target.closest(tiltSel);
+      if (!el) return;
+      var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      var k = el.classList.contains('ctile') ? 5 : 7;
+      el.style.setProperty('--ry', ((x - .5) * k).toFixed(2) + 'deg');
+      el.style.setProperty('--rx', ((.5 - y) * k).toFixed(2) + 'deg');
+      el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      el.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+    }, { passive: true });
+    document.addEventListener('pointerout', function (e) {
+      var el = e.target.closest && e.target.closest(tiltSel);
+      if (el && !el.contains(e.relatedTarget)) { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); }
+    });
+  }
+
+  /* 6. questions people ask (dark glass, after the prices) */
+  var FAQ = [
+    ['كيف بتوصل الدعوة لضيوفنا؟', 'بنجهزلكم رابط خاص للدعوة، بتبعتوه لضيوفكم على واتساب أو أي تطبيق، وبيفتح مباشرة على الجوال بدون تحميل أي شي.'],
+    ['بنقدر نعدّل على الدعوة بعد ما نشوفها؟', 'أكيد. بتوصلكم معاينة قبل التسليم، وبنعدّل عليها حسب ملاحظاتكم.'],
+    ['كيف بيشتغل تأكيد الحضور؟', 'في الباقة المميزة، الضيف بيأكد حضوره من الدعوة نفسها، والتأكيد بيوصلكم على واتساب.'],
+    ['شو الفرق بين الباقات؟', 'الأساسية: تصميم جاهز مع عدّاد تنازلي ورابط مشاركة. المميزة: كل ميزات الأساسية مع تأكيد الحضور عبر واتساب وتعديل على النصوص والألوان. VIP: تصميم خاص حسب طلبكم مع دومين خاص وستيكرات وحركات مخصصة.'],
+    ['عندنا فكرة أو تصميم مختلف، بتقدروا تنفذوه؟', 'نعم، ابعتولنا فكرتكم على واتساب وبنجهزها إلكم. باقة VIP معمولة للتصاميم الخاصة.'],
+    ['بتشتغل الدعوة على كل الأجهزة؟', 'نعم، الدعوة صفحة ويب بتفتح على أي جوال أو تابلت أو كمبيوتر.']
+  ];
+  var faqIO = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); faqIO.unobserve(e.target); } });
+  }, { threshold: .15 }) : null;
+  function decorateFaq() {
+    var pk = document.getElementById('packages');
+    if (!pk || document.getElementById('faq')) return;
+    var sec = document.createElement('section');
+    sec.id = 'faq';
+    var h = '<div class="w"><h2>أسئلة بتتكرر</h2><p class="sub">إذا ما لقيتوا جوابكم هون، احكولنا على واتساب.</p><div class="faq-l">';
+    FAQ.forEach(function (q, i) { h += '<details style="--d:' + (i * .07).toFixed(2) + 's"><summary>' + q[0] + '</summary><div class="a">' + q[1] + '</div></details>'; });
+    sec.innerHTML = h + '</div></div>';
+    pk.parentNode.insertBefore(sec, pk.nextSibling);
+    var l = sec.querySelector('.faq-l');
+    if (reduce || !faqIO) l.classList.add('on'); else faqIO.observe(l);
+  }
+
+  /* 7. floating order button, scroll progress, header that steps aside */
+  function decorateChrome() {
+    if (!document.querySelector('.sprog')) {
+      var sp = document.createElement('div'); sp.className = 'sprog'; sp.setAttribute('aria-hidden', 'true'); document.body.appendChild(sp);
+    }
+    if (!document.querySelector('.fab')) {
+      var f = document.createElement('button');
+      f.type = 'button'; f.className = 'fab'; f.setAttribute('aria-label', 'اطلبوا دعوتكم عبر واتساب');
+      f.innerHTML = '<i aria-hidden="true"></i><span>اطلبوا دعوتكم</span>';
+      f.addEventListener('click', function () { var b = document.querySelector('.cta-n'); if (b) b.click(); });
+      document.body.appendChild(f);
+    }
+  }
+  var lastY = scrollY, ticking = false;
+  function onScroll() {
+    ticking = false;
+    var y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    var sp = document.querySelector('.sprog'); if (sp) sp.style.setProperty('--sp', h > 0 ? (y / h).toFixed(4) : 0);
+    var fab = document.querySelector('.fab');
+    if (fab) {
+      var ct = document.getElementById('contact'), nearContact = false;
+      if (ct) { var r = ct.getBoundingClientRect(); nearContact = r.top < innerHeight * .8 && r.bottom > 0; }
+      var dlg = document.querySelector('dialog[open]');
+      fab.classList.toggle('on', y > innerHeight * .7 && !nearContact && !dlg);
+    }
+    var root = document.documentElement;
+    if (y > 320 && y > lastY + 4) root.classList.add('nav-hide');
+    else if (y < lastY - 4 || y < 320) root.classList.remove('nav-hide');
+    lastY = y;
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll);
+
+  function scan() { decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();
+  onScroll();
 })();

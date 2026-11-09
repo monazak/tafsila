@@ -328,3 +328,9 @@ footer .pl:hover{opacity:1}
 .hstage.burst .bsparks i{animation:spark 1.3s cubic-bezier(.15,.7,.3,1) var(--dl) both}
 @keyframes spark{0%{opacity:0;transform:translate(0,0) rotate(45deg) scale(.2)}15%{opacity:1}100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(225deg) scale(1)}}
 @media(prefers-reduced-motion:reduce){.bhint svg{animation:none}}
+/* right page: same cream card stock as the left page */
+.fcv .fb{background:linear-gradient(to right,rgba(80,30,30,.2),transparent 14%),radial-gradient(120% 80% at 30% 20%,#fffdf8,#f6ecdd 70%,#efe2cf);color:#6b1a2a}
+.fcv .fb::before{border-color:rgba(201,163,90,.8)}
+.fcv .fb::after{background:none}
+.fcv .fb .fn{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#6b1a2a;animation:none}
+.fcv .fb .dm i{background:#c9a35a}

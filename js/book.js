@@ -9,7 +9,7 @@
     var ctl = stage && stage.querySelector('.fold-ctl button');
     if (!stage || !cover || !ctl) return;
 
-    /* extras: hint, sparkles, ribbon */
+    /* extras: hint and sparkles */
     var hint = document.createElement('div');
     hint.className = 'bhint';
     hint.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7l-2.3-3.6a1.6 1.6 0 0 1 2.6-1.9L9 14"/></svg><span>اسحب الغلاف لتفتح الكرت</span>';
@@ -25,8 +25,6 @@
       sp.appendChild(s);
     }
     stage.appendChild(sp);
-    var rib = document.createElement('span'); rib.className = 'bribbon'; rib.setAttribute('aria-hidden', 'true');
-    fold.querySelector('.fbase').appendChild(rib);
 
     function isOpen() { return fold.classList.contains('open'); }
     function syncHint() { stage.classList.toggle('is-open', isOpen()); }

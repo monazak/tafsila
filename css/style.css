@@ -313,11 +313,6 @@ footer .pl:hover{opacity:1}
 .fcv .fb .fn{font-family:"Aref Ruqaa","Amiri",serif;font-size:calc(var(--pw)*.13)}
 .fcv .fb .dm{gap:calc(var(--pw)*.035)}
 .fcv .fb .dm i:nth-child(n+4){display:none}
-/* satin ribbon bookmark between the pages */
-.bribbon{position:absolute;right:16%;top:94%;width:calc(var(--pw)*.07);height:calc(var(--pw)*.3);transform-origin:top center;transform:translateZ(-2px);
-  background:linear-gradient(90deg,#c9a35a 0 9%,#7d2133 9% 91%,#c9a35a 91%),#6b1a2a;
-  clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);animation:sway 4.5s ease-in-out infinite;pointer-events:none}
-@keyframes sway{50%{transform:translateZ(-2px) rotate(5deg)}}
 /* hint, shown while closed */
 .bhint{position:absolute;left:0;right:0;top:calc(var(--pw)*1.416 + 26px);display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:var(--mut,#6e5458);
   transition:opacity .4s;pointer-events:none}
@@ -332,4 +327,4 @@ footer .pl:hover{opacity:1}
   box-shadow:0 0 6px rgba(230,194,122,.8)}
 .hstage.burst .bsparks i{animation:spark 1.3s cubic-bezier(.15,.7,.3,1) var(--dl) both}
 @keyframes spark{0%{opacity:0;transform:translate(0,0) rotate(45deg) scale(.2)}15%{opacity:1}100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(225deg) scale(1)}}
-@media(prefers-reduced-motion:reduce){.bribbon,.bhint svg{animation:none}}
+@media(prefers-reduced-motion:reduce){.bhint svg{animation:none}}

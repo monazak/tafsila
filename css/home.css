@@ -1,7 +1,7 @@
-/* ===== Tafsila homepage: deep wine gradient theme + distinct sections ===== */
+/* ===== Tafsila homepage: wine gradient + cream sheets, distinct sections ===== */
 :root{--bg:#2c0912;--card:rgba(255,246,236,.05);--ink:#faf4ec;--mut:#e3c4bd;--gold:#f3dfc1;--g2:#d8b56f;--line:rgba(240,214,207,.16);--soft:rgba(255,246,236,.06);--bi:#3f0d18;--rose:#c46a7c;color-scheme:dark}
 
-/* background: layered wine gradient with soft rose and gold light, plus a fine grain */
+/* deep wine background with rose and gold light, plus a fine grain */
 body{background:#2c0912}
 body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
@@ -14,99 +14,168 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 #root,#pg{background:transparent}
 
+/* light sheets: designs, how we work, contact sit on cream paper */
+#designs,#how,#contact{--ink:#2e1f22;--mut:#7a5c60;--gold:#6b1a2a;--g2:#b8893e;--line:rgba(107,26,42,.13);--card:#fffbf5;--soft:#f6ecdd;--bi:#faf4ec;color-scheme:light;
+  position:relative;margin:0 12px;border-radius:44px;color:var(--ink);
+  background:radial-gradient(70% 60% at 100% 0,#fdf1ec,transparent 70%),radial-gradient(60% 50% at 0 100%,#f7ead6,transparent 70%),#fbf6ef;
+  box-shadow:0 40px 80px -40px rgba(8,1,3,.6)}
+#designs .btn,#how .btn,#contact .sub{color:inherit}
+#designs .btn{background:linear-gradient(135deg,#7d2133,#5a1424);color:#faf4ec;border-color:transparent}
+#designs .btn.alt{background:transparent;color:#6b1a2a;border-color:rgba(107,26,42,.35)}
+
 /* header */
-.nav{background:rgba(44,9,18,.55);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line)}
+.nav{background:rgba(44,9,18,.84);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid rgba(240,214,207,.14)}
 .nav.sc{box-shadow:0 10px 30px rgba(10,2,5,.35)}
-.logo .lg{background:var(--gold)}
+.logo .lg{background:#f3dfc1}
 .nl b{display:none}
+.nav a.l{color:#faf4ec}
 .nav a.l:hover{background:rgba(255,246,236,.07)}
 .btn{background:linear-gradient(135deg,#f6e6c9,#d8b56f);border-color:transparent;color:#3f0d18}
 .btn.alt{background:transparent;color:var(--gold);border-color:rgba(243,223,193,.55)}
 .btn.alt:hover{background:rgba(243,223,193,.08)}
+.rail a{border-color:#d8b56f}
+.rail a.act{background:#d8b56f;border-color:#d8b56f}
 
-/* hero */
+/* no numbers, no English labels */
+.chap,.sbn,.pk-n,.sn,section .eb{display:none!important}
+
+/* ---------- hero ---------- */
 .hero{background:transparent}
 .hero h1{background:linear-gradient(100deg,#faf4ec 0%,#f3dfc1 36%,#fff6e4 46%,#d8b56f 52%,#f3dfc1 60%,#e8b9b9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .eb2,.hero p{color:var(--mut)}
 .fbase{box-shadow:-1px 1px 0 #f1dfb4,-2px 2px 0 #d8b670,-3px 3px 0 #efd9a6,-4px 4px 0 #c99f55,-5px 5px 0 #e2c27f,-6px 6px 0 #b68b45,0 34px 50px -12px rgba(8,1,3,.6)}
 .hstage::after{background:radial-gradient(closest-side,rgba(8,1,3,.55),rgba(8,1,3,.18) 60%,transparent)}
-.tick{background:rgba(20,4,9,.35);border-block:1px solid rgba(216,181,111,.45);color:var(--gold)}
-.tick i{background:var(--g2)}
+.hstage .fold{z-index:3}
+.hstage .fold-ctl{z-index:4}
 
-/* no numbers, no English labels */
-.chap,.sbn,.pk-n,.sn,section .eb{display:none!important}
+/* the three cards around the book are little invitations, tucked behind it */
+.fly{z-index:1}
+.fly .mini{position:relative;border:0;border-radius:5px;overflow:hidden;box-shadow:0 22px 34px -10px rgba(8,1,3,.6),0 0 0 1px rgba(216,181,111,.45)}
+.fly .mini .lg{display:none}
+.fly .mini::before{content:"";position:absolute;inset:7%;border:1px solid currentColor;border-radius:3px;opacity:.55}
+.fly .mini::after{position:relative;white-space:pre;text-align:center;font:700 calc(var(--pw)*.062)/1.35 "Aref Ruqaa","Amiri",serif}
+.f1 .mini{background:radial-gradient(120% 90% at 50% 10%,#8c2a3f,#6b1a2a 55%,#4a0f1c)!important;color:#e6cb92}
+.f1 .mini::after{content:"ليان\A و \Aآدم"}
+.f2 .mini{background:radial-gradient(120% 90% at 50% 10%,#fffdf8,#f6ecdd 70%,#e9d7bb)!important;color:#6b1a2a}
+.f2 .mini::after{content:"مبروك\A التخرج"}
+.f3 .mini{background:radial-gradient(120% 90% at 50% 10%,#f4f7f8,#dce6ea 70%,#c3d3da)!important;color:#24354b}
+.f3 .mini::after{content:"عيد\A ميلاد\A سعيد"}
+.f1{top:22%}
+.f2{top:8%}
+@media(max-width:640px){
+  .f1{left:calc(50% - var(--pw)*1.18);top:30%}
+  .f2{left:calc(50% + var(--pw)*.8);top:16%}
+  .f3{display:none}
+}
 
-/* ---------- 1. Designs: header split across the row, bento gallery ---------- */
-#designs{padding-top:84px}
+/* occasions line: calm and still instead of a scrolling ticker */
+.tick{background:none;border:0;padding:6px 0 34px;color:#f3dfc1;direction:rtl;overflow:visible}
+.tick-t{animation:none!important;width:auto;justify-content:center;flex-wrap:wrap;gap:4px 0;transform:none!important}
+.tick span:nth-child(n+5){display:none}
+.tick span{font:700 clamp(20px,3vw,28px) "Aref Ruqaa","Amiri",serif}
+.tick span:nth-child(4) i{display:none}
+.tick i{width:6px;height:6px;background:#d8b56f;margin:0 clamp(14px,3vw,30px)}
+
+/* ---------- 1. designs (light): split header, bento gallery ---------- */
+#designs{padding:84px 0 70px}
 #designs .sh{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:30px}
-#designs .sh h2{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;font-size:clamp(44px,8vw,86px);line-height:1.2;color:var(--gold)}
-#designs .sh .sub{max-width:24ch;margin:0 0 18px;font-size:18px;color:var(--mut);border-inline-start:2px solid var(--g2);padding-inline-start:14px}
-#designs .ctile{background:linear-gradient(160deg,rgba(255,246,236,.09),rgba(255,246,236,.02));border:1px solid var(--line);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:inset 0 1px 0 rgba(255,246,236,.08)}
-#designs .ctile:hover{box-shadow:0 22px 44px -16px rgba(8,1,3,.6),inset 0 1px 0 rgba(255,246,236,.1);border-color:rgba(216,181,111,.45)}
-#designs .ctile::after{background:linear-gradient(105deg,transparent 40%,rgba(255,240,220,.12) 50%,transparent 60%)}
-#designs .ct b{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;color:var(--gold)}
-#designs .ct em{color:var(--g2)}
+#designs .sh h2{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;font-size:clamp(44px,8vw,86px);line-height:1.2;color:#6b1a2a}
+#designs .sh .sub{max-width:24ch;margin:0 0 18px;font-size:18px;border-inline-start:2px solid var(--g2);padding-inline-start:14px}
+#designs .ctile{background:#fffdf9;border:1px solid rgba(107,26,42,.1);box-shadow:0 1px 0 #fff inset,0 18px 40px -26px rgba(74,15,28,.35)}
+#designs .ctile:hover{box-shadow:0 28px 50px -24px rgba(74,15,28,.45);border-color:rgba(184,137,62,.45)}
+#designs .ctile::after{background:linear-gradient(105deg,transparent 40%,rgba(255,250,240,.6) 50%,transparent 60%)}
+#designs .ct b{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;color:#6b1a2a}
+#designs .ct em{color:#b8893e}
+/* category cards: little invitations, lifted clear of the text */
+#designs .c3d{margin-bottom:8px}
+#designs .cm{bottom:auto;top:4px;border:0;border-radius:4px;box-shadow:0 14px 24px -10px rgba(74,15,28,.45),0 0 0 1px rgba(184,137,62,.35);color:#6b1a2a}
+#designs .cm .lg{display:none}
+#designs .cm::before{content:"";position:absolute;inset:7%;border:1px solid currentColor;border-radius:2px;opacity:.5}
+#designs .cm::after{white-space:pre;text-align:center;font:700 12px/1.35 "Aref Ruqaa","Amiri",serif}
+#designs .cats>.cw:nth-child(1) .cm0::after{content:"سلمى\A و \Aعمر"}
+#designs .cats>.cw:nth-child(1) .cm1::after{content:"ليان\A و \Aآدم"}
+#designs .cats>.cw:nth-child(1) .cm2::after{content:"ريم\A و \Aكريم"}
+#designs .cats>.cw:nth-child(2) .cm{color:#e6cb92}
+#designs .cats>.cw:nth-child(2) .cm::after{content:"إشهار\A زواج"}
+#designs .cats>.cw:nth-child(3) .cm::after{content:"مبروك\A التخرج"}
+#designs .cats>.cw:nth-child(4) .cm{color:#24354b}
+#designs .cats>.cw:nth-child(4) .cm::after{content:"عيد\A ميلاد\A سعيد"}
 @media(min-width:900px){
   #designs .cats{grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:auto auto;gap:18px}
   #designs .cats>.cw:first-child{grid-row:span 2}
   #designs .cats>.cw:first-child .ctile{justify-content:space-between;padding:26px}
-  #designs .cats>.cw:first-child .c3d{height:300px}
+  #designs .cats>.cw:first-child .c3d{height:300px;perspective:900px}
+  #designs .cats>.cw:first-child .cm{width:118px;top:36px}
+  #designs .cats>.cw:first-child .cm::after{font-size:19px}
+  #designs .cats>.cw:first-child .cm0{transform:translateX(-50%) translateX(-70px) rotate(-12deg) rotateY(18deg)}
+  #designs .cats>.cw:first-child .cm2{transform:translateX(-50%) translateX(70px) rotate(12deg) rotateY(-18deg)}
+  #designs .cats>.cw:first-child .ctile:hover .cm0{transform:translateX(-50%) translateX(-92px) translateY(-6px) rotate(-17deg) rotateY(22deg)}
+  #designs .cats>.cw:first-child .ctile:hover .cm1{transform:translateX(-50%) translateZ(40px) translateY(-12px)}
+  #designs .cats>.cw:first-child .ctile:hover .cm2{transform:translateX(-50%) translateX(92px) translateY(-6px) rotate(17deg) rotateY(-22deg)}
   #designs .cats>.cw:first-child .ct b{font-size:40px}
-  #designs .cats>.cw:first-child .c3d{transform:scale(1.65)}
   #designs .cats>.cw:last-child:nth-child(4){grid-column:span 2}
   #designs .cats>.cw:last-child:nth-child(4) .ctile{flex-direction:row-reverse;align-items:center}
-  #designs .cats>.cw:last-child:nth-child(4) .c3d{flex:1}
-  #designs .cats>.cw:last-child:nth-child(4) .ct{flex:1}
+  #designs .cats>.cw:last-child:nth-child(4) .c3d,#designs .cats>.cw:last-child:nth-child(4) .ct{flex:1}
 }
+/* design cards inside a category: the picture opens the preview */
+#designs .dc{background:#fffdf9;border-color:rgba(107,26,42,.1);box-shadow:0 18px 40px -26px rgba(74,15,28,.35)}
+#designs .dc .pv{cursor:pointer}
+#designs .dc .pv .pvgo{position:absolute;inset-inline:0;bottom:14px;margin:auto;width:max-content;z-index:3;display:flex;align-items:center;gap:6px;
+  font:600 13px/1 "Cairo",sans-serif;padding:9px 16px;border-radius:30px;background:rgba(46,12,20,.78);color:#faf4ec;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;pointer-events:none}
+#designs .dc .pv:hover .pvgo,#designs .dc .pv:focus-visible .pvgo{opacity:1;transform:none}
+@media(hover:none){#designs .dc .pv .pvgo{opacity:1;transform:none}}
+#designs .dc .pv:focus-visible{outline:3px solid #b8893e;outline-offset:-3px}
+#designs .cathead h3{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;color:#6b1a2a}
 
-/* ---------- 2. Packages: centred title, cards printed on cream card stock ---------- */
-#packages{padding:90px 0 70px}
-#packages .sh{text-align:center;margin-bottom:46px}
-#packages .sh h2{text-align:center;font-weight:300;font-size:clamp(34px,6vw,58px);color:var(--ink);display:flex;align-items:center;justify-content:center;gap:22px}
-#packages .sh h2::before,#packages .sh h2::after{content:"";display:block;flex:0 1 120px;height:1px;margin:0;font-size:0;background:linear-gradient(90deg,transparent,var(--g2))}
-#packages .sh h2::after{background:linear-gradient(270deg,transparent,var(--g2))}
+/* ---------- 2. packages (dark): gold-edged black-card luxury ---------- */
+#packages{padding:100px 0 90px}
+#packages .sh{text-align:center;margin-bottom:56px}
+#packages .sh h2{text-align:center;font-weight:300;font-size:clamp(34px,6vw,58px);color:#faf4ec;display:flex;align-items:center;justify-content:center;gap:22px}
+#packages .sh h2::before,#packages .sh h2::after{content:"";display:block;flex:0 1 120px;height:1px;margin:0;font-size:0;background:linear-gradient(90deg,transparent,#d8b56f)}
+#packages .sh h2::after{background:linear-gradient(270deg,transparent,#d8b56f)}
 #packages .sh .sub{text-align:center}
-#packages .pk{max-width:980px;margin:0 auto;gap:26px;align-items:center}
-#packages .pc{position:relative;background:radial-gradient(120% 80% at 50% 0,#fffdf8,#f6ecdd 70%,#ecdcc6);color:#3f0d18;border:0;border-radius:6px;padding:34px 26px 28px;
-  box-shadow:0 30px 50px -22px rgba(8,1,3,.7)}
-#packages .pc::before{content:"";position:absolute;inset:9px;border:1px solid rgba(201,163,90,.7);border-radius:3px;pointer-events:none}
-#packages .pn{font:600 18px "Cairo",sans-serif;color:#7a5c60}
-#packages .pp{font:700 clamp(40px,5vw,52px)/1.2 "Aref Ruqaa","Amiri",serif;color:#6b1a2a;padding-bottom:12px;margin-bottom:6px;
-  background:linear-gradient(90deg,transparent,#c9a35a,transparent) bottom/50% 1px no-repeat}
-#packages .pf{display:flex;flex-direction:column;gap:6px;color:#4a3236;margin-bottom:10px}
-#packages .pf div::before{content:"";display:inline-block;width:6px;height:6px;margin-inline-end:9px;vertical-align:middle;background:#c9a35a;transform:rotate(45deg)}
-#packages .pc .btn{background:#6b1a2a;color:#faf4ec;border-color:#6b1a2a;position:relative}
-#packages .pc.hot{background:radial-gradient(120% 90% at 50% 0,#8c2a3f,#6b1a2a 55%,#4a0f1c);color:#faf4ec;border:0;padding:46px 26px 36px;
-  box-shadow:0 0 0 1px rgba(216,181,111,.6),0 40px 60px -20px rgba(8,1,3,.8)}
-#packages .pc.hot::before{border-color:rgba(230,203,146,.75)}
-#packages .pc.hot::after{content:"الأكثر طلباً";position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;
-  font:600 13px/1 "Cairo",sans-serif;padding:7px 16px;border-radius:30px;background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18}
-#packages .pc.hot .pn{color:#f0d6cf}
-#packages .pc.hot .pp{color:#f3dfc1;background-image:linear-gradient(90deg,transparent,#e6cb92,transparent)}
-#packages .pc.hot .pf{color:#f6e8e2}
-#packages .pc.hot .pf div::before{background:#e6cb92}
+#packages .pk{max-width:1020px;margin:0 auto;gap:24px;align-items:center}
+#packages .pc{position:relative;text-align:start;gap:0;border-radius:24px;padding:38px 32px 32px;color:#faf4ec;
+  background:radial-gradient(90% 60% at 50% 0,rgba(255,246,236,.07),transparent 70%) padding-box,linear-gradient(170deg,#3e0f1b,#25070f 75%) padding-box,linear-gradient(160deg,rgba(230,203,146,.55),rgba(230,203,146,.08) 40%,rgba(230,203,146,.35)) border-box;
+  border:1px solid transparent;box-shadow:0 30px 60px -30px rgba(8,1,3,.8)}
+#packages .pc:hover{transform:translateY(-6px);box-shadow:0 40px 70px -30px rgba(8,1,3,.9)}
+#packages .pn{font:700 30px/1.3 "Aref Ruqaa","Amiri",serif;color:#f3dfc1}
+#packages .pp{font:300 clamp(46px,5vw,58px)/1.1 "Cairo",sans-serif;color:#fff;letter-spacing:-.01em;margin:14px 0 22px;padding-bottom:22px;border-bottom:1px solid rgba(230,203,146,.18)}
+#packages .pf{display:flex;flex-direction:column;gap:12px;color:#ecd6d0;margin-bottom:30px;font-size:16px}
+#packages .pf div{display:flex;align-items:center;gap:10px}
+#packages .pf div::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:rgba(216,181,111,.16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.3l2.6 2.5L12 5.4' fill='none' stroke='%23e6cb92' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+#packages .pc .btn{margin-top:auto;width:100%;padding:13px 20px;border-radius:14px;background:transparent;color:#f3dfc1;border:1px solid rgba(230,203,146,.5)}
+#packages .pc .btn:hover{background:rgba(230,203,146,.1)}
+#packages .pc.hot{padding:48px 34px 38px;transform:translateY(-14px);
+  background:radial-gradient(120% 70% at 50% 0,rgba(196,74,100,.35),transparent 70%) padding-box,linear-gradient(170deg,#5a1424,#33091a 70%) padding-box,linear-gradient(150deg,#f6e6c9,#c99a4c 40%,#7a5523 60%,#e6cb92) border-box;
+  border:1.5px solid transparent;box-shadow:0 0 60px -10px rgba(216,181,111,.28),0 40px 70px -30px rgba(8,1,3,.9)}
+#packages .pc.hot:hover{transform:translateY(-20px)}
+#packages .pc.hot::after{content:"الأكثر طلباً";position:absolute;top:-15px;inset-inline-start:32px;white-space:nowrap;
+  font:600 13px/1 "Cairo",sans-serif;padding:8px 16px;border-radius:30px;background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18;box-shadow:0 8px 20px -6px rgba(216,181,111,.5)}
+#packages .pc.hot .pp{background:linear-gradient(100deg,#fff6e4,#e6cb92 60%,#f6e6c9);-webkit-background-clip:text;background-clip:text;color:transparent}
 #packages .pc.hot .btn{background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18;border-color:transparent}
-#packages .pc:hover{transform:translateY(-6px)}
-#packages .pc input,#packages .pc textarea{background:#fffaf2;color:#3f0d18;border:1px solid #e2d3bd}
+#packages .pc input,#packages .pc textarea{background:rgba(255,246,236,.08);color:#faf4ec;border:1px solid rgba(230,203,146,.3)}
+@media(max-width:899px){#packages .pc.hot,#packages .pc.hot:hover{transform:none}}
 
-/* ---------- 3. How: sticky title on one side, a gold thread through the steps ---------- */
-#how{padding:80px 0}
+/* ---------- 3. how (light): sticky title, a gold thread through the steps ---------- */
+#how{padding:84px 0}
 #how .step{background:none;border:0;border-radius:0;box-shadow:none;padding:0 0 38px;position:relative;padding-inline-start:46px}
 #how .step:hover{transform:none;box-shadow:none}
-#how .step::before{content:"";position:absolute;inset-inline-start:7px;top:12px;width:12px;height:12px;background:var(--g2);transform:rotate(45deg);box-shadow:0 0 0 6px rgba(216,181,111,.14)}
-#how .step::after{content:"";position:absolute;inset-inline-start:12.5px;top:34px;bottom:4px;width:1px;background:linear-gradient(var(--g2),rgba(216,181,111,.15))}
+#how .step::before{content:"";position:absolute;inset-inline-start:7px;top:12px;width:12px;height:12px;background:var(--g2);transform:rotate(45deg);box-shadow:0 0 0 6px rgba(184,137,62,.15)}
+#how .step::after{content:"";position:absolute;inset-inline-start:12.5px;top:34px;bottom:4px;width:1px;background:linear-gradient(var(--g2),rgba(184,137,62,.15))}
 #how .cw:last-child .step::after{display:none}
 #how .cw:last-child .step{padding-bottom:0}
-#how .step h3{font:700 30px/1.35 "Aref Ruqaa","Amiri",serif;color:var(--gold);margin:0}
-#how .step h3::before{display:block;font:500 14px "Cairo",sans-serif;color:var(--g2);margin-bottom:2px}
+#how .step h3{font:700 30px/1.35 "Aref Ruqaa","Amiri",serif;color:#6b1a2a;margin:0}
+#how .step h3::before{display:block;font:600 14px "Cairo",sans-serif;color:var(--g2);margin-bottom:2px}
 #how .cw:nth-child(1) .step h3::before{content:"أولاً"}
 #how .cw:nth-child(2) .step h3::before{content:"ثانياً"}
 #how .cw:nth-child(3) .step h3::before{content:"ثالثاً"}
 #how .cw:nth-child(4) .step h3::before{content:"وأخيراً"}
 #how .step p{font-size:17px;max-width:46ch}
-#how .step a{color:var(--g2);padding-top:6px}
+#how .step a{color:#b8893e;padding-top:6px}
 #how .hows{display:block}
-#how .sh h2{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;color:var(--gold)}
+#how .sh h2{font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;color:#6b1a2a}
 @media(min-width:900px){
   #how .w{display:grid;grid-template-columns:5fr 7fr;gap:60px;align-items:start}
   #how .sh{position:sticky;top:120px;margin:0}
@@ -114,31 +183,80 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
   #how .hows{padding-top:18px}
 }
 
-/* ---------- 4. Promise: an open line of calligraphy, no box ---------- */
-.band{background:none;padding:80px 0 90px;position:relative}
+/* ---------- 4. promise (dark): one line of calligraphy ---------- */
+.band{background:none;padding:90px 0 100px;position:relative}
 .band blockquote{position:relative;font:700 clamp(30px,5.4vw,60px)/1.6 "Aref Ruqaa","Amiri",serif;max-width:860px;
   background:linear-gradient(100deg,#f3dfc1,#fff6e4 40%,#d8b56f 60%,#f3dfc1);-webkit-background-clip:text;background-clip:text;color:transparent}
 .band blockquote::before{content:"”";display:block;font:400 120px/0.6 "Aref Ruqaa",serif;color:rgba(216,181,111,.35);-webkit-text-fill-color:rgba(216,181,111,.35);margin-bottom:10px}
 .band .dm i{background:rgba(216,181,111,.45)}
 
-/* ---------- 5. Contact: a cream invitation card with a wax seal ---------- */
-#contact{padding:40px 0 90px}
-#contact .w.cta{position:relative;max-width:760px;padding:76px 28px 54px;border-radius:8px;color:#3f0d18;overflow:visible;
-  background:radial-gradient(120% 90% at 50% 0,#fffdf8,#f6ecdd 70%,#ecdcc6);box-shadow:0 40px 70px -26px rgba(8,1,3,.75)}
-#contact .w.cta::before{content:"";position:absolute;inset:12px;border:1px solid rgba(201,163,90,.75);border-radius:4px;pointer-events:none}
-#contact .w.cta::after{content:"";position:absolute;top:-34px;left:50%;width:68px;height:68px;margin-left:-34px;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,#a8384f,#6b1a2a 55%,#4a0f1c);
-  box-shadow:inset 0 0 0 5px rgba(0,0,0,.14),inset 0 0 0 7px rgba(230,203,146,.5),0 10px 20px rgba(8,1,3,.45)}
-#contact .cta h2{color:#6b1a2a;font-family:"Aref Ruqaa","Amiri",serif;font-weight:700;font-size:clamp(36px,6vw,56px)}
-#contact .cta h2::after{color:#c9a35a}
-#contact .cta .sub{color:#7a5c60}
-#contact .cta .btn{background:#6b1a2a;color:#faf4ec;border-color:#6b1a2a;padding:12px 28px}
+/* ---------- 5. contact (light sheet): a wine card with a live WhatsApp chat ---------- */
+#contact{padding:70px 0;margin-bottom:60px}
+#contact .w.cta{position:relative;max-width:1000px;padding:56px 56px;border-radius:32px;text-align:start!important;color:#faf4ec;overflow:hidden;
+  display:grid;grid-template-columns:1fr minmax(280px,360px);grid-template-rows:auto auto 1fr;column-gap:56px;align-items:start;
+  background:radial-gradient(70% 90% at 0 0,rgba(196,74,100,.45),transparent 60%),radial-gradient(60% 70% at 100% 100%,rgba(201,163,90,.22),transparent 60%),linear-gradient(150deg,#6b1a2a,#3f0d18);
+  box-shadow:0 50px 90px -40px rgba(63,13,24,.75)}
+#contact .w.cta::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23e6cb92' stroke-opacity='.12' stroke-width='2'/%3E%3C/svg%3E")}
+#contact .cta>*{position:relative}
+#contact .cta h2{grid-column:1;text-align:start;color:#faf4ec;font:700 clamp(40px,6vw,64px)/1.25 "Aref Ruqaa","Amiri",serif;margin-top:20px}
+#contact .cta h2::after{display:none}
+#contact .cta .sub{grid-column:1;text-align:start;color:#ecd2cc;font-size:19px;max-width:30ch;margin:14px 0 28px}
+#contact .cta .btn{grid-column:1;justify-self:start;display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:16px;font-size:17px;
+  background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18;border:0;box-shadow:0 14px 30px -12px rgba(216,181,111,.55)}
+#contact .cta .btn::before{content:"";width:20px;height:20px;flex:none;background:currentColor;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2-.2-.2-.4-.3z'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.1-1.2-.2-.2-.4-.3z'/%3E%3C/svg%3E") center/contain no-repeat}
+#contact .cta .cpts{grid-column:1;display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;color:#e3c4bd;font-size:14px}
+#contact .cta .cpts span{display:flex;align-items:center;gap:7px}
+#contact .cta .cpts span::before{content:"";width:6px;height:6px;background:#d8b56f;transform:rotate(45deg)}
+/* the chat */
+.chat{grid-column:2;grid-row:1/span 4;border-radius:26px;overflow:hidden;background:#f4ece1;color:#2e1f22;box-shadow:0 30px 60px -20px rgba(8,1,3,.6),0 0 0 6px rgba(255,246,236,.08);transform:rotate(-2deg)}
+.chat-h{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#2e0a14;color:#faf4ec}
+.chat-h .av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#a8384f,#6b1a2a);box-shadow:0 0 0 1.5px #d8b56f}
+.chat-h .av .lg{height:9px;width:30px;margin:0;background:#f3dfc1}
+.chat-h b{display:block;font:600 15px/1.2 "Cairo",sans-serif}
+.chat-h small{font-size:12px;color:#c9e8b8}
+.chat-b{display:flex;flex-direction:column;gap:8px;padding:18px 14px 20px;min-height:290px;
+  background:radial-gradient(circle at 20% 20%,rgba(201,163,90,.08) 0 2px,transparent 3px) 0 0/22px 22px,#f4ece1}
+.chat .m{max-width:82%;padding:9px 13px 7px;border-radius:14px;font-size:14.5px;line-height:1.6;box-shadow:0 1px 1px rgba(46,31,34,.12)}
+.chat .m time{display:block;font-size:10.5px;color:#9b8a86;text-align:end;margin-top:1px}
+.chat .m.me{align-self:flex-start;background:#fff;border-start-start-radius:4px}
+.chat .m.us{align-self:flex-end;background:#f1dcc0;border-start-end-radius:4px}
+.chat .typing{align-self:flex-end;display:flex;gap:4px;padding:12px 14px;border-radius:14px;background:#f1dcc0}
+.chat .typing i{width:6px;height:6px;border-radius:50%;background:#8a6a5f;animation:tdot 1.2s ease-in-out infinite}
+.chat .typing i:nth-child(2){animation-delay:.15s}.chat .typing i:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+#contact .chat .m,#contact .chat .typing{opacity:0;transform:translateY(10px) scale(.96);transition:opacity .45s ease,transform .45s cubic-bezier(.2,.9,.3,1.2)}
+#contact .chat.play .m,#contact .chat.play .typing{opacity:1;transform:none}
+#contact .chat.play .m:nth-child(2){transition-delay:.9s}
+#contact .chat.play .m:nth-child(3){transition-delay:1.8s}
+#contact .chat.play .typing{transition-delay:2.7s}
+@media(max-width:860px){
+  #contact .w.cta{grid-template-columns:1fr;padding:40px 22px 30px;text-align:center!important}
+  #contact .cta h2,#contact .cta .sub{text-align:center;margin-inline:auto}
+  #contact .cta .btn{justify-self:center}
+  #contact .cta .cpts{justify-content:center}
+  .chat{grid-column:1;grid-row:auto;margin-top:34px;transform:none}
+}
+@media(prefers-reduced-motion:reduce){#contact .chat .m,#contact .chat .typing{opacity:1;transform:none;transition:none}.chat .typing i{animation:none}}
 
-/* footer */
-footer{background:rgba(20,4,9,.35);border-top:1px solid rgba(216,181,111,.3)}
-footer .lg{background:var(--gold)}
-footer .btn{background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18;border-color:transparent}
+/* ---------- footer ---------- */
+footer{background:none;border-top:0;padding:30px 18px 40px;color:#e3c4bd}
+footer .lg{background:#f3dfc1;margin-inline:auto}
+footer .fbig{font:700 clamp(30px,5vw,52px)/1.5 "Aref Ruqaa","Amiri",serif;color:#f3dfc1}
+footer .btn{background:linear-gradient(135deg,#f6e6c9,#d8b56f);color:#3f0d18;border-color:transparent;margin:10px auto 0}
+footer .dm{display:none!important}
+footer .flinks{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 26px;margin:34px auto 0;padding-top:24px;max-width:760px;border-top:1px solid rgba(230,203,146,.18)}
+footer .flinks a{color:#f3dfc1;text-decoration:none;font-size:15px}
+footer .flinks a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+footer .cp{margin-top:16px;font-size:13px;opacity:.75}
+footer .pl{display:none}
 
 /* dialogs keep a solid surface */
-dialog{background:#3a0c18;color:var(--ink);border:1px solid var(--line)}
-dialog input,dialog select,dialog textarea{background:#2c0912;color:var(--ink);border-color:var(--line)}
+dialog{background:#3a0c18;color:#faf4ec;border:1px solid rgba(240,214,207,.16)}
+dialog input,dialog select,dialog textarea{background:#2c0912;color:#faf4ec;border-color:rgba(240,214,207,.16)}
+
+@media(max-width:640px){
+  #designs,#how,#contact{margin:0 6px;border-radius:28px}
+}

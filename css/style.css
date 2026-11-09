@@ -299,3 +299,37 @@ footer .pl:hover{opacity:1}
   background:linear-gradient(115deg,rgba(255,255,255,.28),transparent 35%,transparent 65%,rgba(63,13,24,.18))}
 .ffimg img{border-radius:6px}
 @media(prefers-reduced-motion:reduce){.fold,.fcv,.hstage::after,.fbase::after{transition:none}}
+
+/* ===== Book card v2: drag to open, gilded edges, ribbon, sparkles ===== */
+.fold{touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.fold:active{cursor:grabbing}
+.fold.dragging,.fold.dragging .fcv{transition:none!important}
+.fold.dragging .fbase::after{transition:none;opacity:calc(1 - var(--p,0))}
+/* gilded page edges instead of plain cream */
+.fbase{box-shadow:-1px 1px 0 #f1dfb4,-2px 2px 0 #d8b670,-3px 3px 0 #efd9a6,-4px 4px 0 #c99f55,-5px 5px 0 #e2c27f,-6px 6px 0 #b68b45,0 30px 42px -14px rgba(63,13,24,.5)}
+/* cover sheen and the shadow it throws while it turns */
+.fcv .ff.ffimg::before{background:linear-gradient(115deg,rgba(255,255,255,.34),transparent 35%,transparent 65%,rgba(63,13,24,.2));background-size:220% 100%;background-position:calc(100% - var(--p,0)*100%) 0}
+.fbase .fn{font-family:"Aref Ruqaa","Amiri",serif}
+.fcv .fb .fn{font-family:"Aref Ruqaa","Amiri",serif;font-size:calc(var(--pw)*.13)}
+.fcv .fb .dm{gap:calc(var(--pw)*.035)}
+.fcv .fb .dm i:nth-child(n+4){display:none}
+/* satin ribbon bookmark between the pages */
+.bribbon{position:absolute;right:16%;top:94%;width:calc(var(--pw)*.07);height:calc(var(--pw)*.3);transform-origin:top center;transform:translateZ(-2px);
+  background:linear-gradient(90deg,#c9a35a 0 9%,#7d2133 9% 91%,#c9a35a 91%),#6b1a2a;
+  clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);animation:sway 4.5s ease-in-out infinite;pointer-events:none}
+@keyframes sway{50%{transform:translateZ(-2px) rotate(5deg)}}
+/* hint, shown while closed */
+.bhint{position:absolute;left:0;right:0;top:calc(var(--pw)*1.416 + 26px);display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;color:var(--mut,#6e5458);
+  transition:opacity .4s;pointer-events:none}
+.bhint svg{width:20px;height:20px;color:#6b1a2a;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(10px) rotate(8deg)}}
+.hstage.is-open .bhint,.hstage.touched .bhint{opacity:0}
+.hstage .fold-ctl{transition:opacity .4s}
+.hstage:not(.is-open):not(.touched) .fold-ctl{opacity:0;pointer-events:none}
+/* gold sparkles when it finishes opening */
+.bsparks{position:absolute;left:50%;top:calc(var(--pw)*.55);width:0;height:0;pointer-events:none;z-index:5}
+.bsparks i{position:absolute;width:var(--sz);height:var(--sz);margin:calc(var(--sz)/-2);background:#e6c27a;transform:rotate(45deg) scale(0);opacity:0;border-radius:1px;
+  box-shadow:0 0 6px rgba(230,194,122,.8)}
+.hstage.burst .bsparks i{animation:spark 1.3s cubic-bezier(.15,.7,.3,1) var(--dl) both}
+@keyframes spark{0%{opacity:0;transform:translate(0,0) rotate(45deg) scale(.2)}15%{opacity:1}100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(225deg) scale(1)}}
+@media(prefers-reduced-motion:reduce){.bribbon,.bhint svg{animation:none}}

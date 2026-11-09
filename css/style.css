@@ -256,3 +256,8 @@ html{scroll-snap-type:y proximity}
 @keyframes ldvf1{0%{opacity:1}4.12%{opacity:1}4.13%{opacity:0}12.39%{opacity:0}12.40%{opacity:1}20.66%{opacity:1}20.67%{opacity:0}29.03%{opacity:0}29.04%{opacity:1}37.29%{opacity:1}37.30%{opacity:0}45.46%{opacity:0}45.47%{opacity:1}53.72%{opacity:1}53.73%{opacity:0}53.72%{opacity:0}53.73%{opacity:1}100%{opacity:1}}
 @keyframes ldvb1{0%{opacity:0}4.12%{opacity:0}4.13%{opacity:1}12.39%{opacity:1}12.40%{opacity:0}20.66%{opacity:0}20.67%{opacity:1}29.03%{opacity:1}29.04%{opacity:0}37.29%{opacity:0}37.30%{opacity:1}45.46%{opacity:1}45.47%{opacity:0}53.72%{opacity:0}53.73%{opacity:1}53.72%{opacity:1}53.73%{opacity:0}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){#ld .wr,#ld .wr .st,#ld .rz,#ld .lg,#ld .lt{animation:none!important}#ld .wr .st{stroke-dashoffset:0}}
+
+footer .pl{display:inline-block;margin-top:10px;font-size:13px;color:inherit;opacity:.8;text-underline-offset:3px}
+footer .pl:hover{opacity:1}
+.pn{font-size:12.5px;color:var(--mut);margin:2px 0 10px}
+.pn a{color:inherit;text-underline-offset:3px}

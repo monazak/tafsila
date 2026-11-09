@@ -89,11 +89,11 @@ if ($in && isset($_POST['save'])) {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>لوحة الإدارة</title>
 <style>
-body{font-family:system-ui,Segoe UI,Tahoma,sans-serif;background:#f7f1e8;color:#30272c;margin:0;padding:20px}
+body{font-family:system-ui,Segoe UI,Tahoma,sans-serif;background:#faf4ec;color:#2e1f22;margin:0;padding:20px}
 main{max-width:980px;margin:auto}h1,h2{margin:.4em 0}
 .card{background:#fff;border-radius:14px;padding:16px;margin:14px 0;box-shadow:0 1px 6px #0001}
 input,textarea,button{font:inherit}input[type=password]{padding:10px;border:1px solid #ccc;border-radius:8px}
-button,.btn{background:#8f4259;color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+button,.btn{background:#6b1a2a;color:#fff;border:0;border-radius:8px;padding:10px 16px;cursor:pointer;text-decoration:none;display:inline-block}
 textarea{width:100%;min-height:320px;direction:ltr;font-family:ui-monospace,monospace;font-size:13px;box-sizing:border-box;padding:10px;border:1px solid #ccc;border-radius:8px}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:8px;border-bottom:1px solid #eee;text-align:right;vertical-align:top}
 .wrap{overflow-x:auto}.ok{color:#2f7a3d}.bad{color:#b3261e}

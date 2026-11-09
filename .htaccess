@@ -11,8 +11,8 @@
   </FilesMatch>
   # Early Hints: Cloudflare بيحوّل هالـ Link لـ 103 فيبدأ المتصفح بالتحميل قبل ما يوصل الـ HTML
   <FilesMatch "^index\.html$">
-    Header add Link "</css/style.css>; rel=preload; as=style"
-    Header add Link "</js/app.js>; rel=preload; as=script"
+    Header add Link "</css/site.css>; rel=preload; as=style"
+    Header add Link "</js/site.js>; rel=preload; as=script"
   </FilesMatch>
 </IfModule>
 

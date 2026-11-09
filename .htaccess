@@ -38,3 +38,6 @@ Options -Indexes
 <FilesMatch "^(\.git|\.env|composer\.(json|lock)|README\.md)">
   Require all denied
 </FilesMatch>
+
+# Web app manifest
+AddType application/manifest+json .webmanifest

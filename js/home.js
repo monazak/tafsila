@@ -203,6 +203,13 @@
 
   /* 7. floating order button, scroll progress, header that steps aside */
   function decorateChrome() {
+    var hl = document.querySelector('.nav a.l[href="#how"]');
+    if (hl && !document.querySelector('.nav a.l[href="#faq"]')) {
+      var fl = hl.cloneNode(false); fl.href = '#faq'; fl.textContent = 'الأسئلة'; fl.classList.remove('act');
+      fl.addEventListener('click', function (e) { var f = document.getElementById('faq'); if (f) { e.preventDefault(); f.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); } });
+      hl.insertAdjacentElement('afterend', fl);
+      if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { fl.classList.toggle('act', e.isIntersecting); }); }, { rootMargin: '-45% 0px -50% 0px' }).observe(document.getElementById('faq') || document.body);
+    }
     if (!document.querySelector('.sprog')) {
       var sp = document.createElement('div'); sp.className = 'sprog'; sp.setAttribute('aria-hidden', 'true'); document.body.appendChild(sp);
     }
@@ -615,27 +622,34 @@
     dc.style.zoom = z.toFixed(3);
   }
   var fitT; addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitShowcase, 120); });
-  /* how we work: a tailor's measuring tape unrolls down the steps as you scroll */
+  /* how we work: three steps hanging from a tailor's measuring tape that unrolls across the top */
+  var HOW = [
+    ['اختاروا وابعتوا', 'اختاروا تصميمكم من المعرض، وابعتولنا الأسماء والتاريخ والمكان على واتساب.'],
+    ['بنجهّزها وبتعاينوها', 'بنجهّز الدعوة وبتوصلكم معاينة، وبنعدّل عليها لحد ما تصير مثل ما بدكم.'],
+    ['شاركوها', 'بيوصلكم رابط خاص تبعتوه لضيوفكم، وتأكيد الحضور بيوصلكم على واتساب.']
+  ];
   function decorateHow() {
     var hw = document.querySelector('#how .hows');
     if (!hw || hw.querySelector('.tape')) return;
+    var cws = hw.querySelectorAll('.cw');
+    cws.forEach(function (c, i) {
+      if (i >= HOW.length) { c.classList.add('how-x'); return; }
+      var s = c.querySelector('.step');
+      s.innerHTML = '<span class="pin" aria-hidden="true"></span><span class="tag" aria-hidden="true">' + (i + 1) + '</span><h3>' + HOW[i][0] + '</h3><p>' + HOW[i][1] + '</p>';
+    });
+    var sub = document.querySelector('#how .sh .sub'); if (sub) sub.textContent = 'ثلاث خطوات، وتفاصيل الدعوة علينا.';
     var t = document.createElement('div'); t.className = 'tape'; t.setAttribute('aria-hidden', 'true');
-    var nums = ''; for (var n = 1; n <= 60; n++) nums += '<i style="top:' + (n * 40) + 'px">' + n + '</i>';
-    t.innerHTML = '<span class="tape-roll"><b></b></span><span class="tape-body"><span class="tape-n">' + nums + '</span></span><span class="tape-tip"></span>' +
-      '<svg class="tape-sc" viewBox="0 0 48 48"><g class="sc-a"><path d="M24 24 L44 14 Q46 13 45 16 Z" fill="#c9c4bc" stroke="#9a948c" stroke-width=".8"/><circle cx="12" cy="31" r="7" fill="none" stroke="#b3202f" stroke-width="3.2"/><path d="M24 24 L16 28" stroke="#b3202f" stroke-width="3.2" stroke-linecap="round"/></g>' +
-      '<g class="sc-b"><path d="M24 24 L44 34 Q46 35 45 32 Z" fill="#dcd7cf" stroke="#9a948c" stroke-width=".8"/><circle cx="12" cy="17" r="7" fill="none" stroke="#b3202f" stroke-width="3.2"/><path d="M24 24 L16 20" stroke="#b3202f" stroke-width="3.2" stroke-linecap="round"/></g><circle cx="24" cy="24" r="2" fill="#9a948c"/></svg>';
+    var nums = ''; for (var n = 1; n <= 80; n++) nums += '<i style="right:' + (n * 40) + 'px">' + n + '</i>';
+    t.innerHTML = '<span class="tape-roll"><b></b></span><span class="tape-body"><span class="tape-n">' + nums + '</span></span><span class="tape-tip"></span>';
     hw.insertBefore(t, hw.firstChild);
-    hw.querySelectorAll('.step').forEach(function (s) { s.insertAdjacentHTML('afterbegin', '<span class="pin" aria-hidden="true"></span>'); });
-    var raf = 0, last = -1, snipT;
+    var raf = 0;
     function upd() {
       raf = 0;
-      var r = hw.getBoundingClientRect(), p = (innerHeight * .62 - r.top) / r.height;
-      p = Math.max(0, Math.min(1, p));
-      if (reduce) p = 1;
+      var r = hw.getBoundingClientRect(), p = (innerHeight * .9 - r.top) / (innerHeight * .55);
+      p = reduce ? 1 : Math.max(0, Math.min(1, p));
       hw.style.setProperty('--p', p.toFixed(4));
-      hw.querySelectorAll('.cw').forEach(function (c) { c.classList.toggle('pinned', (c.offsetTop + 30) / hw.offsetHeight <= p + .001); });
-      if (Math.abs(p - last) > .002 && p > 0 && p < 1) { t.classList.add('snip'); clearTimeout(snipT); snipT = setTimeout(function () { t.classList.remove('snip'); }, 260); }
-      last = p;
+      var cs = hw.querySelectorAll('.cw:not(.how-x)');
+      cs.forEach(function (c, i) { c.classList.toggle('pinned', p >= (i + .6) / cs.length); });
     }
     addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
     addEventListener('resize', upd); upd();

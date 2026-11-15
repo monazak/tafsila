@@ -467,7 +467,60 @@
     st.insertAdjacentHTML('afterbegin', '<span class="h-floor" aria-hidden="true"></span><span class="h-refl" aria-hidden="true"></span><span class="deco d-ro1" aria-hidden="true"></span><span class="deco d-ro2" aria-hidden="true"></span>');
     var hero = st.closest('.hero'); if (hero && !hero.querySelector('.d-ol1')) hero.insertAdjacentHTML('afterbegin', '<span class="deco d-ol1" aria-hidden="true"></span><span class="deco d-ol2" aria-hidden="true"></span>');
   }
-  function scan() { decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* 13. hero motion: falling petals, rotating occasion word, parallax, cursor sparkles, scroll cue */
+  function decorateHeroMotion() {
+    var hero = document.querySelector('.hero');
+    if (!hero || hero.querySelector('.h-pet')) return;
+    hero.classList.add('hm-on');
+    var pet = document.createElement('div'); pet.className = 'h-pet'; pet.setAttribute('aria-hidden', 'true');
+    if (!reduce) for (var i = 0; i < 16; i++) {
+      var p = document.createElement('i');
+      p.style.left = (Math.random() * 100).toFixed(1) + '%';
+      p.style.setProperty('--d', (12 + Math.random() * 12).toFixed(1) + 's');
+      p.style.setProperty('--dl', (-Math.random() * 24).toFixed(1) + 's');
+      p.style.setProperty('--s', (8 + Math.random() * 10).toFixed(0) + 'px');
+      p.style.setProperty('--x', ((Math.random() - .5) * 220).toFixed(0) + 'px');
+      p.style.setProperty('--r', (Math.random() * 360).toFixed(0) + 'deg');
+      p.className = Math.random() < .3 ? 'lf' : '';
+      pet.appendChild(p);
+    }
+    hero.insertBefore(pet, hero.firstChild);
+    /* rotating occasion word under the heading */
+    var eb = hero.querySelector('.eb2');
+    if (eb && !eb.querySelector('.rw')) {
+      var words = ['لعرسكم', 'لإشهاركم', 'لتخرجكم', 'لعيد ميلادكم'];
+      eb.innerHTML = 'دعوات إلكترونية <span class="rw" aria-live="off"><b>' + words.join('</b><b>') + '</b></span>';
+      var bs = eb.querySelectorAll('.rw b'), k = 0; bs[0].classList.add('on');
+      if (!reduce) setInterval(function () { bs[k].classList.remove('on'); bs[k].classList.add('out'); var o = bs[k]; setTimeout(function () { o.classList.remove('out'); }, 700); k = (k + 1) % bs.length; bs[k].classList.add('on'); }, 2400);
+    }
+    /* scroll cue */
+    if (!hero.querySelector('.h-cue')) hero.insertAdjacentHTML('beforeend', '<a class="h-cue" href="#designs" aria-label="انزلوا للتصاميم"><span></span><small>اكتشفوا التصاميم</small></a>');
+    if (reduce) return;
+    /* parallax on scroll and pointer */
+    var ticking = false, mx = 0, my = 0;
+    function apply() {
+      ticking = false;
+      var y = Math.min(scrollY, innerHeight);
+      hero.style.setProperty('--sy', (y / innerHeight).toFixed(3));
+      hero.style.setProperty('--mx', mx.toFixed(3)); hero.style.setProperty('--my', my.toFixed(3));
+    }
+    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(apply); } }, { passive: true });
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      var last = 0;
+      hero.addEventListener('pointermove', function (e) {
+        var r = hero.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5;
+        if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+        var now = performance.now(); if (now - last < 45) return; last = now;
+        var s = document.createElement('i'); s.className = 'h-spark'; s.setAttribute('aria-hidden', 'true');
+        s.style.left = (e.clientX - r.left) + 'px'; s.style.top = (e.clientY - r.top) + 'px';
+        s.style.setProperty('--tx', ((Math.random() - .5) * 40).toFixed(0) + 'px');
+        hero.appendChild(s); setTimeout(function () { s.remove(); }, 900);
+      });
+    }
+  }
+
+  function scan() { decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

@@ -2275,3 +2275,52 @@ footer .flinks{display:none!important}
 .fql-row.lit .fql-card::after{animation:fqlRoll 1.2s cubic-bezier(.55,.05,.25,1) var(--in) both}
 @keyframes fqlRoll{0%{top:0;opacity:1;height:18px}92%{opacity:1}100%{top:100%;opacity:0;height:10px}}
 @media(prefers-reduced-motion:reduce){.fql-row .fql-in{clip-path:none!important;animation:none!important}.fql-card::after{display:none}}
+
+/* =====================================================================
+   phone v3: front-facing, realistic black iPhone; a fingertip taps through each step
+   steps: big Ruqaa numerals on a stitched line
+   ===================================================================== */
+.ph-ly,.hw4-ph::after{display:none!important}
+.hw4-ph,.hw4:hover .hw4-ph{transform:none!important;transition:none!important}
+.hw4-ph{width:258px!important;height:530px!important;padding:3px!important;border-radius:52px!important;
+  background:linear-gradient(90deg,#2b2b2e,#5a5a5f 6%,#1d1d20 14%,#1d1d20 86%,#5a5a5f 94%,#2b2b2e)!important;
+  box-shadow:inset 0 0 0 .6px rgba(255,255,255,.45),inset 0 1px 1px rgba(255,255,255,.35),
+    0 1px 0 rgba(0,0,0,.4),0 30px 50px -18px rgba(40,20,20,.45),0 60px 90px -40px rgba(120,60,50,.35)!important}
+.ph-scr{border-radius:49px!important;padding:9px!important}
+.ph-scr::before,.ph-scr>.ph-v,.ph-glare{inset:9px!important;border-radius:40px!important}
+.ph-glare{background:linear-gradient(120deg,rgba(255,255,255,.16),transparent 30%,transparent 72%,rgba(255,255,255,.06))!important}
+.ph-notch{top:21px!important;width:86px!important;height:25px!important;margin-left:-43px!important;transform:none!important}
+.ph-btn{transform:none!important;width:3px!important;background:linear-gradient(90deg,#0e0e10,#46464b)!important}
+.ph-btn.b4{background:linear-gradient(90deg,#46464b,#0e0e10)!important}
+/* fingertip */
+.ph-touch{position:absolute;z-index:5;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;pointer-events:none;opacity:0;
+  background:radial-gradient(circle,rgba(255,255,255,.75) 0 30%,rgba(255,255,255,.35) 55%,transparent 72%);
+  box-shadow:0 0 0 1.5px rgba(80,50,50,.18),0 4px 12px rgba(60,30,30,.25);backdrop-filter:blur(1px)}
+.ph-touch::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:2px solid rgba(179,32,47,.45);opacity:0;transform:scale(.4)}
+.hw4[data-s="0"] .ph-touch{animation:tch0 4.2s ease-in-out both}
+.hw4[data-s="1"] .ph-touch{animation:tch1 4.2s ease-in-out both}
+.hw4[data-s="2"] .ph-touch{animation:tch2 4.2s ease-in-out both}
+.hw4[data-s="3"] .ph-touch{animation:tch3 4.2s ease-in-out both}
+.hw4[data-s] .ph-touch::after{animation:tap 4.2s ease-out both}
+/* positions are in % of the screen box (left/top) */
+@keyframes tch0{0%{opacity:0;left:30%;top:80%}12%{opacity:1}30%{left:72%;top:30%}38%{left:72%;top:30%;scale:.85}44%{scale:1}62%{left:50%;top:90%}70%{left:50%;top:90%;scale:.85}76%{scale:1}92%{opacity:1}100%{opacity:0;left:50%;top:90%}}
+@keyframes tch1{0%{opacity:0;left:60%;top:96%}15%{opacity:1}40%{left:40%;top:94%}46%{scale:.85}52%{scale:1}70%{left:62%;top:94%}76%{scale:.85}82%{scale:1}92%{opacity:1}100%{opacity:0;left:62%;top:94%}}
+@keyframes tch2{0%{opacity:0;left:50%;top:90%}14%{opacity:1}34%{left:50%;top:42%}40%{scale:.85}46%{scale:1}66%{left:62%;top:74%}72%{scale:.85}78%{scale:1}92%{opacity:1}100%{opacity:0;left:62%;top:74%}}
+@keyframes tch3{0%{opacity:0;left:50%;top:92%}14%{opacity:1}36%{left:62%;top:30%}42%{scale:.85}48%{scale:1}92%{opacity:1;left:62%;top:30%}100%{opacity:0;left:62%;top:30%}}
+@keyframes tap{0%,36%{opacity:0;transform:scale(.4)}40%{opacity:1}52%{opacity:0;transform:scale(1.4)}100%{opacity:0}}
+/* steps: large Ruqaa numerals joined by a stitched thread */
+.hw4-list{position:relative;gap:4px!important}
+.hw4-list::before{content:"";position:absolute;top:34px;bottom:34px;inset-inline-start:38px;border-inline-start:2px dashed rgba(179,32,47,.25)}
+.hw4-s{padding:12px 16px!important;background:none!important;box-shadow:none!important;align-items:center}
+.hw4-n{width:56px!important;height:56px!important;border-radius:50%!important;background:#fffdf8!important;position:relative;z-index:1;
+  font:400 34px/1 "Aref Ruqaa","Amiri",serif!important;color:transparent!important;-webkit-text-stroke:1.2px #b3202f;
+  box-shadow:0 0 0 1px rgba(179,32,47,.22);transition:color .4s,box-shadow .4s,background .4s!important}
+.hw4-s[aria-pressed="true"] .hw4-n{color:#fff!important;-webkit-text-stroke:0;background:#b3202f!important;box-shadow:0 0 0 6px rgba(179,32,47,.12),0 10px 20px -8px rgba(179,32,47,.6)}
+.hw4-t b{opacity:.45}
+.hw4-s[aria-pressed="true"] .hw4-t b{font-size:clamp(26px,2.4vw,32px)!important}
+.hw4-bar{left:auto!important;right:auto!important;inset-inline-start:88px!important;inset-inline-end:16px!important;bottom:2px!important;height:0!important;background:none!important;border-top:2px dashed rgba(179,32,47,.15)}
+.hw4-bar::after{top:-2px!important;height:2px;background:repeating-linear-gradient(270deg,#b3202f 0 7px,transparent 7px 12px)!important}
+@media(max-width:820px){.hw4-ph{width:230px!important;height:472px!important}}
+.ph-touch{width:30px!important;height:30px!important;margin:-15px 0 0 -15px!important;background:radial-gradient(circle at 45% 40%,rgba(255,255,255,.9),rgba(235,225,220,.75) 60%,rgba(200,185,180,.5))!important;box-shadow:0 0 0 1px rgba(90,60,60,.15),0 6px 14px -2px rgba(60,30,30,.35)!important}
+.hw4-n{font-size:30px!important;padding-top:4px;box-sizing:border-box}
+.hw4-n{font:700 28px/1 "Amiri",serif!important;padding-top:6px}

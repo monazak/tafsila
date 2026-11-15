@@ -1759,33 +1759,6 @@ footer.rev,footer.rev.in{transform:none!important}
 .cv2-names .cv2-and{font-size:calc(var(--pw)*.09)!important}
 .cv2-d{font-size:calc(var(--pw)*.04)!important}
 
-/* =====================================================================
-   designs: four occasions in one row, the whole section fits one screen
-   ===================================================================== */
-@media(min-width:900px){
-  #designs{padding-top:96px!important;padding-bottom:56px!important}
-  #designs .sh{margin-bottom:26px!important}
-  #designs .cats{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:auto!important;gap:16px!important;max-width:1180px;margin-inline:auto}
-  #designs .cats>.cw,#designs .cats>.cw:first-child{grid-row:auto!important;grid-column:auto!important}
-  #designs .cats .ctile,#designs .cats>.cw:first-child .ctile,#designs .cats>.cw:last-child:nth-child(4) .ctile{
-    height:clamp(380px,calc(100vh - 330px),500px)!important;flex-direction:column!important;align-items:stretch!important;justify-content:space-between!important;padding:14px!important}
-  #designs .cats .c3d,#designs .cats>.cw:first-child .c3d,#designs .cats>.cw:last-child:nth-child(4) .c3d{flex:1!important;height:auto!important;min-height:0!important;width:auto!important}
-  #designs .cats .c3d.env-on,#designs .cats>.cw:first-child .c3d.env-on{min-height:0!important;--ew:200px;--eh:128px;--cw:118px;--eb:calc(50% - 100px)!important}
-  #designs .cats .ct,#designs .cats>.cw:first-child .ct{width:auto!important;flex:none!important}
-  #designs .cats .ct b,#designs .cats>.cw:first-child .ct b{font-size:30px!important}
-}
-@media(min-width:900px){
-  #designs .cats .ct,#designs .cats>.cw:first-child .ct,#designs .cats>.cw:last-child:nth-child(4) .ct{width:100%!important;max-width:none!important;box-sizing:border-box;padding:14px 16px!important;margin:0!important}
-  #designs .cats .ct b{white-space:nowrap;font-size:28px!important}
-  #designs .cats .ct small,#designs .cats .ct span,#designs .cats .ct p{font-size:14px!important;line-height:1.6!important}
-  #designs .cats .ct::after{width:40px!important;height:40px!important}
-  #designs .cats .c3d.env-on,#designs .cats>.cw:first-child .c3d.env-on{--eb:calc(50% - 90px)!important;--ew:190px;--eh:120px;--cw:108px}
-  #designs .sh{padding-top:0!important}
-}
-@media(min-width:900px){
-  #designs{padding-top:64px!important}
-  #designs .cats .ct{min-height:104px;align-items:center!important}
-}
 /* floating WhatsApp/order button floats again (it had dropped into the page flow under the footer) */
 button.fab,.fab{position:fixed!important}
 /* audit fixes */

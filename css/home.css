@@ -532,87 +532,83 @@ html.nav-hide .nav{transform:translateY(-110%)}
 #designs .dc .pv{display:grid;place-items:center}
 
 /* =====================================================================
-   gallery tiles: premium full-bleed cards (scene + overlay + pill CTA)
+   gallery tiles v2: wine & gold showcase, invitation centred, glass info
    ===================================================================== */
-#designs .ctile{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;gap:0;padding:0;border:0;border-radius:28px;color:#fff;text-align:start;
-  min-height:300px;box-shadow:0 2px 0 rgba(255,255,255,.08) inset,0 30px 50px -28px rgba(46,8,18,.7)}
-#designs .ctile:hover{box-shadow:0 2px 0 rgba(255,255,255,.1) inset,0 40px 60px -26px rgba(46,8,18,.8)}
-/* scenes */
-#designs .cats>.cw:nth-child(1) .ctile{background:radial-gradient(70% 55% at 50% 30%,rgba(230,160,170,.35),transparent 70%),radial-gradient(120% 90% at 50% 10%,#9a3048,#5a1424 55%,#2a0710)}
-#designs .cats>.cw:nth-child(2) .ctile{background:radial-gradient(70% 55% at 50% 30%,rgba(214,170,220,.28),transparent 70%),radial-gradient(120% 90% at 50% 10%,#5e2c56,#371634 55%,#1a0a19)}
-#designs .cats>.cw:nth-child(3) .ctile{background:radial-gradient(70% 55% at 50% 30%,rgba(230,203,146,.32),transparent 70%),radial-gradient(120% 90% at 50% 10%,#2f5a50,#1b3a33 55%,#0c1d19)}
-#designs .cats>.cw:nth-child(4) .ctile{background:radial-gradient(70% 55% at 50% 30%,rgba(170,200,240,.3),transparent 70%),radial-gradient(120% 90% at 50% 10%,#33508a,#1f325c 55%,#0e1730)}
-/* faint pattern + bottom shade with a soft wave */
-#designs .ctile::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 38C70 10 140 10 210 30S340 56 400 26V60H0Z' fill='%23140409' fill-opacity='.42'/%3E%3C/svg%3E") 0 calc(100% - 46%)/100% 60px no-repeat,
-    linear-gradient(to bottom,transparent 0,transparent 54%,rgba(20,4,9,.42) 54%,rgba(20,4,9,.86) 100%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23fff' stroke-opacity='.06' stroke-width='2'/%3E%3C/svg%3E")}
-#designs .ctile::after{z-index:4}
-/* the cards are the "photo" */
-#designs .c3d{position:relative;z-index:1;flex:1;min-height:150px;margin:0}
-#designs .cm{box-shadow:0 0 0 1px rgba(230,203,146,.6),0 24px 36px -12px rgba(0,0,0,.6)!important}
-/* text block */
-#designs .ct{position:static;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:12px;row-gap:2px;padding:0 24px 22px}
-#designs .ct>*{position:relative;z-index:2}
-#designs .ct b{grid-column:1/-1;font:700 30px/1.25 "Aref Ruqaa","Amiri",serif;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.35)}
-#designs .ct small{grid-column:1/-1;color:rgba(255,240,235,.8);font-size:14.5px;margin-bottom:14px}
-/* count becomes a badge in the corner */
-#designs .ct em{position:absolute;top:16px;inset-inline-start:16px;z-index:3;margin:0;display:inline-flex;align-items:center;gap:6px;
-  padding:7px 13px 7px 12px;border-radius:30px;font:600 13px/1 "Cairo",sans-serif;color:#fff;font-size:13px;
-  background:rgba(255,255,255,.14);-webkit-backdrop-filter:blur(10px) saturate(1.4);backdrop-filter:blur(10px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
-#designs .cats>.cw:nth-child(1) .ct em::before{content:"";width:15px;height:15px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 8l4 4 5-7 5 7 4-4-2 11H5z' fill='%23f2c94c'/%3E%3C/svg%3E") center/contain no-repeat}
-/* pill call to action */
-#designs .ct::after{content:"شوفوا التصاميم";grid-column:1/-1;justify-self:start;position:relative;z-index:2;display:inline-flex;align-items:center;gap:10px;
-  padding:11px 20px 11px 16px;border-radius:40px;font:700 14.5px/1 "Cairo",sans-serif;color:#2e0a14;background:#fff;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);
-  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
-#designs .ct{--arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232e0a14' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 6l-6 6 6 6'/%3E%3C/svg%3E")}
-#designs .ct::after{background:#fff var(--arrow) left 14px center/16px no-repeat;padding-left:40px}
-#designs .ctile:hover .ct::after{transform:translateX(-4px);box-shadow:0 14px 28px -10px rgba(0,0,0,.6)}
-#designs .ctile:focus-visible{outline:3px solid #b8893e;outline-offset:3px}
+#designs .cats .ctile{position:relative;overflow:hidden;isolation:isolate;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-end;
+  gap:0;padding:0!important;border:0;border-radius:26px;color:#faf4ec;text-align:start;min-height:0;
+  background:radial-gradient(55% 45% at 50% 36%,rgba(230,203,146,.30),transparent 72%),radial-gradient(120% 80% at 50% 0,#8a2639,#5a1424 55%,#2c0912);
+  box-shadow:inset 0 0 0 1px rgba(230,203,146,.32),0 26px 46px -26px rgba(63,13,24,.75)}
+#designs .cats .ctile:hover{box-shadow:inset 0 0 0 1px rgba(230,203,146,.6),0 36px 56px -24px rgba(63,13,24,.85)}
+#designs .cats .ctile::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23e6cb92' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E")!important}
+/* image area: invitation big and centred */
+#designs .cats .c3d{position:relative;z-index:1;flex:none!important;height:230px!important;min-height:0!important;margin:0!important;transform:none!important}
+#designs .cats .cm{top:50%!important;bottom:auto!important;left:50%;width:108px!important;margin-top:-81px!important;border-radius:5px}
+#designs .cats .cm::after{font-size:15px!important}
+/* glass info panel */
+#designs .cats .ct{position:static;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:14px;row-gap:2px;margin:0 10px 10px;padding:16px 18px;
+  border-radius:18px;background:linear-gradient(150deg,rgba(255,246,236,.13),rgba(255,246,236,.05));-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),inset 0 0 0 1px rgba(230,203,146,.22);position:relative;z-index:2}
+#designs .cats .ct{position:static}
+#designs .cats .ct b{grid-column:1;grid-row:1;font:700 26px/1.25 "Aref Ruqaa","Amiri",serif;color:#f6e6c9;text-shadow:none}
+#designs .cats .ct b::before{display:none!important}
+#designs .cats .ct small{grid-column:1;grid-row:2;color:#e9c9c3;font-size:13.5px;margin:0}
+#designs .cats .ct::after{content:"";grid-column:2;grid-row:1/3;width:44px;height:44px;border-radius:50%;padding:0!important;
+  background:linear-gradient(135deg,#f6e6c9,#d8b56f) !important;box-shadow:0 10px 22px -10px rgba(216,181,111,.7);
+  -webkit-mask:none;mask:none;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+#designs .cats .ct{--go:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233f0d18' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5M11 6l-6 6 6 6'/%3E%3C/svg%3E")}
+#designs .cats .ct::after{background:var(--go) center/18px no-repeat,linear-gradient(135deg,#f6e6c9,#d8b56f)!important}
+#designs .cats .ctile:hover .ct::after{transform:translateX(-5px)}
+/* count badge */
+#designs .cats .ct em{position:absolute;top:14px;inset-inline-start:14px;z-index:3;margin:0;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:30px;
+  font:600 12.5px/1 "Cairo",sans-serif;color:#f6e6c9;background:rgba(44,9,18,.45);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(230,203,146,.35)}
+#designs .cats>.cw:nth-child(1) .ct em::before{content:"";width:14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 8l4 4 5-7 5 7 4-4-2 11H5z' fill='%23e6cb92'/%3E%3C/svg%3E") center/contain no-repeat}
+/* weddings: the big tile */
 @media(min-width:900px){
-  #designs .cats>.cw:first-child .ctile{padding:0;min-height:100%}
-  #designs .cats>.cw:first-child .c3d{height:auto;min-height:330px}
-  #designs .cats>.cw:first-child .cm{top:60px}
-  #designs .cats>.cw:first-child .ct{padding:0 30px 30px}
-  #designs .cats>.cw:first-child .ct b{font-size:44px}
-  #designs .cats>.cw:last-child:nth-child(4) .ctile{flex-direction:row-reverse;align-items:stretch}
-  #designs .cats>.cw:last-child:nth-child(4) .c3d{flex:1;min-height:0}
-  #designs .cats>.cw:last-child:nth-child(4) .ct{flex:1.2;align-content:end}
-  #designs .cats>.cw:last-child:nth-child(4) .ctile::before{background:
-    linear-gradient(to left,rgba(20,4,9,.0) 0,rgba(20,4,9,.0) 40%,rgba(20,4,9,.55) 100%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23fff' stroke-opacity='.06' stroke-width='2'/%3E%3C/svg%3E")}
+  #designs .cats>.cw:first-child .ctile{height:100%}
+  #designs .cats>.cw:first-child .c3d{flex:1!important;height:auto!important;min-height:360px!important}
+  #designs .cats>.cw:first-child .cm{width:150px!important;margin-top:-112px!important}
+  #designs .cats>.cw:first-child .cm::after{font-size:21px!important}
+  #designs .cats>.cw:first-child .cm0{transform:translateX(-50%) translateX(-92px) rotate(-11deg) rotateY(16deg)!important}
+  #designs .cats>.cw:first-child .cm1{transform:translateX(-50%) translateZ(30px)!important}
+  #designs .cats>.cw:first-child .cm2{transform:translateX(-50%) translateX(92px) rotate(11deg) rotateY(-16deg)!important}
+  #designs .cats>.cw:first-child .ctile:hover .cm0{transform:translateX(-50%) translateX(-112px) translateY(-6px) rotate(-15deg) rotateY(20deg)!important}
+  #designs .cats>.cw:first-child .ctile:hover .cm1{transform:translateX(-50%) translateZ(46px) translateY(-10px)!important}
+  #designs .cats>.cw:first-child .ctile:hover .cm2{transform:translateX(-50%) translateX(112px) translateY(-6px) rotate(15deg) rotateY(-20deg)!important}
+  #designs .cats>.cw:first-child .ct{padding:20px 22px}
+  #designs .cats>.cw:first-child .ct b{font-size:38px}
+  /* birthdays: wide tile, invitation centred over the panel */
+  #designs .cats>.cw:last-child:nth-child(4) .c3d{height:230px!important}
+}
+#designs .cats .cm1{animation-name:cmf}
+@media(max-width:640px){
+  #designs .cats .c3d{height:180px!important}
+  #designs .cats .cm{width:84px!important;margin-top:-63px!important}
+  #designs .cats .cm::after{font-size:12px!important}
+  #designs .cats>.cw:first-child .cm0{transform:translateX(-50%) translateX(-34px) rotate(-11deg)!important}
+  #designs .cats>.cw:first-child .cm2{transform:translateX(-50%) translateX(34px) rotate(11deg)!important}
+  #designs .cats .ct{grid-template-columns:1fr;margin:0 8px 8px;padding:12px}
+  #designs .cats .ct b{font-size:21px}
+  #designs .cats .ct small{font-size:12px}
+  #designs .cats .ct::after{grid-column:1;grid-row:3;justify-self:start;width:34px;height:34px;margin-top:8px;background-size:15px,auto!important}
+  #designs .cats .ct em{top:10px;inset-inline-start:10px;font-size:11px;padding:5px 9px}
+}
+#designs .cats .ct{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:linear-gradient(150deg,rgba(255,246,236,.12),rgba(255,246,236,.05)),rgba(44,9,18,.35)}
+#designs .cats .ctile::after{background:linear-gradient(105deg,transparent 42%,rgba(255,240,220,.1) 50%,transparent 58%)!important}
+#designs .cats .cats>.cw:nth-child(2) .cm,#designs .cats>.cw:nth-child(2) .cm{box-shadow:0 0 0 1px rgba(230,203,146,.8),0 0 40px rgba(230,203,146,.25),0 24px 36px -12px rgba(0,0,0,.6)!important}
+@media(min-width:900px){
+  #designs .cats>.cw:first-child .cm{width:132px!important;margin-top:-99px!important}
+  #designs .cats>.cw:first-child .cm::after{font-size:19px!important}
+  #designs .cats>.cw:first-child .cm0{transform:translateX(-50%) translateX(-78px) rotate(-11deg) rotateY(16deg)!important}
+  #designs .cats>.cw:first-child .cm2{transform:translateX(-50%) translateX(78px) rotate(11deg) rotateY(-16deg)!important}
+  #designs .cats>.cw:first-child .ctile:hover .cm0{transform:translateX(-50%) translateX(-96px) translateY(-6px) rotate(-15deg) rotateY(20deg)!important}
+  #designs .cats>.cw:first-child .ctile:hover .cm2{transform:translateX(-50%) translateX(96px) translateY(-6px) rotate(15deg) rotateY(-20deg)!important}
 }
 @media(max-width:640px){
-  #designs .ctile{min-height:260px;border-radius:22px}
-  #designs .c3d{min-height:120px}
-  #designs .ct{padding:0 14px 14px}
-  #designs .ct b{font-size:22px}
-  #designs .ct small{font-size:12.5px;margin-bottom:10px}
-  #designs .ct::after{font-size:12.5px;padding:9px 12px 9px 32px;background-position:left 10px center;background-size:13px}
-  #designs .ct em{top:10px;inset-inline-start:10px;padding:5px 9px;font-size:11.5px}
+  #designs .cats>.cw:first-child .cm{width:68px!important;margin-top:-51px!important}
+  #designs .cats>.cw:first-child .cm::after{font-size:10px!important}
+  #designs .cats>.cw:first-child .cm0{transform:translateX(-50%) translateX(-28px) rotate(-11deg)!important}
+  #designs .cats>.cw:first-child .cm2{transform:translateX(-50%) translateX(28px) rotate(11deg)!important}
+  #designs .cats .ct em{top:8px}
+  #designs .cats .c3d{height:190px!important}
 }
-/* shade + wave ride on the title so they always start right above the text */
-#designs .ctile::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23fff' stroke-opacity='.06' stroke-width='2'/%3E%3C/svg%3E")!important}
-#designs .ct b::before{content:"";position:absolute;z-index:-1;inset-inline:-24px;top:-58px;height:640px;pointer-events:none;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 60' preserveAspectRatio='none'%3E%3Cpath d='M0 36C70 8 140 8 210 28S340 54 400 22V60H0Z' fill='%23140409' fill-opacity='.5'/%3E%3C/svg%3E") top/100% 60px no-repeat,
-    linear-gradient(to bottom,transparent 60px,rgba(20,4,9,.5) 60px,rgba(20,4,9,.88) 230px)}
-#designs .ctile{min-height:350px}
-#designs .c3d .cm{top:22px}
-@media(min-width:900px){#designs .cats>.cw:first-child .ct b::before{inset-inline:-30px}
-  #designs .cats>.cw:last-child:nth-child(4) .ctile{min-height:270px}
-  #designs .cats>.cw:last-child:nth-child(4) .c3d .cm{top:50%;transform:translate(-50%,-50%) rotate(-4deg)}}
-@media(max-width:640px){#designs .ctile{min-height:290px}#designs .ct b::before{inset-inline:-14px;top:-48px}}
-@media(min-width:900px){
-  #designs .cats>.cw:last-child:nth-child(4) .ct b::before{inset-inline-end:-150%}
-  #designs .cats>.cw:first-child .cm{width:138px;top:100px}
-  #designs .cats>.cw:first-child .cm::after{font-size:22px}
-}
-@media(min-width:900px){
-  #designs .cats>.cw:last-child:nth-child(4) .ct b::before{-webkit-mask:linear-gradient(to left,#000 0,#000 48%,transparent 78%);mask:linear-gradient(to left,#000 0,#000 48%,transparent 78%)}
-}
-@media(max-width:640px){
-  #designs .ct::after{justify-self:stretch;justify-content:center;white-space:nowrap;font-size:12px;padding:9px 8px 9px 26px;background-position:left 9px center;background-size:12px}
-}
-@media(max-width:640px){#designs .ct::after{background-image:none;padding:9px 6px;font-size:12px}}
-@media(min-width:900px){#designs .cats>.cw:last-child:nth-child(4) .ct b::before{-webkit-mask:linear-gradient(to left,#000 0,#000 40%,transparent 62%);mask:linear-gradient(to left,#000 0,#000 40%,transparent 62%)}}

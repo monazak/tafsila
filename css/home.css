@@ -2590,3 +2590,5 @@ html,body{background-color:#fcfaf7!important}
 body::before{background:radial-gradient(60vw 45vw at 92% -5%,rgba(248,228,227,.7),transparent 62%),radial-gradient(45vw 40vw at -6% 30%,rgba(223,232,214,.5),transparent 64%),radial-gradient(50vw 40vw at 15% 105%,rgba(248,228,227,.5),transparent 64%)!important}
 footer::before{background:linear-gradient(#fcfaf7,#f6f1ec)!important}
 .hero::after{background:#f1d5d8!important;opacity:.35!important}
+/* headline: full colour from the first moment, only the soft shine moves */
+.hero.hm-on h1 span{animation:heroFoil 9s ease-in-out infinite!important;opacity:1!important;clip-path:none!important}

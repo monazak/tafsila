@@ -1902,3 +1902,23 @@ html[dir="rtl"] .pin,[dir="rtl"] .pin{transform:translateX(16px) rotate(18deg)}
 #how .step h3::before{color:#9fb39a!important;letter-spacing:0}
 @media(max-width:720px){#how .hows{padding-inline-start:70px!important}.tape{inset-inline-start:6px;width:38px}.tape-roll{width:60px;height:60px;margin-left:-30px}.tape-roll b{inset:20px}.pin{inset-inline-start:-58px;width:36px}.pin::after{width:30px}.tape-sc{inset-inline-start:36px;width:38px;height:38px}}
 @media(prefers-reduced-motion:reduce){.tape-body,.tape-tip,.tape-sc{transition:none}}
+/* FAQ motion: the wire draws in, bulbs light one by one, cards drop onto the line and swing, a nudge on hover */
+.fql-wire path{stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)}
+.fql-row.lit .fql-wire path{stroke-dashoffset:0}
+.fql-bulb{opacity:0;scale:.3;transition:opacity .4s,scale .5s cubic-bezier(.3,1.8,.5,1)}
+.fql-row.lit .fql-bulb{opacity:1;scale:1;transition-delay:calc(.6s + var(--on));animation:fqlTw var(--tw) ease-in-out calc(1.6s + var(--dl)) infinite,fqlFlash .6s ease-out calc(.6s + var(--on)) 1}
+@keyframes fqlFlash{0%{filter:brightness(2.2)}100%{filter:brightness(1)}}
+.fql-card{opacity:0;translate:0 -140px}
+.fql-row.lit .fql-card{animation:fqlDrop .9s cubic-bezier(.3,1.4,.5,1) var(--in) both,fqlSway var(--sw) ease-in-out calc(var(--in) + 1.6s) infinite}
+@keyframes fqlDrop{0%{opacity:0;translate:0 -140px;transform:translateX(-50%) rotate(-14deg)}60%{opacity:1;translate:0 6px;transform:translateX(-50%) rotate(9deg)}80%{translate:0 -2px;transform:translateX(-50%) rotate(-5deg)}100%{opacity:1;translate:0 0;transform:translateX(-50%) rotate(0)}}
+.fql-row.lit .fql-card{opacity:1;translate:0 0}
+.fql-card.nudge .fql-in{animation:fqlNudge 1.3s cubic-bezier(.3,.7,.3,1)}
+@keyframes fqlNudge{15%{rotate:7deg}35%{rotate:-5deg}55%{rotate:3deg}75%{rotate:-1.5deg}100%{rotate:0deg}}
+.fql-in{transform-origin:50% -18px}
+.fql-card .fql-pin{transition:transform .3s}
+.fql-card:hover .fql-pin{transform:translateX(-50%) translateY(-3px)}
+.fql-card:hover .fql-f{translate:0 -4px;transition:translate .35s}
+.fql-in[aria-expanded="true"]{transform:rotateY(180deg) translateZ(0)}
+.fql-in[aria-expanded="true"] .fql-b{animation:fqlGlow 1.2s ease-out .4s}
+@keyframes fqlGlow{0%{box-shadow:0 0 0 0 rgba(255,214,170,.9),0 18px 30px -16px rgba(120,20,30,.6)}100%{box-shadow:0 0 0 18px rgba(255,214,170,0),0 18px 30px -16px rgba(120,20,30,.6)}}
+@media(prefers-reduced-motion:reduce){.fql-card{opacity:1;translate:0 0;animation:none!important}.fql-bulb{opacity:1;scale:1}.fql-wire path{stroke-dashoffset:0}}

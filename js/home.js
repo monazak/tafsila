@@ -176,8 +176,23 @@
       }
       wrap.innerHTML = html;
     }
-    render();
-    if (mq.addEventListener) mq.addEventListener('change', render);
+    var rowIO = 'IntersectionObserver' in window && !reduce ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('lit'); rowIO.unobserve(e.target); } });
+    }, { threshold: .35 }) : null;
+    function watch() {
+      wrap.querySelectorAll('.fql-row').forEach(function (r) {
+        r.querySelectorAll('.fql-bulb').forEach(function (b, i) { b.style.setProperty('--on', (i * .06).toFixed(2) + 's'); });
+        r.querySelectorAll('.fql-card').forEach(function (c, i) { c.style.setProperty('--in', (.5 + i * .18).toFixed(2) + 's'); });
+        if (rowIO) rowIO.observe(r); else r.classList.add('lit');
+      });
+    }
+    render(); watch();
+    if (mq.addEventListener) mq.addEventListener('change', function () { render(); watch(); });
+    /* nudge: the card swings when the pointer brushes past it */
+    wrap.addEventListener('pointerover', function (e) {
+      var c = e.target.closest('.fql-card'); if (!c || reduce || c.classList.contains('nudge')) return;
+      c.classList.add('nudge'); setTimeout(function () { c.classList.remove('nudge'); }, 1400);
+    });
     wrap.addEventListener('click', function (e) {
       var b = e.target.closest('.fql-in'); if (!b) return;
       var open = b.getAttribute('aria-expanded') !== 'true';

@@ -1470,3 +1470,7 @@ html.nav-hide .nav{transform:none!important}
 #packages .sh h2::after{background:linear-gradient(270deg,transparent,#b3202f)!important}
 .pk1-p b{font-weight:700!important}
 .rail{display:none!important}
+/* wedding tile: envelope + invitation centred in the picture area */
+@media(min-width:900px){#designs .cats>.cw:first-child .c3d.env-on{--eb:calc(50% - 150px)}}
+@media(max-width:899px){#designs .cats .c3d.env-on{--eb:calc(50% - 110px)}}
+@media(max-width:640px){#designs .cats .c3d.env-on{--eb:calc(50% - 70px)}}

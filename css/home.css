@@ -1814,3 +1814,44 @@ button.fab,.fab{position:fixed!important}
 footer{position:relative}
 footer::after{height:64px!important;opacity:.9!important;background:var(--tat) repeat-x center 0/auto 30px,var(--kuf) repeat-x 0 30px/48px 34px!important}
 footer{padding-top:calc(64px + 40px)!important}
+
+/* =====================================================================
+   FAQ: question cards pinned with wooden clothespins to strings of lights
+   ===================================================================== */
+#faq.fql-on .faq-l{display:none!important}
+#faq.fql-on .w{max-width:1120px!important}
+.fql{margin-top:26px}
+.fql-row{position:relative;height:330px}
+.fql-row+.fql-row{margin-top:14px}
+.fql-wire{position:absolute;left:0;top:0;width:100%;height:90px;overflow:visible}
+.fql-wire path{fill:none;stroke:#7d9672;stroke-width:1.6;stroke-linecap:round;filter:drop-shadow(0 1px 0 rgba(255,255,255,.7))}
+.fql-bulb{position:absolute;width:9px;height:13px;margin:-2px 0 0 -4.5px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 45% 40%,#fff 0 18%,#fff1df 40%,#f6c9a8 100%);
+  box-shadow:0 0 6px 2px rgba(255,226,196,.9),0 0 18px 6px rgba(255,205,190,.45);animation:fqlTw var(--tw) ease-in-out var(--dl) infinite}
+.fql-bulb::before{content:"";position:absolute;left:2px;right:2px;top:-4px;height:5px;border-radius:2px;background:#8a9a7d}
+.fql-bulb:nth-of-type(3n){background:radial-gradient(circle at 45% 40%,#fff 0 18%,#ffe1e5 40%,#eaa3ad 100%);box-shadow:0 0 6px 2px rgba(255,214,220,.95),0 0 18px 6px rgba(234,163,173,.45)}
+@keyframes fqlTw{0%,100%{opacity:1;filter:brightness(1.05)}50%{opacity:.55;filter:brightness(.85)}}
+.fql-card{position:absolute;width:min(270px,29%);height:220px;transform:translateX(-50%);transform-origin:50% 0;perspective:900px;
+  animation:fqlSway var(--sw) ease-in-out infinite;rotate:var(--t)}
+@keyframes fqlSway{0%,100%{transform:translateX(-50%) rotate(-1.2deg)}50%{transform:translateX(-50%) rotate(1.2deg)}}
+.fql-pin{position:absolute;z-index:3;left:50%;top:-22px;width:14px;height:40px;transform:translateX(-50%);border-radius:3px;
+  background:linear-gradient(90deg,#c9a07a 0 46%,#a98260 46% 54%,#d8b48e 54%);box-shadow:0 3px 5px rgba(90,60,40,.3)}
+.fql-pin::after{content:"";position:absolute;left:50%;top:12px;width:16px;height:8px;transform:translateX(-50%);border-radius:50%;border:2px solid #b8b3ad;border-top-color:#e2ded8}
+.fql-in{all:unset;box-sizing:border-box;display:block;position:relative;width:100%;height:100%;cursor:pointer;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.3,1.25,.4,1)}
+.fql-in[aria-expanded="true"]{transform:rotateY(180deg)}
+.fql-in:focus-visible{outline:2px solid #b3202f;outline-offset:6px;border-radius:10px}
+.fql-f,.fql-b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px 20px}
+.fql-f{background:linear-gradient(180deg,#fffdf8,#f8efe4);box-shadow:inset 0 0 0 1px rgba(179,32,47,.35),inset 0 0 0 6px #fffdf8,inset 0 0 0 7px rgba(201,163,90,.5),0 18px 30px -16px rgba(120,60,50,.45)}
+.fql-f b{font:700 17px/1.7 "Cairo",sans-serif;color:#5b2a2a}
+.fql-f small{margin-top:10px;font:600 12px "Cairo",sans-serif;color:#b3202f;opacity:.75}
+.fql-star{width:22px;height:22px;margin-bottom:10px;background:var(--tstar) center/contain no-repeat}
+.fql-b{transform:rotateY(180deg);background:linear-gradient(160deg,#c43543,#a51d2b);color:#fff;font:500 14.5px/1.85 "Cairo",sans-serif;box-shadow:0 18px 30px -16px rgba(120,20,30,.6)}
+.fql-b em{font:700 12px "Cairo",sans-serif;font-style:normal;color:rgba(255,230,234,.8);margin-bottom:6px}
+.fql-card:hover .fql-f{box-shadow:inset 0 0 0 1px rgba(179,32,47,.6),inset 0 0 0 6px #fffdf8,inset 0 0 0 7px rgba(201,163,90,.7),0 22px 34px -14px rgba(120,60,50,.5)}
+@media(max-width:720px){.fql-row{height:320px}.fql-card{width:44%;height:230px}.fql-f,.fql-b{padding:28px 12px 14px}.fql-f b{font-size:15px}.fql-b{font-size:13px;line-height:1.75}}
+@media(prefers-reduced-motion:reduce){.fql-card,.fql-bulb{animation:none}.fql-in{transition:none}}
+.fql-bulb{width:11px;height:15px;margin:-1px 0 0 -5.5px;background:radial-gradient(circle at 45% 38%,#fff 0 22%,#ffe6c4 45%,#f3b98a 100%)!important;
+  box-shadow:0 0 8px 3px rgba(255,214,170,.95),0 0 22px 9px rgba(255,196,170,.5)!important}
+.fql-bulb:nth-of-type(3n){background:radial-gradient(circle at 45% 38%,#fff 0 22%,#ffd9de 45%,#e48e9a 100%)!important;box-shadow:0 0 8px 3px rgba(255,200,210,.95),0 0 22px 9px rgba(228,142,154,.5)!important}
+@keyframes fqlTw{0%,100%{opacity:1;filter:brightness(1.1)}50%{opacity:.78;filter:brightness(.92)}}
+@media(max-width:720px){.fql-row{height:300px}}

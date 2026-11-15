@@ -149,6 +149,41 @@
     pk.parentNode.insertBefore(sec, pk.nextSibling);
     var l = sec.querySelector('.faq-l');
     if (reduce || !faqIO) l.classList.add('on'); else faqIO.observe(l);
+    buildFaqLights(sec);
+  }
+
+  /* FAQ as cards pinned with clothespins on strings of wedding lights */
+  function buildFaqLights(sec) {
+    var wrap = document.createElement('div'); wrap.className = 'fql'; wrap.setAttribute('role', 'list');
+    sec.querySelector('.faq-l').insertAdjacentElement('beforebegin', wrap);
+    sec.classList.add('fql-on');
+    var mq = matchMedia('(max-width: 720px)'), SAG = 70;
+    function y(u) { return 10 + 4 * SAG * u * (1 - u); }
+    function render() {
+      var per = mq.matches ? 2 : 3, html = '';
+      for (var r = 0; r < FAQ.length; r += per) {
+        var row = FAQ.slice(r, r + per);
+        html += '<div class="fql-row"><svg class="fql-wire" viewBox="0 0 1000 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 10 Q500 ' + (10 + 2 * SAG) + ' 1000 10" vector-effect="non-scaling-stroke"/></svg>';
+        for (var b = 1; b < 18; b++) { var u = b / 18; html += '<i class="fql-bulb" aria-hidden="true" style="left:' + (u * 100).toFixed(2) + '%;top:' + y(u).toFixed(1) + 'px;--tw:' + (2 + Math.random() * 2.5).toFixed(2) + 's;--dl:-' + (Math.random() * 3).toFixed(2) + 's"></i>'; }
+        row.forEach(function (q, k) {
+          var u = 1 - (k + .5) / row.length, i = r + k, tilt = ((i * 37) % 7 - 3) * .9;
+          html += '<div class="fql-card" role="listitem" style="left:' + (u * 100).toFixed(2) + '%;top:' + (y(u) - 4).toFixed(1) + 'px;--t:' + tilt.toFixed(1) + 'deg;--sw:' + (5 + (i % 3)) + 's">' +
+            '<span class="fql-pin" aria-hidden="true"></span>' +
+            '<button type="button" class="fql-in" aria-expanded="false"><span class="fql-f"><i class="fql-star" aria-hidden="true"></i><b>' + q[0] + '</b><small>اضغطوا للجواب</small></span>' +
+            '<span class="fql-b"><em>تفصيلة</em>' + q[1] + '</span></button></div>';
+        });
+        html += '</div>';
+      }
+      wrap.innerHTML = html;
+    }
+    render();
+    if (mq.addEventListener) mq.addEventListener('change', render);
+    wrap.addEventListener('click', function (e) {
+      var b = e.target.closest('.fql-in'); if (!b) return;
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      wrap.querySelectorAll('.fql-in[aria-expanded="true"]').forEach(function (o) { if (o !== b) o.setAttribute('aria-expanded', 'false'); });
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   }
 
   /* 7. floating order button, scroll progress, header that steps aside */

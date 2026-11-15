@@ -155,6 +155,20 @@
     pk.parentNode.insertBefore(sec, pk.nextSibling);
     var l = sec.querySelector('.faq-l');
     if (reduce || !faqIO) l.classList.add('on'); else faqIO.observe(l);
+    /* v4: question index beside one answer card */
+    var x = document.createElement('div'); x.className = 'fq4';
+    var nav = '<div class="fq4-list" role="tablist">';
+    FAQ.forEach(function (q, i) { nav += '<button type="button" role="tab" class="fq4-q" aria-selected="' + (i ? 'false' : 'true') + '" data-i="' + i + '"><span>' + q[0] + '</span></button>'; });
+    x.innerHTML = nav + '</div><div class="fq4-card" role="tabpanel" aria-live="polite"><span class="fq4-band"></span><div class="fq4-in"><span class="fq4-star"></span><h3></h3><p></p></div><span class="fq4-band b"></span></div>';
+    var card = x.querySelector('.fq4-card'), ch = card.querySelector('h3'), cp = card.querySelector('p');
+    function show(i, scroll) {
+      x.querySelectorAll('.fq4-q').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.i == i ? 'true' : 'false'); });
+      ch.textContent = FAQ[i][0]; cp.textContent = FAQ[i][1];
+      card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
+      if (scroll && innerWidth < 760) card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+    }
+    x.addEventListener('click', function (e) { var b = e.target.closest('.fq4-q'); if (b) show(+b.dataset.i, true); });
+    l.parentNode.insertBefore(x, l); sec.classList.add('faq4'); show(0);
   }
 
   /* 7. floating order button, scroll progress, header that steps aside */
@@ -531,8 +545,13 @@
     var fb = document.querySelector('.hero .fbase'), rb = document.querySelector('.hero .fcv .fb');
     if (!fb || !rb || fb.querySelector('.bk-sprig')) return;
     var ff = document.querySelector('.hero .fcv .ffimg');
-    if (ff && !ff.querySelector('.cv-seal')) ff.insertAdjacentHTML('beforeend', '<span class="cv-ribbon" aria-hidden="true"></span><span class="cv-seal" aria-hidden="true">ت</span>');
     var n = fb.querySelector('.fn'), parts = n ? n.textContent.split(/\s+و\s+/) : [];
+    if (ff && !ff.querySelector('.cv2')) ff.insertAdjacentHTML('beforeend',
+      '<div class="cv2" aria-hidden="true"><span class="cv2-band"></span>' +
+      '<div class="cv2-arch"><img class="cv2-cp" src="img/couple.svg" alt="">' +
+      '<div class="cv2-names"><b class="cv2-n a">' + (parts[0] || 'أحمد').trim() + '</b><i class="cv2-and">و</i><b class="cv2-n b">' + (parts[1] || 'منال').trim() + '</b></div>' +
+      '<span class="cv2-star"></span><small class="cv2-d">١٣ · ٠٢ · ٢٠٢٧</small><span class="cv2-rose"></span></div>' +
+      '<i class="lg cv2-lg"></i></div>');
     fb.insertAdjacentHTML('afterbegin', '<span class="bk-sprig" aria-hidden="true"></span>');
     fb.insertAdjacentHTML('beforeend', '<span class="bk-rose" aria-hidden="true"></span>');
     var a = (parts[0] || 'أ').trim().charAt(0), b = (parts[1] || 'م').trim().charAt(0);

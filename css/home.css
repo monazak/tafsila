@@ -1592,3 +1592,92 @@ html.nav-hide .nav{transform:none!important}
 .h-cue{display:none!important}
 /* one price only: no package picker in the order form */
 label[for="rp"],#rp{display:none!important}
+
+/* =====================================================================
+   hero book cover v2: ivory linen, arched window, tatreez spine band
+   ===================================================================== */
+.fcv .ff.ffimg>img{opacity:0!important}
+.fcv .ff.ffimg::after{display:none!important}
+.cv2{position:absolute;inset:0;z-index:2;border-radius:inherit;overflow:hidden;direction:rtl;
+  background:
+    repeating-linear-gradient(0deg,rgba(120,80,50,.025) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(120,80,50,.025) 0 1px,transparent 1px 3px),
+    radial-gradient(120% 80% at 50% 30%,#fffdf8 0%,#f8efe4 70%,#f1e3d4 100%)}
+/* embroidered strip near the hinge */
+.cv2-band{position:absolute;top:0;bottom:0;left:calc(var(--pw)*.045);width:calc(var(--pw)*.07);
+  background:var(--tatv) center top/100% auto repeat-y;opacity:.9}
+.cv2-band::before,.cv2-band::after{content:"";position:absolute;top:0;bottom:0;width:1px;background:rgba(179,32,47,.45)}
+.cv2-band::before{left:calc(var(--pw)*-.012)}.cv2-band::after{right:calc(var(--pw)*-.012)}
+/* the arch */
+.cv2-arch{position:absolute;top:13%;bottom:17%;left:calc(var(--pw)*.2);right:calc(var(--pw)*.11);
+  border-radius:999px 999px 6px 6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(var(--pw)*.008);
+  background:linear-gradient(180deg,#fbeceb 0%,#fdf6f1 55%,#fffdf8 100%);
+  box-shadow:inset 0 0 0 1px #b3202f,inset 0 0 0 calc(var(--pw)*.014) #fffdf8,inset 0 0 0 calc(var(--pw)*.017) rgba(201,163,90,.75),
+    inset 0 calc(var(--pw)*.02) calc(var(--pw)*.05) rgba(179,32,47,.08)}
+.cv2-sprig{width:42%;aspect-ratio:220/120;margin-bottom:calc(var(--pw)*.02);background:var(--olive) center/contain no-repeat;transform:scaleX(-1)}
+.cv2-n{font:400 calc(var(--pw)*.19)/1.05 "Aref Ruqaa","Amiri",serif;color:#a51d2b;letter-spacing:0}
+.cv2-and{font:400 calc(var(--pw)*.08)/1 "Aref Ruqaa",serif;color:#c9a35a;font-style:normal}
+.cv2-star{width:calc(var(--pw)*.07);aspect-ratio:1;margin:calc(var(--pw)*.025) 0 calc(var(--pw)*.01);background:var(--tstar) center/contain no-repeat}
+.cv2-d{font:600 calc(var(--pw)*.036)/1 "Cairo",sans-serif;color:#8a6a5a;letter-spacing:.08em;direction:ltr}
+.cv2-rose{position:absolute;right:-12%;bottom:-6%;width:46%;aspect-ratio:1.4;background:var(--roses) center/contain no-repeat;opacity:.95}
+.cv2-lg{position:absolute!important;left:calc(var(--pw)*.2);right:calc(var(--pw)*.11);bottom:6.5%;height:calc(var(--pw)*.055)!important;margin:0!important;background:#b3202f!important;
+  -webkit-mask-position:center!important;mask-position:center!important}
+/* soft light sweep across the cloth */
+.cv2::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.5),transparent 30%,transparent 65%,rgba(255,255,255,.25) 78%,transparent 90%);pointer-events:none}
+
+/* =====================================================================
+   FAQ v4: question index + one invitation-style answer card
+   ===================================================================== */
+#faq.faq4 .w{max-width:1080px!important}
+#faq.faq4 .faq-l{display:none!important}
+#faq.faq4 .faq-side{margin-bottom:40px}
+.fq4{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:center}
+.fq4-list{display:flex;flex-direction:column}
+.fq4-q{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;padding:17px 6px;
+  border-bottom:1px solid rgba(179,32,47,.14);font:500 17px/1.6 "Cairo",sans-serif;color:#6e5a50;transition:color .3s,padding .3s}
+.fq4-q:first-child{border-top:1px solid rgba(179,32,47,.14)}
+.fq4-q::before{content:"";flex:none;width:8px;height:8px;transform:rotate(45deg);border:1.5px solid rgba(179,32,47,.35);transition:background .3s,border-color .3s,transform .4s}
+.fq4-q:hover{color:#3f2a24;padding-inline-start:12px}
+.fq4-q[aria-selected="true"]{color:#a51d2b;font-weight:700;padding-inline-start:12px}
+.fq4-q[aria-selected="true"]::before{background:#b3202f;border-color:#b3202f;transform:rotate(225deg)}
+.fq4-q:focus-visible{outline:2px solid #b3202f;outline-offset:2px;border-radius:4px}
+.fq4-card{position:relative;min-height:340px;display:flex;flex-direction:column;border-radius:6px;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 20%,#fffdf8,#f8eee6);
+  box-shadow:0 0 0 1px rgba(179,32,47,.35),0 0 0 7px #fffdf8,0 0 0 8px rgba(201,163,90,.55),0 40px 70px -40px rgba(120,60,50,.5)}
+.fq4-band{height:26px;flex:none;background:var(--tat) center/auto 100% repeat-x;opacity:.9;border-bottom:1px solid rgba(179,32,47,.3)}
+.fq4-band.b{border-bottom:0;border-top:1px solid rgba(179,32,47,.3)}
+.fq4-in{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px clamp(22px,4vw,48px)}
+.fq4-star{width:26px;height:26px;background:var(--tstar) center/contain no-repeat;margin-bottom:14px}
+.fq4-card h3{margin:0 0 14px;font:400 clamp(24px,2.6vw,32px)/1.4 "Aref Ruqaa","Amiri",serif;color:#a51d2b}
+.fq4-card p{margin:0;max-width:44ch;font:400 17px/1.95 "Cairo",sans-serif;color:#5b4840}
+.fq4-card.swap .fq4-in>*{animation:fq4in .55s cubic-bezier(.2,.8,.2,1) both}
+.fq4-card.swap h3{animation-delay:.06s!important}.fq4-card.swap p{animation-delay:.12s!important}
+@keyframes fq4in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(max-width:760px){.fq4{grid-template-columns:1fr;gap:26px}.fq4-q{font-size:15.5px;padding:14px 4px}.fq4-card{min-height:0}.fq4-in{padding:28px 20px}.fq4-card p{font-size:15.5px}}
+@media(prefers-reduced-motion:reduce){.fq4-card.swap .fq4-in>*{animation:none}}
+/* cover: couple portraits + interlaced names */
+.cv2-arch{top:9%!important;bottom:15%!important;justify-content:flex-start!important;padding-top:calc(var(--pw)*.1);gap:0!important}
+.cv2-cp{width:84%;height:auto;display:block;filter:drop-shadow(0 calc(var(--pw)*.01) calc(var(--pw)*.02) rgba(120,60,50,.25))}
+.cv2-names{position:relative;width:86%;height:calc(var(--pw)*.4);margin-top:calc(var(--pw)*.01)}
+.cv2-names .cv2-n{position:absolute;font:400 calc(var(--pw)*.2)/1 "Aref Ruqaa","Amiri",serif;color:#a51d2b;white-space:nowrap;
+  text-shadow:0 0 calc(var(--pw)*.012) #fdf6f1,0 0 calc(var(--pw)*.012) #fdf6f1}
+.cv2-names .a{right:2%;top:0;z-index:2}
+.cv2-names .b{left:2%;bottom:0;z-index:2}
+.cv2-names .cv2-and{position:absolute;left:50%;top:50%;transform:translate(-50%,-55%) rotate(-8deg);z-index:1;
+  font:400 calc(var(--pw)*.3)/1 "Aref Ruqaa",serif;color:rgba(201,163,90,.55)}
+.cv2-star{margin:calc(var(--pw)*.02) 0 calc(var(--pw)*.008)!important;width:calc(var(--pw)*.05)!important}
+.cv2-rose{width:38%!important;right:-10%!important;bottom:-5%!important}
+.cv2-arch{overflow:hidden;left:calc(var(--pw)*.17)!important;right:calc(var(--pw)*.08)!important;padding-top:calc(var(--pw)*.13)!important}
+.cv2-lg{left:calc(var(--pw)*.17)!important;right:calc(var(--pw)*.08)!important}
+.cv2-cp{width:76%!important}
+.cv2-names{width:80%!important;height:calc(var(--pw)*.44)!important;margin-top:calc(var(--pw)*.03)!important}
+.cv2-names .cv2-n{font-size:calc(var(--pw)*.17)!important}
+.cv2-names .a{right:6%!important}.cv2-names .b{left:6%!important}
+.cv2-names .cv2-and{font-size:calc(var(--pw)*.26)!important}
+.cv2-cp{width:62%!important;filter:none!important;margin-top:calc(var(--pw)*-.02)}
+.cv2-names{height:calc(var(--pw)*.36)!important;margin-top:calc(var(--pw)*.01)!important}
+.cv2-names .cv2-n{font-size:calc(var(--pw)*.165)!important}
+.cv2-names .a{right:10%!important}.cv2-names .b{left:10%!important}
+.cv2-names .cv2-and{font-size:calc(var(--pw)*.34)!important;color:rgba(201,163,90,.7)!important;transform:translate(-50%,-58%) rotate(-12deg)!important}
+.cv2-names .cv2-and{font-size:calc(var(--pw)*.28)!important;transform:translate(-50%,-66%) rotate(-12deg)!important}
+.cv2-star{margin-top:calc(var(--pw)*.035)!important}

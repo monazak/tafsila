@@ -2562,3 +2562,27 @@ footer .flinks{display:none!important}
 @keyframes dInv{from{opacity:0;transform:translateY(24px) scale(.9)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){#designs .cats>.cw .ctile,#designs .cats>.cw .c3d>*{opacity:1!important;animation:none!important;transform:none!important}}
 @keyframes dInv{from{opacity:0;translate:0 24px;scale:.9}to{opacity:1;translate:0 0;scale:1}}
+/* smooth, free scrolling: no snapping to sections, no section fade/slide on arrival */
+html{scroll-snap-type:none!important}
+#top,#designs,#packages,#how,.band,#contact,footer{scroll-snap-align:none!important}
+[data-sec]{opacity:1!important;transform:none!important;filter:none!important}
+/* designs: invitations are always there, they just grow gently into place */
+#designs .cats>.cw .c3d:not(.env-on)>*{opacity:1!important}
+#designs .cats:has(.cw.in)>.cw .c3d:not(.env-on)>*{animation:dGrow 1.4s cubic-bezier(.25,.6,.25,1) both!important;animation-delay:calc(.3s + var(--k,0) * .15s)!important}
+@keyframes dGrow{from{scale:.82}to{scale:1}}
+#designs .cats>.cw .ctile{opacity:1!important;transform:none!important}
+#designs .cats:has(.cw.in)>.cw .ctile{animation:dTile2 1.2s cubic-bezier(.25,.6,.25,1) both!important}
+@keyframes dTile2{from{opacity:.0;translate:0 28px}to{opacity:1;translate:0 0}}
+@media(prefers-reduced-motion:reduce){#designs .cats .ctile,#designs .cats .c3d>*{animation:none!important}}
+/* price list: soft hover on each included item */
+.pk1-inc li{position:relative;transition:background .35s,padding .35s,box-shadow .35s;border-radius:14px!important}
+.pk1-inc li:hover{background:rgba(251,236,235,.7)!important;padding-inline:12px!important;box-shadow:inset 0 0 0 1px rgba(179,32,47,.12)!important;border-bottom-color:transparent}
+.pk1-inc .pk-ic{transition:background .35s,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.pk1-inc .pk-ic svg{transition:stroke .3s}
+.pk1-inc li:hover .pk-ic{background:#b3202f!important;transform:scale(1.08) rotate(-6deg)}
+.pk1-inc li:hover .pk-ic svg{stroke:#fff}
+.pk1-inc li:hover b{color:#a51d2b}
+#packages .pk1-l{cursor:grab;touch-action:pan-y;user-select:none}
+#packages .pk1-l:active{cursor:grabbing}
+#packages .pk1-l.swinging{animation:none!important}
+#packages .pk1-l a,#packages .pk1-l button{cursor:pointer}

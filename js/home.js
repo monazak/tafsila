@@ -724,7 +724,31 @@
       im.replaceWith(d); if (!reduce) setTimeout(function () { d.classList.add('kiss'); }, 500);
     }).catch(function () {});
   }
-  function scan() { decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  /* price tag: grab it and swing it; it keeps swinging and slowly settles (pendulum) */
+  function decorateTagSwing() {
+    var tag = document.querySelector('#packages .pk1-l');
+    if (!tag || tag.dataset.sw) return; tag.dataset.sw = 1;
+    var ang = 0, vel = 0, drag = null, raf = 0;
+    function frame() {
+      if (!drag) { vel += -ang * .012; vel *= .985; ang += vel; }
+      tag.style.rotate = ang.toFixed(2) + 'deg';
+      if (drag || Math.abs(ang) > .05 || Math.abs(vel) > .02) raf = requestAnimationFrame(frame); else { raf = 0; tag.classList.remove('swinging'); tag.style.rotate = ''; }
+    }
+    function kick() { tag.classList.add('swinging'); if (!raf) raf = requestAnimationFrame(frame); }
+    tag.addEventListener('pointerdown', function (e) {
+      var r = tag.getBoundingClientRect();
+      drag = { cx: r.left + r.width / 2, cy: r.top - 60, last: ang, id: e.pointerId };
+      try { tag.setPointerCapture(e.pointerId); } catch (_) {} kick();
+    });
+    tag.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var a = Math.atan2(e.clientX - drag.cx, e.clientY - drag.cy) * -180 / Math.PI;
+      a = Math.max(-40, Math.min(40, a)); vel = a - ang; ang = a;
+    });
+    function up() { if (!drag) return; drag = null; vel = Math.max(-6, Math.min(6, vel)); kick(); }
+    tag.addEventListener('pointerup', up); tag.addEventListener('pointercancel', up);
+  }
+  function scan() { decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

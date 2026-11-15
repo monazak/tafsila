@@ -1009,3 +1009,41 @@ dialog.of-on label[for="rp"]{position:absolute;width:1px;height:1px;overflow:hid
 .fbase .fn{font-size:calc(var(--pw)*.13)!important;white-space:nowrap}
 .fcv .fb .fn{font-size:calc(var(--pw)*.105)!important;line-height:1.6!important;max-width:100%;text-align:center}
 .fcv .fb .dm{display:none!important}
+
+/* =====================================================================
+   hero premium pass
+   ===================================================================== */
+/* 1. calligraphy headline in gold foil with a slow shine */
+.hero h1{gap:.18em!important}
+.hero h1 span,.hero h1 span:nth-child(2),.hero h1 span:nth-child(3){font-family:"Aref Ruqaa","Amiri",serif!important;font-weight:700!important;font-size:clamp(46px,10vw,110px)!important;line-height:1.5!important;padding:0 .04em .1em!important;
+  background:linear-gradient(100deg,#b8893e 0%,#e6cb92 22%,#fff6e0 32%,#d8b56f 42%,#a87a35 58%,#f3dfb0 74%,#c99a4c 100%)!important;background-size:260% 100%!important;
+  -webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 0 rgba(60,10,20,.55)) drop-shadow(0 12px 28px rgba(0,0,0,.35));animation:heroFoil 9s ease-in-out infinite!important}
+.hero h1 span:nth-child(2){animation-delay:-.6s!important}.hero h1 span:nth-child(3){animation-delay:-1.2s!important}
+@keyframes heroFoil{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.hero .eb2{font:500 13px "Cairo",sans-serif;letter-spacing:.04em;color:#e6cb92;opacity:.85}
+.hero .w>p{color:#ecd2cc;font-size:18px}
+/* 4. one strong action; the second becomes a quiet link */
+.hero .hbtns .btn:not(.alt){padding:13px 30px;border-radius:40px;font-size:16px}
+.hero .hbtns .btn.alt{background:none!important;border:0!important;color:#f3dfc1!important;text-decoration:underline;text-underline-offset:6px;text-decoration-color:rgba(243,223,193,.4);padding:13px 14px}
+.hero .hbtns .btn.alt:hover{text-decoration-color:#e6cb92;transform:none}
+/* 2. spotlight, polished floor and reflection under the book */
+.hero .hstage{isolation:isolate}
+.hero .hstage::before{content:"";position:absolute;left:50%;top:-12%;width:min(90vw,820px);height:120%;transform:translateX(-50%);z-index:-2;pointer-events:none;
+  background:radial-gradient(50% 55% at 50% 45%,rgba(255,226,180,.22),rgba(230,203,146,.08) 45%,transparent 70%)}
+.h-floor{position:absolute;left:50%;top:calc(var(--pw)*1.416 + 6px);width:min(92vw,760px);height:120px;transform:translateX(-50%);z-index:-1;pointer-events:none;
+  background:radial-gradient(50% 40% at 50% 0,rgba(255,236,200,.16),transparent 70%),linear-gradient(90deg,transparent,rgba(230,203,146,.45) 30%,rgba(255,240,210,.7) 50%,rgba(230,203,146,.45) 70%,transparent) top/100% 1px no-repeat}
+.h-refl{position:absolute;left:50%;top:calc(var(--pw)*1.416 + 8px);width:calc(var(--pw)*2);height:calc(var(--pw)*.5);transform:translateX(-50%);z-index:-1;pointer-events:none;
+  background:linear-gradient(rgba(250,240,225,.13),transparent 70%);filter:blur(6px);-webkit-mask:radial-gradient(60% 100% at 50% 0,#000,transparent 80%);mask:radial-gradient(60% 100% at 50% 0,#000,transparent 80%)}
+/* gilded page edges and paper texture */
+.fbase,.fcv .fb{background-image:repeating-linear-gradient(90deg,rgba(120,80,40,.025) 0 1px,transparent 1px 3px),repeating-linear-gradient(0deg,rgba(120,80,40,.018) 0 1px,transparent 1px 4px),radial-gradient(120% 80% at 50% 20%,#fffdf8,#f6ecdd 70%,#efe2cf)!important}
+.fcv .ff.ffimg{box-shadow:0 0 0 1.5px #d8b56f,0 0 0 3px rgba(255,240,210,.25),0 30px 50px -18px rgba(0,0,0,.7)!important}
+/* 6. faint arabesque pattern behind the hero */
+.hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%23e6cb92' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M60 8l14 22 26 4-18 18 4 26-26-12-26 12 4-26-18-18 26-4z'/%3E%3Ccircle cx='60' cy='60' r='16'/%3E%3Cpath d='M0 60h20M100 60h20M60 0v8M60 112v8'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='120' cy='0' r='22'/%3E%3Ccircle cx='0' cy='120' r='22'/%3E%3Ccircle cx='120' cy='120' r='22'/%3E%3C/svg%3E") center top/120px 120px;
+  -webkit-mask:radial-gradient(70% 70% at 50% 40%,#000,transparent 85%);mask:radial-gradient(70% 70% at 50% 40%,#000,transparent 85%)}
+/* 5. calmer motion */
+.h-fx b:nth-child(odd){display:none}
+.h-fx b{animation-duration:calc(var(--t,14s) * 1.6)!important}
+.h-amb i{animation-duration:40s!important}
+@media(prefers-reduced-motion:reduce){.hero h1 span{animation:none!important}}

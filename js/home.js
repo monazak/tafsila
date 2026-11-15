@@ -461,7 +461,12 @@
     if (!reduce) setTimeout(function () { if (!w.classList.contains('touched')) w.classList.add('nudge'); }, 1800);
   }
 
-  function scan() { decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  function decorateHeroStage() {
+    var st = document.querySelector('.hero .hstage');
+    if (!st || st.querySelector('.h-floor')) return;
+    st.insertAdjacentHTML('afterbegin', '<span class="h-floor" aria-hidden="true"></span><span class="h-refl" aria-hidden="true"></span>');
+  }
+  function scan() { decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

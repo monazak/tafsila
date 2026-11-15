@@ -520,7 +520,20 @@
     }
   }
 
-  function scan() { decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* 14. hero book: olive wreath monogram, sprig and roses */
+  function decorateBook() {
+    var fb = document.querySelector('.hero .fbase'), rb = document.querySelector('.hero .fcv .fb');
+    if (!fb || !rb || fb.querySelector('.bk-sprig')) return;
+    var n = fb.querySelector('.fn'), parts = n ? n.textContent.split(/\s+و\s+/) : [];
+    fb.insertAdjacentHTML('afterbegin', '<span class="bk-sprig" aria-hidden="true"></span>');
+    fb.insertAdjacentHTML('beforeend', '<span class="bk-rose" aria-hidden="true"></span>');
+    var a = (parts[0] || 'أ').trim().charAt(0), b = (parts[1] || 'م').trim().charAt(0);
+    rb.insertAdjacentHTML('afterbegin', '<span class="bk-mono" aria-hidden="true"><b>' + a + '</b><i>&amp;</i><b>' + b + '</b></span>');
+    rb.insertAdjacentHTML('beforeend', '<span class="bk-rose r" aria-hidden="true"></span>');
+  }
+
+  function scan() { decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

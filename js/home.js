@@ -464,7 +464,8 @@
   function decorateHeroStage() {
     var st = document.querySelector('.hero .hstage');
     if (!st || st.querySelector('.h-floor')) return;
-    st.insertAdjacentHTML('afterbegin', '<span class="h-floor" aria-hidden="true"></span><span class="h-refl" aria-hidden="true"></span>');
+    st.insertAdjacentHTML('afterbegin', '<span class="h-floor" aria-hidden="true"></span><span class="h-refl" aria-hidden="true"></span><span class="deco d-ro1" aria-hidden="true"></span><span class="deco d-ro2" aria-hidden="true"></span>');
+    var hero = st.closest('.hero'); if (hero && !hero.querySelector('.d-ol1')) hero.insertAdjacentHTML('afterbegin', '<span class="deco d-ol1" aria-hidden="true"></span><span class="deco d-ol2" aria-hidden="true"></span>');
   }
   function scan() { decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;

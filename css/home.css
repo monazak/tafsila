@@ -1567,3 +1567,25 @@ html.nav-hide .nav{transform:none!important}
 /* the hero's text link stays a link */
 .hero .hbtns .btn.alt{background:none!important;box-shadow:none!important;transform:none!important}
 @media(prefers-reduced-motion:reduce){.btn,.fab,.fold-ctl button{transition:none!important}}
+
+/* =====================================================================
+   buttons v5: elegant & simple — flat red pill, quiet hover
+   ===================================================================== */
+.btn:not(.alt),.fab,#contact .cta .btn,footer .btn,#designs .dc .ac .btn:not(.alt),.pk1-a .btn,#designs .grid.showcase[data-cat] .dc .ac .btn:not(.alt){
+  background:#b3202f!important;color:#fffdf8!important;border:0!important;text-shadow:none!important;font-weight:600!important;filter:none!important;
+  box-shadow:0 8px 20px -12px rgba(179,32,47,.55)!important;transform:none!important;
+  transition:background .3s,box-shadow .3s,transform .3s cubic-bezier(.2,.8,.2,1)!important}
+.btn:not(.alt)::before,.pk1-a .btn::before,.fab::after,.btn:not(.alt)::after{display:none!important}
+.btn:not(.alt):hover,.fab:hover,#contact .cta .btn:hover,.pk1-a .btn:hover{background:#9e1c2a!important;filter:none!important;transform:translateY(-1px)!important;
+  box-shadow:0 12px 24px -12px rgba(158,28,42,.6)!important}
+.btn:not(.alt):active,.fab:active,#contact .cta .btn:active,.pk1-a .btn:active{transform:scale(.98)!important;box-shadow:0 4px 10px -6px rgba(158,28,42,.5)!important;transition-duration:.1s!important}
+.btn.alt,#designs .dc .ac a.btn.alt,#designs .grid.showcase[data-cat] .dc .ac a.btn.alt,.fold-ctl button,#designs .cathead button{
+  background:transparent!important;color:#b3202f!important;border:0!important;transform:none!important;
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.45)!important;transition:background .3s,box-shadow .3s,color .3s!important}
+.btn.alt:hover,#designs .dc .ac a.btn.alt:hover,.fold-ctl button:hover,#designs .cathead button:hover{transform:none!important;
+  background:rgba(179,32,47,.06)!important;box-shadow:inset 0 0 0 1px #b3202f!important}
+.btn.alt:active,#designs .dc .ac a.btn.alt:active,.fold-ctl button:active,#designs .cathead button:active{transform:scale(.98)!important;box-shadow:inset 0 0 0 1px #b3202f!important}
+.hero .hbtns .btn.alt{background:none!important;box-shadow:none!important}
+
+/* hero: no buttons under the headline */
+.hero .hbtns{display:none!important}

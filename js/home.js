@@ -109,12 +109,12 @@
 
   /* 5. pointer tilt for price cards and gallery tiles */
   if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    var tiltSel = '#packages .pc, #designs .ctile';
+    var tiltSel = '#packages .pc, #packages .pk1, #designs .ctile';
     document.addEventListener('pointermove', function (e) {
       var el = e.target.closest && e.target.closest(tiltSel);
       if (!el) return;
       var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-      var k = el.classList.contains('ctile') ? 5 : 7;
+      var k = el.classList.contains('ctile') ? 5 : el.classList.contains('pk1') ? 4 : 7;
       el.style.setProperty('--ry', ((x - .5) * k).toFixed(2) + 'deg');
       el.style.setProperty('--rx', ((.5 - y) * k).toFixed(2) + 'deg');
       el.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
@@ -130,9 +130,9 @@
   var FAQ = [
     ['كيف بتوصل الدعوة لضيوفنا؟', 'بنجهزلكم رابط خاص للدعوة، بتبعتوه لضيوفكم على واتساب أو أي تطبيق، وبيفتح مباشرة على الجوال بدون تحميل أي شي.'],
     ['بنقدر نعدّل على الدعوة بعد ما نشوفها؟', 'أكيد. بتوصلكم معاينة قبل التسليم، وبنعدّل عليها حسب ملاحظاتكم.'],
-    ['كيف بيشتغل تأكيد الحضور؟', 'في الباقة المميزة، الضيف بيأكد حضوره من الدعوة نفسها، والتأكيد بيوصلكم على واتساب.'],
-    ['شو الفرق بين الباقات؟', 'الأساسية: تصميم جاهز مع عدّاد تنازلي ورابط مشاركة. المميزة: كل ميزات الأساسية مع تأكيد الحضور عبر واتساب وتعديل على النصوص والألوان. VIP: تصميم خاص حسب طلبكم مع دومين خاص وستيكرات وحركات مخصصة.'],
-    ['عندنا فكرة أو تصميم مختلف، بتقدروا تنفذوه؟', 'نعم، ابعتولنا فكرتكم على واتساب وبنجهزها إلكم. باقة VIP معمولة للتصاميم الخاصة.'],
+    ['كيف بيشتغل تأكيد الحضور؟', 'الضيف بيأكد حضوره من الدعوة نفسها، والتأكيد بيوصلكم على واتساب.'],
+    ['شو اللي بيحدد سعر الدعوة؟', 'الأسعار بتبدأ من 50 ₪ لدعوة بتصميم جاهز مع عدّاد تنازلي ورابط مشاركة. السعر بيزيد إذا بدكم تأكيد حضور عبر واتساب وتعديل على النصوص والألوان، أو تصميم خاص حسب طلبكم مع دومين خاص وحركات مخصصة.'],
+    ['عندنا فكرة أو تصميم مختلف، بتقدروا تنفذوه؟', 'نعم، ابعتولنا فكرتكم على واتساب وبنجهزها إلكم بتصميم خاص.'],
     ['بتشتغل الدعوة على كل الأجهزة؟', 'نعم، الدعوة صفحة ويب بتفتح على أي جوال أو تابلت أو كمبيوتر.']
   ];
   var faqIO = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
@@ -184,7 +184,45 @@
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   addEventListener('resize', onScroll);
 
-  function scan() { decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* 8. packages: one card, "prices start from" the lowest package price */
+  var pk1IO = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); pk1IO.unobserve(e.target); } });
+  }, { threshold: .2 }) : null;
+  function lowestPrice() {
+    var min = Infinity;
+    document.querySelectorAll('#packages .pk .pp').forEach(function (el) {
+      var d = (el.textContent || '').replace(/[٠-٩]/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(c); }).match(/\d+/);
+      if (d) min = Math.min(min, +d[0]);
+    });
+    return isFinite(min) ? min : 50;
+  }
+  function decoratePrice() {
+    var pk = document.querySelector('#packages .pk');
+    if (!pk) return;
+    var card = document.querySelector('#packages .pk1');
+    if (!card) {
+      card = document.createElement('div');
+      card.className = 'pk1';
+      card.innerHTML =
+        '<span class="pc-ring" aria-hidden="true"></span><span class="pc-spot" aria-hidden="true"></span><span class="pc-shine" aria-hidden="true"></span>' +
+        '<div class="pk1-l"><span class="pk1-k">دعوة إلكترونية كاملة</span>' +
+          '<span class="pk1-from">تبدأ الأسعار من</span>' +
+          '<div class="pk1-p"><b class="pk1-v">50</b><i>₪</i></div>' +
+          '<p class="pk1-n">والسعر النهائي بيعتمد على التصميم والميزات اللي بتختاروها.</p></div>' +
+        '<div class="pk1-r"><h3>كل اللي بتحتاجوه لدعوتكم</h3><ul class="pk1-f">' +
+          '<li>تصميم جاهز أو خاص حسب طلبكم</li><li>عدّاد تنازلي للموعد</li><li>رابط خاص لضيوفكم</li>' +
+          '<li>تأكيد الحضور عبر واتساب</li><li>تعديل على النصوص والألوان</li><li>دومين خاص وحركات مخصصة</li></ul>' +
+          '<div class="pk1-a"><button type="button" class="btn pk1-go">اطلبوا دعوتكم</button><small>بنرد عليكم على واتساب</small></div></div>';
+      card.querySelector('.pk1-go').addEventListener('click', function () { var b = document.querySelector('.cta-n'); if (b) b.click(); });
+      pk.parentNode.insertBefore(card, pk.nextSibling);
+      if (reduce || !pk1IO) card.classList.add('in'); else pk1IO.observe(card);
+    }
+    var v = card.querySelector('.pk1-v'), n = String(lowestPrice());
+    if (v.textContent !== n) v.textContent = n;
+  }
+
+  function scan() { decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

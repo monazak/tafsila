@@ -1927,7 +1927,7 @@ footer{padding-top:calc(30px + 40px)!important}
 /* FAQ: no entrance animation — lights and cards are simply there */
 .fql-wire path{stroke-dasharray:none!important;stroke-dashoffset:0!important;transition:none!important}
 .fql-bulb,.fql-row.lit .fql-bulb{opacity:1!important;scale:1!important;transition:none!important;animation:fqlTw var(--tw) ease-in-out var(--dl) infinite!important}
-.fql-card,.fql-row.lit .fql-card{opacity:1!important;translate:0 0!important;animation:fqlSway var(--sw) ease-in-out infinite!important}
+.fql-card{animation:fqlSway var(--sw) ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.fql-card,.fql-row.lit .fql-card,.fql-bulb,.fql-row.lit .fql-bulb{animation:none!important}}
 /* hero divider: just one tatreez band, no occasion words */
 .tick{padding:0!important;height:34px!important;overflow:hidden}
@@ -2175,7 +2175,7 @@ footer .flinks{display:none!important}
 /* FAQ entrance v3: each card glides along its string from the left and settles softly in place */
 .fql-row.lit .fql-card{animation:fqlGlide 1.6s cubic-bezier(.22,.7,.2,1) var(--in) both,fqlSway var(--sw) ease-in-out calc(var(--in) + 1.6s) infinite!important}
 @keyframes fqlGlide{
-  0%{opacity:0;translate:-160px 0;transform:translateX(-50%) rotate(6deg)}
+  0%{opacity:0;translate:-260px 0;transform:translateX(-50%) rotate(8deg)}
   25%{opacity:1}
   70%{translate:6px 0;transform:translateX(-50%) rotate(-2deg)}
   100%{opacity:1;translate:0 0;transform:translateX(-50%) rotate(-1.2deg)}}

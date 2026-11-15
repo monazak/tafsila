@@ -238,6 +238,8 @@
     var catEl = document.querySelector('#designs .cathead h3'), cat = catEl ? catEl.textContent.trim() : '';
     var key = cat + '|' + cards.map(function (d) { var h = d.querySelector('h3'); return h ? h.textContent : ''; }).join(',');
     grid.classList.add('showcase');
+    var CK = { 'زفاف': 'wedding', 'إشهار': 'ishhar', 'تخرج': 'grad', 'عيد ميلاد': 'bday' };
+    if (grid.dataset.cat !== (CK[cat] || '')) grid.dataset.cat = CK[cat] || '';
     if (grid.dataset.key !== key) { grid.dataset.key = key; grid.dataset.sel = '0'; }
     var sel = Math.min(+grid.dataset.sel || 0, cards.length - 1);
     var colors = cards.map(function (d) { var pv = d.querySelector('.pv'); return pv ? lastColor(pv) : '#d8b56f'; });

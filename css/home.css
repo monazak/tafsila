@@ -1499,3 +1499,8 @@ html.nav-hide .nav{transform:none!important}
 .faq-l .a{padding:0 22px 26px!important;font-size:16.5px;color:#7a6560!important;max-width:58ch}
 @media(max-width:860px){#faq .w{grid-template-columns:1fr;gap:28px}.faq-side{position:static;text-align:center}#faq .faq-side h2,#faq .faq-side .sub{text-align:center!important;margin-inline:auto!important}.faq-l summary{font-size:16.5px!important;padding:20px 12px!important}}
 .faq-l details[open]{box-shadow:none!important;border-radius:0!important}
+/* hero book: no floor line, a soft contact shadow instead */
+.h-floor,.h-refl{display:none!important}
+.hstage::after{display:block!important;content:""!important;position:absolute;left:50%;top:calc(var(--pw)*1.416 - 10px)!important;width:calc(var(--pw)*2.1)!important;height:44px!important;margin-left:calc(var(--pw)*-1.05)!important;
+  border-radius:50%;background:radial-gradient(closest-side,rgba(110,60,50,.38),rgba(110,60,50,.14) 55%,transparent)!important;filter:blur(4px);z-index:-1;pointer-events:none}
+.hstage:not(:has(.fold.open))::after{width:calc(var(--pw)*1.15)!important;margin-left:calc(var(--pw)*-.575)!important}

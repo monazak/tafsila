@@ -1465,3 +1465,7 @@ html.nav-hide .nav{transform:none!important}
 @media(prefers-reduced-motion:reduce){.btn:not(.alt)::after{transition:none}.btn-burst{display:none}}
 #designs .sh{justify-content:center!important;text-align:center!important}
 #designs .sh h2{text-align:center!important;width:100%}
+#packages .sh h2{color:#9e1c2a!important;font-family:"Aref Ruqaa","Amiri",serif!important;font-weight:700!important;font-size:clamp(44px,7vw,80px)!important}
+#packages .sh h2::before,#packages .sh h2::after{background:linear-gradient(90deg,transparent,#b3202f)!important}
+#packages .sh h2::after{background:linear-gradient(270deg,transparent,#b3202f)!important}
+.pk1-p b{font-weight:700!important}

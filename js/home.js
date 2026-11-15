@@ -535,6 +535,18 @@
     rb.insertAdjacentHTML('beforeend', '<span class="bk-rose r" aria-hidden="true"></span>');
   }
 
+
+  /* 15. petal burst when a main button is pressed */
+  if (!reduce) document.addEventListener('pointerdown', function (e) {
+    var b = e.target.closest && e.target.closest('.btn:not(.alt), .fab');
+    if (!b) return;
+    var w = document.createElement('span'); w.className = 'btn-burst'; w.style.left = e.clientX + 'px'; w.style.top = e.clientY + 'px';
+    var h = '<b></b>';
+    for (var i = 0; i < 12; i++) { var a = Math.random() * Math.PI * 2, d = 30 + Math.random() * 40;
+      h += '<i style="--tx:' + (Math.cos(a) * d).toFixed(0) + 'px;--ty:' + (Math.sin(a) * d).toFixed(0) + 'px;--r:' + (Math.random() * 360).toFixed(0) + 'deg"></i>'; }
+    w.innerHTML = h; document.body.appendChild(w); setTimeout(function () { w.remove(); }, 1000);
+  }, { passive: true });
+
   function scan() { decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });

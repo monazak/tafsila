@@ -1431,3 +1431,37 @@ html.nav-hide .nav{transform:none!important}
 /* book can be opened and closed again */
 .hstage .fold{pointer-events:auto!important}
 .hstage .fold-ctl{display:block!important}
+
+/* =====================================================================
+   buttons v3: embroidered — stitched border, thread-fill on hover, petal burst on click
+   ===================================================================== */
+.btn:not(.alt),.fab,#contact .cta .btn,footer .btn,#designs .dc .ac .btn:not(.alt),.pk1-a .btn,#designs .grid.showcase[data-cat] .dc .ac .btn:not(.alt){
+  background:#b3202f!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;text-shadow:none!important;border-radius:999px!important;
+  box-shadow:0 10px 24px -12px rgba(179,32,47,.7)!important;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s!important}
+.btn:not(.alt)::before,.fab::after,.pk1-a .btn::before{content:""!important;position:absolute;z-index:0!important;inset:4px!important;left:4px!important;right:4px!important;top:4px!important;height:auto!important;border-radius:999px;pointer-events:none;
+  background:none!important;border:1.5px dashed rgba(255,240,242,.75);transition:inset .35s,border-color .35s}
+.btn:not(.alt)::after{content:""!important;position:absolute;z-index:-1!important;inset:0!important;width:auto!important;height:auto!important;top:0!important;left:0!important;border-radius:999px;transform:none!important;
+  background:linear-gradient(90deg,#7a1320,#9e1c2a)!important;clip-path:inset(0 0 0 100%);transition:clip-path .55s cubic-bezier(.65,0,.35,1)!important}
+.btn:not(.alt):hover,.fab:hover{background:#b3202f!important;transform:translateY(-2px)!important;box-shadow:0 16px 30px -12px rgba(179,32,47,.75)!important}
+.btn:not(.alt):hover::after{clip-path:inset(0 0 0 0)}
+.btn:not(.alt):hover::before,.fab:hover::after{inset:3px!important;animation:stitchMarch .9s linear infinite}
+@keyframes stitchMarch{to{border-color:rgba(255,240,242,.95)}}
+.btn:not(.alt)>*{position:relative;z-index:1}
+.btn:not(.alt):active,.fab:active{transform:scale(.96)!important}
+.btn-burst{position:fixed;z-index:9999;pointer-events:none;width:0;height:0}
+.btn-burst i{position:absolute;width:9px;height:7px;margin:-4px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,#f6d2d5,#e8b4b8);animation:petBurst .9s cubic-bezier(.15,.7,.3,1) forwards}
+.btn-burst i:nth-child(3n){background:#b3202f;border-radius:1px;width:6px;height:6px;transform:rotate(45deg)}
+.btn-burst b{position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;border:2px solid rgba(179,32,47,.5);animation:ringOut .6s ease-out forwards}
+@keyframes petBurst{from{transform:translate(0,0) rotate(0) scale(.4);opacity:1}to{transform:translate(var(--tx),var(--ty)) rotate(var(--r)) scale(1);opacity:0}}
+@keyframes ringOut{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
+/* secondary buttons: thread underline that stitches in */
+.btn.alt,#designs .dc .ac a.btn.alt,.fold-ctl button,#designs .cathead button{background:#fffdf8!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;color:#b3202f!important;
+  box-shadow:inset 0 0 0 1.5px rgba(179,32,47,.55)!important;position:relative;overflow:hidden;transition:box-shadow .3s,color .3s!important}
+.btn.alt::after,#designs .dc .ac a.btn.alt::after,.fold-ctl button::after{content:"";position:absolute;left:18%;right:18%;bottom:5px;height:2px;
+  background:repeating-linear-gradient(90deg,#b3202f 0 5px,transparent 5px 8px);transform:scaleX(0);transform-origin:right;transition:transform .45s cubic-bezier(.65,0,.35,1)}
+.btn.alt:hover::after,#designs .dc .ac a.btn.alt:hover::after,.fold-ctl button:hover::after{transform:scaleX(1)}
+.btn.alt:hover{box-shadow:inset 0 0 0 1.5px #b3202f!important;transform:none}
+.hero .hbtns .btn.alt{background:none!important;box-shadow:none!important}
+@media(prefers-reduced-motion:reduce){.btn:not(.alt)::after{transition:none}.btn-burst{display:none}}
+#designs .sh{justify-content:center!important;text-align:center!important}
+#designs .sh h2{text-align:center!important;width:100%}

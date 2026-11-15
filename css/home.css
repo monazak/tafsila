@@ -1334,3 +1334,6 @@ html,body{overflow-x:clip}
 .fold.open .fcv{transform:rotateY(180deg)!important}
 .fbase{box-shadow:-1px 0 0 #f1dfb4,-2px 1px 0 #d8b670,-3px 1px 0 #efd9a6,-4px 2px 0 #c99f55,-5px 2px 0 #e2c27f,-6px 3px 0 #b68b45,0 30px 46px -18px rgba(120,90,50,.42)!important}
 .fcv .fb{box-shadow:-1px 0 0 #f1dfb4,-2px 1px 0 #d8b670,-3px 1px 0 #efd9a6,-4px 2px 0 #c99f55,-5px 2px 0 #e2c27f,-6px 3px 0 #b68b45,0 30px 46px -18px rgba(120,90,50,.42)!important}
+/* navbar always stays at the top */
+.nav{position:sticky!important;top:0!important;z-index:100!important}
+html.nav-hide .nav{transform:none!important}

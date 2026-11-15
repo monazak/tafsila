@@ -1937,3 +1937,15 @@ footer{padding-top:calc(30px + 40px)!important}
 .hero{box-sizing:border-box!important;height:calc(100svh - 34px - 4px)!important;min-height:600px!important;padding-bottom:12px!important;overflow:hidden;display:flex!important;flex-direction:column;justify-content:center}
 .hstage{--pw:min(42vw,310px,calc((100svh - 400px) * .64))!important}
 @media(max-width:720px){.hero{height:auto!important;min-height:calc(100svh - 34px)!important}.hstage{--pw:min(44vw,250px)!important}}
+/* falling olives: each one drops with its own delay, spins and lands at the foot of the tree */
+.hero{--of:0}
+.h-tree{container-type:size}
+.olv{position:absolute;width:9px;height:12px;margin:-6px 0 0 -4.5px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#8f9b5a,#5d6b3a 60%,#3f4a26);box-shadow:0 1px 2px rgba(40,50,20,.35);
+  --t:clamp(0,calc((var(--of) - var(--d)) / .4),1);
+  opacity:clamp(0,calc(var(--t) * 40),1);
+  transform:translate(calc(var(--x) * var(--t)),calc(var(--t) * var(--t) * var(--fall-h))) rotate(calc(var(--r) * var(--t)))}
+.olv::after{content:"";position:absolute;left:3px;top:-3px;width:1px;height:4px;background:#6e5140;border-radius:1px}
+.h-tree.r .olv{--x2:1}
+.olv{--fall-h:calc((88cqh - var(--top-cq,0cqh)))}
+.olv{width:11px;height:14px;margin:-7px 0 0 -5.5px}

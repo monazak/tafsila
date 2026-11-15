@@ -640,7 +640,32 @@
     addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
     addEventListener('resize', upd); upd();
   }
-  function scan() { decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  /* olives drop from the hero trees as you scroll down to the next section */
+  function decorateOliveFall() {
+    var trees = document.querySelectorAll('.hero .h-tree');
+    if (!trees.length || trees[0].querySelector('.olv')) return;
+    var spots = [[30, 30], [48, 22], [64, 34], [40, 44], [72, 46], [56, 40], [24, 48]];
+    trees.forEach(function (t, ti) {
+      spots.forEach(function (s, i) {
+        var o = document.createElement('i'); o.className = 'olv'; o.setAttribute('aria-hidden', 'true');
+        o.style.left = s[0] + '%'; o.style.top = s[1] + '%';
+        o.style.setProperty('--d', ((i * 0.11 + ti * 0.05) % 0.6).toFixed(2));
+        o.style.setProperty('--r', ((i % 2 ? 1 : -1) * (180 + i * 40)) + 'deg');
+        o.style.setProperty('--x', ((i % 3 - 1) * 14) + 'px');
+        o.style.setProperty('--fall-h', (90 - s[1]) + 'cqh');
+        t.appendChild(o);
+      });
+    });
+    var hero = document.querySelector('.hero'), raf = 0;
+    function upd() {
+      raf = 0;
+      var p = Math.max(0, Math.min(1, scrollY / (hero.offsetHeight * .7)));
+      hero.style.setProperty('--of', reduce ? 0 : p.toFixed(4));
+    }
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
+    upd();
+  }
+  function scan() { decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

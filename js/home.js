@@ -706,7 +706,7 @@
     if (!im || im.dataset.inl) return; im.dataset.inl = 1;
     fetch(im.src).then(function (r) { return r.text(); }).then(function (t) {
       var d = document.createElement('div'); d.className = 'cv2-cp cv2-svg'; d.innerHTML = t; d.setAttribute('aria-hidden', 'true');
-      im.replaceWith(d); if (!reduce) setTimeout(function () { d.classList.add('kiss'); }, 900);
+      im.replaceWith(d); if (!reduce) setTimeout(function () { d.classList.add('kiss'); }, 500);
     }).catch(function () {});
   }
   function scan() { inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }

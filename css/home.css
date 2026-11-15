@@ -2187,3 +2187,51 @@ footer .flinks{display:none!important}
 .fql-card:hover .fql-f{translate:0 -2px!important}
 .fql-card:hover .fql-pin{transform:translateX(-50%)!important}
 @media(prefers-reduced-motion:reduce){.fql-card{opacity:1!important}.fql-row.lit .fql-card{animation:none!important}}
+/* phone: four screens for the four steps */
+.hw4[data-s="0"] .v0,.hw4[data-s="1"] .v1,.hw4[data-s="2"] .v2,.hw4[data-s="3"] .v3{opacity:1;transform:none}
+.hw4[data-s="1"] .v1 ~ .v2,.hw4[data-s="0"] .v1{opacity:0}
+.hw4 .v1 .ph-msg{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.hw4[data-s="1"] .v1 .ph-msg{opacity:1;transform:none}
+.hw4[data-s="1"] .m1{transition-delay:.4s}.hw4[data-s="1"] .m2{transition-delay:1s}.hw4[data-s="1"] .m3{transition-delay:1.6s}
+.hw4 .v1 .r0{transition-delay:0s}.hw4[data-s="1"] .r0{opacity:1;transform:none;transition-delay:2.3s;background:#b3202f;color:#fff;box-shadow:none}
+/* step-2 (preview) and step-3 (share) rules follow the screens' new numbers */
+.hw4[data-s="2"] .ph-card b{font-size:31px}
+.hw4[data-s="2"] .ph-note,.hw4[data-s="2"] .ph-ok{opacity:1}
+.hw4[data-s="1"] .ph-card b{font-size:25px}
+.hw4[data-s="1"] .ph-note,.hw4[data-s="1"] .ph-ok{opacity:0}
+.hw4 .v3 .ph-rsvp{opacity:0;transform:translateY(8px)}
+.hw4[data-s="3"] .v3 .ph-rsvp{opacity:1;transform:none}
+.hw4[data-s="3"] .r1{transition-delay:.8s}.hw4[data-s="3"] .r2{transition-delay:1.5s}.hw4[data-s="3"] .r3{transition-delay:2.2s;background:#b3202f;color:#fff;box-shadow:none}
+.hw4[data-s="2"] .v3 .ph-rsvp{opacity:0}
+.hw4-list{gap:8px}
+.hw4-s{padding:14px 20px}
+/* the phone as a 3D iPhone: titanium rim, side buttons, Dynamic Island, glass glare, tilted in space */
+.hw4{perspective:1400px}
+.hw4-ph{width:262px;height:540px;padding:12px;border-radius:52px;transform-style:preserve-3d;
+  transform:rotateY(18deg) rotateX(6deg) rotateZ(-2deg);transition:transform .9s cubic-bezier(.2,.8,.2,1);
+  background:linear-gradient(135deg,#f1e6df 0%,#d9c7bc 18%,#fbf4ef 35%,#cdb7aa 55%,#efe2da 75%,#c4ad9f 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.7),inset 0 0 0 3px #b9a294,inset 0 0 0 4px rgba(255,255,255,.4),inset 0 0 0 10px #1d1716,
+    -2px 2px 0 #c9b3a6,-4px 4px 0 #bba395,-6px 6px 0 #ab9284,-8px 8px 0 #9d8577,-9px 9px 1px #8f7769,
+    -30px 50px 60px -20px rgba(80,40,30,.45),-60px 80px 90px -40px rgba(120,60,50,.35)!important}
+.hw4:hover .hw4-ph{transform:rotateY(8deg) rotateX(3deg) rotateZ(-1deg)}
+.ph-scr{border-radius:40px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)}
+.ph-notch{top:22px;width:88px;height:26px;margin-left:-44px;border-radius:14px;background:#0f0c0c;z-index:3;box-shadow:inset 0 0 0 1px #2a2222}
+.ph-notch::after{content:"";position:absolute;right:16px;top:8px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#3b4a6a,#0b0d16 70%)}
+.ph-glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:4;
+  background:linear-gradient(115deg,rgba(255,255,255,.35) 0%,rgba(255,255,255,.08) 22%,transparent 38%,transparent 70%,rgba(255,255,255,.12) 85%,transparent 100%)}
+.ph-btn{position:absolute;width:4px;border-radius:2px;background:linear-gradient(90deg,#a68e80,#e6d7ce,#a68e80)}
+.ph-btn.b1{left:-4px;top:110px;height:26px}.ph-btn.b2{left:-4px;top:160px;height:50px}.ph-btn.b3{left:-4px;top:222px;height:50px}
+.ph-btn.b4{right:-4px;top:170px;height:78px}
+@media(max-width:820px){.hw4-ph{width:230px;height:470px;transform:rotateY(10deg) rotateX(4deg)}}
+@media(prefers-reduced-motion:reduce){.hw4-ph{transition:none}}
+/* desktop: heading sits above the steps on the right, phone on the left */
+@media(min-width:821px){
+  #how.how4 .w{display:grid!important;grid-template-columns:minmax(0,1.1fr) auto;grid-template-areas:"sh ph" "ls ph";column-gap:clamp(30px,6vw,90px);align-items:center;align-content:center;max-width:1000px;margin-inline:auto}
+  #how.how4 .hw4{display:contents}
+  #how.how4 .sh{grid-area:sh;text-align:start!important;margin:0 0 18px!important;align-self:end}
+  #how.how4 .sh h2,#how.how4 .sh .sub{text-align:start!important;margin-inline:0!important}
+  #how.how4 .sh h2{font-size:clamp(46px,5vw,70px)!important}
+  #how.how4 .hw4-list{grid-area:ls;align-self:start}
+  #how.how4 .hw4-ph{grid-area:ph}
+}

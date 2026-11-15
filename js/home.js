@@ -623,25 +623,27 @@
   var fitT; addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitShowcase, 120); });
   /* how we work: three steps hanging from a tailor's measuring tape that unrolls across the top */
   var HOW = [
-    ['اختاروا وابعتوا', 'اختاروا تصميمكم من المعرض، وابعتولنا الأسماء والتاريخ والمكان على واتساب.'],
-    ['بنجهّزها وبتعاينوها', 'بنجهّز الدعوة وبتوصلكم معاينة، وبنعدّل عليها لحد ما تصير مثل ما بدكم.'],
-    ['شاركوها', 'بيوصلكم رابط خاص تبعتوه لضيوفكم، وتأكيد الحضور بيوصلكم على واتساب.']
+    ['اختاروا التصميم', 'تصفّحوا المعرض وعاينوا كل دعوة قبل ما تختاروا.'],
+    ['أرسلوا بياناتكم', 'الأسماء والتاريخ والمكان، وأي ألوان أو نصوص تحبّوها.'],
+    ['نجهّزها لكم', 'تصلكم معاينة، ونعدّل عليها حسب ملاحظاتكم.'],
+    ['شاركوا حكايتكم', 'رابط خاص تبعتوه لضيوفكم، وتأكيد الحضور بيوصلكم على واتساب.']
   ];
   function decorateHow() {
     var sec = document.getElementById('how'), hw = sec && sec.querySelector('.hows');
     if (!hw || sec.querySelector('.hw4')) return;
-    var sub = sec.querySelector('.sh .sub'); if (sub) sub.textContent = 'ثلاث خطوات، وتفاصيل الدعوة علينا.';
+    var sub = sec.querySelector('.sh .sub'); if (sub) sub.textContent = 'أربع خطوات بسيطة، وتفاصيل الدعوة علينا.';
     var x = document.createElement('div'); x.className = 'hw4';
     var list = '<ol class="hw4-list">';
     HOW.forEach(function (s, i) { list += '<li><button type="button" class="hw4-s" data-i="' + i + '" aria-pressed="' + (i ? 'false' : 'true') + '"><span class="hw4-n">' + (i + 1) + '</span><span class="hw4-t"><b>' + s[0] + '</b><small>' + s[1] + '</small></span><i class="hw4-bar"></i></button></li>'; });
     list += '</ol>';
     var thumbs = ''; ['#fbeceb', '#eef1ea', '#f4ece0', '#eef0f6'].forEach(function (c, i) { thumbs += '<span class="ph-th' + (i === 0 ? ' on' : '') + '" style="background:' + c + '"><i></i><i></i><i></i></span>'; });
     var phone = '<div class="hw4-ph" aria-hidden="true"><div class="ph-scr">' +
-      '<div class="ph-v v0"><div class="ph-top">اختاروا تصميمكم</div><div class="ph-grid">' + thumbs + '</div><div class="ph-msg"><b>أحمد و منال</b><span>١٣ شباط ٢٠٢٧ · قاعة الفرح</span></div><div class="ph-send">إرسال على واتساب</div></div>' +
-      '<div class="ph-v v1"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٣ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
-      '<div class="ph-v v2"><div class="ph-top">شاركوها</div><div class="ph-chat"><div class="ph-b"><span class="ph-link"><span class="ph-mini"></span><b>دعوة أحمد و منال</b><small>tafsila.ps/ahmad-manal</small></span></div>' +
+      '<div class="ph-v v0"><div class="ph-top">اختاروا تصميمكم</div><div class="ph-grid">' + thumbs + '</div><div class="ph-send">اختار هذا التصميم</div></div>' +
+      '<div class="ph-v v1"><div class="ph-top">واتساب · تفصيلة</div><div class="ph-chat"><div class="ph-msg m1"><b>أحمد و منال</b><span>الخميس ١٣ شباط ٢٠٢٧</span></div><div class="ph-msg m2"><span>قاعة الفرح · غزة</span></div><div class="ph-msg m3"><span>بدنا اللون الوردي لو سمحتوا 🌸</span></div><div class="ph-rsvp r0">وصلتنا بياناتكم ✓</div></div></div>' +
+      '<div class="ph-v v2"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٣ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
+      '<div class="ph-v v3"><div class="ph-top">شاركوها</div><div class="ph-chat"><div class="ph-b"><span class="ph-link"><span class="ph-mini"></span><b>دعوة أحمد و منال</b><small>tafsila.ps/ahmad-manal</small></span></div>' +
       '<div class="ph-rsvp r1">✓ سارة أكدت حضورها</div><div class="ph-rsvp r2">✓ خالد أكد حضوره</div><div class="ph-rsvp r3">✓ ٤٢ ضيف أكدوا</div></div></div>' +
-      '</div><span class="ph-notch"></span></div>';
+      '<span class="ph-glare"></span></div><span class="ph-notch"></span><i class="ph-btn b1"></i><i class="ph-btn b2"></i><i class="ph-btn b3"></i><i class="ph-btn b4"></i></div>';
     x.innerHTML = list + phone;
     hw.parentNode.insertBefore(x, hw); sec.classList.add('how4');
     var cur = 0, timer, btns = x.querySelectorAll('.hw4-s');

@@ -1428,3 +1428,6 @@ html.nav-hide .nav{transform:none!important}
 .fcv .ff.ffimg::before{animation:none!important}
 .hero h1 span,.hero h1 span:nth-child(2),.hero h1 span:nth-child(3){background:linear-gradient(100deg,#8c1624 0%,#b3202f 25%,#d9505e 35%,#a81e2d 48%,#7a1320 60%,#c43543 78%,#9e1c2a 100%)!important;background-size:260% 100%!important;-webkit-background-clip:text!important;background-clip:text!important}
 .pk1-p b{background:linear-gradient(100deg,#8c1624,#b3202f 35%,#d9505e 48%,#a81e2d 60%,#9e1c2a)!important;background-size:200% 100%!important;-webkit-background-clip:text!important;background-clip:text!important}
+/* book can be opened and closed again */
+.hstage .fold{pointer-events:auto!important}
+.hstage .fold-ctl{display:block!important}

@@ -628,37 +628,31 @@
     ['شاركوها', 'بيوصلكم رابط خاص تبعتوه لضيوفكم، وتأكيد الحضور بيوصلكم على واتساب.']
   ];
   function decorateHow() {
-    var hw = document.querySelector('#how .hows');
-    if (!hw || hw.querySelector('.tape')) return;
-    var cws = hw.querySelectorAll('.cw');
-    cws.forEach(function (c, i) {
-      if (i >= HOW.length) { c.classList.add('how-x'); return; }
-      var s = c.querySelector('.step');
-      s.innerHTML = '<span class="pin" aria-hidden="true"></span><span class="tag" aria-hidden="true">' + (i + 1) + '</span><h3>' + HOW[i][0] + '</h3><p>' + HOW[i][1] + '</p>';
-    });
-    var sub = document.querySelector('#how .sh .sub'); if (sub) sub.textContent = 'ثلاث خطوات، وتفاصيل الدعوة علينا.';
-    var t = document.createElement('div'); t.className = 'tape thread'; t.setAttribute('aria-hidden', 'true');
-    var d = 'M1000 40 C940 40 900 40 845 40 C760 40 740 4 672 4 C605 4 585 40 500 40 C415 40 395 76 328 76 C260 76 240 40 155 40 C100 40 60 40 0 40';
-    t.innerHTML = '<svg viewBox="0 0 1000 80" preserveAspectRatio="none"><defs><mask id="thrM" maskUnits="userSpaceOnUse" x="0" y="0" width="1000" height="80"><path class="thr-rev" d="' + d + '" pathLength="1000"/></mask></defs>' +
-      '<path class="thr-ghost" d="' + d + '"/><path class="thr" d="' + d + '" mask="url(#thrM)"/></svg>' +
-      '<span class="needle"><svg viewBox="0 0 60 16"><path d="M2 8 Q20 5 56 8 Q20 11 2 8Z" fill="#c9c4bc" stroke="#8f8a83" stroke-width=".8"/><ellipse cx="9" cy="8" rx="4" ry="1.4" fill="#fffdf8" stroke="#8f8a83" stroke-width=".6"/></svg></span>';
-    hw.insertBefore(t, hw.firstChild);
-    var rev = t.querySelector('.thr-rev'), ndl = t.querySelector('.needle'), ghost = t.querySelector('.thr-ghost');
-    var raf = 0;
-    function upd() {
-      raf = 0;
-      var r = hw.getBoundingClientRect(), p = (innerHeight * .9 - r.top) / (innerHeight * .55);
-      p = reduce ? 1 : Math.max(0, Math.min(1, p));
-      hw.style.setProperty('--p', p.toFixed(4));
-      rev.style.strokeDashoffset = (1000 * (1 - p)).toFixed(1);
-      try { var L = ghost.getTotalLength(), pt = ghost.getPointAtLength(L * p), pt2 = ghost.getPointAtLength(Math.min(L, L * p + 4)), sv = ghost.ownerSVGElement.getBoundingClientRect(), hr = t.getBoundingClientRect();
-        var x = pt.x / 1000 * sv.width, y = pt.y / 80 * sv.height, a = Math.atan2((pt2.y - pt.y) / 80 * sv.height, (pt2.x - pt.x) / 1000 * sv.width) * 180 / Math.PI;
-        ndl.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) rotate(' + a.toFixed(1) + 'deg)'; ndl.style.opacity = p > .02 && p < .98 ? 1 : 0; } catch (e) {}
-      var cs = hw.querySelectorAll('.cw:not(.how-x)');
-      cs.forEach(function (c, i) { c.classList.toggle('pinned', p >= (i + .6) / cs.length); });
+    var sec = document.getElementById('how'), hw = sec && sec.querySelector('.hows');
+    if (!hw || sec.querySelector('.hw4')) return;
+    var sub = sec.querySelector('.sh .sub'); if (sub) sub.textContent = 'ثلاث خطوات، وتفاصيل الدعوة علينا.';
+    var x = document.createElement('div'); x.className = 'hw4';
+    var list = '<ol class="hw4-list">';
+    HOW.forEach(function (s, i) { list += '<li><button type="button" class="hw4-s" data-i="' + i + '" aria-pressed="' + (i ? 'false' : 'true') + '"><span class="hw4-n">' + (i + 1) + '</span><span class="hw4-t"><b>' + s[0] + '</b><small>' + s[1] + '</small></span><i class="hw4-bar"></i></button></li>'; });
+    list += '</ol>';
+    var thumbs = ''; ['#fbeceb', '#eef1ea', '#f4ece0', '#eef0f6'].forEach(function (c, i) { thumbs += '<span class="ph-th' + (i === 0 ? ' on' : '') + '" style="background:' + c + '"><i></i><i></i><i></i></span>'; });
+    var phone = '<div class="hw4-ph" aria-hidden="true"><div class="ph-scr">' +
+      '<div class="ph-v v0"><div class="ph-top">اختاروا تصميمكم</div><div class="ph-grid">' + thumbs + '</div><div class="ph-msg"><b>أحمد و منال</b><span>١٣ شباط ٢٠٢٧ · قاعة الفرح</span></div><div class="ph-send">إرسال على واتساب</div></div>' +
+      '<div class="ph-v v1"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٣ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
+      '<div class="ph-v v2"><div class="ph-top">شاركوها</div><div class="ph-chat"><div class="ph-b"><span class="ph-link"><span class="ph-mini"></span><b>دعوة أحمد و منال</b><small>tafsila.ps/ahmad-manal</small></span></div>' +
+      '<div class="ph-rsvp r1">✓ سارة أكدت حضورها</div><div class="ph-rsvp r2">✓ خالد أكد حضوره</div><div class="ph-rsvp r3">✓ ٤٢ ضيف أكدوا</div></div></div>' +
+      '</div><span class="ph-notch"></span></div>';
+    x.innerHTML = list + phone;
+    hw.parentNode.insertBefore(x, hw); sec.classList.add('how4');
+    var cur = 0, timer, btns = x.querySelectorAll('.hw4-s');
+    function go(i) {
+      cur = i; x.dataset.s = i;
+      btns.forEach(function (b, k) { b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
+      if (!reduce) { clearTimeout(timer); timer = setTimeout(function () { go((cur + 1) % HOW.length); }, 4200); }
     }
-    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
-    addEventListener('resize', upd); upd();
+    x.addEventListener('click', function (e) { var b = e.target.closest('.hw4-s'); if (b) go(+b.dataset.i); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) go(0); else clearTimeout(timer); }); }, { threshold: .4 }).observe(x);
+    else go(0);
   }
   /* olives drop from the hero trees as you scroll down to the next section */
   function decorateOliveFall() {

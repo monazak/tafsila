@@ -2323,3 +2323,7 @@ footer .flinks{display:none!important}
 /* phone screens swap in place, no sliding */
 .ph-v{transform:none!important;transition:opacity .25s ease!important}
 #how .sh .sub{display:none!important}
+/* FAQ fix: after unrolling, the card keeps no clip (so hover can't hide it and the 3D flip works again) */
+.fql-row.lit .fql-in{clip-path:none!important;animation:fqlUnroll 1.2s cubic-bezier(.55,.05,.25,1) var(--in) backwards}
+.fql-row.lit .fql-card.nudge .fql-in{animation:fqlNudge 1.2s ease-in-out!important}
+.fql-row.lit .fql-in[aria-expanded="true"]{transform:rotateY(180deg)!important}

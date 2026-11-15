@@ -2172,3 +2172,18 @@ footer .flinks{display:none!important}
 }
 @media(prefers-reduced-motion:reduce){.ph-v,.hw4 *{transition:none!important;animation:none!important}}
 @media(max-width:820px){.ph-th{aspect-ratio:1/1}.ph-v{gap:9px;padding-top:44px}}
+/* FAQ entrance v3: each card glides along its string from the left and settles softly in place */
+.fql-row.lit .fql-card{animation:fqlGlide 1.6s cubic-bezier(.22,.7,.2,1) var(--in) both,fqlSway var(--sw) ease-in-out calc(var(--in) + 1.6s) infinite!important}
+@keyframes fqlGlide{
+  0%{opacity:0;translate:-160px 0;transform:translateX(-50%) rotate(6deg)}
+  25%{opacity:1}
+  70%{translate:6px 0;transform:translateX(-50%) rotate(-2deg)}
+  100%{opacity:1;translate:0 0;transform:translateX(-50%) rotate(-1.2deg)}}
+.fql-card{opacity:0}
+.fql-row.lit .fql-card{opacity:1}
+/* hover: a gentle little sway, nothing more */
+@keyframes fqlNudge{30%{rotate:2deg}65%{rotate:-1.2deg}100%{rotate:0deg}}
+.fql-card.nudge .fql-in{animation:fqlNudge 1.2s ease-in-out!important}
+.fql-card:hover .fql-f{translate:0 -2px!important}
+.fql-card:hover .fql-pin{transform:translateX(-50%)!important}
+@media(prefers-reduced-motion:reduce){.fql-card{opacity:1!important}.fql-row.lit .fql-card{animation:none!important}}

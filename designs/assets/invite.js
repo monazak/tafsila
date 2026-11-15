@@ -6,7 +6,7 @@
   var C = window.INVITE || {};
   var TZ = C.timeZone || 'Asia/Hebron';
   var LOC = C.locale || 'ar-PS-u-nu-latn';
-  var SHOP_WA = '970595210445';
+  var SHOP_WA = '972566900092';
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function tpl(id) { var t = document.getElementById(id); return t ? t.innerHTML : ''; }

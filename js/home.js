@@ -146,29 +146,9 @@
     var h = '<div class="w"><h2>أسئلة بتتكرر</h2><p class="sub">إذا ما لقيتوا جوابكم هون، احكولنا على واتساب.</p><div class="faq-l">';
     FAQ.forEach(function (q, i) { h += '<details style="--d:' + (i * .07).toFixed(2) + 's"><summary>' + q[0] + '</summary><div class="a">' + q[1] + '</div></details>'; });
     sec.innerHTML = h + '</div></div>';
-    var hd = document.createElement('div'); hd.className = 'faq-side';
-    var w0 = sec.querySelector('.w'); var t = w0.querySelector('h2'), sb = w0.querySelector('.sub');
-    hd.appendChild(t); hd.appendChild(sb);
-    hd.insertAdjacentHTML('beforeend', '<button type="button" class="btn faq-wa">احكولنا على واتساب</button>');
-    hd.querySelector('.faq-wa').addEventListener('click', function () { var b = document.querySelector('.cta-n'); if (b) b.click(); });
-    w0.insertBefore(hd, w0.firstChild);
     pk.parentNode.insertBefore(sec, pk.nextSibling);
     var l = sec.querySelector('.faq-l');
     if (reduce || !faqIO) l.classList.add('on'); else faqIO.observe(l);
-    /* v4: question index beside one answer card */
-    var x = document.createElement('div'); x.className = 'fq4';
-    var nav = '<div class="fq4-list" role="tablist">';
-    FAQ.forEach(function (q, i) { nav += '<button type="button" role="tab" class="fq4-q" aria-selected="' + (i ? 'false' : 'true') + '" data-i="' + i + '"><span>' + q[0] + '</span></button>'; });
-    x.innerHTML = nav + '</div><div class="fq4-card" role="tabpanel" aria-live="polite"><span class="fq4-band"></span><div class="fq4-in"><span class="fq4-star"></span><h3></h3><p></p></div><span class="fq4-band b"></span></div>';
-    var card = x.querySelector('.fq4-card'), ch = card.querySelector('h3'), cp = card.querySelector('p');
-    function show(i, scroll) {
-      x.querySelectorAll('.fq4-q').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.i == i ? 'true' : 'false'); });
-      ch.textContent = FAQ[i][0]; cp.textContent = FAQ[i][1];
-      card.classList.remove('swap'); void card.offsetWidth; card.classList.add('swap');
-      if (scroll && innerWidth < 760) card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
-    }
-    x.addEventListener('click', function (e) { var b = e.target.closest('.fq4-q'); if (b) show(+b.dataset.i, true); });
-    l.parentNode.insertBefore(x, l); sec.classList.add('faq4'); show(0);
   }
 
   /* 7. floating order button, scroll progress, header that steps aside */

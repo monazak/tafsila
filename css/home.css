@@ -1477,63 +1477,11 @@ html.nav-hide .nav{transform:none!important}
 /* calligraphy headings: room above so dots and marks are never cut off by the reveal */
 .sh h2,#faq h2,#contact .cta h2{padding-top:.35em!important;margin-top:-.35em!important}
 
-/* =====================================================================
-   FAQ, modern: sticky title on one side, clean list on the other
-   ===================================================================== */
-#faq .w{max-width:1080px!important;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:64px;align-items:start}
-.faq-side{position:sticky;top:110px;text-align:start}
-#faq .faq-side h2{display:block!important;width:auto!important;text-align:start!important;font-size:clamp(44px,6vw,72px)!important;line-height:1.25;margin:0 0 10px!important}
-#faq .faq-side h2::before,#faq .faq-side h2::after{display:none!important}
-#faq .faq-side .sub{text-align:start!important;font-size:17px;margin:0 0 26px!important;max-width:26ch}
-.faq-wa{padding:13px 26px!important;font-size:15px!important}
-.faq-l{gap:0!important;border-top:1px solid rgba(179,32,47,.18)}
-.faq-l details{background:none!important;box-shadow:none!important;border-radius:0!important;border-bottom:1px solid rgba(179,32,47,.18);-webkit-backdrop-filter:none!important;backdrop-filter:none!important;position:relative;transition:background .3s}
-.faq-l details::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:#b3202f;transform:scaleY(0);transform-origin:top;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
-.faq-l details[open]{background:linear-gradient(90deg,transparent,rgba(248,228,227,.55))!important}
-.faq-l details[open]::before{transform:scaleY(1)}
-.faq-l summary{padding:26px 22px!important;font:600 19px/1.5 "Cairo",sans-serif!important;color:#3f2a24!important;transition:color .25s,padding .3s}
-.faq-l summary:hover{color:#b3202f!important;padding-inline-start:28px!important}
-.faq-l summary::after{width:40px!important;height:40px!important;background:#fffdf8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b3202f' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E") center/16px no-repeat!important;
-  box-shadow:inset 0 0 0 1.5px rgba(179,32,47,.35)!important;transition:transform .45s cubic-bezier(.2,.8,.2,1),background-color .3s!important}
-.faq-l details[open] summary::after{transform:rotate(135deg)!important;background-color:#b3202f!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E")!important;box-shadow:0 8px 18px -8px rgba(179,32,47,.6)!important}
-.faq-l .a{padding:0 22px 26px!important;font-size:16.5px;color:#7a6560!important;max-width:58ch}
-@media(max-width:860px){#faq .w{grid-template-columns:1fr;gap:28px}.faq-side{position:static;text-align:center}#faq .faq-side h2,#faq .faq-side .sub{text-align:center!important;margin-inline:auto!important}.faq-l summary{font-size:16.5px!important;padding:20px 12px!important}}
-.faq-l details[open]{box-shadow:none!important;border-radius:0!important}
 /* hero book: no floor line, a soft contact shadow instead */
 .h-floor,.h-refl{display:none!important}
 .hstage::after{display:block!important;content:""!important;position:absolute;left:50%;top:calc(var(--pw)*1.416 - 10px)!important;width:calc(var(--pw)*2.1)!important;height:44px!important;margin-left:calc(var(--pw)*-1.05)!important;
   border-radius:50%;background:radial-gradient(closest-side,rgba(110,60,50,.38),rgba(110,60,50,.14) 55%,transparent)!important;filter:blur(4px);z-index:-1;pointer-events:none}
 .hstage:not(:has(.fold.open))::after{width:calc(var(--pw)*1.15)!important;margin-left:calc(var(--pw)*-.575)!important}
-
-/* =====================================================================
-   FAQ v3: a conversation — tap a question bubble, Tafsila replies
-   ===================================================================== */
-#faq .w{display:block!important;max-width:760px!important}
-.faq-side{position:static!important;text-align:center!important;margin-bottom:34px}
-#faq .faq-side h2,#faq .faq-side .sub{text-align:center!important;margin-inline:auto!important}
-.faq-l{border-top:0!important;gap:14px!important;padding:28px 26px;border-radius:30px;
-  background:radial-gradient(circle,rgba(179,32,47,.05) 1px,transparent 1.6px) 0 0/18px 18px,linear-gradient(160deg,#fffdf8,#fbf1ee);
-  box-shadow:inset 0 0 0 1px rgba(179,32,47,.14),0 30px 60px -40px rgba(120,60,50,.4)}
-.faq-l details{border:0!important;background:none!important;display:flex;flex-direction:column}
-.faq-l details::before{display:none!important}
-.faq-l details[open]{background:none!important}
-.faq-l summary{align-self:flex-start;max-width:86%;padding:13px 18px!important;border-radius:20px 20px 20px 6px;background:#fff;
-  box-shadow:0 1px 2px rgba(120,60,50,.12),inset 0 0 0 1px rgba(179,32,47,.12);font:600 16.5px/1.6 "Cairo",sans-serif!important;color:#3f2a24!important;
-  gap:12px!important;transition:transform .25s,box-shadow .25s,background .25s!important}
-.faq-l summary:hover{padding-inline-start:18px!important;transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(120,60,50,.35),inset 0 0 0 1px rgba(179,32,47,.3)}
-.faq-l details[open] summary{background:#fff;box-shadow:inset 0 0 0 1.5px rgba(179,32,47,.45)}
-.faq-l summary::after{width:26px!important;height:26px!important;background-size:12px!important;flex:none}
-.faq-l .a{align-self:flex-end;max-width:82%;margin-top:10px;padding:13px 18px 9px!important;border-radius:20px 20px 6px 20px;
-  background:linear-gradient(160deg,#c43543,#b3202f);color:#fff!important;font-size:15.5px;line-height:1.8;box-shadow:0 12px 24px -14px rgba(179,32,47,.6);
-  animation:none!important;position:relative}
-.faq-l .a::before{content:"تفصيلة";display:block;font:700 12px "Cairo",sans-serif;color:rgba(255,235,238,.8);margin-bottom:2px}
-.faq-l details[open] .a{animation:bubbleIn .5s cubic-bezier(.3,1.3,.5,1) .55s both!important}
-.faq-l details[open] summary + .a::after{content:"";position:absolute;inset-inline-end:0;top:-46px;width:54px;height:30px;border-radius:15px;
-  background:radial-gradient(circle,#b3202f 3px,transparent 3.5px) 10px 50%/12px 8px repeat-x,#fbe8e8;animation:typing .55s steps(1) both;pointer-events:none}
-@keyframes typing{0%{opacity:1;transform:translateY(46px)}99%{opacity:1}100%{opacity:0}}
-@keyframes bubbleIn{from{opacity:0;transform:translateY(10px) scale(.92);transform-origin:bottom right}to{opacity:1;transform:none}}
-@media(max-width:640px){.faq-l{padding:18px 12px}.faq-l summary{max-width:94%;font-size:15px!important}.faq-l .a{max-width:92%;font-size:14.5px}}
-@media(prefers-reduced-motion:reduce){.faq-l details[open] .a{animation:none!important}.faq-l details[open] summary + .a::after{display:none}}
 
 /* =====================================================================
    buttons v4: 3D pressable — raised face, red ledge underneath, sinks on press
@@ -1625,36 +1573,6 @@ label[for="rp"],#rp{display:none!important}
 /* soft light sweep across the cloth */
 .cv2::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.5),transparent 30%,transparent 65%,rgba(255,255,255,.25) 78%,transparent 90%);pointer-events:none}
 
-/* =====================================================================
-   FAQ v4: question index + one invitation-style answer card
-   ===================================================================== */
-#faq.faq4 .w{max-width:1080px!important}
-#faq.faq4 .faq-l{display:none!important}
-#faq.faq4 .faq-side{margin-bottom:40px}
-.fq4{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:center}
-.fq4-list{display:flex;flex-direction:column}
-.fq4-q{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;padding:17px 6px;
-  border-bottom:1px solid rgba(179,32,47,.14);font:500 17px/1.6 "Cairo",sans-serif;color:#6e5a50;transition:color .3s,padding .3s}
-.fq4-q:first-child{border-top:1px solid rgba(179,32,47,.14)}
-.fq4-q::before{content:"";flex:none;width:8px;height:8px;transform:rotate(45deg);border:1.5px solid rgba(179,32,47,.35);transition:background .3s,border-color .3s,transform .4s}
-.fq4-q:hover{color:#3f2a24;padding-inline-start:12px}
-.fq4-q[aria-selected="true"]{color:#a51d2b;font-weight:700;padding-inline-start:12px}
-.fq4-q[aria-selected="true"]::before{background:#b3202f;border-color:#b3202f;transform:rotate(225deg)}
-.fq4-q:focus-visible{outline:2px solid #b3202f;outline-offset:2px;border-radius:4px}
-.fq4-card{position:relative;min-height:340px;display:flex;flex-direction:column;border-radius:6px;overflow:hidden;
-  background:radial-gradient(120% 90% at 50% 20%,#fffdf8,#f8eee6);
-  box-shadow:0 0 0 1px rgba(179,32,47,.35),0 0 0 7px #fffdf8,0 0 0 8px rgba(201,163,90,.55),0 40px 70px -40px rgba(120,60,50,.5)}
-.fq4-band{height:26px;flex:none;background:var(--tat) center/auto 100% repeat-x;opacity:.9;border-bottom:1px solid rgba(179,32,47,.3)}
-.fq4-band.b{border-bottom:0;border-top:1px solid rgba(179,32,47,.3)}
-.fq4-in{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px clamp(22px,4vw,48px)}
-.fq4-star{width:26px;height:26px;background:var(--tstar) center/contain no-repeat;margin-bottom:14px}
-.fq4-card h3{margin:0 0 14px;font:400 clamp(24px,2.6vw,32px)/1.4 "Aref Ruqaa","Amiri",serif;color:#a51d2b}
-.fq4-card p{margin:0;max-width:44ch;font:400 17px/1.95 "Cairo",sans-serif;color:#5b4840}
-.fq4-card.swap .fq4-in>*{animation:fq4in .55s cubic-bezier(.2,.8,.2,1) both}
-.fq4-card.swap h3{animation-delay:.06s!important}.fq4-card.swap p{animation-delay:.12s!important}
-@keyframes fq4in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media(max-width:760px){.fq4{grid-template-columns:1fr;gap:26px}.fq4-q{font-size:15.5px;padding:14px 4px}.fq4-card{min-height:0}.fq4-in{padding:28px 20px}.fq4-card p{font-size:15.5px}}
-@media(prefers-reduced-motion:reduce){.fq4-card.swap .fq4-in>*{animation:none}}
 /* cover: couple portraits + interlaced names */
 .cv2-arch{top:9%!important;bottom:15%!important;justify-content:flex-start!important;padding-top:calc(var(--pw)*.1);gap:0!important}
 .cv2-cp{width:84%;height:auto;display:block;filter:drop-shadow(0 calc(var(--pw)*.01) calc(var(--pw)*.02) rgba(120,60,50,.25))}

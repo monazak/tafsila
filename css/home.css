@@ -2253,3 +2253,13 @@ footer .flinks{display:none!important}
 .ph-btn.b1,.ph-btn.b2,.ph-btn.b3{left:-3px!important}.ph-btn.b4{right:-3px!important}
 @media(max-width:820px){.hw4-ph{width:224px!important;height:462px!important;transform:rotateY(-12deg) rotateX(5deg)!important}}
 .hw4-ph::after{content:"";position:absolute;left:8%;right:-6%;bottom:-34px;height:40px;border-radius:50%;background:radial-gradient(closest-side,rgba(80,40,30,.28),transparent);transform:translateZ(-40px) rotateX(70deg);pointer-events:none}
+/* iPhone: tilted to the right as before, black titanium edges */
+.hw4-ph{transform:rotateY(20deg) rotateX(7deg) rotateZ(-2deg)!important;
+  background:linear-gradient(145deg,#4a4a4f,#1f1f22 40%,#55555a 60%,#18181b)!important;
+  box-shadow:inset 0 0 0 .5px rgba(255,255,255,.35),0 0 0 .5px rgba(0,0,0,.6)!important}
+.hw4:hover .hw4-ph{transform:rotateY(10deg) rotateX(4deg) rotateZ(-1deg)!important}
+.ph-ly{background:linear-gradient(90deg,#141416,#3c3c41 30%,#26262a 60%,#0e0e10)!important}
+.ph-btn{background:linear-gradient(90deg,#141416,#4a4a4f,#1c1c1f)!important;box-shadow:0 0 0 .5px rgba(0,0,0,.6)!important}
+.ph-btn{transform:translateZ(-6px)}
+.hw4-ph::after{left:-6%!important;right:8%!important}
+@media(max-width:820px){.hw4-ph{transform:rotateY(12deg) rotateX(5deg)!important}}

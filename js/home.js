@@ -553,7 +553,19 @@
     w.innerHTML = h; document.body.appendChild(w); setTimeout(function () { w.remove(); }, 1000);
   }, { passive: true });
 
-  function scan() { decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  /* opened category: scale the design card so the section fits one screen */
+  function fitShowcase() {
+    var dc = document.querySelector('#designs .grid .dc'), sec = document.getElementById('designs');
+    if (!dc || !sec || !sec.querySelector('.cathead')) return;
+    dc.style.zoom = 1;
+    if (innerWidth < 900) return;
+    var top = dc.getBoundingClientRect().top - sec.getBoundingClientRect().top;
+    var avail = innerHeight - top - 24, h = dc.offsetHeight;
+    var z = Math.max(.7, Math.min(1, avail / h));
+    dc.style.zoom = z.toFixed(3);
+  }
+  var fitT; addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitShowcase, 120); });
+  function scan() { fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

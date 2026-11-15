@@ -181,7 +181,7 @@
     }, { threshold: .35 }) : null;
     function watch() {
       wrap.querySelectorAll('.fql-row').forEach(function (r) {
-        r.querySelectorAll('.fql-bulb').forEach(function (b, i) { b.style.setProperty('--on', (i * .06).toFixed(2) + 's'); });
+        r.querySelectorAll('.fql-bulb').forEach(function (b, i) { b.style.setProperty('--on', (i * .06).toFixed(2) + 's'); b.style.setProperty('--wv', (i * .18).toFixed(2) + 's'); });
         r.querySelectorAll('.fql-card').forEach(function (c, i) { c.style.setProperty('--in', (.5 + i * .18).toFixed(2) + 's'); });
         if (rowIO) rowIO.observe(r); else r.classList.add('lit');
       });

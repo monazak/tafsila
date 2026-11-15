@@ -1949,3 +1949,13 @@ footer{padding-top:calc(30px + 40px)!important}
 .h-tree.r .olv{--x2:1}
 .olv{--fall-h:calc((88cqh - var(--top-cq,0cqh)))}
 .olv{width:11px;height:14px;margin:-7px 0 0 -5.5px}
+/* FAQ: a soft wave of light travels along each string, like real wedding lights */
+.fql-bulb,.fql-row.lit .fql-bulb{animation:fqlWave 3.6s ease-in-out var(--wv) infinite!important}
+.fql-row+.fql-row .fql-bulb{animation-direction:reverse!important}
+@keyframes fqlWave{0%,100%{filter:brightness(.9);scale:1}12%{filter:brightness(1.45);scale:1.18}26%{filter:brightness(.95);scale:1}}
+/* the glow of a passing wave warms the card under it */
+.fql-f::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(70% 45% at 50% 0,rgba(255,221,190,.55),transparent 70%);opacity:.2;animation:fqlWarm 3.6s ease-in-out infinite}
+.fql-card:nth-of-type(2) .fql-f::after{animation-delay:1.2s}.fql-card:nth-of-type(3) .fql-f::after{animation-delay:2.4s}
+@keyframes fqlWarm{0%,100%{opacity:.15}20%{opacity:.75}40%{opacity:.15}}
+@media(prefers-reduced-motion:reduce){.fql-bulb,.fql-row.lit .fql-bulb,.fql-f::after{animation:none!important}}

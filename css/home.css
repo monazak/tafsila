@@ -1959,3 +1959,14 @@ footer{padding-top:calc(30px + 40px)!important}
 .fql-card:nth-of-type(2) .fql-f::after{animation-delay:1.2s}.fql-card:nth-of-type(3) .fql-f::after{animation-delay:2.4s}
 @keyframes fqlWarm{0%,100%{opacity:.15}20%{opacity:.75}40%{opacity:.15}}
 @media(prefers-reduced-motion:reduce){.fql-bulb,.fql-row.lit .fql-bulb,.fql-f::after{animation:none!important}}
+/* FAQ entrance: when a string comes into view its cards swing left and right on their pins, then settle into the sway */
+.fql-row.lit .fql-card{animation:fqlSwingIn 2.2s cubic-bezier(.35,0,.25,1) var(--in) both,fqlSway var(--sw) ease-in-out calc(var(--in) + 2.2s) infinite!important}
+@keyframes fqlSwingIn{
+  0%{transform:translateX(-50%) rotate(16deg)}
+  18%{transform:translateX(-50%) rotate(-12deg)}
+  36%{transform:translateX(-50%) rotate(8deg)}
+  54%{transform:translateX(-50%) rotate(-5deg)}
+  72%{transform:translateX(-50%) rotate(2.5deg)}
+  88%{transform:translateX(-50%) rotate(-1.2deg)}
+  100%{transform:translateX(-50%) rotate(-1.2deg)}}
+@media(prefers-reduced-motion:reduce){.fql-row.lit .fql-card{animation:none!important}}

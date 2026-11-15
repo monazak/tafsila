@@ -703,10 +703,16 @@
   /* olive branches and roses along the unused side margins of every section */
   function decorateEdges() {
     var ids = ['designs', 'packages', 'how', 'faq', 'contact'];
-    ids.forEach(function (id, k) {
+    var seed = 7; function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    ids.forEach(function (id) {
       var s = document.getElementById(id); if (!s || s.querySelector(':scope > .edge')) return;
-      var a = k % 2 ? 'roses' : 'olive', b = k % 2 ? 'olive' : 'roses';
-      s.insertAdjacentHTML('afterbegin', '<span class="edge e-l e-' + a + '" aria-hidden="true"></span><span class="edge e-r e-' + b + '" aria-hidden="true"></span>');
+      var n = 2 + Math.floor(rnd() * 2), html = '';
+      for (var i = 0; i < n; i++) {
+        var side = rnd() < .5 ? 'l' : 'r', kind = rnd() < .5 ? 'olive' : 'roses';
+        var top = (8 + rnd() * 74).toFixed(0), sc = (.7 + rnd() * .55).toFixed(2), rot = (-40 + rnd() * 80).toFixed(0), off = (-10 + rnd() * 50).toFixed(0);
+        html += '<span class="edge e-' + side + ' e-' + kind + '" aria-hidden="true" style="top:' + top + '%;--sc:' + sc + ';--rot:' + rot + 'deg;--off:' + off + 'px;--sw:' + (5 + rnd() * 4).toFixed(1) + 's;--dl:-' + (rnd() * 5).toFixed(1) + 's"></span>';
+      }
+      s.insertAdjacentHTML('afterbegin', html);
     });
   }
   /* cover couple: inline the drawing so the bride and groom can share a kiss, then stand */

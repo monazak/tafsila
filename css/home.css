@@ -2536,3 +2536,29 @@ footer .flinks{display:none!important}
 .ct-mix:not(.open) .chat .m,.ct-mix:not(.open) .chat .typing{transition:opacity .3s,transform .3s!important;transition-delay:0s!important}
 .ct-mix .m{--md0:0s}
 .ct-mix.open .chat .m,.ct-mix.open .chat .typing{transition-delay:calc(var(--md) - 1s)!important}
+
+/* side decorations v2: scattered olive sprigs and stemless rose clusters, gently swaying */
+:root{--rose1:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 90'%3E %3Cellipse cx='34' cy='62' rx='15' ry='6' transform='rotate(-25 34 62)' fill='%239fb39a'/%3E%3Cellipse cx='88' cy='64' rx='15' ry='6' transform='rotate(25 88 64)' fill='%238fa684'/%3E %3Ccircle cx='60' cy='44' r='28' fill='%23eab0b7'/%3E%3Ccircle cx='60' cy='44' r='21' fill='%23f2c4c9'/%3E %3Cpath d='M60 26c10 0 17 8 15 17-2 8-10 11-15 7-5-4-2-12 4-11' fill='none' stroke='%23d98a94' stroke-width='3' stroke-linecap='round'/%3E %3Cpath d='M44 40c0-10 8-16 16-16M46 56c6 6 18 6 24-2' fill='none' stroke='%23d98a94' stroke-width='2.6' stroke-linecap='round'/%3E %3Ccircle cx='26' cy='38' r='15' fill='%23f6d3d7'/%3E%3Cpath d='M20 36c2-6 10-6 12 0-2 4-8 4-8 0' fill='none' stroke='%23e6a3aa' stroke-width='2.2' stroke-linecap='round'/%3E %3Ccircle cx='96' cy='36' r='13' fill='%23f6d3d7'/%3E%3Cpath d='M91 34c2-5 9-5 10 0-2 4-7 4-7 0' fill='none' stroke='%23e6a3aa' stroke-width='2' stroke-linecap='round'/%3E %3C/svg%3E")}
+.edge{bottom:auto!important;transform:none!important;width:auto!important}
+.edge.e-olive{width:calc(min(14vw,210px) * var(--sc))!important;aspect-ratio:220/120}
+.edge.e-roses{background-image:var(--rose1)!important;width:calc(min(9vw,130px) * var(--sc))!important;aspect-ratio:120/90}
+.edge.e-l{left:calc(max(0px,50vw - 690px - 130px) + var(--off))!important;right:auto!important}
+.edge.e-r{right:calc(max(0px,50vw - 690px - 130px) + var(--off))!important;left:auto!important}
+.edge{animation:edgeSway var(--sw) ease-in-out var(--dl) infinite;rotate:var(--rot)}
+.edge.e-r.e-olive{scale:-1 1}
+@keyframes edgeSway{0%,100%{translate:0 0;rotate:var(--rot)}50%{translate:0 -6px;rotate:calc(var(--rot) + 4deg)}}
+@media(prefers-reduced-motion:reduce){.edge{animation:none}}
+/* designs entrance: tiles rise and settle one after another, then each invitation pops up inside its tile */
+#designs .cats>.cw.rev{opacity:1!important;transform:none!important;transition:none!important}
+#designs .cats>.cw .ctile{opacity:0;transform:translateY(70px) rotate(-3deg) scale(.94)}
+#designs .cats>.cw.in .ctile,#designs .cats:has(.cw.in)>.cw .ctile{animation:dTile .9s cubic-bezier(.2,.9,.25,1.15) both}
+#designs .cats>.cw:nth-child(2) .ctile{animation-delay:.12s!important}
+#designs .cats>.cw:nth-child(3) .ctile{animation-delay:.24s!important}
+#designs .cats>.cw:nth-child(4) .ctile{animation-delay:.36s!important}
+@keyframes dTile{from{opacity:0;transform:translateY(70px) rotate(-3deg) scale(.94)}to{opacity:1;transform:none}}
+#designs .cats>.cw .c3d:not(.env-on)>*{opacity:0}
+#designs .cats:has(.cw.in)>.cw .c3d:not(.env-on)>*{animation:dInv .8s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(.55s + var(--k,0) * .12s)}
+#designs .cats>.cw:nth-child(2){--k:1}#designs .cats>.cw:nth-child(3){--k:2}#designs .cats>.cw:nth-child(4){--k:3}
+@keyframes dInv{from{opacity:0;transform:translateY(24px) scale(.9)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#designs .cats>.cw .ctile,#designs .cats>.cw .c3d>*{opacity:1!important;animation:none!important;transform:none!important}}
+@keyframes dInv{from{opacity:0;translate:0 24px;scale:.9}to{opacity:1;translate:0 0;scale:1}}

@@ -146,6 +146,12 @@
     var h = '<div class="w"><h2>أسئلة بتتكرر</h2><p class="sub">إذا ما لقيتوا جوابكم هون، احكولنا على واتساب.</p><div class="faq-l">';
     FAQ.forEach(function (q, i) { h += '<details style="--d:' + (i * .07).toFixed(2) + 's"><summary>' + q[0] + '</summary><div class="a">' + q[1] + '</div></details>'; });
     sec.innerHTML = h + '</div></div>';
+    var hd = document.createElement('div'); hd.className = 'faq-side';
+    var w0 = sec.querySelector('.w'); var t = w0.querySelector('h2'), sb = w0.querySelector('.sub');
+    hd.appendChild(t); hd.appendChild(sb);
+    hd.insertAdjacentHTML('beforeend', '<button type="button" class="btn faq-wa">احكولنا على واتساب</button>');
+    hd.querySelector('.faq-wa').addEventListener('click', function () { var b = document.querySelector('.cta-n'); if (b) b.click(); });
+    w0.insertBefore(hd, w0.firstChild);
     pk.parentNode.insertBefore(sec, pk.nextSibling);
     var l = sec.querySelector('.faq-l');
     if (reduce || !faqIO) l.classList.add('on'); else faqIO.observe(l);

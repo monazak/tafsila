@@ -1924,3 +1924,8 @@ html[dir="rtl"] .pin,[dir="rtl"] .pin{transform:translateX(16px) rotate(18deg)}
 @media(prefers-reduced-motion:reduce){.fql-card{opacity:1;translate:0 0;animation:none!important}.fql-bulb{opacity:1;scale:1}.fql-wire path{stroke-dashoffset:0}}
 footer::after{height:30px!important;background:var(--tat) repeat-x center 0/auto 30px!important}
 footer{padding-top:calc(30px + 40px)!important}
+/* FAQ: no entrance animation — lights and cards are simply there */
+.fql-wire path{stroke-dasharray:none!important;stroke-dashoffset:0!important;transition:none!important}
+.fql-bulb,.fql-row.lit .fql-bulb{opacity:1!important;scale:1!important;transition:none!important;animation:fqlTw var(--tw) ease-in-out var(--dl) infinite!important}
+.fql-card,.fql-row.lit .fql-card{opacity:1!important;translate:0 0!important;animation:fqlSway var(--sw) ease-in-out infinite!important}
+@media(prefers-reduced-motion:reduce){.fql-card,.fql-row.lit .fql-card,.fql-bulb,.fql-row.lit .fql-bulb{animation:none!important}}

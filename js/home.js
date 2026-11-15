@@ -55,7 +55,7 @@
       '<div class="chat-b">' +
         '<div class="m me">مرحباً، بدنا دعوة لعرسنا الشهر الجاي<time>٩:٤١</time></div>' +
         '<div class="m us">أهلاً وسهلاً، وألف مبروك! أي تصميم عجبكم؟<time>٩:٤٢</time></div>' +
-        '<div class="m me">ذهب كلاسيك، مع الباقة المميزة<time>٩:٤٢</time></div>' +
+        '<div class="m me">ذهب كلاسيك لو سمحتوا<time>٩:٤٢</time></div>' +
         '<div class="typing"><i></i><i></i><i></i></div>' +
       '</div>';
     cta.appendChild(chat);
@@ -529,7 +529,7 @@
     if (ff && !ff.querySelector('.cv2')) ff.insertAdjacentHTML('beforeend',
       '<div class="cv2" aria-hidden="true"><span class="cv2-band"></span>' +
       '<div class="cv2-arch"><img class="cv2-cp" src="img/couple.svg" alt="">' +
-      '<div class="cv2-names"><b class="cv2-n a">' + (parts[0] || 'أحمد').trim() + '</b><i class="cv2-and">و</i><b class="cv2-n b">' + (parts[1] || 'منال').trim() + '</b></div>' +
+      '<div class="cv2-names"><b class="cv2-n">' + (parts[0] || 'أحمد').trim() + '</b><i class="cv2-and">و</i><b class="cv2-n">' + (parts[1] || 'منال').trim() + '</b></div>' +
       '<span class="cv2-star"></span><small class="cv2-d">١٣ · ٠٢ · ٢٠٢٧</small><span class="cv2-rose"></span></div>' +
       '<i class="lg cv2-lg"></i></div>');
     fb.insertAdjacentHTML('afterbegin', '<span class="bk-sprig" aria-hidden="true"></span>');

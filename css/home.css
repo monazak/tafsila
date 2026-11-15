@@ -936,3 +936,20 @@ footer .flinks{justify-content:center!important;gap:6px 34px!important}
 #designs .cats .cw:nth-child(3) .ctile .ct b{color:#141414!important}
 #designs .cats .cw:nth-child(3) .ctile .ct::after{background:var(--go2) center/18px no-repeat,linear-gradient(135deg,#d8293a,#9e121c)!important;box-shadow:0 10px 22px -10px rgba(200,32,47,.6)!important}
 #designs .grid.showcase[data-cat="grad"] .dc .sc-k{color:#141414!important}
+
+/* ===== order form: sections and validation ===== */
+dialog.of-on{max-height:92vh;overflow-y:auto;width:min(520px,calc(100vw - 24px))}
+dialog.of-on .of-h{margin:20px 0 4px;padding-top:14px;border-top:1px solid rgba(230,203,146,.2);font:700 15px "Cairo",sans-serif;color:#e6cb92;text-align:start}
+dialog.of-on .of-h:first-of-type{border-top:0;padding-top:4px}
+dialog.of-on label{display:block;text-align:start;margin:10px 0 6px;font-size:14px;color:#f1dfd9}
+dialog.of-on .of-req{color:#e6a0a8;font-weight:700}
+dialog.of-on input,dialog.of-on select,dialog.of-on textarea{width:100%;box-sizing:border-box;border-radius:12px;padding:11px 14px;font:500 15px "Cairo",sans-serif;border:1px solid rgba(240,214,207,.22);background:#2c0912;color:#faf4ec}
+dialog.of-on input::placeholder,dialog.of-on textarea::placeholder{color:rgba(240,214,207,.45)}
+dialog.of-on input:focus,dialog.of-on select:focus,dialog.of-on textarea:focus{outline:none;border-color:#d8b56f;box-shadow:0 0 0 3px rgba(216,181,111,.2)}
+dialog.of-on input[type=date],dialog.of-on input[type=time]{color-scheme:dark}
+dialog.of-on .of-row{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+dialog.of-on .of-bad{border-color:#e05a6a!important;box-shadow:0 0 0 3px rgba(224,90,106,.18)!important}
+dialog.of-on .of-msg{text-align:start;color:#f08a96;font-size:13px;margin-top:5px}
+dialog.of-on textarea{min-height:80px}
+@media(max-width:480px){dialog.of-on .of-row{grid-template-columns:1fr}}
+dialog.of-on label[for="rp"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}

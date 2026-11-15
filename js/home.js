@@ -346,7 +346,63 @@
     });
   }
 
-  function scan() { decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* 11. order form: clear sections and required invitation details */
+  function setVal(el, v) {
+    var proto = el.tagName === 'TEXTAREA' ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
+    Object.getOwnPropertyDescriptor(proto, 'value').set.call(el, v);
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  function decorateOrder() {
+    var rn = document.getElementById('rn'), rt = document.getElementById('rt'), rp = document.getElementById('rp');
+    if (!rn || !rt || !rp) return;
+    var dlg = rn.closest('dialog'); if (!dlg || dlg.querySelector('.of-box')) return;
+    dlg.classList.add('of-on');
+    rn.placeholder = 'اسمك الكامل'; rn.required = true;
+    var lrn = dlg.querySelector('label[for="rn"]'), lrp = dlg.querySelector('label[for="rp"]'), lrt = dlg.querySelector('label[for="rt"]');
+    if (lrn) { lrn.insertAdjacentHTML('beforebegin', '<div class="of-h">بياناتك</div>'); lrn.innerHTML = 'اسمك <b class="of-req">*</b>'; }
+    if (lrp) lrp.insertAdjacentHTML('beforebegin', '<div class="of-h">الباقة</div>');
+    var today = new Date(); today.setDate(today.getDate() + 1);
+    var min = today.toISOString().slice(0, 10);
+    var box = document.createElement('div'); box.className = 'of-box';
+    box.innerHTML = '<div class="of-h">تفاصيل المناسبة</div>' +
+      '<label for="of-n">أسماء أصحاب المناسبة <b class="of-req">*</b></label><input id="of-n" placeholder="مثلاً: أحمد و منال" autocomplete="off">' +
+      '<div class="of-row"><div><label for="of-d">التاريخ <b class="of-req">*</b></label><input id="of-d" type="date" min="' + min + '"></div>' +
+      '<div><label for="of-t">الوقت</label><input id="of-t" type="time"></div></div>' +
+      '<label for="of-p">المكان <b class="of-req">*</b></label><input id="of-p" placeholder="اسم القاعة والمدينة" autocomplete="off">';
+    if (lrt) { lrt.parentNode.insertBefore(box, lrt); lrt.textContent = 'ملاحظات أو تعديلات (اختياري)'; }
+    rt.placeholder = 'ألوان، نصوص، أي تفاصيل حابين تضيفوها';
+    var send = [].slice.call(dlg.querySelectorAll('button')).filter(function (b) { return /واتساب/.test(b.textContent); })[0];
+    if (!send) return;
+    function err(el, msg) {
+      el.classList.add('of-bad'); el.setAttribute('aria-invalid', 'true');
+      var m = el.parentNode.querySelector('.of-msg[data-for="' + el.id + '"]');
+      if (!m) { m = document.createElement('div'); m.className = 'of-msg'; m.dataset.for = el.id; el.insertAdjacentElement('afterend', m); }
+      m.textContent = msg;
+    }
+    function ok(el) { el.classList.remove('of-bad'); el.removeAttribute('aria-invalid'); var m = el.parentNode.querySelector('.of-msg[data-for="' + el.id + '"]'); if (m) m.remove(); }
+    dlg.addEventListener('input', function (e) { if (e.target.classList && e.target.classList.contains('of-bad') && e.target.value.trim()) ok(e.target); });
+    var bypass = false, userNotes = null;
+    send.addEventListener('click', function (e) {
+      if (bypass) { bypass = false; return; }
+      e.preventDefault(); e.stopImmediatePropagation();
+      var f = { n: dlg.querySelector('#of-n'), d: dlg.querySelector('#of-d'), t: dlg.querySelector('#of-t'), p: dlg.querySelector('#of-p') };
+      var bad = [];
+      if (!rn.value.trim()) { err(rn, 'اكتبوا اسمكم هون'); bad.push(rn); } else ok(rn);
+      if (!f.n.value.trim()) { err(f.n, 'اكتبوا أسماء أصحاب المناسبة'); bad.push(f.n); } else ok(f.n);
+      if (!f.d.value) { err(f.d, 'اختاروا تاريخ المناسبة'); bad.push(f.d); }
+      else if (f.d.value < min) { err(f.d, 'التاريخ لازم يكون بالمستقبل'); bad.push(f.d); } else ok(f.d);
+      if (!f.p.value.trim()) { err(f.p, 'اكتبوا مكان المناسبة'); bad.push(f.p); } else ok(f.p);
+      if (bad.length) { bad[0].focus(); bad[0].scrollIntoView({ block: 'center', behavior: 'smooth' }); return; }
+      if (userNotes === null || rt.value.indexOf('الأسماء: ') !== 0) userNotes = rt.value.trim();
+      var lines = ['الأسماء: ' + f.n.value.trim(), 'التاريخ: ' + f.d.value + (f.t.value ? ' الساعة ' + f.t.value : ''), 'المكان: ' + f.p.value.trim()];
+      if (userNotes) lines.push('ملاحظات: ' + userNotes);
+      setVal(rt, lines.join('\n'));
+      setTimeout(function () { bypass = true; send.click(); setTimeout(function () { setVal(rt, userNotes || ''); userNotes = null; }, 300); }, 60);
+    }, true);
+  }
+
+  function scan() { decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

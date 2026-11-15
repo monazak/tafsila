@@ -139,7 +139,7 @@
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); faqIO.unobserve(e.target); } });
   }, { threshold: .15 }) : null;
   function decorateFaq() {
-    var pk = document.getElementById('packages');
+    var pk = document.getElementById('how');
     if (!pk || document.getElementById('faq')) return;
     var sec = document.createElement('section');
     sec.id = 'faq';

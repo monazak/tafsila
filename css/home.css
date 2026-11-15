@@ -1048,3 +1048,20 @@ dialog.of-on label[for="rp"]{position:absolute;width:1px;height:1px;overflow:hid
 .h-amb i{animation-duration:40s!important}
 @media(prefers-reduced-motion:reduce){.hero h1 span{animation:none!important}}
 #designs .sh .sub:empty{display:none}
+
+/* section rhythm: designs (light) · packages (dark) · how (light) · FAQ (dark) · contact (light) */
+#faq{padding:100px 0!important}
+#contact{margin:0 12px!important;border-radius:44px!important;padding:84px 0!important;
+  background:radial-gradient(70% 60% at 100% 0,#fdf1ec,transparent 70%),radial-gradient(60% 50% at 0 100%,#f7ead6,transparent 70%),#fbf6ef!important;box-shadow:0 40px 80px -40px rgba(8,1,3,.6)!important}
+#contact .w.cta{color:#faf4ec!important;
+  background:radial-gradient(70% 90% at 0 0,rgba(196,74,100,.45),transparent 60%),radial-gradient(60% 70% at 100% 100%,rgba(201,163,90,.22),transparent 60%),linear-gradient(150deg,#6b1a2a,#3f0d18)!important;
+  box-shadow:0 50px 90px -40px rgba(63,13,24,.75)!important}
+#contact .w.cta::before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23e6cb92' stroke-opacity='.12' stroke-width='2'/%3E%3C/svg%3E")!important}
+#contact .cta h2{color:#faf4ec!important}
+#contact .cta .sub{color:#ecd2cc!important}
+#contact .cta .btn{background-image:linear-gradient(110deg,#f6e6c9 0%,#d8b56f 38%,#fff3d6 50%,#d8b56f 62%,#c99a4c 100%)!important;color:#3f0d18!important;box-shadow:0 14px 30px -12px rgba(216,181,111,.55)!important}
+#contact .cta .cpts{color:#e3c4bd!important}
+#contact .cta .cpts span::before{background:#d8b56f!important}
+#how{margin-bottom:0}
+footer{margin-top:40px!important}
+@media(max-width:640px){#contact{margin:0 6px!important;border-radius:28px!important;padding:50px 0!important}}

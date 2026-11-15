@@ -1657,3 +1657,26 @@ body,#root,#root>div{padding-bottom:0!important;margin-bottom:0!important}
 .cv2-arch{isolation:isolate}
 .cv2-rose{right:-6%!important;bottom:-12%!important;width:32%!important}
 .cv2-rose{display:none!important}
+
+/* =====================================================================
+   navbar v2: floating ivory capsule, frosted, tatreez hairline, diamond marker
+   ===================================================================== */
+.nav{position:sticky!important;top:12px!important;margin:12px auto 0!important;width:min(1180px,calc(100% - 32px));border-radius:999px;
+  background:linear-gradient(180deg,rgba(255,253,248,.86),rgba(252,246,238,.8))!important;
+  -webkit-backdrop-filter:blur(16px) saturate(1.4)!important;backdrop-filter:blur(16px) saturate(1.4)!important;
+  border:0!important;box-shadow:inset 0 0 0 1px rgba(179,32,47,.14),inset 0 1px 0 #fff,0 14px 34px -20px rgba(120,60,50,.45)!important;
+  transition:box-shadow .35s,background .35s!important}
+.nav.sc{box-shadow:inset 0 0 0 1px rgba(179,32,47,.2),inset 0 1px 0 #fff,0 18px 40px -18px rgba(120,60,50,.5)!important;background:linear-gradient(180deg,rgba(255,253,248,.94),rgba(252,246,238,.9))!important}
+/* a thin embroidered stitch along the bottom of the capsule */
+.nav::after{content:"";position:absolute;left:12%;right:12%;bottom:-1px;height:4px;pointer-events:none;
+  background:var(--tat) center/auto 100% repeat-x;opacity:.55;-webkit-mask:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent);mask:linear-gradient(90deg,transparent,#000 20%,#000 80%,transparent)}
+.nav .w{padding-inline:22px 10px!important;min-height:58px}
+.nav a.l{color:#6e5a50!important;font-weight:500;padding:8px 14px!important;border-radius:999px;transition:color .25s,background .25s!important}
+.nav a.l:hover{background:rgba(179,32,47,.07)!important;color:#a51d2b!important}
+.nav a.l::after{content:""!important;inset:auto!important;left:50%!important;bottom:-3px!important;width:6px!important;height:6px!important;
+  background:#b3202f!important;transform:translate(-50%,0) rotate(45deg) scale(0)!important;transition:transform .35s cubic-bezier(.3,1.5,.5,1)!important}
+.nav a.l.act{color:#a51d2b!important;font-weight:700}
+.nav a.l.act::after{transform:translate(-50%,0) rotate(45deg) scale(1)!important}
+.nav .logo .lg{height:30px!important}
+.nav .cta-n{padding:10px 20px!important}
+@media(max-width:720px){.nav{top:8px!important;margin-top:8px!important;width:calc(100% - 20px)}.nav .w{padding-inline:16px 8px!important;min-height:52px}}

@@ -687,7 +687,20 @@
     addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
     upd();
   }
-  function scan() { decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  /* contact: an envelope opens and the invitation card rises out of it */
+  function decorateContactEnv() {
+    var cta = document.querySelector('#contact .cta');
+    if (!cta || cta.querySelector('.ct-env')) return;
+    var env = document.createElement('div'); env.className = 'ct-env';
+    env.innerHTML = '<span class="ce-back" aria-hidden="true"></span><div class="ce-card"><span class="ce-sprig" aria-hidden="true"></span></div><span class="ce-front" aria-hidden="true"></span><span class="ce-flap" aria-hidden="true"></span><span class="ce-seal" aria-hidden="true">ت</span>';
+    var card = env.querySelector('.ce-card');
+    ['h2', '.sub', '.btn', '.cpts'].forEach(function (s) { var el = cta.querySelector(':scope > ' + s); if (el) card.appendChild(el); });
+    cta.appendChild(env);
+    var sec = document.getElementById('contact'); sec.classList.add('ct-on');
+    if (reduce || !('IntersectionObserver' in window)) env.classList.add('open');
+    else new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { env.classList.add('open'); o.disconnect(); } }); }, { threshold: .45 }).observe(env);
+  }
+  function scan() { decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

@@ -2327,3 +2327,11 @@ footer .flinks{display:none!important}
 .fql-row.lit .fql-in{clip-path:none!important;animation:fqlUnroll 1.2s cubic-bezier(.55,.05,.25,1) var(--in) backwards}
 .fql-row.lit .fql-card.nudge .fql-in{animation:fqlNudge 1.2s ease-in-out!important}
 .fql-row.lit .fql-in[aria-expanded="true"]{transform:rotateY(180deg)!important}
+/* navbar v4: back to the floating rounded capsule, with space on both sides */
+.nav{top:12px!important;margin:12px auto -82px!important;width:min(1180px,calc(100% - 32px))!important;border-radius:999px!important;
+  background:linear-gradient(180deg,rgba(255,253,248,.9),rgba(252,246,238,.85))!important;
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.14),inset 0 1px 0 #fff,0 14px 34px -20px rgba(120,60,50,.45)!important}
+.nav.sc{box-shadow:inset 0 0 0 1px rgba(179,32,47,.2),inset 0 1px 0 #fff,0 18px 40px -18px rgba(120,60,50,.5)!important}
+.nav .w{padding-inline:24px 10px!important;min-height:60px}
+.hero{padding-top:110px!important}
+@media(max-width:720px){.nav{top:8px!important;margin:8px auto -68px!important;width:calc(100% - 20px)!important}.nav .w{padding-inline:16px 8px!important;min-height:52px}.hero{padding-top:90px!important}}

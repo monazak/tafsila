@@ -600,7 +600,32 @@
     dc.style.zoom = z.toFixed(3);
   }
   var fitT; addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitShowcase, 120); });
-  function scan() { fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  /* how we work: a tailor's measuring tape unrolls down the steps as you scroll */
+  function decorateHow() {
+    var hw = document.querySelector('#how .hows');
+    if (!hw || hw.querySelector('.tape')) return;
+    var t = document.createElement('div'); t.className = 'tape'; t.setAttribute('aria-hidden', 'true');
+    var nums = ''; for (var n = 1; n <= 60; n++) nums += '<i style="top:' + (n * 40) + 'px">' + n + '</i>';
+    t.innerHTML = '<span class="tape-roll"><b></b></span><span class="tape-body"><span class="tape-n">' + nums + '</span></span><span class="tape-tip"></span>' +
+      '<svg class="tape-sc" viewBox="0 0 48 48"><g class="sc-a"><path d="M24 24 L44 14 Q46 13 45 16 Z" fill="#c9c4bc" stroke="#9a948c" stroke-width=".8"/><circle cx="12" cy="31" r="7" fill="none" stroke="#b3202f" stroke-width="3.2"/><path d="M24 24 L16 28" stroke="#b3202f" stroke-width="3.2" stroke-linecap="round"/></g>' +
+      '<g class="sc-b"><path d="M24 24 L44 34 Q46 35 45 32 Z" fill="#dcd7cf" stroke="#9a948c" stroke-width=".8"/><circle cx="12" cy="17" r="7" fill="none" stroke="#b3202f" stroke-width="3.2"/><path d="M24 24 L16 20" stroke="#b3202f" stroke-width="3.2" stroke-linecap="round"/></g><circle cx="24" cy="24" r="2" fill="#9a948c"/></svg>';
+    hw.insertBefore(t, hw.firstChild);
+    hw.querySelectorAll('.step').forEach(function (s) { s.insertAdjacentHTML('afterbegin', '<span class="pin" aria-hidden="true"></span>'); });
+    var raf = 0, last = -1, snipT;
+    function upd() {
+      raf = 0;
+      var r = hw.getBoundingClientRect(), p = (innerHeight * .62 - r.top) / r.height;
+      p = Math.max(0, Math.min(1, p));
+      if (reduce) p = 1;
+      hw.style.setProperty('--p', p.toFixed(4));
+      hw.querySelectorAll('.cw').forEach(function (c) { c.classList.toggle('pinned', (c.offsetTop + 30) / hw.offsetHeight <= p + .001); });
+      if (Math.abs(p - last) > .002 && p > 0 && p < 1) { t.classList.add('snip'); clearTimeout(snipT); snipT = setTimeout(function () { t.classList.remove('snip'); }, 260); }
+      last = p;
+    }
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
+    addEventListener('resize', upd); upd();
+  }
+  function scan() { decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

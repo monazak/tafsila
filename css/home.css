@@ -1929,3 +1929,7 @@ footer{padding-top:calc(30px + 40px)!important}
 .fql-bulb,.fql-row.lit .fql-bulb{opacity:1!important;scale:1!important;transition:none!important;animation:fqlTw var(--tw) ease-in-out var(--dl) infinite!important}
 .fql-card,.fql-row.lit .fql-card{opacity:1!important;translate:0 0!important;animation:fqlSway var(--sw) ease-in-out infinite!important}
 @media(prefers-reduced-motion:reduce){.fql-card,.fql-row.lit .fql-card,.fql-bulb,.fql-row.lit .fql-bulb{animation:none!important}}
+/* hero divider: just one tatreez band, no occasion words */
+.tick{padding:0!important;height:34px!important;overflow:hidden}
+.tick .tick-t{display:none!important}
+.tick::after{display:none!important}

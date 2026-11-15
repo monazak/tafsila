@@ -461,7 +461,7 @@
     if (!reduce) setTimeout(function () { if (!w.classList.contains('touched')) w.classList.add('nudge'); }, 1800);
   }
 
-  function scan() { decorateReveal(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  function scan() { decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

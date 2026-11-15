@@ -997,3 +997,6 @@ dialog.of-on label[for="rp"]{position:absolute;width:1px;height:1px;overflow:hid
 .ivr-n{font-size:clamp(34px,9.5vw,46px)}
 .ivr-q{margin-top:6px;font-size:16px}
 @media(max-width:640px){.ivr-page{padding:28% 12% 24%!important;gap:2px}.ivr-q{font-size:14px;margin-top:2px}.ivr-dt{font-size:14px}.ivr-t{font-size:12px}}
+
+/* hero: back to the book, without the floating cards around it */
+.hero .hstage .fly{display:none!important}

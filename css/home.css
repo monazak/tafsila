@@ -1933,3 +1933,7 @@ footer{padding-top:calc(30px + 40px)!important}
 .tick{padding:0!important;height:34px!important;overflow:hidden}
 .tick .tick-t{display:none!important}
 .tick::after{display:none!important}
+/* hero + its tatreez band fill exactly one screen */
+.hero{box-sizing:border-box!important;height:calc(100svh - 34px - 4px)!important;min-height:600px!important;padding-bottom:12px!important;overflow:hidden;display:flex!important;flex-direction:column;justify-content:center}
+.hstage{--pw:min(42vw,310px,calc((100svh - 400px) * .64))!important}
+@media(max-width:720px){.hero{height:auto!important;min-height:calc(100svh - 34px)!important}.hstage{--pw:min(44vw,250px)!important}}

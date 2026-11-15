@@ -643,7 +643,7 @@
       '<div class="ph-v v2"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٣ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
       '<div class="ph-v v3"><div class="ph-top">شاركوها</div><div class="ph-chat"><div class="ph-b"><span class="ph-link"><span class="ph-mini"></span><b>دعوة أحمد و منال</b><small>tafsila.ps/ahmad-manal</small></span></div>' +
       '<div class="ph-rsvp r1">✓ سارة أكدت حضورها</div><div class="ph-rsvp r2">✓ خالد أكد حضوره</div><div class="ph-rsvp r3">✓ ٤٢ ضيف أكدوا</div></div></div>' +
-      '<span class="ph-glare"></span></div><span class="ph-notch"></span><i class="ph-btn b1"></i><i class="ph-btn b2"></i><i class="ph-btn b3"></i><i class="ph-btn b4"></i></div>';
+      '<span class="ph-glare"></span></div><span class="ph-notch"></span><span class="ph-ly" style="--z:1"></span><span class="ph-ly" style="--z:2"></span><span class="ph-ly" style="--z:3"></span><span class="ph-ly" style="--z:4"></span><span class="ph-ly" style="--z:5"></span><span class="ph-ly" style="--z:6"></span><span class="ph-ly" style="--z:7"></span><span class="ph-ly" style="--z:8"></span><span class="ph-ly" style="--z:9"></span><span class="ph-ly" style="--z:10"></span><span class="ph-ly" style="--z:11"></span><span class="ph-ly" style="--z:12"></span><i class="ph-btn b1"></i><i class="ph-btn b2"></i><i class="ph-btn b3"></i><i class="ph-btn b4"></i></div>';
     x.innerHTML = list + phone;
     hw.parentNode.insertBefore(x, hw); sec.classList.add('how4');
     var cur = 0, timer, btns = x.querySelectorAll('.hw4-s');

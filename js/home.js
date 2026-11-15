@@ -525,6 +525,8 @@
   function decorateBook() {
     var fb = document.querySelector('.hero .fbase'), rb = document.querySelector('.hero .fcv .fb');
     if (!fb || !rb || fb.querySelector('.bk-sprig')) return;
+    var ff = document.querySelector('.hero .fcv .ffimg');
+    if (ff && !ff.querySelector('.cv-seal')) ff.insertAdjacentHTML('beforeend', '<span class="cv-ribbon" aria-hidden="true"></span><span class="cv-seal" aria-hidden="true">ت</span>');
     var n = fb.querySelector('.fn'), parts = n ? n.textContent.split(/\s+و\s+/) : [];
     fb.insertAdjacentHTML('afterbegin', '<span class="bk-sprig" aria-hidden="true"></span>');
     fb.insertAdjacentHTML('beforeend', '<span class="bk-rose" aria-hidden="true"></span>');

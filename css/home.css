@@ -1047,3 +1047,4 @@ dialog.of-on label[for="rp"]{position:absolute;width:1px;height:1px;overflow:hid
 .h-fx b{animation-duration:calc(var(--t,14s) * 1.6)!important}
 .h-amb i{animation-duration:40s!important}
 @media(prefers-reduced-motion:reduce){.hero h1 span{animation:none!important}}
+#designs .sh .sub:empty{display:none}

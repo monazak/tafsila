@@ -128,7 +128,7 @@
 
   /* 6. questions people ask (dark glass, after the prices) */
   var FAQ = [
-    ['كيف بتوصل الدعوة لضيوفنا؟', 'بنجهزلكم رابط خاص للدعوة، بتبعتوه لضيوفكم على واتساب أو أي تطبيق، وبيفتح مباشرة على الجوال بدون تحميل أي شي.'],
+    ['كيف بتوصل الدعوة لضيوفنا؟', 'بنجهزلكم رابط خاص للدعوة، بلضيوفكم على واتساب أو أي تطبيق، وبيفتح مباشرة على الجوال بدون تحميل أي شي.'],
     ['بنقدر نعدّل على الدعوة بعد ما نشوفها؟', 'أكيد. بتوصلكم معاينة قبل التسليم، وبنعدّل عليها حسب ملاحظاتكم.'],
     ['كيف بيشتغل تأكيد الحضور؟', 'الضيف بيأكد حضوره من الدعوة نفسها، والتأكيد بيوصلكم على واتساب.'],
     ['شو اللي بيحدد سعر الدعوة؟', 'الأسعار بتبدأ من 50 ₪ لدعوة بتصميم جاهز مع عدّاد تنازلي ورابط مشاركة. السعر بيزيد إذا بدكم تأكيد حضور عبر واتساب وتعديل على النصوص والألوان، أو تصميم خاص حسب طلبكم مع دومين خاص وحركات مخصصة.'],
@@ -268,11 +268,10 @@
         '<div class="pk1-l"><span class="pk1-k">دعوة إلكترونية كاملة</span>' +
           '<span class="pk1-from">تبدأ الأسعار من</span>' +
           '<div class="pk1-p"><b class="pk1-v">50</b><i>₪</i></div>' +
-          '<p class="pk1-n">والسعر النهائي بيعتمد على التصميم والميزات اللي بتختاروها.</p></div>' +
-        '<div class="pk1-r"><h3>كل اللي بتحتاجوه لدعوتكم</h3><ul class="pk1-f">' +
-          '<li>تصميم جاهز أو خاص حسب طلبكم</li><li>عدّاد تنازلي للموعد</li><li>رابط خاص لضيوفكم</li>' +
-          '<li>تأكيد الحضور عبر واتساب</li><li>تعديل على النصوص والألوان</li><li>دومين خاص وحركات مخصصة</li></ul>' +
-          '<div class="pk1-a"><button type="button" class="btn pk1-go">اطلبوا دعوتكم</button><small>بنرد عليكم على واتساب</small></div></div>';
+          '<p class="pk1-n">والسعر النهائي بيعتمد على التصميم والإضافات اللي بتختاروها.</p><div class="pk1-occ"><span>زفاف</span><span>إشهار</span><span>تخرج</span><span>عيد ميلاد</span></div></div>' +
+        '<div class="pk1-r"><h3>شو بتاخدوا</h3><span class="pk1-g">في كل دعوة</span><ul class="pk1-f pk1-inc"><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></i><span><b>رابط خاص</b><small>لضيوفكم على واتساب</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></i><span><b>عدّاد تنازلي</b><small>للموعد جوّا الدعوة</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M21 11.1V12a9 9 0 1 1-5.3-8.2"/><path d="M21 4 12 13l-3-3"/></svg></i><span><b>تأكيد الحضور</b><small>بيوصلكم على واتساب</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg></i><span><b>على كل الأجهزة</b><small>جوال، تابلت أو كمبيوتر</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></i><span><b>معاينة وتعديل</b><small>قبل التسليم</small></span></li></ul>' +
+          '<span class="pk1-g">إضافات حسب طلبكم</span><ul class="pk1-ext"><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></i>تصميم خاص</li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></i>دومين باسمكم</li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></i>حركات مخصصة</li></ul>' +
+        '<div class="pk1-a"><button type="button" class="btn pk1-go">اطلبوا دعوتكم</button><small>بنرد عليكم على واتساب</small></div></div>';
       card.querySelector('.pk1-go').addEventListener('click', function () { var b = document.querySelector('.cta-n'); if (b) b.click(); });
       pk.parentNode.insertBefore(card, pk.nextSibling);
       if (reduce || !pk1IO) card.classList.add('in'); else pk1IO.observe(card);

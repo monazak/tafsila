@@ -2045,3 +2045,20 @@ body>.sprog,.sprog{top:0!important;z-index:60}
 #designs .cats>.cw:nth-child(2).rev{transition-delay:.05s!important}
 #designs .cats>.cw:nth-child(3).rev{transition-delay:.1s!important}
 #designs .cats>.cw:nth-child(4).rev{transition-delay:.15s!important}
+/* price card content: what's included, with icons, and extras as chips */
+.pk1-r h3{margin-bottom:14px!important}
+.pk1-g{display:block;font:700 13px "Cairo",sans-serif;color:#9fb39a;margin:4px 0 10px}
+.pk1-inc{display:grid!important;grid-template-columns:1fr 1fr;gap:14px 22px!important;margin:0 0 20px!important;padding:0!important;list-style:none}
+.pk1-inc li{display:flex!important;align-items:flex-start;gap:12px;padding:0!important;font-size:inherit!important}
+.pk1-inc li::before{display:none!important}
+.pk-ic{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#fbeceb;box-shadow:inset 0 0 0 1px rgba(179,32,47,.15)}
+.pk-ic svg{width:19px;height:19px;fill:none;stroke:#b3202f;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pk1-inc b{display:block;font:700 15.5px/1.4 "Cairo",sans-serif;color:#4a2a26}
+.pk1-inc small{display:block;font:400 13.5px/1.6 "Cairo",sans-serif;color:#8a7768}
+.pk1-ext{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.pk1-ext li{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px rgba(179,32,47,.2);font:600 13.5px "Cairo",sans-serif;color:#7a3a36}
+.pk1-ext .pk-ic{width:26px;height:26px;border-radius:50%}
+.pk1-ext .pk-ic svg{width:14px;height:14px}
+.pk1-occ{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:16px}
+.pk1-occ span{padding:4px 12px;border-radius:999px;font:600 12.5px "Cairo",sans-serif;color:#a51d2b;background:rgba(179,32,47,.07)}
+@media(max-width:720px){.pk1-inc{grid-template-columns:1fr}}

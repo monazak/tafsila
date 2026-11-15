@@ -402,7 +402,66 @@
     }, true);
   }
 
-  function scan() { decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* 12. hero: one invitation under an illustrated cover you slide up */
+  function decorateReveal() {
+    var st = document.querySelector('.hero .hstage');
+    if (!st || st.querySelector('.ivr')) return;
+    var fb = st.querySelector('.fbase'), back = st.querySelector('.fcv .fb .fn');
+    var fts = fb ? [].slice.call(fb.querySelectorAll('.ft')).map(function (e) { return e.textContent; }) : [];
+    var fn = fb && fb.querySelector('.fn') ? fb.querySelector('.fn').textContent : 'أحمد و منال';
+    var img = st.querySelector('.ffimg img'), src = img ? img.getAttribute('src') : 'img/invite.jpg';
+    var parts = fn.split(/\s+و\s+/);
+    st.classList.add('ivr-on');
+    var w = document.createElement('div'); w.className = 'ivr';
+    w.innerHTML =
+      '<div class="ivr-card" role="group" aria-label="دعوة زفاف ' + fn + '">' +
+        '<div class="ivr-page">' +
+          '<span class="ivr-t">' + (fts[0] || 'بكل الحب ندعوكم لحضور حفل زفاف') + '</span>' +
+          '<span class="ivr-n">' + (parts[0] || fn) + '</span>' + (parts[1] ? '<span class="ivr-and">و</span><span class="ivr-n">' + parts[1] + '</span>' : '') +
+          '<i class="ivr-d"></i><span class="ivr-dt">' + (fts[1] || '') + '</span><span class="ivr-v">' + (fts[2] || '') + '</span>' +
+          '<span class="ivr-q">' + (back ? back.textContent : 'فرحتنا بتكمل بوجودكم') + '</span>' +
+        '</div>' +
+        '<div class="ivr-cover"><img src="' + src + '" alt="" draggable="false"><span class="ivr-shine"></span>' +
+          '<span class="ivr-tab"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg><b>اسحبوا الغلاف لفوق</b></span></div>' +
+      '</div>' +
+      '<button type="button" class="ivr-btn" aria-expanded="false">افتح الدعوة</button>';
+    st.appendChild(w);
+    var card = w.querySelector('.ivr-card'), cov = w.querySelector('.ivr-cover'), btn = w.querySelector('.ivr-btn'), tab = w.querySelector('.ivr-tab b');
+    var open = false, drag = null, MAXF = .9;
+    function setP(p, anim) {
+      cov.style.transition = anim ? '' : 'none';
+      cov.style.transform = 'translateY(' + (-p * MAXF * 100) + '%)';
+      card.style.setProperty('--p', p.toFixed(3));
+    }
+    function setOpen(o) {
+      open = o; card.classList.toggle('open', o); setP(o ? 1 : 0, true);
+      btn.textContent = o ? 'سكّر الدعوة' : 'افتح الدعوة'; btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+      tab.textContent = o ? 'اسحبوا لتحت للغلاف' : 'اسحبوا الغلاف لفوق';
+    }
+    btn.addEventListener('click', function () { setOpen(!open); w.classList.add('touched'); });
+    cov.addEventListener('pointerdown', function (e) {
+      if (e.button > 0) return;
+      drag = { y: e.clientY, h: cov.offsetHeight, p0: open ? 1 : 0, p: open ? 1 : 0, on: false, t: performance.now(), id: e.pointerId };
+    });
+    cov.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var dy = e.clientY - drag.y;
+      if (!drag.on) { if (Math.abs(dy) < 6) return; drag.on = true; w.classList.add('touched'); try { cov.setPointerCapture(e.pointerId); } catch (_) {} }
+      drag.p = Math.max(0, Math.min(1, drag.p0 - dy / (drag.h * MAXF)));
+      setP(drag.p, false); e.preventDefault();
+    });
+    function end(e) {
+      if (!drag) return; var d = drag; drag = null;
+      if (!d.on) { setOpen(!open); w.classList.add('touched'); return; }
+      var v = (d.p - d.p0) / Math.max(1, performance.now() - d.t) * 1000;
+      setOpen(Math.abs(v) > 1.2 ? v > 0 : d.p > .4);
+    }
+    cov.addEventListener('pointerup', end); cov.addEventListener('pointercancel', end);
+    if (!reduce) setTimeout(function () { if (!w.classList.contains('touched')) w.classList.add('nudge'); }, 1800);
+  }
+
+  function scan() { decorateReveal(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

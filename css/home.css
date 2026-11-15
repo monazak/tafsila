@@ -2067,3 +2067,41 @@ body>.sprog,.sprog{top:0!important;z-index:60}
 .nav::after{display:none!important}
 /* footer: no link row */
 footer .flinks{display:none!important}
+
+/* =====================================================================
+   how we work v3: a red embroidery thread stitches the three steps together
+   — section fits one screen
+   ===================================================================== */
+#how{min-height:100svh;box-sizing:border-box;display:flex!important;flex-direction:column;justify-content:center;padding-top:90px!important;padding-bottom:60px!important}
+#how .sh{margin-bottom:10px!important}
+#how .hows{padding-top:0!important;margin-top:20px}
+#how .tape.thread{inset:auto!important;position:relative;grid-column:1/-1;height:80px;width:100%!important;margin-bottom:-38px;z-index:0}
+#how .thread>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#how .thr-ghost{fill:none;stroke:rgba(179,32,47,.16);stroke-width:1.5;stroke-dasharray:7 6;vector-effect:non-scaling-stroke}
+#how .thr{fill:none;stroke:#b3202f;stroke-width:2.4;stroke-linecap:round;stroke-dasharray:7 6;vector-effect:non-scaling-stroke;filter:drop-shadow(0 1px 0 rgba(255,255,255,.8))}
+#how .thr-rev{fill:none;stroke:#fff;stroke-width:24;stroke-dasharray:1000;stroke-dashoffset:1000}
+#how .needle{position:absolute;left:0;top:0;width:60px;height:16px;margin:-8px 0 0 -6px;transform-origin:6px 8px;transition:opacity .3s;filter:drop-shadow(0 3px 3px rgba(80,60,40,.25))}
+#how .needle svg{width:100%;height:100%;display:block;transform:scaleX(-1)}
+#how .tape-roll,#how .tape-body,#how .tape-tip,#how .tape-n{display:none!important}
+/* cards: the numbered badge sits on the thread */
+#how .step::before,#how .step .pin{display:none!important}
+#how .step{padding-top:44px!important;margin-top:0}
+#how .cw:nth-child(3) .step{margin-top:-32px}   /* step 2 rides the high point of the curve */
+#how .cw:nth-child(4) .step{margin-top:32px}    /* step 3 the low point */
+#how .step .tag{position:absolute;top:-21px;left:50%;margin:0 0 0 -21px!important;width:42px;height:42px;font-size:17px;z-index:2;
+  box-shadow:0 0 0 5px #fffdf8,0 0 0 6px rgba(179,32,47,.25),0 8px 16px -6px rgba(179,32,47,.5)!important;transform:scale(.6);transition:transform .5s cubic-bezier(.3,1.7,.5,1)}
+#how .cw.pinned .step .tag{transform:scale(1)}
+@media(max-width:820px){
+  #how{min-height:0;display:block!important}
+  #how .tape.thread{display:none!important}
+  #how .cw:nth-child(n) .step{margin-top:0}
+  #how .hows{gap:44px}
+}
+#how .cw:nth-child(n) .step{margin-top:0!important}
+#how .tape.thread{margin-bottom:-40px!important}
+#how .step,#how .cw:nth-child(odd) .step{transform:none!important}
+#how .step{opacity:.45}
+#how .tape.thread{margin-bottom:calc(-40px - clamp(18px,3vw,40px))!important}
+#how .step .tag{inset:-21px auto auto 50%!important}
+#how .tape.thread{margin-bottom:calc(-52px - clamp(18px,3vw,40px))!important}
+#how .step{position:relative;z-index:1}

@@ -367,7 +367,6 @@
     rn.placeholder = 'اسمك الكامل'; rn.required = true;
     var lrn = dlg.querySelector('label[for="rn"]'), lrp = dlg.querySelector('label[for="rp"]'), lrt = dlg.querySelector('label[for="rt"]');
     if (lrn) { lrn.insertAdjacentHTML('beforebegin', '<div class="of-h">بياناتك</div>'); lrn.innerHTML = 'اسمك <b class="of-req">*</b>'; }
-    if (lrp) lrp.insertAdjacentHTML('beforebegin', '<div class="of-h">الباقة</div>');
     var today = new Date(); today.setDate(today.getDate() + 1);
     var min = today.toISOString().slice(0, 10);
     var box = document.createElement('div'); box.className = 'of-box';

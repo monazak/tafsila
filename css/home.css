@@ -1922,3 +1922,5 @@ html[dir="rtl"] .pin,[dir="rtl"] .pin{transform:translateX(16px) rotate(18deg)}
 .fql-in[aria-expanded="true"] .fql-b{animation:fqlGlow 1.2s ease-out .4s}
 @keyframes fqlGlow{0%{box-shadow:0 0 0 0 rgba(255,214,170,.9),0 18px 30px -16px rgba(120,20,30,.6)}100%{box-shadow:0 0 0 18px rgba(255,214,170,0),0 18px 30px -16px rgba(120,20,30,.6)}}
 @media(prefers-reduced-motion:reduce){.fql-card{opacity:1;translate:0 0;animation:none!important}.fql-bulb{opacity:1;scale:1}.fql-wire path{stroke-dashoffset:0}}
+footer::after{height:30px!important;background:var(--tat) repeat-x center 0/auto 30px!important}
+footer{padding-top:calc(30px + 40px)!important}

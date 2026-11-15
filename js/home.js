@@ -222,7 +222,63 @@
     if (v.textContent !== n) v.textContent = n;
   }
 
-  function scan() { decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* 9. category view: one showcase card per category, colours as swatches */
+  var CAT_DESC = { 'زفاف': 'أناقة لليلة العمر', 'إشهار': 'دعوة بروح وقورة', 'تخرج': 'فرحة الإنجاز', 'عيد ميلاد': 'تفاصيل صغيرة وفرحة كبيرة' };
+  var CAT_NAMES = { 'زفاف': 'ليان و آدم', 'إشهار': 'ليان و آدم', 'تخرج': 'مبروك التخرج', 'عيد ميلاد': 'عيد ميلاد سعيد' };
+  function lastColor(el) {
+    var bg = el.getAttribute('style') || '', cs = bg.match(/rgba?\([^)]*\)|#[0-9a-f]{3,8}/gi);
+    return cs && cs.length ? cs[cs.length - 1] : '#d8b56f';
+  }
+  function decorateShowcase() {
+    var grid = document.querySelector('#designs .grid');
+    if (!grid) return;
+    var cards = [].slice.call(grid.querySelectorAll('.dc'));
+    if (!cards.length) return;
+    var catEl = document.querySelector('#designs .cathead h3'), cat = catEl ? catEl.textContent.trim() : '';
+    var key = cat + '|' + cards.map(function (d) { var h = d.querySelector('h3'); return h ? h.textContent : ''; }).join(',');
+    grid.classList.add('showcase');
+    if (grid.dataset.key !== key) { grid.dataset.key = key; grid.dataset.sel = '0'; }
+    var sel = Math.min(+grid.dataset.sel || 0, cards.length - 1);
+    var colors = cards.map(function (d) { var pv = d.querySelector('.pv'); return pv ? lastColor(pv) : '#d8b56f'; });
+    var names = cards.map(function (d) { var h = d.querySelector('h3'); return h ? h.textContent.trim() : ''; });
+    cards.forEach(function (d, i) {
+      d.classList.toggle('sel', i === sel);
+      var mk = d.querySelector('.mk');
+      if (mk) {
+        mk.style.setProperty('--tint', colors[i]);
+        var rgb = (colors[i].match(/\d+/g) || [216, 181, 111]).map(Number);
+        mk.classList.toggle('mk-dark', (rgb[0] * .3 + rgb[1] * .59 + rgb[2] * .11) < 110);
+      }
+      var b = mk && mk.querySelector('b'); if (b && CAT_NAMES[cat] && b.dataset.t !== CAT_NAMES[cat]) b.dataset.t = CAT_NAMES[cat];
+      var inn = d.querySelector('.in'); if (!inn) return;
+      var box = inn.querySelector('.sc-box');
+      if (!box || box.dataset.key !== key) {
+        if (box) box.remove();
+        box = document.createElement('div'); box.className = 'sc-box'; box.dataset.key = key;
+        var h = '<span class="sc-k">دعوة ' + cat + '</span><p class="sc-d">' + (CAT_DESC[cat] || '') + '</p>' +
+          '<div class="sc-c"><span class="sc-l">' + (cards.length > 1 ? 'الألوان المتاحة' : 'اللون') + '</span><div class="sc-sw" role="radiogroup" aria-label="لون الدعوة">';
+        colors.forEach(function (c, j) { h += '<button type="button" role="radio" class="sw" data-i="' + j + '" style="--c:' + c + '" aria-label="' + names[j] + '" title="' + names[j] + '"></button>'; });
+        h += '</div><span class="sc-n"></span></div>' +
+          '<ul class="sc-f"><li>بتنفتح على أي جوال</li><li>عدّاد تنازلي للموعد</li><li>رابط خاص لضيوفكم</li></ul>';
+        box.innerHTML = h;
+        inn.insertBefore(box, inn.firstChild);
+      }
+      box.querySelectorAll('.sw').forEach(function (sw, j) { sw.setAttribute('aria-checked', j === i ? 'true' : 'false'); });
+      var n = box.querySelector('.sc-n'); if (n && n.textContent !== names[i]) n.textContent = names[i];
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var sw = e.target.closest && e.target.closest('#designs .sc-sw .sw');
+    if (!sw) return;
+    e.stopPropagation();
+    var grid = sw.closest('.grid'); if (!grid) return;
+    grid.dataset.sel = sw.dataset.i;
+    decorateShowcase();
+    var on = grid.querySelector('.dc.sel .sw[data-i="' + sw.dataset.i + '"]'); if (on) on.focus({ preventScroll: true });
+  }, true);
+
+  function scan() { decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

@@ -612,3 +612,43 @@ html.nav-hide .nav{transform:translateY(-110%)}
   #designs .cats .ct em{top:8px}
   #designs .cats .c3d{height:190px!important}
 }
+
+/* =====================================================================
+   category view: tabs, header and premium design cards (wine & gold)
+   ===================================================================== */
+#designs .cathead{justify-content:flex-start;gap:14px;margin:6px 0 22px}
+#designs .cathead h3{font:700 34px/1.2 "Aref Ruqaa","Amiri",serif!important;color:#6b1a2a}
+#designs .cathead button,#designs .cathead .btn{border-radius:30px!important;padding:8px 18px!important;background:transparent!important;color:#6b1a2a!important;border:1px solid rgba(107,26,42,.3)!important;font-weight:600}
+#designs .cathead button:hover{background:rgba(107,26,42,.06)!important}
+#designs .tabs{display:flex;width:max-content;max-width:100%;margin:0 auto 34px;padding:6px;gap:4px;border-radius:40px;background:#fffdf9;
+  box-shadow:inset 0 0 0 1px rgba(107,26,42,.12),0 14px 30px -20px rgba(74,15,28,.4);overflow-x:auto}
+#designs .tab{border:0!important;background:transparent!important;color:#6b1a2a!important;border-radius:30px!important;padding:10px 22px!important;font:600 15px "Cairo",sans-serif;white-space:nowrap;transition:background .3s,color .3s}
+#designs .tab:hover{background:rgba(107,26,42,.06)!important}
+#designs .tab[aria-pressed="true"]{background:linear-gradient(135deg,#7d2133,#4a0f1c)!important;color:#f6e6c9!important;box-shadow:0 8px 18px -8px rgba(74,15,28,.6)}
+#designs .grid{grid-template-columns:repeat(auto-fit,minmax(250px,330px));justify-content:center;gap:26px}
+#designs .dc{border:0!important;border-radius:26px!important;overflow:hidden!important;color:#faf4ec;
+  background:radial-gradient(120% 80% at 50% 0,#8a2639,#5a1424 55%,#2c0912)!important;
+  box-shadow:inset 0 0 0 1px rgba(230,203,146,.32),0 28px 48px -26px rgba(63,13,24,.75)!important}
+#designs .dc:hover{box-shadow:inset 0 0 0 1px rgba(230,203,146,.6),0 38px 58px -24px rgba(63,13,24,.85)!important}
+#designs .dc .glare{border-radius:26px;background:radial-gradient(260px circle at var(--gx,50%) var(--gy,0%),rgba(255,240,220,.18),transparent 65%)}
+#designs .dc .pv{position:relative;height:300px!important;aspect-ratio:auto!important;border-radius:0!important;
+  background:radial-gradient(55% 48% at 50% 48%,rgba(230,203,146,.32),transparent 72%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23e6cb92' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E")!important}
+#designs .dc .pv::after{display:none}
+#designs .dc .mk{height:76%!important;box-shadow:0 0 0 1px rgba(230,203,146,.7),0 30px 44px -14px rgba(0,0,0,.65)!important;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+#designs .dc:hover .mk{transform:translateY(-6px) rotate(-1.5deg)!important}
+#designs .dc .tag{top:14px;inset-inline-start:14px;padding:5px 12px;border-radius:30px;font:600 12px/1.4 "Cairo",sans-serif;color:#f6e6c9;background:rgba(44,9,18,.5);box-shadow:inset 0 0 0 1px rgba(230,203,146,.35)}
+#designs .dc .in{margin:0 10px 10px;padding:16px 16px 14px;border-radius:18px;background:linear-gradient(150deg,rgba(255,246,236,.12),rgba(255,246,236,.05)),rgba(44,9,18,.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 0 0 1px rgba(230,203,146,.22)}
+#designs .dc .in h3{margin:0 0 12px;font:700 26px/1.25 "Aref Ruqaa","Amiri",serif;color:#f6e6c9}
+#designs .dc .ac{display:flex;gap:8px;flex-wrap:nowrap}
+#designs .dc .ac .btn{border-radius:30px!important;padding:10px 16px!important;font:700 14px/1 "Cairo",sans-serif;text-align:center}
+#designs .dc .ac .btn:not(.alt){flex:1;background:linear-gradient(110deg,#f6e6c9 0%,#d8b56f 38%,#fff3d6 50%,#d8b56f 62%,#c99a4c 100%)!important;background-size:260% 100%!important;color:#3f0d18!important;border:0!important}
+#designs .dc .ac .btn:not(.alt):hover{background-position:0 0!important}
+#designs .dc .ac a.btn.alt{background:transparent!important;color:#f6e6c9!important;border:1px solid rgba(246,230,201,.45)!important}
+#designs .dc .ac a.btn.alt:hover{background:rgba(246,230,201,.1)!important}
+#designs .dc .pvgo{background:rgba(255,246,236,.92);color:#3f0d18}
+@media(max-width:640px){
+  #designs .tabs{margin-bottom:24px}
+  #designs .tab{padding:9px 14px!important;font-size:14px}
+  #designs .grid{grid-template-columns:1fr;max-width:340px;margin-inline:auto}
+}

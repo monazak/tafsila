@@ -1680,3 +1680,4 @@ body,#root,#root>div{padding-bottom:0!important;margin-bottom:0!important}
 .nav .logo .lg{height:30px!important}
 .nav .cta-n{padding:10px 20px!important}
 @media(max-width:720px){.nav{top:8px!important;margin-top:8px!important;width:calc(100% - 20px)}.nav .w{padding-inline:16px 8px!important;min-height:52px}}
+footer.rev,footer.rev.in{transform:none!important}

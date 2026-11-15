@@ -1504,3 +1504,66 @@ html.nav-hide .nav{transform:none!important}
 .hstage::after{display:block!important;content:""!important;position:absolute;left:50%;top:calc(var(--pw)*1.416 - 10px)!important;width:calc(var(--pw)*2.1)!important;height:44px!important;margin-left:calc(var(--pw)*-1.05)!important;
   border-radius:50%;background:radial-gradient(closest-side,rgba(110,60,50,.38),rgba(110,60,50,.14) 55%,transparent)!important;filter:blur(4px);z-index:-1;pointer-events:none}
 .hstage:not(:has(.fold.open))::after{width:calc(var(--pw)*1.15)!important;margin-left:calc(var(--pw)*-.575)!important}
+
+/* =====================================================================
+   FAQ v3: a conversation — tap a question bubble, Tafsila replies
+   ===================================================================== */
+#faq .w{display:block!important;max-width:760px!important}
+.faq-side{position:static!important;text-align:center!important;margin-bottom:34px}
+#faq .faq-side h2,#faq .faq-side .sub{text-align:center!important;margin-inline:auto!important}
+.faq-l{border-top:0!important;gap:14px!important;padding:28px 26px;border-radius:30px;
+  background:radial-gradient(circle,rgba(179,32,47,.05) 1px,transparent 1.6px) 0 0/18px 18px,linear-gradient(160deg,#fffdf8,#fbf1ee);
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.14),0 30px 60px -40px rgba(120,60,50,.4)}
+.faq-l details{border:0!important;background:none!important;display:flex;flex-direction:column}
+.faq-l details::before{display:none!important}
+.faq-l details[open]{background:none!important}
+.faq-l summary{align-self:flex-start;max-width:86%;padding:13px 18px!important;border-radius:20px 20px 20px 6px;background:#fff;
+  box-shadow:0 1px 2px rgba(120,60,50,.12),inset 0 0 0 1px rgba(179,32,47,.12);font:600 16.5px/1.6 "Cairo",sans-serif!important;color:#3f2a24!important;
+  gap:12px!important;transition:transform .25s,box-shadow .25s,background .25s!important}
+.faq-l summary:hover{padding-inline-start:18px!important;transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(120,60,50,.35),inset 0 0 0 1px rgba(179,32,47,.3)}
+.faq-l details[open] summary{background:#fff;box-shadow:inset 0 0 0 1.5px rgba(179,32,47,.45)}
+.faq-l summary::after{width:26px!important;height:26px!important;background-size:12px!important;flex:none}
+.faq-l .a{align-self:flex-end;max-width:82%;margin-top:10px;padding:13px 18px 9px!important;border-radius:20px 20px 6px 20px;
+  background:linear-gradient(160deg,#c43543,#b3202f);color:#fff!important;font-size:15.5px;line-height:1.8;box-shadow:0 12px 24px -14px rgba(179,32,47,.6);
+  animation:none!important;position:relative}
+.faq-l .a::before{content:"تفصيلة";display:block;font:700 12px "Cairo",sans-serif;color:rgba(255,235,238,.8);margin-bottom:2px}
+.faq-l details[open] .a{animation:bubbleIn .5s cubic-bezier(.3,1.3,.5,1) .55s both!important}
+.faq-l details[open] summary + .a::after{content:"";position:absolute;inset-inline-end:0;top:-46px;width:54px;height:30px;border-radius:15px;
+  background:radial-gradient(circle,#b3202f 3px,transparent 3.5px) 10px 50%/12px 8px repeat-x,#fbe8e8;animation:typing .55s steps(1) both;pointer-events:none}
+@keyframes typing{0%{opacity:1;transform:translateY(46px)}99%{opacity:1}100%{opacity:0}}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(10px) scale(.92);transform-origin:bottom right}to{opacity:1;transform:none}}
+@media(max-width:640px){.faq-l{padding:18px 12px}.faq-l summary{max-width:94%;font-size:15px!important}.faq-l .a{max-width:92%;font-size:14.5px}}
+@media(prefers-reduced-motion:reduce){.faq-l details[open] .a{animation:none!important}.faq-l details[open] summary + .a::after{display:none}}
+
+/* =====================================================================
+   buttons v4: 3D pressable — raised face, red ledge underneath, sinks on press
+   ===================================================================== */
+.btn:not(.alt),.fab,#contact .cta .btn,footer .btn,#designs .dc .ac .btn:not(.alt),.pk1-a .btn,#designs .grid.showcase[data-cat] .dc .ac .btn:not(.alt){
+  background:linear-gradient(180deg,#d63e4d 0%,#bd2533 55%,#a91d2b 100%)!important;color:#fff!important;border:0!important;
+  text-shadow:0 -1px 0 rgba(100,10,20,.45)!important;font-weight:700!important;
+  box-shadow:inset 0 1px 0 rgba(255,215,220,.65),inset 0 -2px 0 rgba(120,15,28,.35),
+    0 6px 0 #7f1422,0 7px 0 #6a0f1b,0 16px 22px -6px rgba(127,20,34,.45)!important;
+  transform:translateY(0)!important;transition:transform .16s cubic-bezier(.3,.7,.4,1),box-shadow .16s,filter .2s!important}
+.btn:not(.alt)::before,.pk1-a .btn::before,.fab::after{content:""!important;position:absolute;z-index:0!important;inset:auto!important;
+  left:10%!important;right:10%!important;top:3px!important;height:45%!important;border:0!important;border-radius:999px 999px 60% 60%/999px 999px 40% 40%!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,0))!important;animation:none!important;pointer-events:none}
+.btn:not(.alt)::after{display:none!important}
+.btn:not(.alt):hover,.fab:hover,#contact .cta .btn:hover,.pk1-a .btn:hover{filter:brightness(1.05) saturate(1.05);transform:translateY(-2px)!important;
+  box-shadow:inset 0 1px 0 rgba(255,215,220,.65),inset 0 -2px 0 rgba(120,15,28,.35),
+    0 8px 0 #7f1422,0 9px 0 #6a0f1b,0 22px 26px -8px rgba(127,20,34,.5)!important}
+.btn:not(.alt):active,.fab:active,#contact .cta .btn:active,.pk1-a .btn:active{transform:translateY(6px)!important;transition-duration:.06s!important;
+  box-shadow:inset 0 1px 0 rgba(255,215,220,.4),inset 0 2px 6px rgba(90,10,20,.35),0 0 0 #7f1422,0 1px 0 #6a0f1b,0 4px 8px -4px rgba(127,20,34,.5)!important}
+.btn:not(.alt):focus-visible{outline:2px solid #b3202f;outline-offset:6px}
+/* secondary: ivory key with a blush ledge */
+.btn.alt,#designs .dc .ac a.btn.alt,#designs .grid.showcase[data-cat] .dc .ac a.btn.alt,.fold-ctl button,#designs .cathead button{
+  background:linear-gradient(180deg,#fffefa,#f8eee8)!important;color:#a51d2b!important;border:0!important;overflow:visible!important;
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.28),inset 0 1px 0 #fff,0 5px 0 #ecc9c6,0 6px 0 #ddb1ae,0 14px 18px -8px rgba(127,20,34,.3)!important;
+  transform:translateY(0)!important;transition:transform .16s cubic-bezier(.3,.7,.4,1),box-shadow .16s!important}
+.btn.alt::after,#designs .dc .ac a.btn.alt::after,.fold-ctl button::after{display:none!important}
+.btn.alt:hover,#designs .dc .ac a.btn.alt:hover,.fold-ctl button:hover,#designs .cathead button:hover{transform:translateY(-2px)!important;
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.45),inset 0 1px 0 #fff,0 7px 0 #ecc9c6,0 8px 0 #ddb1ae,0 18px 22px -8px rgba(127,20,34,.35)!important}
+.btn.alt:active,#designs .dc .ac a.btn.alt:active,.fold-ctl button:active,#designs .cathead button:active{transform:translateY(5px)!important;transition-duration:.06s!important;
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.45),inset 0 2px 5px rgba(127,20,34,.15),0 0 0 #ecc9c6,0 1px 0 #ddb1ae!important}
+/* the hero's text link stays a link */
+.hero .hbtns .btn.alt{background:none!important;box-shadow:none!important;transform:none!important}
+@media(prefers-reduced-motion:reduce){.btn,.fab,.fold-ctl button{transition:none!important}}

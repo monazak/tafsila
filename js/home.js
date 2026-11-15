@@ -700,7 +700,16 @@
     if (reduce || !('IntersectionObserver' in window)) env.classList.add('open');
     else new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { env.classList.add('open'); o.disconnect(); } }); }, { threshold: .45 }).observe(env);
   }
-  function scan() { decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  /* cover couple: inline the drawing so the bride and groom can share a kiss, then stand */
+  function inlineCouple() {
+    var im = document.querySelector('.cv2 img.cv2-cp');
+    if (!im || im.dataset.inl) return; im.dataset.inl = 1;
+    fetch(im.src).then(function (r) { return r.text(); }).then(function (t) {
+      var d = document.createElement('div'); d.className = 'cv2-cp cv2-svg'; d.innerHTML = t; d.setAttribute('aria-hidden', 'true');
+      im.replaceWith(d); if (!reduce) setTimeout(function () { d.classList.add('kiss'); }, 900);
+    }).catch(function () {});
+  }
+  function scan() { inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

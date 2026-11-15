@@ -2460,3 +2460,22 @@ footer .flinks{display:none!important}
 .fql-row:not(.lit) .fql-card{visibility:hidden}
 .fql-card::after{opacity:0}
 .fql-row.lit .fql-card::after{animation:fqlRoll 1.2s cubic-bezier(.55,.05,.25,1) var(--in) both}
+/* cover couple: they lean in for a kiss, a little heart, then stand as they are */
+.cv2-svg{display:block}
+.cv2-svg svg{display:block;width:100%;height:auto;overflow:visible}
+.cv2-svg .br,.cv2-svg .gm{transform-box:view-box}
+.cv2-svg .br-h{transform-origin:93px 76px;transform-box:view-box}
+.cv2-svg .gm-h{transform-origin:151px 74px;transform-box:view-box}
+.cv2-svg .kiss-h{opacity:0;transform-origin:122px 34px;transform-box:view-box}
+.cv2-svg.kiss .br{animation:kBr 3.2s cubic-bezier(.45,0,.25,1) both}
+.cv2-svg.kiss .gm{animation:kGm 3.2s cubic-bezier(.45,0,.25,1) both}
+.cv2-svg.kiss .br-h{animation:kBrH 3.2s cubic-bezier(.45,0,.25,1) both}
+.cv2-svg.kiss .gm-h{animation:kGmH 3.2s cubic-bezier(.45,0,.25,1) both}
+.cv2-svg.kiss .kiss-h{animation:kHeart 3.2s ease-out both}
+@keyframes kBr{0%,100%{transform:none}30%,62%{transform:translateX(6px)}}
+@keyframes kGm{0%,100%{transform:none}30%,62%{transform:translateX(-6px)}}
+@keyframes kBrH{0%,100%{transform:rotate(0)}30%,62%{transform:rotate(12deg)}}
+@keyframes kGmH{0%,100%{transform:rotate(0)}30%,62%{transform:rotate(-16deg) translateY(2px)}}
+@keyframes kHeart{0%,32%{opacity:0;transform:scale(.3) translateY(6px)}40%{opacity:1;transform:scale(1.15)}60%{opacity:1;transform:scale(1) translateY(-6px)}78%,100%{opacity:0;transform:translateY(-16px)}}
+/* hero tatreez band: already there from the start, only the gentle drift */
+.tick::before{animation:tatDrift 6s linear infinite!important;clip-path:none!important}

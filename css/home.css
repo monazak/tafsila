@@ -765,3 +765,28 @@ html.nav-hide .nav{transform:translateY(-110%)}
 #contact .cta .cpts{color:#7a5c60}
 #contact .cta .cpts span::before{background:#b8893e}
 #contact .chat{box-shadow:0 30px 60px -20px rgba(74,15,28,.45),0 0 0 6px rgba(107,26,42,.06)}
+
+/* contact text: one centred group next to the chat */
+#contact .w.cta{grid-template-rows:1fr auto auto auto auto 1fr!important;align-items:center}
+#contact .cta h2{grid-row:2;margin-top:0!important}
+#contact .cta .sub{grid-row:3}
+#contact .cta .btn{grid-row:4}
+#contact .cta .cpts{grid-row:5;margin-top:24px}
+#contact .chat{grid-row:1/7!important;align-self:center}
+@media(max-width:860px){#contact .w.cta{grid-template-rows:none!important}#contact .cta h2,#contact .cta .sub,#contact .cta .btn,#contact .cta .cpts,#contact .chat{grid-row:auto!important}}
+
+/* compact footer: logo and tagline on one line, button beside them */
+footer{display:grid!important;grid-template-columns:auto 1fr auto;align-items:center;column-gap:22px;row-gap:0;max-width:1080px;margin:0 auto;padding:36px 24px 30px!important;text-align:start}
+footer .lg{grid-column:1;grid-row:1;height:40px!important;width:auto;aspect-ratio:3.2;margin:0!important}
+footer .fbig{grid-column:2;grid-row:1;font-size:clamp(20px,2.4vw,26px)!important;line-height:1.4!important;padding-inline-start:22px;border-inline-start:1px solid rgba(230,203,146,.3)}
+footer>.btn{grid-column:3;grid-row:1;margin:0!important}
+footer .flinks{grid-column:1/-1;margin:26px 0 0!important;max-width:none!important;justify-content:space-between!important;align-items:center}
+footer .cp{grid-column:1/-1;margin-top:14px;text-align:center}
+@media(max-width:700px){
+  footer{grid-template-columns:1fr;justify-items:center;text-align:center;row-gap:12px}
+  footer .lg,footer .fbig,footer>.btn{grid-column:1;grid-row:auto}
+  footer .fbig{padding:0;border:0}
+  footer .flinks{justify-content:center!important;margin-top:14px!important}
+}
+footer{max-width:1048px}
+footer .flinks{justify-content:center!important;gap:6px 34px!important}

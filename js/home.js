@@ -537,6 +537,8 @@
     var a = (parts[0] || 'أ').trim().charAt(0), b = (parts[1] || 'م').trim().charAt(0);
     rb.insertAdjacentHTML('afterbegin', '<span class="bk-mono" aria-hidden="true"><b>' + a + '</b><i>&amp;</i><b>' + b + '</b></span>');
     rb.insertAdjacentHTML('beforeend', '<span class="bk-rose r" aria-hidden="true"></span>');
+    var st = document.querySelector('.hero .hstage');
+    if (st && !st.querySelector('.h-tree')) st.insertAdjacentHTML('afterbegin', '<span class="h-tree l" aria-hidden="true"></span><span class="h-tree r" aria-hidden="true"></span>');
   }
 
 

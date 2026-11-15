@@ -1681,3 +1681,116 @@ body,#root,#root>div{padding-bottom:0!important;margin-bottom:0!important}
 .nav .cta-n{padding:10px 20px!important}
 @media(max-width:720px){.nav{top:8px!important;margin-top:8px!important;width:calc(100% - 20px)}.nav .w{padding-inline:16px 8px!important;min-height:52px}}
 footer.rev,footer.rev.in{transform:none!important}
+
+/* =====================================================================
+   nav floats over the hero: the hero's colours run behind it
+   ===================================================================== */
+.nav{margin-bottom:-70px!important}
+.hero{padding-top:calc(56px + 70px)!important;margin-top:-12px}
+@media(max-width:720px){.nav{margin-bottom:-60px!important}.hero{padding-top:calc(40px + 60px)!important;margin-top:-8px}}
+
+/* =====================================================================
+   hero book v3: the card itself is an arch — bigger, with olive trees
+   ===================================================================== */
+.hstage{--pw:min(42vw,310px)!important;--ar:calc(var(--pw)*.5)}
+.hero .fbase,.hero .fcv .ff,.hero .fcv .fb,.fcv .ff.ffimg,.fcv .ff.ffimg img,.cv2{border-radius:var(--ar) var(--ar) 8px 8px!important}
+.hero .fcv .ff,.hero .fbase,.hero .fcv .fb{overflow:hidden}
+/* inner double line follows the card's own shape */
+.fbase::before,.fcv .fb::before{-webkit-mask:none!important;mask:none!important;
+  top:calc(var(--pw)*.05)!important;bottom:calc(var(--pw)*.05)!important;left:calc(var(--pw)*.05)!important;right:calc(var(--pw)*.05)!important;
+  border-radius:calc(var(--ar) - var(--pw)*.05) calc(var(--ar) - var(--pw)*.05) 4px 4px!important;
+  background:linear-gradient(180deg,rgba(251,234,234,.7) 0%,rgba(253,246,241,.4) 45%,transparent 75%)!important;
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.8),inset 0 0 0 calc(var(--pw)*.012) #fffdf8,inset 0 0 0 calc(var(--pw)*.015) rgba(201,163,90,.7)!important}
+.fcv .fb::before{left:calc(var(--pw)*.05)!important;right:calc(var(--pw)*.05)!important}
+/* tatreez now runs along the bottom instead of the spine */
+.fbase::after,.fcv .fb::after{top:auto!important;bottom:calc(var(--pw)*.085)!important;left:calc(var(--pw)*.12)!important;right:calc(var(--pw)*.12)!important;
+  width:auto!important;height:calc(var(--pw)*.06)!important;padding:0!important;border:0!important;
+  background:var(--tat) center/auto 100% repeat-x!important;background-clip:border-box!important;opacity:.8!important}
+.fcv .fb::after{left:calc(var(--pw)*.12)!important;right:calc(var(--pw)*.12)!important}
+.fbase,.fcv .fb{padding:calc(var(--pw)*.34) calc(var(--pw)*.14) calc(var(--pw)*.2)!important}
+.fbase .bk-rose{right:calc(var(--pw)*.1)!important;bottom:calc(var(--pw)*.15)!important;width:calc(var(--pw)*.18)!important}
+.fcv .fb .bk-rose{left:calc(var(--pw)*.1)!important;bottom:calc(var(--pw)*.15)!important;width:calc(var(--pw)*.18)!important}
+.bk-sprig{width:calc(var(--pw)*.28)!important}
+/* cover */
+.cv2-band{display:none!important}
+.cv2-arch{top:calc(var(--pw)*.05)!important;bottom:calc(var(--pw)*.05)!important;left:calc(var(--pw)*.05)!important;right:calc(var(--pw)*.05)!important;
+  padding-top:calc(var(--pw)*.16)!important}
+.cv2-arch::before{-webkit-mask:none!important;mask:none!important;border-radius:calc(var(--ar) - var(--pw)*.05) calc(var(--ar) - var(--pw)*.05) 4px 4px!important;
+  background:linear-gradient(180deg,#fbeaea 0%,rgba(253,246,241,.5) 50%,transparent 80%)!important;
+  box-shadow:inset 0 0 0 1px rgba(179,32,47,.8),inset 0 0 0 calc(var(--pw)*.012) #fffdf8,inset 0 0 0 calc(var(--pw)*.015) rgba(201,163,90,.7)!important}
+.cv2-cp{width:52%!important}
+.cv2-lg{left:0!important;right:0!important;bottom:calc(var(--pw)*.1)!important;height:calc(var(--pw)*.06)!important}
+.cv2::before{content:"";position:absolute;left:calc(var(--pw)*.12);right:calc(var(--pw)*.12);bottom:calc(var(--pw)*.2);height:calc(var(--pw)*.045);background:var(--tat) center/auto 100% repeat-x;opacity:.7}
+/* olive trees either side of the book */
+.h-tree{position:absolute;z-index:0;bottom:calc(82px - var(--pw)*.02);width:calc(var(--pw)*.95);aspect-ratio:220/280;background:url(../img/olive-tree.svg) center bottom/contain no-repeat;pointer-events:none;
+  filter:drop-shadow(0 10px 14px rgba(110,130,90,.18));transform-origin:50% 100%;animation:treeSway 9s ease-in-out infinite}
+.h-tree.l{left:calc(50% - var(--pw)*2.05)}
+.h-tree.r{right:calc(50% - var(--pw)*2.05);transform:scaleX(-1);animation-delay:-4s;animation-name:treeSwayR}
+@keyframes treeSway{0%,100%{rotate:0deg}50%{rotate:1.2deg}}
+@keyframes treeSwayR{0%,100%{rotate:0deg}50%{rotate:-1.2deg}}
+.hstage .fold{z-index:2}
+@media(max-width:720px){.hstage{--pw:min(44vw,250px)!important}.h-tree{width:calc(var(--pw)*.7);opacity:.85}.h-tree.l{left:-4%}.h-tree.r{right:-4%}}
+@media(prefers-reduced-motion:reduce){.h-tree{animation:none}}
+.cv2::before{display:none!important}
+.fcv .ff.ffimg::before,.fcv .ff::before,.fcv .ff::after{border-radius:var(--ar) var(--ar) 8px 8px!important}
+.fcv,.hero .fcv{border-radius:var(--ar) var(--ar) 8px 8px}
+.cv2-arch{padding-top:calc(var(--pw)*.13)!important}
+.cv2-cp{width:46%!important}
+.cv2-names .cv2-n{font-size:calc(var(--pw)*.11)!important}
+.cv2-lg{left:50%!important;right:auto!important;width:calc(var(--pw)*.22)!important;height:auto!important;aspect-ratio:900/283;transform:translateX(-50%);bottom:calc(var(--pw)*.1)!important}
+.h-tree{width:calc(var(--pw)*1.02)}
+.h-tree.l{left:calc(50% - var(--pw)*1.95)}.h-tree.r{right:calc(50% - var(--pw)*1.95)}
+.cv2-cp{width:58%!important;margin-top:0!important}
+.cv2-names{flex-direction:row!important;align-items:baseline!important;gap:calc(var(--pw)*.025);margin-top:calc(var(--pw)*.03)!important}
+.cv2-names .cv2-n{font-size:calc(var(--pw)*.12)!important}
+.cv2-names .cv2-and{font-size:calc(var(--pw)*.08)!important}
+.cv2-star{margin-top:calc(var(--pw)*.025)!important}
+.cv2-lg{bottom:calc(var(--pw)*.12)!important}
+.cv2-cp{width:40%!important}
+.cv2-names{gap:0!important}
+.cv2-names .cv2-and{margin:0 calc(var(--pw)*.035)!important;display:inline-block}
+.cv2-names .cv2-n{display:inline-block}
+.cv2-lg{bottom:calc(var(--pw)*.1)!important;width:calc(var(--pw)*.18)!important}
+.fcv .ff.ffimg img.cv2-cp,.cv2-cp{height:auto!important;opacity:1!important;border-radius:0!important;width:52%!important;object-fit:contain}
+.cv2-arch{padding-top:calc(var(--pw)*.17)!important}
+.fcv .ff.ffimg img.cv2-cp,.cv2-cp{width:66%!important}
+.cv2-arch{padding-top:calc(var(--pw)*.14)!important}
+.cv2-names .cv2-n{font-size:calc(var(--pw)*.14)!important}
+.cv2-names .cv2-and{font-size:calc(var(--pw)*.09)!important}
+.cv2-d{font-size:calc(var(--pw)*.04)!important}
+
+/* =====================================================================
+   designs: four occasions in one row, the whole section fits one screen
+   ===================================================================== */
+@media(min-width:900px){
+  #designs{padding-top:96px!important;padding-bottom:56px!important}
+  #designs .sh{margin-bottom:26px!important}
+  #designs .cats{grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:auto!important;gap:16px!important;max-width:1180px;margin-inline:auto}
+  #designs .cats>.cw,#designs .cats>.cw:first-child{grid-row:auto!important;grid-column:auto!important}
+  #designs .cats .ctile,#designs .cats>.cw:first-child .ctile,#designs .cats>.cw:last-child:nth-child(4) .ctile{
+    height:clamp(380px,calc(100vh - 330px),500px)!important;flex-direction:column!important;align-items:stretch!important;justify-content:space-between!important;padding:14px!important}
+  #designs .cats .c3d,#designs .cats>.cw:first-child .c3d,#designs .cats>.cw:last-child:nth-child(4) .c3d{flex:1!important;height:auto!important;min-height:0!important;width:auto!important}
+  #designs .cats .c3d.env-on,#designs .cats>.cw:first-child .c3d.env-on{min-height:0!important;--ew:200px;--eh:128px;--cw:118px;--eb:calc(50% - 100px)!important}
+  #designs .cats .ct,#designs .cats>.cw:first-child .ct{width:auto!important;flex:none!important}
+  #designs .cats .ct b,#designs .cats>.cw:first-child .ct b{font-size:30px!important}
+}
+@media(min-width:900px){
+  #designs .cats .ct,#designs .cats>.cw:first-child .ct,#designs .cats>.cw:last-child:nth-child(4) .ct{width:100%!important;max-width:none!important;box-sizing:border-box;padding:14px 16px!important;margin:0!important}
+  #designs .cats .ct b{white-space:nowrap;font-size:28px!important}
+  #designs .cats .ct small,#designs .cats .ct span,#designs .cats .ct p{font-size:14px!important;line-height:1.6!important}
+  #designs .cats .ct::after{width:40px!important;height:40px!important}
+  #designs .cats .c3d.env-on,#designs .cats>.cw:first-child .c3d.env-on{--eb:calc(50% - 90px)!important;--ew:190px;--eh:120px;--cw:108px}
+  #designs .sh{padding-top:0!important}
+}
+@media(min-width:900px){
+  #designs{padding-top:64px!important}
+  #designs .cats .ct{min-height:104px;align-items:center!important}
+}
+/* floating WhatsApp/order button floats again (it had dropped into the page flow under the footer) */
+button.fab,.fab{position:fixed!important}
+/* audit fixes */
+@media(max-width:720px){.h-tree{display:none!important}}
+@media(max-width:640px){#packages .sh h2,#packages h2{font-size:clamp(34px,10vw,44px)!important;white-space:nowrap}}
+/* category tabs match the simple flat buttons */
+#designs .tab[aria-pressed="true"],.tabs .tab[aria-pressed="true"]{background:#b3202f!important;background-image:none!important;color:#fffdf8!important;text-shadow:none!important;box-shadow:0 8px 18px -12px rgba(179,32,47,.6)!important;filter:none!important}
+#designs .tab[aria-pressed="true"]::before,#designs .tab[aria-pressed="true"]::after{display:none!important}

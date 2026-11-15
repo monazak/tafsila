@@ -190,10 +190,12 @@
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); pk1IO.unobserve(e.target); } });
   }, { threshold: .2 }) : null;
   function lowestPrice() {
-    var min = Infinity;
-    document.querySelectorAll('#packages .pk .pp').forEach(function (el) {
-      var d = (el.textContent || '').replace(/[٠-٩]/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(c); }).match(/\d+/);
-      if (d) min = Math.min(min, +d[0]);
+    var min = Infinity, list = [];
+    try { var el = document.getElementById('data'); list = (JSON.parse(el.textContent).packages || []).map(function (p) { return p.p; }); } catch (_) {}
+    if (!list.length) document.querySelectorAll('#packages .pk .pp').forEach(function (el) { list.push(el.textContent); });
+    list.forEach(function (t) {
+      var d = String(t || '').replace(/[٠-٩]/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(c); }).match(/\d+/);
+      if (d && +d[0] > 0) min = Math.min(min, +d[0]);
     });
     return isFinite(min) ? min : 50;
   }
@@ -280,7 +282,71 @@
     var on = grid.querySelector('.dc.sel .sw[data-i="' + sw.dataset.i + '"]'); if (on) on.focus({ preventScroll: true });
   }, true);
 
-  function scan() { decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* 10. small invitations drawn as real invitation cards */
+  var INV = {
+    wgold: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['ليان', 'آدم'], d: 'الخميس ١٢ آب ٢٠٢٧', v: 'قاعة الياسمين', seal: 1, em: 'rings' },
+    wrose: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['سلمى', 'عمر'], d: 'الجمعة ٩ تموز ٢٠٢٧', v: 'قاعة الورد', seal: 1, em: 'rings' },
+    wsage: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['ريم', 'كريم'], d: 'الجمعة ٢٠ آب ٢٠٢٧', v: 'حديقة الزيتون', seal: 1, em: 'rings' },
+    ish:   { t: 'يسعدنا دعوتكم لحفل إشهار زواج', n: ['نور', 'يزن'], d: 'الجمعة ٢ تموز ٢٠٢٧', v: 'حديقة الورد', em: 'ring' },
+    grad:  { t: 'بكل فخر ندعوكم لحفل تخرج', n: ['ريم خالد'], s: 'دفعة ٢٠٢٧', d: 'الخميس ٢٤ حزيران ٢٠٢٧', band: 1, em: 'cap' },
+    bday:  { t: 'تعالوا نحتفل بعيد ميلاد', n: ['جود'], s: 'خمس سنين من الفرح', d: 'السبت ١٤ أيار ٢٠٢٧', em: 'balloon' }
+  };
+  function invHTML(k) {
+    if (k === 'grad') return '<div class="inv inv-g" aria-hidden="true">' +
+      '<div class="g-top"><i class="g-cap"></i><span>حفل تخرج</span></div>' +
+      '<span class="inv-t">بكل فخر ندعوكم لمشاركتنا فرحة تخرج</span>' +
+      '<span class="inv-n">ريم خالد</span><span class="g-cls">دفعة ٢٠٢٧</span>' +
+      '<i class="inv-d"></i><span class="inv-dt">الخميس ٢٤ حزيران ٢٠٢٧</span><span class="inv-v">مسرح الجامعة</span>' +
+      '<i class="g-ros"></i></div>';
+    var c = INV[k], h = '<div class="inv" aria-hidden="true">';
+    if (c.band) h += '<i class="inv-band"></i>';
+    h += '<i class="inv-em em-' + c.em + '"></i><span class="inv-t">' + c.t + '</span>';
+    h += '<span class="inv-n">' + c.n[0] + '</span>';
+    if (c.n[1]) h += '<span class="inv-and">و</span><span class="inv-n">' + c.n[1] + '</span>';
+    if (c.s) h += '<span class="inv-s">' + c.s + '</span>';
+    h += '<i class="inv-d"></i><span class="inv-dt">' + c.d + '</span>';
+    if (c.v) h += '<span class="inv-v">' + c.v + '</span>';
+    if (c.seal) h += '<i class="inv-seal"></i>';
+    return h + '</div>';
+  }
+  function setInv(host, k) {
+    if (!host || host.dataset.inv === k) return;
+    var old = host.querySelector(':scope > .inv'); if (old) old.remove();
+    host.className = host.className.replace(/\biv-\S+/g, '').trim();
+    host.classList.add('has-inv', 'iv-' + k);
+    host.dataset.inv = k;
+    host.insertAdjacentHTML('beforeend', invHTML(k));
+  }
+  var CAT_INV = { 'زفاف': 'wgold', 'إشهار': 'ish', 'تخرج': 'grad', 'عيد ميلاد': 'bday' };
+  function weddingVariant(name) { return /ورد/.test(name) ? 'wrose' : /زيت/.test(name) ? 'wsage' : 'wgold'; }
+  function decorateInvites() {
+    setInv(document.querySelector('.hero .f1 .mini'), 'ish');
+    setInv(document.querySelector('.hero .f2 .mini'), 'grad');
+    setInv(document.querySelector('.hero .f3 .mini'), 'bday');
+    document.querySelectorAll('#designs .cats .ctile').forEach(function (t) {
+      var b = t.querySelector('.ct b'), cat = b ? b.textContent.trim() : '', k = CAT_INV[cat];
+      if (!k) return;
+      if (k === 'wgold') {
+        setInv(t.querySelector('.cm1'), 'wgold');
+        var c3 = t.querySelector('.c3d');
+        if (c3 && !c3.querySelector('.env-back')) {
+          c3.classList.add('env-on');
+          c3.insertAdjacentHTML('beforeend', '<span class="env-flap" aria-hidden="true"></span><span class="env-back" aria-hidden="true"></span><span class="env-front" aria-hidden="true"></span><span class="env-seal" aria-hidden="true"></span><span class="env-glow" aria-hidden="true"></span>');
+        }
+      }
+      else t.querySelectorAll('.cm').forEach(function (c) { setInv(c, k); });
+      if (k === 'grad') { var g3 = t.querySelector('.c3d'); if (g3 && !g3.querySelector('.gcap3')) g3.insertAdjacentHTML('beforeend', '<span class="gcap3" aria-hidden="true"></span>'); }
+    });
+    var catEl = document.querySelector('#designs .cathead h3'), cat = catEl ? catEl.textContent.trim() : '';
+    document.querySelectorAll('#designs .grid .dc').forEach(function (d) {
+      var k = CAT_INV[cat], h = d.querySelector('h3');
+      if (k === 'wgold') k = weddingVariant(h ? h.textContent : '');
+      if (k) setInv(d.querySelector('.mk'), k);
+    });
+  }
+
+  function scan() { decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

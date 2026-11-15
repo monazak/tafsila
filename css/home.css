@@ -1469,3 +1469,4 @@ html.nav-hide .nav{transform:none!important}
 #packages .sh h2::before,#packages .sh h2::after{background:linear-gradient(90deg,transparent,#b3202f)!important}
 #packages .sh h2::after{background:linear-gradient(270deg,transparent,#b3202f)!important}
 .pk1-p b{font-weight:700!important}
+.rail{display:none!important}

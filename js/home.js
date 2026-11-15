@@ -632,18 +632,18 @@
     var sec = document.getElementById('how'), hw = sec && sec.querySelector('.hows');
     if (!hw || sec.querySelector('.hw4')) return;
     var sub = sec.querySelector('.sh .sub'); if (sub) sub.textContent = 'أربع خطوات بسيطة، وتفاصيل الدعوة علينا.';
-    var x = document.createElement('div'); x.className = 'hw4';
+    var x = document.createElement('div'); x.className = 'hw4'; x.dataset.s = '0';
     var list = '<ol class="hw4-list">';
     HOW.forEach(function (s, i) { list += '<li><button type="button" class="hw4-s" data-i="' + i + '" aria-pressed="' + (i ? 'false' : 'true') + '"><span class="hw4-n">' + ['١','٢','٣','٤'][i] + '</span><span class="hw4-t"><b>' + s[0] + '</b><small>' + s[1] + '</small></span><i class="hw4-bar"></i></button></li>'; });
     list += '</ol>';
     var thumbs = ''; ['#fbeceb', '#eef1ea', '#f4ece0', '#eef0f6'].forEach(function (c, i) { thumbs += '<span class="ph-th' + (i === 0 ? ' on' : '') + '" style="background:' + c + '"><i></i><i></i><i></i></span>'; });
-    var phone = '<div class="hw4-ph" aria-hidden="true"><div class="ph-scr">' +
+    var phone = '<div class="hw4-ph"><div class="ph-scr">' +
       '<div class="ph-v v0"><div class="ph-top">اختاروا تصميمكم</div><div class="ph-grid">' + thumbs + '</div><div class="ph-send">اختار هذا التصميم</div></div>' +
       '<div class="ph-v v1"><div class="ph-top">واتساب · تفصيلة</div><div class="ph-chat"><div class="ph-msg m1"><b>أحمد و منال</b><span>الخميس ١٣ شباط ٢٠٢٧</span></div><div class="ph-msg m2"><span>قاعة الفرح · غزة</span></div><div class="ph-msg m3"><span>بدنا اللون الوردي لو سمحتوا 🌸</span></div><div class="ph-rsvp r0">وصلتنا بياناتكم ✓</div></div></div>' +
       '<div class="ph-v v2"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٣ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
       '<div class="ph-v v3"><div class="ph-top">شاركوها</div><div class="ph-chat"><div class="ph-b"><span class="ph-link"><span class="ph-mini"></span><b>دعوة أحمد و منال</b><small>tafsila.ps/ahmad-manal</small></span></div>' +
       '<div class="ph-rsvp r1">✓ سارة أكدت حضورها</div><div class="ph-rsvp r2">✓ خالد أكد حضوره</div><div class="ph-rsvp r3">✓ ٤٢ ضيف أكدوا</div></div></div>' +
-      '<span class="ph-touch"></span><span class="ph-glare"></span></div><span class="ph-notch"></span><span class="ph-ly" style="--z:1"></span><span class="ph-ly" style="--z:2"></span><span class="ph-ly" style="--z:3"></span><span class="ph-ly" style="--z:4"></span><span class="ph-ly" style="--z:5"></span><span class="ph-ly" style="--z:6"></span><span class="ph-ly" style="--z:7"></span><span class="ph-ly" style="--z:8"></span><span class="ph-ly" style="--z:9"></span><span class="ph-ly" style="--z:10"></span><span class="ph-ly" style="--z:11"></span><span class="ph-ly" style="--z:12"></span><i class="ph-btn b1"></i><i class="ph-btn b2"></i><i class="ph-btn b3"></i><i class="ph-btn b4"></i></div>';
+      '<span class="ph-glare"></span></div><span class="ph-notch"></span><span class="ph-ly" style="--z:1"></span><span class="ph-ly" style="--z:2"></span><span class="ph-ly" style="--z:3"></span><span class="ph-ly" style="--z:4"></span><span class="ph-ly" style="--z:5"></span><span class="ph-ly" style="--z:6"></span><span class="ph-ly" style="--z:7"></span><span class="ph-ly" style="--z:8"></span><span class="ph-ly" style="--z:9"></span><span class="ph-ly" style="--z:10"></span><span class="ph-ly" style="--z:11"></span><span class="ph-ly" style="--z:12"></span><i class="ph-btn b1"></i><i class="ph-btn b2"></i><i class="ph-btn b3"></i><i class="ph-btn b4"></i></div>';
     x.innerHTML = list + phone;
     hw.parentNode.insertBefore(x, hw); sec.classList.add('how4');
     var cur = 0, timer, btns = x.querySelectorAll('.hw4-s');
@@ -652,7 +652,13 @@
       btns.forEach(function (b, k) { b.setAttribute('aria-pressed', k === i ? 'true' : 'false'); });
       if (!reduce) { clearTimeout(timer); timer = setTimeout(function () { go((cur + 1) % HOW.length); }, 4200); }
     }
-    x.addEventListener('click', function (e) { var b = e.target.closest('.hw4-s'); if (b) go(+b.dataset.i); });
+    x.addEventListener('click', function (e) {
+      var b = e.target.closest('.hw4-s'); if (b) return go(+b.dataset.i);
+      var th = e.target.closest('.ph-th'); if (th && cur === 0) { x.querySelectorAll('.ph-th').forEach(function (t) { t.classList.toggle('on', t === th); }); return; }
+      if (e.target.closest('.hw4-ph')) go((cur + 1) % HOW.length);
+    });
+    var ph = x.querySelector('.hw4-ph'); ph.setAttribute('role', 'button'); ph.setAttribute('tabindex', '0'); ph.setAttribute('aria-label', 'الخطوة التالية');
+    ph.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go((cur + 1) % HOW.length); } });
     if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) go(0); else clearTimeout(timer); }); }, { threshold: .4 }).observe(x);
     else go(0);
   }

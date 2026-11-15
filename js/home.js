@@ -109,7 +109,7 @@
 
   /* 5. pointer tilt for price cards and gallery tiles */
   if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    var tiltSel = '#packages .pc, #packages .pk1, #designs .ctile';
+    var tiltSel = '#packages .pc, #designs .ctile';
     document.addEventListener('pointermove', function (e) {
       var el = e.target.closest && e.target.closest(tiltSel);
       if (!el) return;

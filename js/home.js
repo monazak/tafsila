@@ -689,16 +689,25 @@
   }
   /* contact: an envelope opens and the invitation card rises out of it */
   function decorateContactEnv() {
-    var cta = document.querySelector('#contact .cta');
-    if (!cta || cta.querySelector('.ct-env')) return;
-    var env = document.createElement('div'); env.className = 'ct-env';
-    env.innerHTML = '<span class="ce-back" aria-hidden="true"></span><div class="ce-card"><span class="ce-sprig" aria-hidden="true"></span></div><span class="ce-front" aria-hidden="true"></span><span class="ce-flap" aria-hidden="true"></span><span class="ce-seal" aria-hidden="true">ت</span>';
-    var card = env.querySelector('.ce-card');
-    ['h2', '.sub', '.btn', '.cpts'].forEach(function (s) { var el = cta.querySelector(':scope > ' + s); if (el) card.appendChild(el); });
-    cta.appendChild(env);
-    var sec = document.getElementById('contact'); sec.classList.add('ct-on');
-    if (reduce || !('IntersectionObserver' in window)) env.classList.add('open');
-    else new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { env.classList.add('open'); o.disconnect(); } }); }, { threshold: .45 }).observe(env);
+    var chat = document.querySelector('#contact .chat');
+    if (!chat || chat.parentNode.classList.contains('ct-mix')) return;
+    var wrap = document.createElement('div'); wrap.className = 'ct-mix'; wrap.setAttribute('aria-hidden', 'true');
+    chat.parentNode.insertBefore(wrap, chat);
+    wrap.innerHTML = '<span class="cm-back"></span>'; wrap.appendChild(chat);
+    wrap.insertAdjacentHTML('beforeend', '<span class="cm-front"></span><span class="cm-seal">ت</span>');
+    chat.querySelectorAll('.m,.typing').forEach(function (m, i) { m.style.setProperty('--md', (1.3 + i * .9).toFixed(2) + 's'); });
+    document.getElementById('contact').classList.add('ct-mixed');
+    if (reduce || !('IntersectionObserver' in window)) wrap.classList.add('open');
+    else new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { wrap.classList.add('open'); o.disconnect(); } }); }, { threshold: .4 }).observe(wrap);
+  }
+  /* olive branches and roses along the unused side margins of every section */
+  function decorateEdges() {
+    var ids = ['designs', 'packages', 'how', 'faq', 'contact'];
+    ids.forEach(function (id, k) {
+      var s = document.getElementById(id); if (!s || s.querySelector(':scope > .edge')) return;
+      var a = k % 2 ? 'roses' : 'olive', b = k % 2 ? 'olive' : 'roses';
+      s.insertAdjacentHTML('afterbegin', '<span class="edge e-l e-' + a + '" aria-hidden="true"></span><span class="edge e-r e-' + b + '" aria-hidden="true"></span>');
+    });
   }
   /* cover couple: inline the drawing so the bride and groom can share a kiss, then stand */
   function inlineCouple() {
@@ -709,7 +718,7 @@
       im.replaceWith(d); if (!reduce) setTimeout(function () { d.classList.add('kiss'); }, 500);
     }).catch(function () {});
   }
-  function scan() { inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+  function scan() { decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   new MutationObserver(scan).observe(root, { childList: true, subtree: true });
   scan();

@@ -2320,3 +2320,6 @@ footer .flinks{display:none!important}
 .hw4-ph:focus-visible{outline:2px solid #b3202f;outline-offset:8px;border-radius:56px}
 .ph-v.v0,.ph-v.v1,.ph-v.v2,.ph-v.v3{pointer-events:none}
 .hw4[data-s="0"] .v0,.hw4[data-s="1"] .v1,.hw4[data-s="2"] .v2,.hw4[data-s="3"] .v3{pointer-events:auto}
+/* phone screens swap in place, no sliding */
+.ph-v{transform:none!important;transition:opacity .25s ease!important}
+#how .sh .sub{display:none!important}

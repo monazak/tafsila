@@ -42,7 +42,7 @@
     function apply(p) {
       fold.style.setProperty('--p', p.toFixed(3));
       fold.style.transform = 'rotateX(' + (5 - 3 * p) + 'deg) rotateY(' + (-16 + 16 * p) + 'deg) translateX(' + (-.5 * drag.w * p) + 'px)';
-      cover.style.transform = 'rotateY(' + (178 * p) + 'deg)';
+      cover.style.transform = 'rotateY(' + (180 * p) + 'deg)';
     }
     fold.addEventListener('pointerdown', function (e) {
       if (e.button > 0) return;

@@ -1330,3 +1330,7 @@ html,body{overflow-x:clip}
 .le-seal{background:radial-gradient(circle at 35% 30%,#d23a48,#b3202f 60%,#7e1520)!important}.env-seal{background:radial-gradient(circle at 35% 30%,#d23a48,#b3202f 58%,#7e1520)!important}.env-seal::after{color:#e9d4a0!important}
 /* book: the right page gets the same gilded paper stack as the left, so it opens evenly from the middle */
 .fcv .fb{box-shadow:-1px 1px 0 #f1dfb4,-2px 2px 0 #d8b670,-3px 3px 0 #efd9a6,-4px 4px 0 #c99f55,-5px 5px 0 #e2c27f,-6px 6px 0 #b68b45,0 34px 50px -16px rgba(120,90,50,.45)!important;border-radius:6px}
+/* book: both pages flat on the same level */
+.fold.open .fcv{transform:rotateY(180deg)!important}
+.fbase{box-shadow:-1px 0 0 #f1dfb4,-2px 1px 0 #d8b670,-3px 1px 0 #efd9a6,-4px 2px 0 #c99f55,-5px 2px 0 #e2c27f,-6px 3px 0 #b68b45,0 30px 46px -18px rgba(120,90,50,.42)!important}
+.fcv .fb{box-shadow:-1px 0 0 #f1dfb4,-2px 1px 0 #d8b670,-3px 1px 0 #efd9a6,-4px 2px 0 #c99f55,-5px 2px 0 #e2c27f,-6px 3px 0 #b68b45,0 30px 46px -18px rgba(120,90,50,.42)!important}

@@ -698,7 +698,7 @@
     chat.querySelectorAll('.m,.typing').forEach(function (m, i) { m.style.setProperty('--md', (1.3 + i * .9).toFixed(2) + 's'); });
     document.getElementById('contact').classList.add('ct-mixed');
     if (reduce || !('IntersectionObserver' in window)) wrap.classList.add('open');
-    else new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { wrap.classList.add('open'); o.disconnect(); } }); }, { threshold: .4 }).observe(wrap);
+    else new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { wrap.classList.add('open'); o.disconnect(); setInterval(function () { if (document.hidden) return; wrap.classList.remove('open'); void wrap.offsetWidth; setTimeout(function () { wrap.classList.add('open'); }, 500); }, 9000); } }); }, { threshold: .4 }).observe(wrap);
   }
   /* olive branches and roses along the unused side margins of every section */
   function decorateEdges() {

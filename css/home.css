@@ -2528,3 +2528,11 @@ footer .flinks{display:none!important}
 .nav.sc .logo .lg{height:26px!important}
 .nav.sc .cta-n{padding:8px 16px!important}
 @media(max-width:720px){.nav{margin-bottom:-60px!important}.nav.sc{top:8px!important;width:calc(100% - 16px)!important}}
+/* contact: just the live chat, no envelope */
+.cm-back,.cm-front,.cm-seal{display:none!important}
+.ct-mix{padding-bottom:0!important}
+.ct-mix .chat{transform:none!important;transition:none!important}
+.ct-mix .chat .m{transition-delay:0s}
+.ct-mix:not(.open) .chat .m,.ct-mix:not(.open) .chat .typing{transition:opacity .3s,transform .3s!important;transition-delay:0s!important}
+.ct-mix .m{--md0:0s}
+.ct-mix.open .chat .m,.ct-mix.open .chat .typing{transition-delay:calc(var(--md) - 1s)!important}

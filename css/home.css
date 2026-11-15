@@ -2062,3 +2062,8 @@ body>.sprog,.sprog{top:0!important;z-index:60}
 .pk1-occ{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:16px}
 .pk1-occ span{padding:4px 12px;border-radius:999px;font:600 12.5px "Cairo",sans-serif;color:#a51d2b;background:rgba(179,32,47,.07)}
 @media(max-width:720px){.pk1-inc{grid-template-columns:1fr}}
+/* navbar: no diamond under the active link, no tatreez hem */
+.nav a.l::after,.nav a.l.act::after{display:none!important}
+.nav::after{display:none!important}
+/* footer: no link row */
+footer .flinks{display:none!important}

@@ -10647,3 +10647,6 @@ html.lenis,html.lenis body{height:auto}
 #ld.off{opacity:0!important;transition:opacity .6s var(--ease-out)!important}
 @media(prefers-reduced-motion:reduce){#ld *{animation-duration:.01s!important;animation-delay:0s!important}}
 .mo-cur{display:none!important}
+
+/* every section sits directly on the page: no rounded panels behind designs, how we work and contact */
+#designs,#how,#contact{border-radius:0!important;box-shadow:none!important;background:transparent!important;margin-inline:0!important;border:0!important}

@@ -10588,3 +10588,47 @@ footer:before {
 .pk1-inc li:hover span {
   translate: -6px;
 }
+
+/* speed: looping animations rest while their section is off-screen */
+.is-off *,.is-off *::before,.is-off *::after,.is-off::before,.is-off::after{animation-play-state:paused!important}
+
+/* =====================================================================
+   motion layer (js/motion.js)
+   ===================================================================== */
+/* smooth scrolling */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+/* headings: each word rises out of its own mask */
+.mo-w{display:inline-block;will-change:transform}
+.mo-w-mask,[class*="mo-w-mask"]{padding-block:.18em;margin-block:-.18em;vertical-align:bottom}
+/* the stitched seam under section titles */
+.mo-seam{display:block;width:min(220px,60%);height:26px;margin:12px auto 0;overflow:visible}
+.mo-thread{fill:none;stroke:var(--c-red);stroke-width:2;stroke-dasharray:7 5;stroke-linecap:round}
+.mo-knots path{fill:var(--c-red)}
+#packages .sh .mo-seam{margin-top:4px}
+/* depth: trees, roses and the book drift at different speeds */
+.hero{--py-far:0px;--py-near:0px;--py-book:0px}
+.hero .h-tree{translate:0 var(--py-far)}
+.hero .d-ro1,.hero .d-ro2,.hero .d-ol1,.hero .d-ol2{translate:0 var(--py-near)}
+/* the 3D book turns gently toward the pointer */
+.hero .hstage{--tilt-x:0;--tilt-y:0}
+.mo-on .hero .hstage .fold{rotate:y calc(var(--tilt-x) * 1deg);translate:0 calc(var(--py-book) + var(--tilt-y) * 1px)}
+.mo-on .hero .hstage::after{translate:calc(var(--tilt-x) * -2px) 0}
+/* soft cursor ring (mouse only) */
+.mo-cur{position:fixed;left:0;top:0;z-index:9999;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;pointer-events:none;opacity:0;
+  border:1.5px solid color-mix(in srgb,var(--c-red) 70%,transparent);transition:opacity .3s,scale .35s var(--ease-out),background .3s,border-color .3s}
+.mo-cur::after{content:"";position:absolute;left:50%;top:50%;width:4px;height:4px;margin:-2px;border-radius:50%;background:var(--c-red)}
+.mo-cur.on{opacity:1}
+.mo-cur.hot{scale:1.7;background:color-mix(in srgb,var(--c-red) 8%,transparent);border-color:var(--c-red)}
+.mo-cur.down{scale:.8}
+.mo-cur.hot.down{scale:1.4}
+/* "sent" confirmation */
+.mo-toast{position:fixed;left:50%;bottom:28px;z-index:10000;translate:-50% 0;display:flex;align-items:center;gap:14px;padding:14px 22px 14px 16px;border-radius:20px;
+  background:var(--c-paper);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c-red) 18%,transparent),0 24px 50px -20px rgba(120,60,50,.45);direction:rtl}
+.mo-toast svg{width:44px;height:44px;flex:none}
+.mo-toast .mo-tc{fill:none;stroke:var(--c-red);stroke-width:2.5;stroke-dasharray:4 3}
+.mo-toast .mo-tk{fill:none;stroke:var(--c-red);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.mo-toast b{display:block;font:700 16px "Cairo",sans-serif;color:var(--c-red-deep)}
+.mo-toast small{font:400 13.5px "Cairo",sans-serif;color:var(--c-taupe)}

@@ -1,0 +1,4 @@
+/admin/*    /    301
+/api/*      /    301
+/storage/*  /    301
+/legacy/*   /    301

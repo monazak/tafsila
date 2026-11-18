@@ -42,24 +42,17 @@
   }, { threshold: .35 }) : null;
   function decorateContact() {
     var cta = document.querySelector('#contact .cta');
-    if (!cta || cta.querySelector('.chat')) return;
-    var pts = document.createElement('div');
-    pts.className = 'cpts';
-    pts.innerHTML = '<span>نرد عليكم على واتساب</span><span>معاينة قبل التسليم</span><span>رابط خاص لضيوفكم</span>';
-    cta.appendChild(pts);
-    var chat = document.createElement('div');
-    chat.className = 'chat';
-    chat.setAttribute('aria-hidden', 'true');
-    chat.innerHTML =
-      '<div class="chat-h"><span class="av"><i class="lg"></i></span><div><b>تفصيلة</b><small>متصل الآن</small></div></div>' +
-      '<div class="chat-b">' +
-        '<div class="m me">مرحباً، بدنا دعوة لعرسنا الشهر الجاي<time>٩:٤١</time></div>' +
-        '<div class="m us">أهلاً وسهلاً، وألف مبروك! أي تصميم عجبكم؟<time>٩:٤٢</time></div>' +
-        '<div class="m me">ذهب كلاسيك لو سمحتوا<time>٩:٤٢</time></div>' +
-        '<div class="typing"><i></i><i></i><i></i></div>' +
-      '</div>';
-    cta.appendChild(chat);
-    if (reduce || !chatIO) chat.classList.add('play'); else chatIO.observe(chat);
+    var btn = cta && cta.querySelector(':scope > .btn');
+    if (!cta || !btn || cta.querySelector('.ct-acts')) return;
+    var h2 = cta.querySelector('h2');
+    if (h2 && !cta.querySelector('.ct-sprig')) { var sp = document.createElement('span'); sp.className = 'ct-sprig'; sp.setAttribute('aria-hidden', 'true'); h2.parentNode.insertBefore(sp, h2); }
+    var acts = document.createElement('div'); acts.className = 'ct-acts';
+    btn.parentNode.insertBefore(acts, btn); acts.appendChild(btn);
+    acts.insertAdjacentHTML('beforeend', '<a class="ct-alt" href="#designs">تصفّحوا التصاميم</a>');
+    var wa = ((window.TF_DATA || {}).wa) || '972566900092';
+    try { var d = JSON.parse((document.getElementById('data') || {}).textContent || '{}'); if (d.wa) wa = d.wa; } catch (_) {}
+    var pretty = '+' + wa.replace(/^(\d{3})(\d{2})(\d{3})(\d{4})$/, '$1 $2 $3 $4');
+    acts.insertAdjacentHTML('afterend', '<p class="ct-num">أو راسلونا مباشرة على <a href="https://wa.me/' + wa + '" target="_blank" rel="noopener" dir="ltr">' + pretty + '</a></p>');
   }
 
   /* 3. footer links */
@@ -269,7 +262,7 @@
           '<span class="pk1-from">تبدأ الأسعار من</span>' +
           '<div class="pk1-p"><b class="pk1-v">50</b><i>₪</i></div>' +
           '<p class="pk1-n">والسعر النهائي بيعتمد على التصميم والإضافات اللي بتختاروها.</p><div class="pk1-occ"><span>زفاف</span><span>إشهار</span><span>تخرج</span><span>عيد ميلاد</span></div></div>' +
-        '<div class="pk1-r"><h3>شو بتاخدوا</h3><span class="pk1-g">في كل دعوة</span><ul class="pk1-f pk1-inc"><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></i><span><b>رابط خاص</b><small>لضيوفكم على واتساب</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></i><span><b>عدّاد تنازلي</b><small>للموعد جوّا الدعوة</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M21 11.1V12a9 9 0 1 1-5.3-8.2"/><path d="M21 4 12 13l-3-3"/></svg></i><span><b>تأكيد الحضور</b><small>بيوصلكم على واتساب</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg></i><span><b>على كل الأجهزة</b><small>جوال، تابلت أو كمبيوتر</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></i><span><b>معاينة وتعديل</b><small>قبل التسليم</small></span></li></ul>' +
+        '<div class="pk1-r"><h3>شو بتاخدوا في كل دعوة</h3><ul class="pk1-f pk1-inc"><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></i><span><b>رابط خاص</b><small>لضيوفكم على واتساب</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></i><span><b>عدّاد تنازلي</b><small>للموعد جوّا الدعوة</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M21 11.1V12a9 9 0 1 1-5.3-8.2"/><path d="M21 4 12 13l-3-3"/></svg></i><span><b>تأكيد الحضور</b><small>بيوصلكم على واتساب</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M11 18.5h2"/></svg></i><span><b>على كل الأجهزة</b><small>جوال، تابلت أو كمبيوتر</small></span></li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></i><span><b>معاينة وتعديل</b><small>قبل التسليم</small></span></li></ul>' +
           '<span class="pk1-g">إضافات حسب طلبكم</span><ul class="pk1-ext"><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4ZM13.5 6.5l4 4"/></svg></i>تصميم خاص</li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></i>دومين باسمكم</li><li><i class="pk-ic"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></i>حركات مخصصة</li></ul>' +
         '<div class="pk1-a"><button type="button" class="btn pk1-go">اطلبوا دعوتكم</button><small>بنرد عليكم على واتساب</small></div></div>';
       card.querySelector('.pk1-go').addEventListener('click', function () { var b = document.querySelector('.cta-n'); if (b) b.click(); });

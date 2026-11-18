@@ -10632,3 +10632,17 @@ html.lenis,html.lenis body{height:auto}
 .mo-toast .mo-tk{fill:none;stroke:var(--c-red);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
 .mo-toast b{display:block;font:700 16px "Cairo",sans-serif;color:var(--c-red-deep)}
 .mo-toast small{font:400 13.5px "Cairo",sans-serif;color:var(--c-taupe)}
+
+/* loading screen: an arch is stitched in red, then the name appears */
+#ld{background:var(--c-bg)!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+#ld::before,#ld::after,#ld .ldenv{display:none!important}
+#ld .ld-arch{width:96px;height:120px;overflow:visible}
+#ld .ld-run{fill:none;stroke:var(--c-red);stroke-width:3;stroke-linejoin:round;stroke-dasharray:100;stroke-dashoffset:100;animation:ldDraw 1s var(--ease-soft) forwards}
+#ld .ld-stitch{fill:none;stroke:var(--c-red);stroke-width:1.6;stroke-dasharray:5 4;opacity:0;animation:ldStitch 1.2s linear .7s infinite,ldIn .4s .7s forwards}
+#ld .ld-cyp{fill:none;stroke:var(--c-red);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:100;stroke-dashoffset:100;animation:ldDraw .8s var(--ease-out) .5s forwards}
+#ld .lg{position:static!important;inset:auto!important;transform:none!important;width:150px!important;height:48px!important;opacity:0;animation:ldIn .6s var(--ease-out) .55s forwards!important;background:var(--c-red)!important}
+@keyframes ldDraw{to{stroke-dashoffset:0}}
+@keyframes ldStitch{to{stroke-dashoffset:-18}}
+@keyframes ldIn{to{opacity:1}}
+#ld.off{opacity:0!important;transition:opacity .6s var(--ease-out)!important}
+@media(prefers-reduced-motion:reduce){#ld *{animation-duration:.01s!important;animation-delay:0s!important}}

@@ -1,0 +1,2 @@
+/*
+  Content-Security-Policy: script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com

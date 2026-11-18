@@ -76,10 +76,13 @@
     var els = gsap.utils.toArray('.sh h2, #faq .faq-side h2, #contact .cta h2, .pk1-r h3');
     els.forEach(function (h) {
       if (h.__split) return; h.__split = 1;
-      var split = SplitText.create(h, { type: 'words', mask: 'words', wordsClass: 'mo-w' });
+      // no clipping box (it cut the calligraphy's swashes and dots); once the words have arrived the
+      // heading goes back to its original, unsplit text so every letter renders exactly as designed
+      var split = SplitText.create(h, { type: 'words', wordsClass: 'mo-w' });
       gsap.from(split.words, {
-        yPercent: 110, opacity: 0, duration: 1.05, ease: 'power3.out', stagger: .09,
-        scrollTrigger: { trigger: h, start: 'top 88%', once: true }
+        y: 26, opacity: 0, filter: 'blur(6px)', duration: 1, ease: 'power3.out', stagger: .09,
+        scrollTrigger: { trigger: h, start: 'top 88%', once: true },
+        onComplete: function () { split.revert(); }
       });
     });
   }

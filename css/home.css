@@ -6,8 +6,8 @@
 :root{
   --c-red: #b3202f;  /* tatreez red: buttons, tatreez, seals, icons */
   --c-red-deep: #9e1c2a;  /* deep red: headings, hover */
-  --c-bg: #fcfaf7;  /* soft white: page background */
-  --c-paper: #fffdf8;  /* paper white: cards and invitations */
+  --c-bg: #fcfbfd;  /* soft white: page background */
+  --c-paper: #fffeff;  /* paper white: cards and invitations */
   --c-blush: #fbeceb;  /* blush: soft fills */
   --c-rose: #e8b4b8;  /* rose pink: roses, dots */
   --c-sage: #9fb39a;  /* sage: olive leaves, small labels */
@@ -20,7 +20,7 @@
   --c-pink: #f7dfe4;   /* إشهار + عيد ميلاد: soft pink */
   --c-sky: #e2ebf7;    /* عيد ميلاد + تخرج: baby blue */
   --c-navy: #26324f;   /* تخرج: graduation navy */
-  --c-cream: #f3e6cf;  /* زفاف: envelope cream */
+  --c-cream: #ebe6f5;  /* lilac: bridges the pink and the blue (replaces beige) */
 
   /* motion: one feel for the whole site */
   --ease-out: cubic-bezier(.2,.8,.2,1);      /* things arriving */
@@ -2306,7 +2306,7 @@ body, html {
 }
 
 .band blockquote {
-  background: linear-gradient(100deg, #f6d6d9, #fff6e4 40%, #c43543 60%, #f6d6d9);
+  background: linear-gradient(100deg, #f6d6d9, #fff4f6 40%, #c43543 60%, #f6d6d9);
   color: #0000;
   background-size: 200% 100%;
   -webkit-background-clip: text;
@@ -2342,7 +2342,7 @@ body, html {
 }
 
 .fcv .ff.ffimg {
-  background: #f6ecd9;
+  background: #f7eef2;
   padding: 0;
 }
 
@@ -2826,7 +2826,7 @@ body:after {
 }
 
 .hero h1 {
-  background: linear-gradient(100deg, var(--c-bg) 0, #f6d6d9 36%, #fff6e4 46%, #c43543 52%, #f6d6d9 60%, #e8b9b9 100%);
+  background: linear-gradient(100deg, var(--c-bg) 0, #f6d6d9 36%, #fff4f6 46%, #c43543 52%, #f6d6d9 60%, #e8b9b9 100%);
   color: #0000;
   -webkit-background-clip: text;
   background-clip: text;
@@ -3180,7 +3180,7 @@ body:after {
 
 #packages .pf div:before {
   content: "";
-  background: #c4354329 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.3l2.6 2.5L12 5.4' fill='none' stroke='%23e6cb92' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
+  background: #c4354329 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.3l2.6 2.5L12 5.4' fill='none' stroke='%23f2c9cf' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
   border-radius: 50%;
   flex: none;
   width: 18px;
@@ -3945,15 +3945,15 @@ footer .pl {
 }
 
 #packages .pcw:first-child .pn:before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e6cb92' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='6' width='18' height='13' rx='2'/%3E%3Cpath d='M3 7l9 7 9-7'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2c9cf' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='6' width='18' height='13' rx='2'/%3E%3Cpath d='M3 7l9 7 9-7'/%3E%3C/svg%3E");
 }
 
 #packages .pcw:nth-child(2) .pn:before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e6cb92' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2c9cf' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z'/%3E%3C/svg%3E");
 }
 
 #packages .pcw:nth-child(3) .pn:before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e6cb92' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8l4 4 5-7 5 7 4-4-2 11H5z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2c9cf' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8l4 4 5-7 5 7 4-4-2 11H5z'/%3E%3C/svg%3E");
 }
 
 #packages .pp {
@@ -3962,7 +3962,7 @@ footer .pl {
 }
 
 #packages .pc.hot .pp {
-  background: linear-gradient(100deg, #fff6e4 0, #eab0b7 30%, #fff 45%, #eab0b7 60%, #fbe2e5 100%) 0 0 / 200% 100%;
+  background: linear-gradient(100deg, #fff4f6 0, #eab0b7 30%, #fff 45%, #eab0b7 60%, #fbe2e5 100%) 0 0 / 200% 100%;
   color: #0000;
   -webkit-background-clip: text;
   background-clip: text;
@@ -4026,7 +4026,7 @@ footer .pl {
 
 .faq-l summary:after {
   content: "";
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e6cb92' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E") center / 14px no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f2c9cf' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 6v12M6 12h12'/%3E%3C/svg%3E") center / 14px no-repeat;
   border-radius: 50%;
   flex: none;
   width: 26px;
@@ -4315,7 +4315,7 @@ footer .pl {
 
 .pk1-f li:before, .sc-f li:before {
   content: "";
-  background: #c4354329 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.3l2.6 2.5L12 5.4' fill='none' stroke='%23e6cb92' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
+  background: #c4354329 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.3l2.6 2.5L12 5.4' fill='none' stroke='%23f2c9cf' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
   border-radius: 50%;
   flex: none;
   width: 20px;
@@ -4450,7 +4450,7 @@ footer .pl {
 }
 
 #designs .cats > .cw:first-child .cm0, #designs .cats > .cw:nth-child(3) .cm, .f2 .mini {
-  background: radial-gradient(120% 70% at 50% 0, #fffef9, #0000 60%), repeating-linear-gradient(90deg, #78502806 0 1px, #0000 1px 3px), radial-gradient(120% 90% at 50% 20%, #fffaf1, #f3e6cf 70%, #e6d2ae) !important;
+  background: radial-gradient(120% 70% at 50% 0, #ffffff, #0000 60%), repeating-linear-gradient(90deg, #26324f05 0 1px, #0000 1px 3px), radial-gradient(120% 90% at 50% 20%, #fffdfd, #f6e9ee 70%, #dfe6f3) !important;
 }
 
 #designs .cats > .cw:first-child .cm0:after, .f2 .mini:after {
@@ -4507,7 +4507,7 @@ footer .pl {
 #designs .dc .mk {
   aspect-ratio: 2 / 3;
   color: #6b1a2a;
-  background: radial-gradient(120% 70% at 50% 0, #fffef9, #0000 60%), repeating-linear-gradient(90deg, #78502806 0 1px, #0000 1px 3px), radial-gradient(120% 90% at 50% 20%, #fffaf1, #f3e6cf 70%, #e6d2ae);
+  background: radial-gradient(120% 70% at 50% 0, #ffffff, #0000 60%), repeating-linear-gradient(90deg, #26324f05 0 1px, #0000 1px 3px), radial-gradient(120% 90% at 50% 20%, #fffdfd, #f6e9ee 70%, #dfe6f3);
   border: 0;
   border-radius: 6px;
   flex-direction: column;
@@ -4586,7 +4586,7 @@ footer .pl {
 
 #designs .cats .ctile:before {
   z-index: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23e6cb92' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E") !important;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23f2c9cf' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E") !important;
 }
 
 #designs .cats .c3d {
@@ -4671,7 +4671,7 @@ footer .pl {
 
 #designs .cats > .cw:first-child .ct em:before {
   content: "";
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 8l4 4 5-7 5 7 4-4-2 11H5z' fill='%23e6cb92'/%3E%3C/svg%3E") center / contain no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 8l4 4 5-7 5 7 4-4-2 11H5z' fill='%23f2c9cf'/%3E%3C/svg%3E") center / contain no-repeat;
   width: 14px;
   height: 14px;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 8l4 4 5-7 5 7 4-4-2 11H5z' fill='%23c9a35a'/%3E%3C/svg%3E") !important;
@@ -4759,7 +4759,7 @@ footer .pl {
 }
 
 #designs .cats .ctile:after {
-  background: linear-gradient(105deg, #0000 42%, #fff0dc1a 50%, #0000 58%) !important;
+  background: linear-gradient(105deg, #0000 42%, #f2f5ff1a 50%, #0000 58%) !important;
 }
 
 @media (min-width: 900px) {
@@ -4887,14 +4887,14 @@ footer .pl {
 }
 
 #designs .dc .glare {
-  background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 0%),#fff0dc2e,transparent 65%);
+  background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 0%),#f2f5ff2e,transparent 65%);
   border-radius: 26px;
 }
 
 #designs .dc .pv {
   position: relative;
   aspect-ratio: auto !important;
-  background: radial-gradient(55% 48% at 50% 48%, #eab0b752, #0000 72%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23e6cb92' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E") !important;
+  background: radial-gradient(55% 48% at 50% 48%, #eab0b752, #0000 72%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46' height='46' viewBox='0 0 96 96'%3E%3Cpath d='M48 14l9 25 25 9-25 9-9 25-9-25-25-9 25-9z' fill='none' stroke='%23f2c9cf' stroke-opacity='.08' stroke-width='2'/%3E%3C/svg%3E") !important;
   border-radius: 0 !important;
   height: 300px !important;
 }
@@ -5139,7 +5139,7 @@ footer .pl {
 }
 
 #designs .grid.showcase .dc .mk {
-  background: radial-gradient(120% 60%at 50%0,#fffef9e6,transparent 60%),repeating-linear-gradient(90deg,#785028060 1px,transparent 1px 3px),radial-gradient(130% 100%at 50% 10%,#fffaf1 5%,var(--tint, #e6d2ae) 105%) !important;
+  background: radial-gradient(120% 60%at 50%0,#ffffffe6,transparent 60%),repeating-linear-gradient(90deg,#26324f05 0 1px,transparent 1px 3px),radial-gradient(130% 100%at 50% 10%,#fffdfd 5%,var(--tint, #eee8f4) 105%) !important;
 }
 
 #designs .grid.showcase .dc .mk.mk-dark {
@@ -5425,7 +5425,7 @@ footer .flinks {
 }
 
 #designs .cats > .cw:first-child .cm0 {
-  background: radial-gradient(120% 70% at 50% 0, #fffef9, #0000 60%), radial-gradient(120% 90% at 50% 20%, #fffaf1, #f3e6cf 70%, #e6d2ae) !important;
+  background: radial-gradient(120% 70% at 50% 0, #ffffff, #0000 60%), radial-gradient(120% 90% at 50% 20%, #fffdfd, #f6e9ee 70%, #dfe6f3) !important;
 }
 
 #designs .cats > .cw:first-child .cm1 {
@@ -5595,7 +5595,7 @@ footer .flinks {
 }
 
 .iv-wgold {
-  --ibg: radial-gradient(120% 70% at 50% 0,#fffef9,transparent 60%),repeating-linear-gradient(90deg,#78502808 0 1px,transparent 1px 3px),radial-gradient(130% 100% at 50% 10%,#fffaf1,#f1e2c6 75%,#e3cc9f);
+  --ibg: radial-gradient(120% 70% at 50% 0,#ffffff,transparent 60%),repeating-linear-gradient(90deg,#78502808 0 1px,transparent 1px 3px),radial-gradient(130% 100% at 50% 10%,#fffdfd,#f1e2c6 75%,#e3cc9f);
   --ib: var(--c-red);
   --ik: #5a3a32;
   --in: #6b1a2a;
@@ -6170,7 +6170,7 @@ dialog.of-on label[for="rp"] {
 .hero:before {
   content: "";
   z-index: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%23e6cb92' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M60 8l14 22 26 4-18 18 4 26-26-12-26 12 4-26-18-18 26-4z'/%3E%3Ccircle cx='60' cy='60' r='16'/%3E%3Cpath d='M0 60h20M100 60h20M60 0v8M60 112v8'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='120' cy='0' r='22'/%3E%3Ccircle cx='0' cy='120' r='22'/%3E%3Ccircle cx='120' cy='120' r='22'/%3E%3C/svg%3E") top / 120px 120px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120' fill='none' stroke='%23f2c9cf' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M60 8l14 22 26 4-18 18 4 26-26-12-26 12 4-26-18-18 26-4z'/%3E%3Ccircle cx='60' cy='60' r='16'/%3E%3Cpath d='M0 60h20M100 60h20M60 0v8M60 112v8'/%3E%3Ccircle cx='0' cy='0' r='22'/%3E%3Ccircle cx='120' cy='0' r='22'/%3E%3Ccircle cx='0' cy='120' r='22'/%3E%3Ccircle cx='120' cy='120' r='22'/%3E%3C/svg%3E") top / 120px 120px;
   inset: 0;
   -webkit-mask: radial-gradient(70% 70% at 50% 40%, #000, #0000 85%);
   mask: radial-gradient(70% 70% at 50% 40%, #000, #0000 85%);
@@ -6281,7 +6281,7 @@ dialog.of-on label[for="rp"] {
 }
 
 .h-amb i:nth-child(3) {
-  background: radial-gradient(closest-side, #f3e8d6e6, #0000) !important;
+  background: radial-gradient(closest-side, #e3ecf8e6, #0000) !important;
 }
 
 .hero:before {
@@ -6402,7 +6402,7 @@ dialog.of-on label[for="rp"] {
 }
 
 .pk-orbs i:nth-child(2) {
-  background: radial-gradient(closest-side, #f3e8d6, #0000) !important;
+  background: radial-gradient(closest-side, #e6edf7, #0000) !important;
 }
 
 .pk-orbs i:nth-child(3) {
@@ -6538,7 +6538,7 @@ dialog.of-on .of-msg {
 }
 
 #ld {
-  background: radial-gradient(520px 320px at 50% 45%, #fdf0ef, #0000 70%), linear-gradient(160deg, var(--c-bg), #f3e8d6) !important;
+  background: radial-gradient(520px 320px at 50% 45%, #fdf0ef, #0000 70%), linear-gradient(160deg, var(--c-bg), #e6edf7) !important;
 }
 
 #designs .cats .ct b, #designs .cats .ct em, #ld .lt, .sc-k {
@@ -7222,7 +7222,7 @@ footer.rev, footer.rev.in, html.nav-hide .nav {
 
 .fcv .ff.ffimg:before {
   z-index: 3 !important;
-  background: linear-gradient(115deg, #ffffff61, #0000 32% 62%, #fff0dc2e 75%, #0000 85%) 0 0 / 220% 100% !important;
+  background: linear-gradient(115deg, #ffffff61, #0000 32% 62%, #f2f5ff2e 75%, #0000 85%) 0 0 / 220% 100% !important;
 }
 
 .hstage .bhint {
@@ -7539,7 +7539,7 @@ footer.rev, footer.rev.in, html.nav-hide .nav {
 .cv2 {
   z-index: 2;
   direction: rtl;
-  background: repeating-linear-gradient(0deg, #78503206 0 1px, #0000 1px 3px), repeating-linear-gradient(90deg, #78503206 0 1px, #0000 1px 3px), radial-gradient(120% 80% at 50% 30%, var(--c-paper) 0, #f8efe4 70%, #f1e3d4 100%);
+  background: repeating-linear-gradient(0deg, #26324f05 0 1px, #0000 1px 3px), repeating-linear-gradient(90deg, #26324f05 0 1px, #0000 1px 3px), radial-gradient(120% 80% at 50% 30%, var(--c-paper) 0, #f9eff2 70%, #e8eef8 100%);
   inset: 0;
   overflow: hidden;
 }
@@ -7660,7 +7660,7 @@ footer.rev, footer.rev.in, html.nav-hide .nav {
 }
 
 .fbase, .fcv .fb {
-  background: repeating-linear-gradient(0deg, #78503206 0 1px, #0000 1px 3px), repeating-linear-gradient(90deg, #78503206 0 1px, #0000 1px 3px), radial-gradient(120% 80% at 50% 30%, var(--c-paper) 0, #f8efe4 70%, #f1e3d4 100%) !important;
+  background: repeating-linear-gradient(0deg, #26324f05 0 1px, #0000 1px 3px), repeating-linear-gradient(90deg, #26324f05 0 1px, #0000 1px 3px), radial-gradient(120% 80% at 50% 30%, var(--c-paper) 0, #f9eff2 70%, #e8eef8 100%) !important;
 }
 
 .fbase:after, .fbase:before, .fcv .fb:after, .fcv .fb:before {
@@ -8293,7 +8293,7 @@ footer.rev, footer.rev.in, html.nav-hide .nav {
 }
 
 .fql-f {
-  background: linear-gradient(var(--c-paper), #f8efe4);
+  background: linear-gradient(var(--c-paper), #f9eff2);
   box-shadow: inset 0 0 0 1px #b3202f59, inset 0 0 0 6px var(--c-paper), inset 0 0 0 7px #c9a35a80, 0 18px 30px -16px #783c3273;
 }
 
@@ -10669,19 +10669,19 @@ body::before{background:
   radial-gradient(60vw 45vw at 92% -5%,rgba(247,223,228,.75),transparent 62%),
   radial-gradient(45vw 40vw at -6% 30%,rgba(223,232,214,.5),transparent 64%),
   radial-gradient(48vw 40vw at 104% 62%,rgba(226,235,247,.7),transparent 62%),
-  radial-gradient(50vw 40vw at 10% 102%,rgba(243,230,207,.45),transparent 64%)!important}
+  radial-gradient(50vw 40vw at 10% 102%,rgba(226,235,247,.55),transparent 64%)!important}
 /* hero petals: pink, baby blue and leaves */
 .h-pet i:nth-child(3n){background:linear-gradient(135deg,#eef3fb,#c9d8ef)!important}
 /* question lights: every fourth bulb glows baby blue */
 .fql-bulb:nth-of-type(4n){background:radial-gradient(circle at 45% 38%,#fff 0 22%,#e4eefb 45%,#a9c1e6 100%)!important;box-shadow:0 0 8px 3px rgba(200,218,245,.95),0 0 22px 9px rgba(169,193,230,.5)!important}
 /* price tag: each occasion chip wears its card's colour */
-.pk1-occ span:nth-child(1){background:var(--c-cream)!important;color:#7a5a2e!important}
+.pk1-occ span:nth-child(1){background:var(--c-cream)!important;color:#5d4f86!important}
 .pk1-occ span:nth-child(2){background:var(--c-pink)!important;color:var(--c-red-deep)!important}
 .pk1-occ span:nth-child(3){background:var(--c-sky)!important;color:var(--c-navy)!important}
 .pk1-occ span:nth-child(4){background:linear-gradient(90deg,var(--c-pink),var(--c-sky))!important;color:var(--c-red-deep)!important}
 /* "what you get" icons alternate through the occasion colours */
 .pk1-inc li:nth-child(2) .pk-ic{background:var(--c-sky)!important}.pk1-inc li:nth-child(2) .pk-ic svg{stroke:var(--c-navy)}
-.pk1-inc li:nth-child(4) .pk-ic{background:var(--c-cream)!important}.pk1-inc li:nth-child(4) .pk-ic svg{stroke:#8a6a2e}
+.pk1-inc li:nth-child(4) .pk-ic{background:var(--c-cream)!important}.pk1-inc li:nth-child(4) .pk-ic svg{stroke:#5d4f86}
 /* how-we-work phone: the four design thumbnails are the four occasions */
 .ph-th:nth-child(1){background:var(--c-cream)!important}.ph-th:nth-child(2){background:var(--c-pink)!important}
 .ph-th:nth-child(3){background:var(--c-sky)!important}.ph-th:nth-child(3) i{background:rgba(38,50,79,.4)!important}.ph-th:nth-child(3) i:nth-child(2){background:rgba(38,50,79,.65)!important}
@@ -10692,3 +10692,15 @@ body::before{background:
 .fql-card:nth-of-type(3n) .fql-f{background:linear-gradient(180deg,var(--c-paper),#f8f1e4)!important}
 /* contact chat: a baby-blue bubble joins the pink one */
 #contact .chat .m.me{background:#eef3fa!important}
+
+/* ── hero: the invitation-card colours, no beige ───────────────────────── */
+.hero{background:
+  radial-gradient(38vw 30vw at 88% 14%, rgba(247,214,222,.75), transparent 68%),
+  radial-gradient(34vw 30vw at 8% 30%, rgba(214,228,247,.8), transparent 70%),
+  radial-gradient(30vw 24vw at 70% 96%, rgba(226,235,247,.7), transparent 70%),
+  radial-gradient(26vw 22vw at 22% 92%, rgba(251,226,232,.7), transparent 70%),
+  radial-gradient(60vw 40vw at 50% 40%, rgba(235,230,245,.55), transparent 72%),
+  linear-gradient(180deg, #fdfbfe 0%, #fbf8fc 100%)!important}
+.hero .h-amb i:nth-child(1){background:radial-gradient(closest-side,rgba(247,214,222,.85),transparent)!important}
+.hero .h-amb i:nth-child(2){background:radial-gradient(closest-side,rgba(214,228,247,.85),transparent)!important}
+.hero .h-amb i:nth-child(3){background:radial-gradient(closest-side,rgba(235,230,245,.9),transparent)!important}

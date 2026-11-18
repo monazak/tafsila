@@ -39,11 +39,12 @@
     smoothScroll();
     headings();
     categoryGrow();
-    howPinned();
     parallax();
     if (finePointer) bookTilt();
     sentToast();
     setTimeout(function () { ScrollTrigger.refresh(); }, 600);
+    // the page grows as images and the designs grid settle: keep every scroll trigger measured against the real layout
+    var rt; new ResizeObserver(function () { clearTimeout(rt); rt = setTimeout(function () { ScrollTrigger.refresh(); }, 250); }).observe(document.body);
   }).catch(function () { /* motion is an extra: the page works without it */ });
 
   /* 1. smooth scrolling with soft inertia (desktop; phones keep their own native scrolling) */
@@ -52,7 +53,7 @@
     if (!finePointer) return;
     load(LENIS).then(function () {
       if (!window.Lenis) return;
-      lenis = new Lenis({ lerp: .095, wheelMultiplier: .95, anchors: { offset: -80 }, prevent: function (n) { return !!(n.closest && n.closest('dialog, [data-lenis-prevent], .ph-scr')); } });
+      lenis = new Lenis({ lerp: .14, wheelMultiplier: 1, anchors: { offset: -80 }, prevent: function (n) { return !!(n.closest && n.closest('dialog, [data-lenis-prevent], .ph-scr')); } });
       document.documentElement.classList.add('lenis');
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(function (t) { lenis.raf(t * 1000); });

@@ -10646,3 +10646,4 @@ html.lenis,html.lenis body{height:auto}
 @keyframes ldIn{to{opacity:1}}
 #ld.off{opacity:0!important;transition:opacity .6s var(--ease-out)!important}
 @media(prefers-reduced-motion:reduce){#ld *{animation-duration:.01s!important;animation-delay:0s!important}}
+.mo-cur{display:none!important}

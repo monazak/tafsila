@@ -42,7 +42,7 @@
     categoryGrow();
     howPinned();
     parallax();
-    if (finePointer) { bookTilt(); cursor(); }
+    if (finePointer) bookTilt();
     sentToast();
     setTimeout(function () { ScrollTrigger.refresh(); }, 600);
   }).catch(function () { /* motion is an extra: the page works without it */ });

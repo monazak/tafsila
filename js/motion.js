@@ -38,7 +38,6 @@
     document.documentElement.classList.add('mo-on');
     smoothScroll();
     headings();
-    stitches();
     categoryGrow();
     howPinned();
     parallax();

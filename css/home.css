@@ -10650,3 +10650,6 @@ html.lenis,html.lenis body{height:auto}
 
 /* every section sits directly on the page: no rounded panels behind designs, how we work and contact */
 #designs,#how,#contact{border-radius:0!important;box-shadow:none!important;background:transparent!important;margin-inline:0!important;border:0!important}
+/* no stitched line under titles; no flowers around "how we work" */
+.mo-seam{display:none!important}
+#how .edge{display:none!important}

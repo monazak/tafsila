@@ -16,6 +16,12 @@
   --c-cocoa: #5b4840;  /* cocoa: main text */
   --c-taupe: #8a7768;  /* taupe: secondary text */
 
+  /* occasion colours, taken from the invitation cards and echoed around the site */
+  --c-pink: #f7dfe4;   /* إشهار + عيد ميلاد: soft pink */
+  --c-sky: #e2ebf7;    /* عيد ميلاد + تخرج: baby blue */
+  --c-navy: #26324f;   /* تخرج: graduation navy */
+  --c-cream: #f3e6cf;  /* زفاف: envelope cream */
+
   /* motion: one feel for the whole site */
   --ease-out: cubic-bezier(.2,.8,.2,1);      /* things arriving */
   --ease-soft: cubic-bezier(.45,0,.25,1);    /* gentle back-and-forth */
@@ -10653,3 +10659,36 @@ html.lenis,html.lenis body{height:auto}
 /* no stitched line under titles; no flowers around "how we work" */
 .mo-seam{display:none!important}
 #how .edge{display:none!important}
+
+/* =====================================================================
+   occasion colours woven through the page, so the invitation cards
+   belong to the site instead of standing apart
+   ===================================================================== */
+/* page glows: blush, baby blue, sage and cream drift behind the sections */
+body::before{background:
+  radial-gradient(60vw 45vw at 92% -5%,rgba(247,223,228,.75),transparent 62%),
+  radial-gradient(45vw 40vw at -6% 30%,rgba(223,232,214,.5),transparent 64%),
+  radial-gradient(48vw 40vw at 104% 62%,rgba(226,235,247,.7),transparent 62%),
+  radial-gradient(50vw 40vw at 10% 102%,rgba(243,230,207,.45),transparent 64%)!important}
+/* hero petals: pink, baby blue and leaves */
+.h-pet i:nth-child(3n){background:linear-gradient(135deg,#eef3fb,#c9d8ef)!important}
+/* question lights: every fourth bulb glows baby blue */
+.fql-bulb:nth-of-type(4n){background:radial-gradient(circle at 45% 38%,#fff 0 22%,#e4eefb 45%,#a9c1e6 100%)!important;box-shadow:0 0 8px 3px rgba(200,218,245,.95),0 0 22px 9px rgba(169,193,230,.5)!important}
+/* price tag: each occasion chip wears its card's colour */
+.pk1-occ span:nth-child(1){background:var(--c-cream)!important;color:#7a5a2e!important}
+.pk1-occ span:nth-child(2){background:var(--c-pink)!important;color:var(--c-red-deep)!important}
+.pk1-occ span:nth-child(3){background:var(--c-sky)!important;color:var(--c-navy)!important}
+.pk1-occ span:nth-child(4){background:linear-gradient(90deg,var(--c-pink),var(--c-sky))!important;color:var(--c-red-deep)!important}
+/* "what you get" icons alternate through the occasion colours */
+.pk1-inc li:nth-child(2) .pk-ic{background:var(--c-sky)!important}.pk1-inc li:nth-child(2) .pk-ic svg{stroke:var(--c-navy)}
+.pk1-inc li:nth-child(4) .pk-ic{background:var(--c-cream)!important}.pk1-inc li:nth-child(4) .pk-ic svg{stroke:#8a6a2e}
+/* how-we-work phone: the four design thumbnails are the four occasions */
+.ph-th:nth-child(1){background:var(--c-cream)!important}.ph-th:nth-child(2){background:var(--c-pink)!important}
+.ph-th:nth-child(3){background:var(--c-sky)!important}.ph-th:nth-child(3) i{background:rgba(38,50,79,.4)!important}.ph-th:nth-child(3) i:nth-child(2){background:rgba(38,50,79,.65)!important}
+.ph-th:nth-child(4){background:linear-gradient(135deg,var(--c-pink),var(--c-sky))!important}
+/* questions: card fronts take a faint occasion tint in turn */
+.fql-card:nth-of-type(3n+1) .fql-f{background:linear-gradient(180deg,var(--c-paper),#fbf1f3)!important}
+.fql-card:nth-of-type(3n+2) .fql-f{background:linear-gradient(180deg,var(--c-paper),#eef3fa)!important}
+.fql-card:nth-of-type(3n) .fql-f{background:linear-gradient(180deg,var(--c-paper),#f8f1e4)!important}
+/* contact chat: a baby-blue bubble joins the pink one */
+#contact .chat .m.me{background:#eef3fa!important}

@@ -996,12 +996,13 @@
       var ic = function (svg) { return '<span class="bp-ic"><svg viewBox="0 0 32 32">' + svg + '</svg></span>'; };
       var row = function (t, h, i) { return '<li>' + i + '<b>' + t + '</b><time>' + h + '</time></li>'; };
       var f2 = document.createElement('div'); f2.className = 'hc-face hc-back';
-      f2.innerHTML = '<div class="bp"><b class="bp-t">برنامج الحفل</b><i class="bp-orn"></i><ul>' +
-        row('الاستقبال', '٧:٠٠ م', ic('<path d="M16 27S5 20 5 12.5A5.5 5.5 0 0 1 16 10a5.5 5.5 0 0 1 11 2.5C27 20 16 27 16 27z"/>')) +
-        row('زفّة العرسان', '٨:٠٠ م', ic('<circle cx="12" cy="19" r="7"/><circle cx="20" cy="19" r="7"/>')) +
-        row('العشاء', '٩:٠٠ م', ic('<path d="M6 20h20M8 20a8 8 0 0 1 16 0M16 9v3M4 24h24"/>')) +
-        row('قطع الكعكة', '١٠:٣٠ م', ic('<rect x="7" y="16" width="18" height="10" rx="2"/><path d="M7 19c3 2 6 2 9 0s6-2 9 0M16 9v7"/>')) +
-        '</ul><p class="bp-n">فرحتنا بتكمل بوجودكم</p><small class="bp-back">اضغطوا لإغلاق الدعوة</small></div>';
+      var fig = '<img src="img/couple.svg" alt="" decoding="async">';
+      var balloons = '<svg class="ls-bal" viewBox="0 0 40 30"><g fill="#f08aa0"><path d="M10 12C4 6 10 0 14 5c4-5 10 1 4 7l-4 4z"/><path d="M24 9c-5-5 0-10 4-6 4-4 9 1 4 6l-4 3z" fill="#f6b0bf"/><path d="M17 4c-3-3 0-6 2-4 2-2 5 1 2 4l-2 2z" fill="#e8667f"/></g><path d="M14 16l6 14M28 12l-8 18M19 6l1 24" stroke="#c9a2ab" stroke-width=".6" fill="none"/></svg>';
+      var rings = '<svg class="ls-rg" viewBox="0 0 40 26" fill="none" stroke="#c9a35a" stroke-width="1.6"><circle cx="15" cy="15" r="9"/><circle cx="25" cy="15" r="9"/><path d="M13 5l2-4 2 4z" fill="#eef3fb" stroke="#b9c9e6"/></svg>';
+      var ev = [['أول لقاء', 'تموز ٢٠٢٢', balloons + fig], ['أول موعد', 'أيلول ٢٠٢٢', fig], ['بدأت الحكاية', 'شباط ٢٠٢٣', fig], ['طلب الإيد', 'أيلول ٢٠٢٥', fig], ['الخطوبة', 'كانون الأول ٢٠٢٥', rings]];
+      f2.innerHTML = '<div class="ls"><b class="ls-t">حكايتنا</b><ol>' + ev.map(function (e, i) {
+          return '<li class="' + (i % 2 ? 'r' : 'l') + '"><span class="ls-ev">' + e[0] + '</span><span class="ls-fg' + (e[2] === rings ? ' rg' : '') + '">' + e[2] + '</span><span class="ls-dt">' + e[1] + '</span></li>';
+        }).join('') + '</ol><p class="ls-end">والفرح ١٣ · ٠٢ · ٢٠٢٧</p></div>';
       inr.appendChild(f1); inr.appendChild(f2); card0.appendChild(inr);
       card0.insertAdjacentHTML('beforeend', '<span class="hc-hint">اضغطوا لفتح الدعوة</span>');
       card0.setAttribute('role', 'button'); card0.setAttribute('tabindex', '0'); card0.setAttribute('aria-label', 'افتح الدعوة');

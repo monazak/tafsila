@@ -988,6 +988,16 @@
         '</aside>' +
       '</div>');
     st.classList.add('hc-on');
+    /* the couple are drawn inline so they can move: tap the groom and he kisses the bride */
+    var cim = st.querySelector('.hc-card img.bc-cp');
+    if (cim) fetch(cim.src).then(function (r) { return r.text(); }).then(function (t) {
+      t = t.replace(/id="([^"]+)"/g, 'id="hc_$1"').replace(/url\(#([^)]+)\)/g, 'url(#hc_$1)').replace(/href="#([^"]+)"/g, 'href="#hc_$1"');
+      var d = document.createElement('div'); d.className = 'bc-cp cv2-svg'; d.innerHTML = t; d.setAttribute('aria-hidden', 'true');
+      cim.replaceWith(d);
+      var gm = d.querySelector('.gm'), go = function () { d.classList.remove('kiss'); void d.offsetWidth; d.classList.add('kiss'); };
+      if (gm) { gm.style.cursor = 'pointer'; gm.addEventListener('click', go); }
+      d.addEventListener('click', function (e) { if (!e.target.closest('.gm')) go(); });
+    }).catch(function () {});
     var hcx = st.querySelector('.hc'), side = hcx.querySelector('.hc-side'), cnt = document.createElement('div'); cnt.className = 'hc-count';
     cnt.appendChild(side.querySelector('.hc-t')); cnt.appendChild(side.querySelector('.hc-cd')); hcx.appendChild(cnt);
     var cal = side.querySelector('.hc-cal'); cal.classList.add('hc-calw'); document.querySelector('.hero').appendChild(cal); side.remove();

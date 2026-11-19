@@ -11635,3 +11635,7 @@ html body .bl-sec > :not(.bl-br):not(.bl-vt){position:relative;z-index:1}
 .hc-card .bc-cp{z-index:2;filter:drop-shadow(0 6px 10px rgba(30,40,20,.3))}
 .hc-card .bc-win::before{display:none!important}
 .hc-card .bc-cp{filter:drop-shadow(0 8px 12px rgba(120,60,80,.18))!important}
+.hc-card .bc-win{pointer-events:auto}
+.hc-card div.bc-cp{cursor:pointer;pointer-events:auto;z-index:2}
+.hc-card div.bc-cp svg{height:100%;width:auto;display:block;overflow:visible}
+.hc-card .bc-nm i{color:#b3202f!important}

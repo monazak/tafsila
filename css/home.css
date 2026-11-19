@@ -11845,3 +11845,9 @@ html body .bl-sec > :not(.bl-br):not(.bl-vt){position:relative;z-index:1}
 @media (min-width:821px){.hc-env{--cw:min(clamp(250px,22vw,330px),36vh)!important}}
 @media (max-width:1100px) and (min-width:821px){.hc-env{--cw:min(30vw,36vh)!important}.hero .hx-mark{font-size:min(6.4vw,8vh)!important}}
 @media (max-width:1100px) and (min-width:821px){.hero .hx-mark{margin-bottom:34px!important}}
+
+/* phones: the small prints never cover the invitation */
+@media (max-width:820px){.hero > .hp{display:none!important}}
+/* more air between the heading and the card */
+.hero .hx-mark{margin-bottom:clamp(30px,4.5vh,48px)!important}
+@media (max-width:820px){.hero .hx-mark{margin:0 0 34px!important}.hc-env{--cw:min(240px,62vw,40vh)!important}}

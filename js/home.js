@@ -879,7 +879,7 @@
   function decorateHeroPrints() {
     var st = document.querySelector('.hero'); if (!st || !st.querySelector('.hstage') || st.querySelector('.hp')) return;
     var SC = {
-      wed: '<img class="hp-cp" src="img/couple.svg" alt="" decoding="async"><i class="hp-hrt">♥</i><i class="hp-hrt h2">♥</i>',
+      wed: '<img class="hp-cp" src="img/couple.svg" alt="" decoding="async"><i class="hp-hrt">♥︎</i><i class="hp-hrt h2">♥︎</i>',
       eng: '<svg viewBox="0 0 120 100" class="hp-svg"><g class="hp-r1"><circle cx="50" cy="58" r="20" fill="none" stroke="#d8b56f" stroke-width="6"/><path d="M44 36l6-9 6 9z" fill="#e9f1ff" stroke="#b9c9e6"/></g><g class="hp-r2"><circle cx="72" cy="62" r="18" fill="none" stroke="#c9cdd6" stroke-width="5"/></g><g class="hp-sp" fill="#fff"><path d="M30 26l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M92 30l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/><path d="M86 82l1.2 3.2 3.2 1.2-3.2 1.2-1.2 3.2-1.2-3.2-3.2-1.2 3.2-1.2z"/></g></svg>',
       grad: '<svg viewBox="0 0 120 100" class="hp-svg"><g class="hp-cap"><path d="M20 40L60 24l40 16-40 16z" fill="#26324f"/><path d="M36 47v12c14 9 34 9 48 0V47L60 56z" fill="#1d2740"/><path d="M60 40Q82 44 88 50v14" fill="none" stroke="#b3202f" stroke-width="2.2"/><path d="M85 62h6l-1 9h-4z" fill="#b3202f"/></g><g class="hp-dip"><rect x="34" y="80" width="52" height="11" rx="5.5" fill="#fff" stroke="#e6d3a8"/><rect x="56" y="78" width="8" height="15" fill="#b3202f"/></g><g class="hp-sp" fill="#d8b56f"><path d="M18 16l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M100 18l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/></g></svg>',
       bday: '<svg viewBox="0 0 120 100" class="hp-svg"><g class="hp-bl"><ellipse cx="26" cy="30" rx="11" ry="13" fill="#f3b6c2"/><path d="M26 43q-3 14 3 30" fill="none" stroke="#c9a2ab"/></g><g class="hp-bl b2"><ellipse cx="96" cy="26" rx="10" ry="12" fill="#bcd0ee"/><path d="M96 38q3 14-3 32" fill="none" stroke="#a9b6ca"/></g><rect x="38" y="60" width="44" height="26" rx="4" fill="#fff" stroke="#f0c8d0"/><path d="M38 68q5.5 6 11 0t11 0 11 0 11 0" fill="none" stroke="#e08a9a" stroke-width="2"/><rect x="34" y="84" width="52" height="5" rx="2.5" fill="#f3d5dc"/><rect x="58" y="46" width="4" height="14" rx="1" fill="#bcd0ee"/><path class="hp-fl" d="M60 34c4 5 4 9 0 11-4-2-4-6 0-11z" fill="#f2b84b"/></svg>'
@@ -937,9 +937,9 @@
     };
     var lace = '<svg class="bc-lace" viewBox="0 0 60 60" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M4 56C4 30 30 4 56 4"/><path d="M14 50c-2-8 4-14 10-12s4 10-2 10"/><path d="M28 36c-1-8 6-12 11-9s2 9-3 8"/><path d="M40 22c1-7 8-9 11-5s-1 8-5 6"/><path d="M8 40c6-2 10 2 8 6"/><path d="M22 24c6-3 10 0 9 5"/></g><g fill="#fff"><circle cx="24" cy="44" r="2"/><circle cx="38" cy="30" r="2"/><circle cx="50" cy="16" r="2"/></g></svg>';
     L.innerHTML = '<div class="bc">' +
-      '<div class="bc-win"><img src="img/couple.svg" alt="" class="bc-cp" decoding="async">' + lace + '<i class="bc-h">♥</i><i class="bc-h b">♥</i></div>' +
+      '<div class="bc-win"><img src="img/couple.svg" alt="" class="bc-cp" decoding="async">' + lace + '<i class="bc-h">♥︎</i><i class="bc-h b">♥︎</i></div>' +
       '<small class="bc-fam">مع عائلتيهما</small>' +
-      '<div class="bc-nm"><b>أحمد</b><i>♥</i><b>منال</b></div>' +
+      '<div class="bc-nm"><b>أحمد</b><i>♥︎</i><b>منال</b></div>' +
       '<small class="bc-inv">يتشرّفان بدعوتكم لمشاركتهما فرحة العمر</small>' +
       '<div class="bc-dt"><span>الخميس</span><b>١٣</b><span>فبراير ٢٠٢٧</span></div>' +
       '<small class="bc-v">قاعة الفرح · غزة</small>' +
@@ -970,13 +970,13 @@
       '<g fill="url(#bcG)"><path d="M40 92l5 8-5 8-5-8z"/><circle cx="40" cy="4" r="3"/><circle cx="40" cy="196" r="3"/></g></svg>';
     var days = '', first = 1; // 1 Feb 2027 is a Monday; week starts Saturday → offset 2
     for (var i = 0; i < 2; i++) days += '<li></li>';
-    for (var d = 1; d <= 28; d++) days += '<li' + (d === 13 ? ' class="on"' : '') + '>' + AR(d) + (d === 13 ? '<i>♥</i>' : '') + '</li>';
+    for (var d = 1; d <= 28; d++) days += '<li' + (d === 13 ? ' class="on"' : '') + '>' + AR(d) + (d === 13 ? '<i>♥︎</i>' : '') + '</li>';
     st.insertAdjacentHTML('beforeend',
       '<div class="hc">' +
         '<article class="hc-card"><div class="bc">' +
-          '<div class="bc-win"><img src="img/couple.svg" alt="" class="bc-cp" decoding="async"><i class="bc-h">♥</i><i class="bc-h b">♥</i></div>' + lace +
+          '<div class="bc-win"><img src="img/couple.svg" alt="" class="bc-cp" decoding="async"><i class="bc-h">♥︎</i><i class="bc-h b">♥︎</i></div>' + lace +
           '<small class="bc-fam">بكل الحب، ومع عائلتيهما</small>' +
-          '<div class="bc-nm"><b>أحمد</b><i>♥</i><b>منال</b></div>' +
+          '<div class="bc-nm"><b>أحمد</b><i>♥︎</i><b>منال</b></div>' +
           '<small class="bc-inv">يتشرّفان بدعوتكم لمشاركتهما فرحة العمر</small>' +
           '<div class="bc-dt"><span>الخميس</span><b>١٣ · ٠٢ · ٢٠٢٧</b><span>قاعة الفرح</span></div>' +
         '</div></article>' +

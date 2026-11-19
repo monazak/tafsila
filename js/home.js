@@ -988,6 +988,15 @@
         '</aside>' +
       '</div>');
     st.classList.add('hc-on');
+    /* the card rises out of an open envelope sealed with wax */
+    var card0 = st.querySelector('.hc-card');
+    if (card0 && !st.querySelector('.hc-env')) {
+      var env = document.createElement('div'); env.className = 'hc-env';
+      env.innerHTML = '<i class="env-bk"></i><i class="env-fl"></i>';
+      card0.parentNode.insertBefore(env, card0); env.appendChild(card0);
+      env.insertAdjacentHTML('beforeend', '<i class="env-pk"><b class="env-seal">ت</b></i><i class="hc-shine"></i>');
+      requestAnimationFrame(function () { setTimeout(function () { env.classList.add('up'); }, 350); });
+    }
     /* the couple are drawn inline so they can move: tap the groom and he kisses the bride */
     var cim = st.querySelector('.hc-card img.bc-cp');
     if (cim) fetch(cim.src).then(function (r) { return r.text(); }).then(function (t) {

@@ -548,7 +548,7 @@
         var r = hero.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5;
         if (!ticking) { ticking = true; requestAnimationFrame(apply); }
         var now = performance.now(); if (now - last < 45) return; last = now;
-        var s = document.createElement('i'); s.className = 'h-spark'; s.setAttribute('aria-hidden', 'true');
+        var s = document.createElement('i'); s.className = 'h-spark hs-' + ['h', 'r', 'c', 's'][Math.floor(Math.random() * 4)]; s.setAttribute('aria-hidden', 'true');
         s.style.left = (e.clientX - r.left) + 'px'; s.style.top = (e.clientY - r.top) + 'px';
         s.style.setProperty('--tx', ((Math.random() - .5) * 40).toFixed(0) + 'px');
         hero.appendChild(s); setTimeout(function () { s.remove(); }, 900);
@@ -900,15 +900,15 @@
       cal: '<rect x="4" y="7" width="24" height="21" rx="2"/><path d="M4 13h24M10 4v6M22 4v6"/><circle cx="16" cy="20" r="3.5"/>',
       spark: '<path d="M16 3l2.5 8.5L27 14l-8.5 2.5L16 25l-2.5-8.5L5 14l8.5-2.5z"/>'
     };
-    var ICONS = [['card', 24, 14, -8], ['heart', 34, 9, 10], ['rings', 29, 34, 6], ['lights', 27, 54, 0], ['heart', 31, 72, -10], ['cake', 27, 90, -6], ['spark', 4, 52, 0], ['heart', 12, 92, 8],
-                 ['env', 76, 13, 8], ['heart', 66, 9, -8], ['ball', 71, 34, -6], ['gift', 73, 54, 6], ['heart', 70, 73, 12], ['cap', 73, 90, -8], ['baby', 96, 50, 10], ['cal', 88, 93, -4], ['spark', 60, 93, 0], ['heart', 4, 18, -6], ['heart', 96, 18, 8]];
+    var ICONS = [['card', 24, 14, -8], ['gift', 34, 9, 10], ['rings', 29, 34, 6], ['lights', 27, 54, 0], ['baby', 31, 72, -10], ['cake', 27, 90, -6], ['spark', 4, 52, 0], ['env', 12, 92, 8],
+                 ['env', 76, 13, 8], ['cal', 66, 9, -8], ['ball', 71, 34, -6], ['gift', 73, 54, 6], ['rings', 70, 73, 12], ['cap', 73, 90, -8], ['baby', 96, 50, 10], ['cal', 88, 93, -4], ['spark', 60, 93, 0], ['cap', 4, 18, -6], ['heart', 96, 18, 8]];
     var ic = '<div class="hi" aria-hidden="true">' + ICONS.map(function (q, i) { return '<svg class="hi-i hi-' + q[0] + '" style="left:' + q[1] + '%;top:' + q[2] + '%;--r:' + q[3] + 'deg;animation-delay:-' + (i * .9).toFixed(1) + 's" viewBox="0 0 32 32">' + I[q[0]] + '</svg>'; }).join('') + '</div>';
     st.insertAdjacentHTML('beforeend', ic);
     /* the same little icons continue down the whole page, sparse and faint, only in the side margins */
     var site = document.createElement('div'); site.className = 'hi-site'; site.setAttribute('aria-hidden', 'true'); document.body.appendChild(site);
-    var names = ['heart', 'rings', 'card', 'cake', 'heart', 'ball', 'env', 'gift', 'heart', 'cap', 'lights', 'baby', 'heart', 'cal', 'spark'];
+    var names = ['rings', 'card', 'cake', 'ball', 'env', 'cap', 'gift', 'lights', 'baby', 'cal', 'heart', 'spark'];
     function lay() {
-      var top = st.offsetTop + st.offsetHeight, H = document.documentElement.scrollHeight - top, step = innerWidth < 821 ? 520 : 380, html = '', n = 0;
+      site.style.height = '0px'; var ft = document.querySelector('footer'), top = st.offsetTop + st.offsetHeight, H = (ft ? ft.offsetTop + ft.offsetHeight : document.documentElement.scrollHeight) - top, step = innerWidth < 821 ? 520 : 380, html = '', n = 0;
       for (var y = 160; y < H - 120; y += step, n++) {
         var k = names[n % names.length], left = n % 2 === 0, x = left ? (2 + (n * 7) % 5) : (93 + (n * 5) % 5);
         html += '<svg class="hi-i hi-' + k + '" style="left:' + x + '%;top:' + (y + (n * 53) % 90) + 'px;--r:' + ((n * 17) % 24 - 12) + 'deg;animation-delay:-' + n + 's" viewBox="0 0 32 32">' + I[k] + '</svg>';
@@ -1065,7 +1065,7 @@
       var d = document.createElement('div'); d.className = 'bc-cp cv2-svg'; d.innerHTML = t; d.setAttribute('aria-hidden', 'true');
       cim.replaceWith(d);
       var gm = d.querySelector('.gm'), go = function () { d.classList.remove('kiss'); void d.offsetWidth; d.classList.add('kiss'); };
-      d.querySelectorAll('.gm, .br').forEach(function (g) { g.style.cursor = 'pointer'; g.addEventListener('click', function (e) { e.stopPropagation(); go(); }); });
+      d.style.cursor = 'pointer'; d.addEventListener('click', function (e) { e.stopPropagation(); go(); });
     }).catch(function () {});
     var hcx = st.querySelector('.hc'), side = hcx.querySelector('.hc-side'), cnt = document.createElement('div'); cnt.className = 'hc-count';
     cnt.appendChild(side.querySelector('.hc-t')); cnt.appendChild(side.querySelector('.hc-cd')); hcx.appendChild(cnt);
@@ -1143,7 +1143,7 @@
     hero.dataset.occ = cur;
     function fill(k) {
       var o = OCC[k];
-      if (!coupleNode) coupleNode = win.querySelector('.bc-cp');
+      coupleNode = win.querySelector('.bc-cp');
       win.querySelectorAll('.ho-art').forEach(function (a) { a.remove(); });
       if (k === 'wed') { if (coupleNode) coupleNode.style.display = ''; }
       else { if (coupleNode) coupleNode.style.display = 'none'; win.insertAdjacentHTML('beforeend', ART[k === 'eng' ? 'eng' : k]); }
@@ -1162,7 +1162,7 @@
       setTimeout(function () { fill(cur); card.classList.remove('turn'); card.classList.add('turned'); setTimeout(function () { card.classList.remove('turned'); }, 600); }, 420);
     });
     /* the love story on the back belongs to the wedding; other occasions keep their front */
-    card.addEventListener('click', function (e) { if (card.dataset.occ && card.dataset.occ !== 'wed') { e.stopImmediatePropagation(); } }, true);
+    
   }
 
 
@@ -1230,7 +1230,99 @@
     }, { threshold: [0, .6] }).observe(wa);
   }
 
-  function scan() { decorateInkHeadings(); decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decorateHeroOccasions(); decorateCompanion(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* hero, split in two: the big side holds the invitation that turns over; the small side holds the heading,
+     a desk calendar with the day circled in ink, a flip-tile countdown, and the four occasions as prints you can
+     pick. Each occasion has its own back and its own little moment on the front. */
+  function decorateHeroSplit() {
+    var hero = document.querySelector('.hero'), w = hero && hero.querySelector('.w'), st = w && w.querySelector('.hstage'), mark = w && w.querySelector('.hx-mark');
+    var card = hero && hero.querySelector('.hc-card'), ho = hero && hero.querySelector('.ho'), back = card && card.querySelector('.hc-back');
+    if (!st || !mark || !ho || !back || hero.querySelector('.hs-side') || hero.querySelectorAll('.hp').length < 4) return;
+    var AR = function (n) { return String(n).replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'[c]; }); };
+    var MON = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    var D = { wed: [2027, 1, 13, 'الفرح'], eng: [2027, 6, 2, 'الإشهار'], grad: [2027, 5, 24, 'التخرج'], bday: [2027, 4, 14, 'عيد الميلاد'] };
+    var CAP = { wed: 'زفاف', eng: 'إشهار', grad: 'تخرج', bday: 'عيد ميلاد' };
+    hero.classList.add('hs2');
+    var side = document.createElement('div'); side.className = 'hs-side';
+    side.appendChild(mark);
+    var pols = ['wed', 'eng', 'grad', 'bday'].map(function (k) {
+      var ph = hero.querySelector('.hp .hp-' + k);
+      return '<button type="button" class="hs-pol" data-o="' + k + '" aria-label="' + CAP[k] + '"><span class="hp-ph hp-' + k + '">' + (ph ? ph.innerHTML : '') + '</span><small>' + CAP[k] + '</small></button>';
+    }).join('');
+    side.insertAdjacentHTML('beforeend',
+      '<div class="hs-row">' +
+        '<div class="hs-cal" aria-hidden="true"><i class="hs-bind"></i><b class="hs-m"></b><ol class="hs-g"></ol></div>' +
+        '<div class="hs-cd"><p class="hs-cl"></p><div class="hs-tiles"></div><small class="hs-cn">عدّاد ورزنامة بكل دعوة</small></div>' +
+      '</div>' +
+      '<div class="hs-fan">' + pols + '</div>');
+    w.insertBefore(side, st);
+    var cal = side.querySelector('.hs-cal'), g = side.querySelector('.hs-g'), mEl = side.querySelector('.hs-m'), tiles = side.querySelector('.hs-tiles'), cl = side.querySelector('.hs-cl');
+    var ring = '<svg class="hs-ring" viewBox="0 0 40 40"><path pathLength="1" d="M30 8C22 2 7 6 5 19s9 19 18 17 14-9 12-18c-1-4-4-7-8-9"/></svg>';
+    function drawCal(k) {
+      var d = D[k], first = new Date(d[0], d[1], 1).getDay(), off = (first + 1) % 7, n = new Date(d[0], d[1] + 1, 0).getDate(), h = '';
+      ['س', 'ح', 'ن', 'ث', 'ر', 'خ', 'ج'].forEach(function (x) { h += '<li class="h">' + x + '</li>'; });
+      for (var i = 0; i < off; i++) h += '<li></li>';
+      for (var j = 1; j <= n; j++) h += '<li' + (j === d[2] ? ' class="on"' : '') + '>' + AR(j) + (j === d[2] ? ring : '') + '</li>';
+      mEl.textContent = MON[d[1]] + ' ' + AR(d[0]); g.innerHTML = h;
+      cal.classList.remove('turn'); void cal.offsetWidth; cal.classList.add('turn');
+    }
+    /* flip tiles: two-digit cards that fall over when they change */
+    var U = [['d', 'يوم'], ['h', 'ساعة'], ['m', 'دقيقة'], ['s', 'ثانية']];
+    tiles.innerHTML = U.map(function (u) { return '<div class="hs-u"><span class="hs-t" data-u="' + u[0] + '"></span><small>' + u[1] + '</small></div>'; }).join('');
+    var T = {}; tiles.querySelectorAll('.hs-t').forEach(function (t) { T[t.dataset.u] = t; });
+    var target = 0;
+    function setOcc(k) { var d = D[k]; target = new Date(d[0], d[1], d[2], 19, 0, 0).getTime(); cl.textContent = 'باقي على ' + d[3]; drawCal(k); tick(true);
+      side.querySelectorAll('.hs-pol').forEach(function (p) { p.classList.toggle('on', p.dataset.o === k); p.setAttribute('aria-pressed', p.dataset.o === k ? 'true' : 'false'); }); }
+    function tick(all) {
+      var t = Math.max(0, target - Date.now()) / 1000, v = { d: Math.floor(t / 86400), h: Math.floor(t / 3600) % 24, m: Math.floor(t / 60) % 60, s: Math.floor(t) % 60 };
+      for (var u in v) { var x = AR(v[u] < 10 ? '0' + v[u] : v[u]); if (T[u].textContent !== x) { T[u].textContent = x; T[u].classList.remove('fl'); void T[u].offsetWidth; T[u].classList.add('fl'); } }
+    }
+    setInterval(tick, 1000);
+    /* the prints pick the occasion */
+    side.querySelector('.hs-fan').addEventListener('click', function (e) {
+      var p = e.target.closest('.hs-pol'); if (!p) return; var b = ho.querySelector('[data-o="' + p.dataset.o + '"]'); if (b) b.click();
+    });
+    /* each occasion's back */
+    var BK = {
+      wed: back.innerHTML,
+      eng: '<div class="bk"><b class="bk-t">ليلة الإشهار</b><ul class="bk-p">' +
+        [['الاستقبال', '٧:٣٠ م'], ['الإشهار وقراءة الفاتحة', '٨:٠٠ م'], ['الزفّة والدبكة', '٨:٣٠ م'], ['العشاء', '٩:٣٠ م']].map(function (r) { return '<li><span>' + r[0] + '</span><i></i><time>' + r[1] + '</time></li>'; }).join('') +
+        '</ul><p class="bk-e">حضوركم بيكمّل فرحتنا</p></div>',
+      grad: '<div class="bk"><b class="bk-t">شكرًا من القلب</b><ul class="bk-l">' +
+        ['لماما وبابا، اللي سهروا معي', 'لإخوتي، سندي بكل خطوة', 'لأصحابي، رفقة الطريق', 'ولكل أستاذ علّمني حرف'].map(function (r) { return '<li>' + r + '</li>'; }).join('') +
+        '</ul><p class="bk-e">ومنحتفل سوا · ٢٤ · ٠٦ · ٢٠٢٧</p></div>',
+      bday: '<div class="bk bk-b"><b class="bk-age">٥</b><b class="bk-t">أمنيات جود</b><ul class="bk-l">' +
+        ['كيكة فراولة كبيرة', 'بالونات بكل الألوان', 'كل أصحابي حواليّ', 'ونطفّي الشمعات سوا'].map(function (r) { return '<li>' + r + '</li>'; }).join('') +
+        '</ul><p class="bk-e">جيبوا معكم ضحكتكم</p></div>'
+    };
+    var cur = hero.dataset.occ || 'wed';
+    new MutationObserver(function () { var k = hero.dataset.occ || 'wed'; if (k === cur) return; cur = k; setTimeout(function () { back.innerHTML = BK[k]; }, 420); setOcc(k); })
+      .observe(hero, { attributes: true, attributeFilter: ['data-occ'] });
+    setOcc(cur);
+    /* a little moment on each front: the candle goes out and lights again, the cap is tossed, the rings meet */
+    var win = card.querySelector('.hc-front .bc-win');
+    win.addEventListener('click', function (e) {
+      var a = e.target.closest('.ho-fl, .ho-cap, .ho-r1, .ho-r2'); if (!a) return;
+      e.stopPropagation();
+      var svg = a.ownerSVGElement;
+      if (a.classList.contains('ho-fl')) {
+        if (svg.classList.contains('off')) return;
+        svg.classList.add('off');
+        svg.insertAdjacentHTML('beforeend', '<g class="ho-smk"><circle cx="60" cy="40" r="3"/><circle cx="58" cy="34" r="4"/><circle cx="62" cy="27" r="5"/></g>');
+        setTimeout(function () { var s = svg.querySelector('.ho-smk'); if (s) s.remove(); }, 1600);
+        setTimeout(function () { svg.classList.remove('off'); }, 2600);
+      } else if (a.classList.contains('ho-cap')) {
+        a.classList.remove('toss'); void a.getBoundingClientRect(); a.classList.add('toss');
+      } else {
+        if (svg.classList.contains('join')) return;
+        svg.classList.add('join');
+        svg.insertAdjacentHTML('beforeend', '<g class="ho-burst">' + [0, 1, 2, 3, 4, 5].map(function (i) { return '<path style="--a:' + (i * 60 - 90) + 'deg" d="M63 60c-2-2.4-5-1-4 1.6.6 1.6 4 3.4 4 3.4s3.4-1.8 4-3.4c1-2.6-2-4-4-1.6z"/>'; }).join('') + '</g>');
+        setTimeout(function () { var b = svg.querySelector('.ho-burst'); if (b) b.remove(); svg.classList.remove('join'); }, 2200);
+      }
+    });
+  }
+
+  function scan() { decorateInkHeadings(); decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decorateHeroOccasions(); decorateHeroSplit(); decorateCompanion(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   /* run the decorators at most once per frame, however many DOM changes arrive */
   var scanQueued = false;

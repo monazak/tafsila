@@ -41,7 +41,6 @@
     parallax();
     if (finePointer) bookTilt();
     sentToast();
-    petals();
     setTimeout(function () { ScrollTrigger.refresh(); }, 600);
     // the page grows as images and the designs grid settle: keep every scroll trigger measured against the real layout
     var rt; new ResizeObserver(function () { clearTimeout(rt); rt = setTimeout(function () { ScrollTrigger.refresh(); }, 250); }).observe(document.body);

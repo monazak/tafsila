@@ -873,7 +873,170 @@
     tick(); setInterval(tick, 1000);
   }
 
-  function scan() { decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* hero prints: instead of the olive trees, four little polaroids lie beside the invitation — each a small
+     animated illustration of one occasion (no real faces) with a handwritten caption, like keepsakes on a table */
+  function decorateHeroPrints() {
+    var st = document.querySelector('.hero'); if (!st || !st.querySelector('.hstage') || st.querySelector('.hp')) return;
+    var SC = {
+      wed: '<img class="hp-cp" src="img/couple.svg" alt="" decoding="async"><i class="hp-hrt">♥</i><i class="hp-hrt h2">♥</i>',
+      eng: '<svg viewBox="0 0 120 100" class="hp-svg"><g class="hp-r1"><circle cx="50" cy="58" r="20" fill="none" stroke="#d8b56f" stroke-width="6"/><path d="M44 36l6-9 6 9z" fill="#e9f1ff" stroke="#b9c9e6"/></g><g class="hp-r2"><circle cx="72" cy="62" r="18" fill="none" stroke="#c9cdd6" stroke-width="5"/></g><g class="hp-sp" fill="#fff"><path d="M30 26l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M92 30l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/><path d="M86 82l1.2 3.2 3.2 1.2-3.2 1.2-1.2 3.2-1.2-3.2-3.2-1.2 3.2-1.2z"/></g></svg>',
+      grad: '<svg viewBox="0 0 120 100" class="hp-svg"><g class="hp-cap"><path d="M20 40L60 24l40 16-40 16z" fill="#26324f"/><path d="M36 47v12c14 9 34 9 48 0V47L60 56z" fill="#1d2740"/><path d="M60 40Q82 44 88 50v14" fill="none" stroke="#b3202f" stroke-width="2.2"/><path d="M85 62h6l-1 9h-4z" fill="#b3202f"/></g><g class="hp-dip"><rect x="34" y="80" width="52" height="11" rx="5.5" fill="#fff" stroke="#e6d3a8"/><rect x="56" y="78" width="8" height="15" fill="#b3202f"/></g><g class="hp-sp" fill="#d8b56f"><path d="M18 16l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M100 18l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/></g></svg>',
+      bday: '<svg viewBox="0 0 120 100" class="hp-svg"><g class="hp-bl"><ellipse cx="26" cy="30" rx="11" ry="13" fill="#f3b6c2"/><path d="M26 43q-3 14 3 30" fill="none" stroke="#c9a2ab"/></g><g class="hp-bl b2"><ellipse cx="96" cy="26" rx="10" ry="12" fill="#bcd0ee"/><path d="M96 38q3 14-3 32" fill="none" stroke="#a9b6ca"/></g><rect x="38" y="60" width="44" height="26" rx="4" fill="#fff" stroke="#f0c8d0"/><path d="M38 68q5.5 6 11 0t11 0 11 0 11 0" fill="none" stroke="#e08a9a" stroke-width="2"/><rect x="34" y="84" width="52" height="5" rx="2.5" fill="#f3d5dc"/><rect x="58" y="46" width="4" height="14" rx="1" fill="#bcd0ee"/><path class="hp-fl" d="M60 34c4 5 4 9 0 11-4-2-4-6 0-11z" fill="#f2b84b"/></svg>'
+    };
+    function pr(k, cls, cap) { return '<figure class="hp ' + cls + '"><span class="hp-ph hp-' + k + '">' + SC[k] + '</span><figcaption>' + cap + '</figcaption></figure>'; }
+    var I = {
+      card: '<rect x="6" y="4" width="20" height="26" rx="10 10 2 2"/><path d="M6 14c0-6 4.5-10 10-10s10 4 10 10"/><path d="M11 21h10M13 25h6"/>',
+      env: '<rect x="3" y="8" width="26" height="18" rx="2"/><path d="M3 9l13 10L29 9"/><circle cx="16" cy="19" r="3" fill="currentColor" stroke="none" opacity=".35"/>',
+      rings: '<circle cx="12" cy="19" r="7"/><circle cx="20" cy="19" r="7"/><path d="M10 9l2-4 2 4z"/>',
+      cake: '<rect x="6" y="16" width="20" height="11" rx="2"/><path d="M6 20c2.5 2 5 2 7.5 0s5-2 7.5 0 3.5 2 5 0"/><path d="M16 9v7"/><path d="M16 4c1.6 2 1.6 3.6 0 4.6-1.6-1-1.6-2.6 0-4.6z"/>',
+      ball: '<ellipse cx="16" cy="12" rx="7" ry="8.5"/><path d="M16 20.5l-1.5 2h3zM16 22.5c-2 3 2 5 0 8"/>',
+      gift: '<rect x="5" y="13" width="22" height="15" rx="1.5"/><path d="M3 9h26v4H3zM16 9v19"/><path d="M16 9c-2-4-7-5-7-2s5 2 7 2zM16 9c2-4 7-5 7-2s-5 2-7 2z"/>',
+      lights: '<path d="M2 8c6 8 22 8 28 0"/><path d="M8 12.6v2M16 14v2M24 12.6v2"/><path d="M6.5 15h3l.5 4a2 2 0 0 1-4 0zM14.5 16.4h3l.5 4a2 2 0 0 1-4 0zM22.5 15h3l.5 4a2 2 0 0 1-4 0z"/>',
+      cap: '<path d="M2 12l14-6 14 6-14 6z"/><path d="M8 15v6c5 3 11 3 16 0v-6"/><path d="M27 13v7"/>',
+      heart: '<path d="M16 27S5 20 5 12.5A5.5 5.5 0 0 1 16 10a5.5 5.5 0 0 1 11 2.5C27 20 16 27 16 27z"/>',
+      baby: '<path d="M12 4h8v4h-8zM11 8h10l1 4v14a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V12z"/><path d="M10 16h12M10 21h12"/>',
+      cal: '<rect x="4" y="7" width="24" height="21" rx="2"/><path d="M4 13h24M10 4v6M22 4v6"/><circle cx="16" cy="20" r="3.5"/>',
+      spark: '<path d="M16 3l2.5 8.5L27 14l-8.5 2.5L16 25l-2.5-8.5L5 14l8.5-2.5z"/>'
+    };
+    var ICONS = [['card', 24, 14, -8], ['heart', 34, 9, 10], ['rings', 29, 34, 6], ['lights', 27, 54, 0], ['heart', 31, 72, -10], ['cake', 27, 90, -6], ['spark', 4, 52, 0], ['heart', 12, 92, 8],
+                 ['env', 76, 13, 8], ['heart', 66, 9, -8], ['ball', 71, 34, -6], ['gift', 73, 54, 6], ['heart', 70, 73, 12], ['cap', 73, 90, -8], ['baby', 96, 50, 10], ['cal', 88, 93, -4], ['spark', 60, 93, 0], ['heart', 4, 18, -6], ['heart', 96, 18, 8]];
+    var ic = '<div class="hi" aria-hidden="true">' + ICONS.map(function (q, i) { return '<svg class="hi-i hi-' + q[0] + '" style="left:' + q[1] + '%;top:' + q[2] + '%;--r:' + q[3] + 'deg;animation-delay:-' + (i * .9).toFixed(1) + 's" viewBox="0 0 32 32">' + I[q[0]] + '</svg>'; }).join('') + '</div>';
+    st.insertAdjacentHTML('beforeend', ic);
+    /* the same little icons continue down the whole page, sparse and faint, only in the side margins */
+    var site = document.createElement('div'); site.className = 'hi-site'; site.setAttribute('aria-hidden', 'true'); document.body.appendChild(site);
+    var names = ['heart', 'rings', 'card', 'cake', 'heart', 'ball', 'env', 'gift', 'heart', 'cap', 'lights', 'baby', 'heart', 'cal', 'spark'];
+    function lay() {
+      var top = st.offsetTop + st.offsetHeight, H = document.documentElement.scrollHeight - top, step = innerWidth < 821 ? 520 : 380, html = '', n = 0;
+      for (var y = 160; y < H - 120; y += step, n++) {
+        var k = names[n % names.length], left = n % 2 === 0, x = left ? (2 + (n * 7) % 5) : (93 + (n * 5) % 5);
+        html += '<svg class="hi-i hi-' + k + '" style="left:' + x + '%;top:' + (y + (n * 53) % 90) + 'px;--r:' + ((n * 17) % 24 - 12) + 'deg;animation-delay:-' + n + 's" viewBox="0 0 32 32">' + I[k] + '</svg>';
+      }
+      site.style.top = top + 'px'; site.style.height = H + 'px'; site.innerHTML = html;
+    }
+    lay(); var lt; new ResizeObserver(function () { clearTimeout(lt); lt = setTimeout(lay, 400); }).observe(document.body);
+    st.insertAdjacentHTML('beforeend', pr('wed', 'hp-1', 'الحب بالجو') + pr('eng', 'hp-2', 'قالت نعم') + pr('grad', 'hp-3', 'فرحة التخرج') + pr('bday', 'hp-4', 'كل سنة وإنت سالم'));
+  }
+
+
+  /* the opened Ahmad & Manal invitation, made like a printed card: an arch window with the illustrated couple
+     and a lace corner, script names joined by a heart, painted roses in the corners; the facing page is the
+     evening's programme with little figures */
+  function decorateBookCard() {
+    var L = document.querySelector('.hero .hstage .fbase'), R = document.querySelector('.hero .hstage .fcv .fb');
+    if (!L || !R || L.dataset.card) return; L.dataset.card = R.dataset.card = 1;
+    function rose(x, y, r, c1, c2, rot) {
+      var p = ''; for (var i = 0; i < 6; i++) p += '<ellipse cx="0" cy="' + (-r * .55) + '" rx="' + (r * .55) + '" ry="' + (r * .62) + '" transform="rotate(' + (i * 60) + ')" fill="' + c1 + '"/>';
+      return '<g transform="translate(' + x + ' ' + y + ') rotate(' + (rot || 0) + ')">' + p + '<circle r="' + (r * .62) + '" fill="' + c2 + '"/><path d="M' + (-r * .3) + ' 0a' + (r * .3) + ' ' + (r * .3) + ' 0 1 1 ' + (r * .3) + ' ' + (r * .3) + 'a' + (r * .18) + ' ' + (r * .18) + ' 0 1 1 ' + (-r * .12) + ' ' + (-r * .28) + '" fill="none" stroke="#c76d80" stroke-width="' + (r * .08) + '"/></g>';
+    }
+    function lf(x, y, rot, c) { return '<ellipse cx="' + x + '" cy="' + y + '" rx="9" ry="3.6" transform="rotate(' + rot + ' ' + x + ' ' + y + ')" fill="' + (c || '#9fb39a') + '"/>'; }
+    var corner = function (cls) {
+      return '<svg class="bc-ros ' + cls + '" viewBox="0 0 90 70" aria-hidden="true">' + lf(14, 52, -30) + lf(66, 22, 40) + lf(58, 50, 10, '#b7c6ad') + lf(30, 24, -60, '#b7c6ad') + lf(76, 40, 70) +
+        '<circle cx="12" cy="36" r="3" fill="#a7b8dc"/><circle cx="18" cy="31" r="2.4" fill="#bcd0ee"/><circle cx="72" cy="58" r="2.6" fill="#a7b8dc"/>' +
+        rose(44, 38, 15, '#f4c6cf', '#eaa9b6', 10) + rose(22, 50, 9, '#f8d8de', '#f0b9c4', -20) + rose(64, 30, 8, '#f8d8de', '#f0b9c4', 30) + '</svg>';
+    };
+    var lace = '<svg class="bc-lace" viewBox="0 0 60 60" aria-hidden="true"><g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"><path d="M4 56C4 30 30 4 56 4"/><path d="M14 50c-2-8 4-14 10-12s4 10-2 10"/><path d="M28 36c-1-8 6-12 11-9s2 9-3 8"/><path d="M40 22c1-7 8-9 11-5s-1 8-5 6"/><path d="M8 40c6-2 10 2 8 6"/><path d="M22 24c6-3 10 0 9 5"/></g><g fill="#fff"><circle cx="24" cy="44" r="2"/><circle cx="38" cy="30" r="2"/><circle cx="50" cy="16" r="2"/></g></svg>';
+    L.innerHTML = '<div class="bc">' +
+      '<div class="bc-win"><img src="img/couple.svg" alt="" class="bc-cp" decoding="async">' + lace + '<i class="bc-h">♥</i><i class="bc-h b">♥</i></div>' +
+      '<small class="bc-fam">مع عائلتيهما</small>' +
+      '<div class="bc-nm"><b>أحمد</b><i>♥</i><b>منال</b></div>' +
+      '<small class="bc-inv">يتشرّفان بدعوتكم لمشاركتهما فرحة العمر</small>' +
+      '<div class="bc-dt"><span>الخميس</span><b>١٣</b><span>شباط ٢٠٢٧</span></div>' +
+      '<small class="bc-v">قاعة الفرح · غزة</small>' +
+      corner('tl') + corner('br') + '</div>';
+    var fig = '<img src="img/couple.svg" alt="" class="bp-f" decoding="async">';
+    var row = function (t, h, ic) { return '<li><span class="bp-ic">' + ic + '</span><b>' + t + '</b><time>' + h + '</time></li>'; };
+    R.innerHTML = '<div class="bp">' +
+      '<b class="bp-t">برنامج الحفل</b><i class="bp-orn"></i>' +
+      '<ul>' + row('الاستقبال', '٧:٠٠ م', fig) + row('زفّة العرسان', '٨:٠٠ م', fig) + row('العشاء', '٩:٠٠ م', '<svg viewBox="0 0 32 32"><path d="M6 20h20M8 20a8 8 0 0 1 16 0M16 9v3M4 24h24"/></svg>') + row('قطع الكعكة', '١٠:٣٠ م', '<svg viewBox="0 0 32 32"><rect x="7" y="16" width="18" height="10" rx="2"/><path d="M7 19c3 2 6 2 9 0s6-2 9 0M16 9v7M16 5c1.4 1.8 1.4 3.2 0 4-1.4-.8-1.4-2.2 0-4z"/></svg>') + '</ul>' +
+      '<p class="bp-n">فرحتنا بتكمل بوجودكم</p>' + corner('tr') + '</div>';
+  }
+
+
+  /* hero centre, two sides: one closed invitation card (arch window with the couple, script names, the date) and,
+     beside it, a live countdown to the day with a little calendar marking it */
+  function decorateHeroCard() {
+    var st = document.querySelector('.hero .hstage'); if (!st || st.querySelector('.hc')) return;
+    var AR = function (n) { return String(n).replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'[c]; }); };
+    var curl = function (x, y, r, flip) { var f = flip ? -1 : 1; return 'M' + x + ' ' + y + 'c' + (f * r) + ' ' + (-r * .2) + ' ' + (f * r * 1.3) + ' ' + (r * .9) + ' ' + (f * r * .6) + ' ' + (r * 1.1) + 'c' + (f * -r * .5) + ' ' + (r * .15) + ' ' + (f * -r * .75) + ' ' + (-r * .4) + ' ' + (f * -r * .3) + ' ' + (-r * .6); };
+    var lace = '<svg class="bc-lace" viewBox="0 0 80 200" aria-hidden="true"><defs><linearGradient id="bcG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8893b"/><stop offset=".45" stop-color="#f3dc96"/><stop offset="1" stop-color="#a9802f"/></linearGradient></defs>' +
+      '<g fill="none" stroke="url(#bcG)" stroke-width="1.8" stroke-linecap="round">' +
+      '<path d="M40 4C30 40 52 70 40 100S30 160 40 196"/>' +
+      '<path d="' + curl(40, 30, 14, 0) + '"/><path d="' + curl(40, 30, 14, 1) + '"/>' +
+      '<path d="' + curl(42, 70, 18, 0) + '"/><path d="' + curl(38, 82, 12, 1) + '"/>' +
+      '<path d="' + curl(40, 118, 18, 1) + '"/><path d="' + curl(42, 130, 12, 0) + '"/>' +
+      '<path d="' + curl(40, 166, 14, 0) + '"/><path d="' + curl(40, 166, 14, 1) + '"/>' +
+      '<path d="M40 100c-14-6-22 2-18 10s14 4 10-4M40 100c14-6 22 2 18 10s-14 4-10-4"/></g>' +
+      '<g fill="url(#bcG)"><path d="M40 92l5 8-5 8-5-8z"/><circle cx="40" cy="4" r="3"/><circle cx="40" cy="196" r="3"/></g></svg>';
+    var days = '', first = 1; // 1 Feb 2027 is a Monday; week starts Saturday → offset 2
+    for (var i = 0; i < 2; i++) days += '<li></li>';
+    for (var d = 1; d <= 28; d++) days += '<li' + (d === 13 ? ' class="on"' : '') + '>' + AR(d) + (d === 13 ? '<i>♥</i>' : '') + '</li>';
+    st.insertAdjacentHTML('beforeend',
+      '<div class="hc">' +
+        '<article class="hc-card"><div class="bc">' +
+          '<div class="bc-win"><img src="img/couple.svg" alt="" class="bc-cp" decoding="async"><i class="bc-h">♥</i><i class="bc-h b">♥</i></div>' + lace +
+          '<small class="bc-fam">بكل الحب، ومع عائلتيهما</small>' +
+          '<div class="bc-nm"><b>أحمد</b><i>♥</i><b>منال</b></div>' +
+          '<small class="bc-inv">يتشرّفان بدعوتكم لمشاركتهما فرحة العمر</small>' +
+          '<div class="bc-dt"><span>الخميس</span><b>١٣ · ٠٢ · ٢٠٢٧</b><span>قاعة الفرح</span></div>' +
+        '</div></article>' +
+        '<aside class="hc-side">' +
+          '<p class="hc-t">باقي على الفرح</p>' +
+          '<div class="hc-cd"><div><b data-u="d"></b><small>يوم</small></div><div><b data-u="h"></b><small>ساعة</small></div><div><b data-u="m"></b><small>دقيقة</small></div><div><b data-u="s"></b><small>ثانية</small></div></div>' +
+          '<div class="hc-cal"><b>شباط ٢٠٢٧</b><ol>' + ['س','ح','ن','ث','ر','خ','ج'].map(function (x) { return '<li class="h">' + x + '</li>'; }).join('') + days + '</ol></div>' +
+          '<p class="hc-n">عدّاد ورزنامة بكل دعوة، ليعرف ضيوفكم الموعد بلمسة 🤍</p>' +
+        '</aside>' +
+      '</div>');
+    st.classList.add('hc-on');
+    var hcx = st.querySelector('.hc'), side = hcx.querySelector('.hc-side'), cnt = document.createElement('div'); cnt.className = 'hc-count';
+    cnt.appendChild(side.querySelector('.hc-t')); cnt.appendChild(side.querySelector('.hc-cd')); hcx.appendChild(cnt);
+    var cal = side.querySelector('.hc-cal'); cal.classList.add('hc-calw'); document.querySelector('.hero').appendChild(cal); side.remove();
+    var target = Date.now() + ((84 * 24 + 6) * 60 + 30) * 60000, els = {};
+    st.querySelectorAll('.hc-cd b').forEach(function (b) { els[b.dataset.u] = b; });
+    function tick() { var t = Math.max(0, target - Date.now()) / 1000; var v = { d: Math.floor(t / 86400), h: Math.floor(t / 3600) % 24, m: Math.floor(t / 60) % 60, s: Math.floor(t) % 60 };
+      for (var u in v) { var x = AR(v[u] < 10 && u !== 'd' ? '0' + v[u] : v[u]); if (els[u].textContent !== x) els[u].textContent = x; } }
+    tick(); setInterval(tick, 1000);
+    var w = st.parentElement;
+    if (w && !w.querySelector('.hx-mark')) w.insertAdjacentHTML('beforeend', '<h2 class="hx-mark">دعوة تشبه فرحتكم</h2>');
+  }
+
+
+  /* blossom branches that cross from one section into the next, tying the page together, and a vertical
+     calligraphy line on the side of each section */
+  function decorateBlossoms() {
+    if (document.querySelector('.bl-br')) return;
+    var ids = ['designs', 'packages', 'how', 'faq', 'contact'];
+    if (!ids.every(function (id) { return document.getElementById(id); })) return;
+    function flower(x, y, r, rot, k) {
+      var p = '', i;
+      for (i = 0; i < 5; i++) p += '<path d="M0 0C' + (-r * .55) + ' ' + (-r * .35) + ' ' + (-r * .5) + ' ' + (-r * 1.05) + ' 0 ' + (-r) + 'C' + (r * .5) + ' ' + (-r * 1.05) + ' ' + (r * .55) + ' ' + (-r * .35) + ' 0 0z" transform="rotate(' + (i * 72) + ')" fill="url(#blP' + k + ')"/>';
+      var st = ''; for (i = 0; i < 7; i++) { var a = i * 51 * Math.PI / 180; st += '<line x1="0" y1="0" x2="' + (Math.cos(a) * r * .42).toFixed(1) + '" y2="' + (Math.sin(a) * r * .42).toFixed(1) + '"/><circle cx="' + (Math.cos(a) * r * .44).toFixed(1) + '" cy="' + (Math.sin(a) * r * .44).toFixed(1) + '" r="' + (r * .05).toFixed(1) + '"/>'; }
+      return '<g class="bl-f" transform="translate(' + x + ' ' + y + ') rotate(' + rot + ')">' + p + '<circle r="' + (r * .2) + '" fill="#d9677e"/><g stroke="#b8475f" stroke-width=".7" fill="#c9506a">' + st + '</g></g>';
+    }
+    function bud(x, y, rot) { return '<g transform="translate(' + x + ' ' + y + ') rotate(' + rot + ')"><ellipse cx="0" cy="-5" rx="3.6" ry="6" fill="#f2a9b8"/><path d="M-3 -1q3 4 6 0" fill="#9fb39a"/></g>'; }
+    function leaf(x, y, rot) { return '<ellipse cx="' + x + '" cy="' + y + '" rx="10" ry="3.8" transform="rotate(' + rot + ' ' + x + ' ' + y + ')" fill="#a9bba2" opacity=".85"/>'; }
+    var defs = '<defs><radialGradient id="blP0" cx=".5" cy=".9" r=".9"><stop offset="0" stop-color="#e98aa0"/><stop offset=".45" stop-color="#f6c3cf"/><stop offset="1" stop-color="#fff1f4"/></radialGradient>' +
+      '<radialGradient id="blP1" cx=".5" cy=".9" r=".9"><stop offset="0" stop-color="#e07e96"/><stop offset=".5" stop-color="#f3b4c3"/><stop offset="1" stop-color="#fde6ec"/></radialGradient></defs>';
+    var branch = '<svg viewBox="0 0 420 300" aria-hidden="true">' + defs +
+      '<path d="M0 40C80 60 140 90 200 140S320 230 420 250" fill="none" stroke="#7a5a4a" stroke-width="4.5" stroke-linecap="round"/>' +
+      '<path d="M150 104C170 70 196 52 236 44" fill="none" stroke="#7a5a4a" stroke-width="2.6" stroke-linecap="round"/>' +
+      '<path d="M262 186C268 150 290 126 322 112" fill="none" stroke="#7a5a4a" stroke-width="2.2" stroke-linecap="round"/>' +
+      '<path d="M88 64C92 92 84 112 70 128" fill="none" stroke="#7a5a4a" stroke-width="2" stroke-linecap="round"/>' +
+      leaf(118, 84, 30) + leaf(214, 50, -20) + leaf(300, 214, 40) + leaf(340, 126, -30) + leaf(76, 114, 70) +
+      flower(236, 44, 20, 10, 0) + flower(206, 60, 15, -30, 1) + flower(170, 120, 22, 20, 0) + flower(130, 92, 14, 40, 1) +
+      flower(322, 112, 18, -15, 0) + flower(290, 132, 13, 30, 1) + flower(258, 182, 20, 0, 0) + flower(360, 236, 16, 25, 1) +
+      flower(70, 128, 15, 10, 0) + flower(40, 50, 13, -20, 1) +
+      bud(250, 30, 30) + bud(340, 100, 60) + bud(96, 140, -40) + bud(392, 246, 80) + bud(186, 152, 140) + '</svg>';
+    var words = { designs: 'تصاميم من القلب', packages: 'كل التفاصيل علينا', how: 'خطوة بخطوة', faq: 'على بالكم', contact: 'فرحتكم بتستنّى' };
+    ids.forEach(function (id, i) {
+      var sec = document.getElementById(id), side = i % 2 ? 'l' : 'r';
+      sec.classList.add('bl-sec');
+      sec.insertAdjacentHTML('afterbegin', '<span class="bl-br bl-' + side + '" aria-hidden="true">' + branch + '</span>' +
+        '<span class="bl-vt bl-vt-' + (side === 'r' ? 'l' : 'r') + '" aria-hidden="true">' + words[id] + '</span>');
+    });
+  }
+
+  function scan() { decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   /* run the decorators at most once per frame, however many DOM changes arrive */
   var scanQueued = false;

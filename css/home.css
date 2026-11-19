@@ -11312,3 +11312,326 @@ html body #contact{background:radial-gradient(40% 55% at 22% 50%,rgba(214,228,24
   .ha-rib{margin:clamp(12px,2vh,22px) 0 6px}
   .ha-cd b{font-size:clamp(26px,2.3vw,36px)}
 }
+
+/* ── hero: polaroid keepsakes instead of the olive trees ── */
+.hero .hstage .h-tree{display:none!important}
+.hero .hp{position:absolute;z-index:3;margin:0;width:clamp(120px,11vw,168px);padding:9px 9px 0;background:#fff;
+  box-shadow:0 0 0 1px rgba(38,50,79,.05),0 26px 40px -24px rgba(38,50,79,.4),0 6px 14px -10px rgba(38,50,79,.2);
+  animation:hpFloat 7s ease-in-out infinite;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.hero .hp:hover{transform:translateY(-8px) rotate(0deg)!important;box-shadow:0 0 0 1px rgba(38,50,79,.05),0 34px 50px -24px rgba(38,50,79,.45)}
+.hp-ph{display:block;position:relative;aspect-ratio:1/1.05;overflow:hidden;background:linear-gradient(170deg,#fdf1f4,#eef3fb)}
+.hp-eng{background:linear-gradient(170deg,#eef3fb,#f6eef9)}
+.hp-grad{background:linear-gradient(170deg,#f2f5fb,#e2ebf7)}
+.hp-bday{background:linear-gradient(170deg,#fff4f6,#fbe2e8)}
+.hero .hp figcaption{font:700 clamp(15px,1.25vw,19px)/1 "Aref Ruqaa",serif;color:#9e1c2a;text-align:center;padding:10px 4px 13px;white-space:nowrap}
+.hp-1{left:-3%;top:4%;rotate:-8deg}
+.hp-2{left:4%;top:52%;rotate:6deg;animation-delay:-2s}
+.hp-3{right:-3%;top:2%;rotate:7deg;animation-delay:-4s}
+.hp-4{right:4%;top:50%;rotate:-6deg;animation-delay:-1s}
+@keyframes hpFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+.hp-svg{position:absolute;inset:8% 6%;width:88%;height:84%}
+/* wedding: the couple sway, hearts rise */
+.hp-cp{position:absolute;left:50%;bottom:4%;height:86%;translate:-50% 0;transform-origin:50% 100%;animation:hpSway 4s ease-in-out infinite}
+@keyframes hpSway{0%,100%{rotate:-3deg}50%{rotate:3deg}}
+.hp-hrt{position:absolute;left:62%;bottom:58%;font-style:normal;color:#e08a9a;font-size:14px;animation:hpHeart 3.2s ease-out infinite;opacity:0}
+.hp-hrt.h2{left:32%;font-size:11px;animation-delay:1.6s}
+@keyframes hpHeart{0%{opacity:0;translate:0 0;scale:.6}20%{opacity:1}100%{opacity:0;translate:0 -40px;scale:1.1}}
+/* engagement: rings meet, sparkles twinkle */
+.hp-r1{animation:hpRing 3.6s ease-in-out infinite;transform-origin:50px 58px}
+.hp-r2{animation:hpRing 3.6s ease-in-out infinite reverse;transform-origin:72px 62px}
+@keyframes hpRing{0%,100%{transform:translateX(-3px) rotate(-6deg)}50%{transform:translateX(3px) rotate(6deg)}}
+.hp-sp path{transform-box:fill-box;transform-origin:center;animation:hpTw 2.4s ease-in-out infinite}
+.hp-sp path:nth-child(2){animation-delay:.8s}.hp-sp path:nth-child(3){animation-delay:1.6s}
+.hp-eng .hp-sp path{fill:#d8b56f}
+@keyframes hpTw{0%,100%{opacity:.2;scale:.5}50%{opacity:1;scale:1.2}}
+/* graduation: the cap is tossed */
+.hp-cap{animation:hpToss 3.4s cubic-bezier(.3,0,.4,1) infinite;transform-box:fill-box;transform-origin:center}
+@keyframes hpToss{0%,100%{transform:translateY(8px) rotate(0)}45%{transform:translateY(-14px) rotate(-14deg)}60%{transform:translateY(-12px) rotate(10deg)}}
+/* birthday: balloons bob, the candle flickers */
+.hp-bl{animation:hpBob 4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.hp-bl.b2{animation-delay:-2s}
+@keyframes hpBob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-6px) rotate(4deg)}}
+.hp-fl{transform-box:fill-box;transform-origin:50% 100%;animation:hpFlick .5s ease-in-out infinite alternate}
+@keyframes hpFlick{from{transform:scale(.9,1) rotate(-4deg)}to{transform:scale(1.05,1.12) rotate(4deg)}}
+.hero.is-off .hp,.hero.is-off .hp *{animation-play-state:paused!important}
+@media (max-width:820px){
+  .hero .hp{width:88px;padding:5px 5px 0}
+  .hero .hp figcaption{font-size:12px;padding:6px 2px 8px}
+  .hp-1{left:-2%;top:-4%}.hp-3{right:-2%;top:-4%}
+  .hp-2,.hp-4{display:none}
+}
+@media (prefers-reduced-motion:reduce){.hero .hp,.hero .hp *{animation:none!important}}
+.hero > .hp{z-index:2}
+.hp-1{left:clamp(24px,6vw,110px);top:24%}
+.hp-2{left:clamp(60px,10vw,190px);top:60%}
+.hp-3{right:clamp(24px,6vw,110px);top:22%;left:auto}
+.hp-4{right:clamp(60px,10vw,190px);top:58%;left:auto}
+.hero .hp{width:clamp(130px,11.5vw,176px)}
+@media (max-width:1100px) and (min-width:821px){.hp-2,.hp-4{display:none}.hero .hp{width:118px}.hp-1{left:14px}.hp-3{right:14px}}
+@media (max-width:820px){
+  .hero .hp{width:76px}
+  .hp-1{left:14px;top:96px}.hp-3{right:14px;top:96px}
+  .hp-2,.hp-4{display:none}
+}
+@media (max-width:820px){.hero .hp-2,.hero .hp-4{display:block!important;top:auto;bottom:70px}.hp-2{left:24px}.hp-4{right:24px}}
+
+/* hero: no olive branches; small line icons of what we make, drifting softly */
+.hero .deco.d-ol1,.hero .deco.d-ol2{display:none!important}
+.hero > .hi{position:absolute;inset:0;z-index:1;pointer-events:none}
+.hi-i{position:absolute;width:clamp(24px,2.3vw,34px);height:auto;fill:none;stroke:#b3202f;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;color:#b3202f;
+  opacity:.5;translate:-50% -50%;rotate:var(--r);animation:hiFloat 8s ease-in-out infinite}
+.hi-i:nth-child(3n){stroke:#26324f;color:#26324f;opacity:.38}
+.hi-i:nth-child(4n){stroke:#7f9ccf;color:#7f9ccf;opacity:.6}
+.hi-spark{width:clamp(14px,1.3vw,20px);stroke:#d8b56f!important;opacity:.7!important}
+.hi-lights{width:clamp(34px,3.2vw,48px)}
+@keyframes hiFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-9px) rotate(4deg)}}
+.hero.is-off .hi-i{animation-play-state:paused}
+@media (max-width:820px){.hi-i{width:22px;opacity:.35}.hi-i:nth-child(n+8){display:none}.hi-lights{width:32px}}
+@media (prefers-reduced-motion:reduce){.hi-i{animation:none}}
+.hi-i{width:clamp(28px,2.7vw,40px);opacity:.62;stroke-width:1.5}
+.hi-i:nth-child(3n){opacity:.5}
+.hi-i:nth-child(4n){opacity:.7}
+.hi-heart{stroke:#e08a9a!important;color:#e08a9a!important;opacity:.75!important;fill:rgba(224,138,154,.14)!important}
+.hi-lights{width:clamp(40px,3.8vw,56px)}
+@media (max-width:820px){.hi-i{width:22px}.hi-i:nth-child(n+8){display:block}.hi-i:nth-child(odd):not(.hi-heart){display:none}}
+
+/* ── the opened invitation, as a printed card ── */
+.hero .fbase,.hero .fcv .fb{background:linear-gradient(180deg,#fffdfe,#fdf4f6 70%,#f6f1f9)!important}
+.hero .fbase > *:not(.bc),.hero .fcv .fb > *:not(.bp){display:none!important}
+.bc,.bp{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:7% 9% 6%;box-sizing:border-box;font-family:Cairo,sans-serif;color:#5b4f5f;overflow:hidden}
+.bc::before,.bp::before{content:"";position:absolute;inset:4%;border:1px solid rgba(179,32,47,.35);border-radius:4px;pointer-events:none}
+.bc-win{position:relative;width:74%;aspect-ratio:1/0.92;border-radius:50% 50% 0 0/62% 62% 0 0;overflow:hidden;
+  background:radial-gradient(70% 60% at 50% 30%,#fff,#f9e3e8 60%,#e6eef9);box-shadow:inset 0 0 0 1.5px rgba(201,163,90,.7),inset 0 0 0 5px #fff,inset 0 0 0 6px rgba(201,163,90,.35)}
+.bc-cp{position:absolute;left:50%;bottom:-2%;height:94%;translate:-50% 0;transform-origin:50% 100%;animation:hpSway 5s ease-in-out infinite}
+.bc-lace{position:absolute;right:0;top:0;width:44%;transform:scaleX(-1);opacity:.95;filter:drop-shadow(0 1px 1px rgba(150,110,60,.4))}
+.bc-h{position:absolute;left:58%;bottom:56%;font-style:normal;color:#e08a9a;font-size:12px;animation:hpHeart 3.4s ease-out infinite;opacity:0}
+.bc-h.b{left:38%;font-size:9px;animation-delay:1.7s}
+.bc-fam{margin-top:5%;font-size:9px;letter-spacing:.05em;color:#8a7f8e}
+.bc-nm{display:flex;align-items:center;gap:8px;margin:1% 0 0}
+.bc-nm b{font:700 clamp(26px,2.4vw,34px)/1.35 "Aref Ruqaa",serif;color:#9e1c2a}
+.bc-nm i{font-style:normal;color:#d8b56f;font-size:13px}
+.bc-inv{font-size:9.5px;color:#6f6578;max-width:80%;line-height:1.7}
+.bc-dt{display:flex;align-items:center;gap:8px;margin-top:4%;color:#26324f}
+.bc-dt span{font-size:9.5px;padding:2px 8px;border-block:1px solid rgba(179,32,47,.35)}
+.bc-dt b{font:700 22px/1 "Aref Ruqaa",serif;color:#b3202f}
+.bc-v{margin-top:3%;font-size:9px;color:#8a7f8e}
+.bc-ros{position:absolute;width:30%;pointer-events:none}
+.bc-ros.tl{left:-4%;top:-3%;transform:rotate(180deg)}
+.bc-ros.br{right:-5%;bottom:-4%}
+.bc-ros.tr{right:-5%;top:-4%;transform:scaleY(-1)}
+/* programme page */
+.bp{justify-content:center;gap:6%}
+.bp-t{font:700 clamp(22px,2vw,28px)/1.3 "Aref Ruqaa",serif;color:#9e1c2a}
+.bp-orn{width:60%;height:10px;margin-top:-4%;background:linear-gradient(90deg,transparent,rgba(179,32,47,.5),transparent) center/100% 1px no-repeat,
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 0l5 5-5 5-5-5z' fill='%23d8b56f'/%3E%3C/svg%3E") center/9px no-repeat}
+.bp ul{list-style:none;margin:0;padding:0;width:86%;display:flex;flex-direction:column;gap:8px}
+.bp li{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:8px;padding:5px 0;border-bottom:1px dashed rgba(179,32,47,.2);text-align:start}
+.bp li b{font-size:11px;font-weight:600;color:#26324f}
+.bp li time{font-size:10px;color:#9e1c2a}
+.bp-ic{width:30px;height:30px;border-radius:50%;background:#fdeef1;display:grid;place-items:center;overflow:hidden}
+.bp-ic img{height:26px;margin-top:6px}
+.bp-ic svg{width:18px;fill:none;stroke:#b3202f;stroke-width:1.6;stroke-linecap:round}
+.bp-n{margin:0;font:700 15px/1.4 "Aref Ruqaa",serif;color:#9e1c2a}
+@media (max-width:820px){.bc-nm b{font-size:20px}.bc-fam,.bc-inv,.bc-v{font-size:6.5px}.bc-dt span{font-size:6.5px}.bc-dt b{font-size:15px}
+  .bp-t{font-size:16px}.bp li b{font-size:7.5px}.bp li time{font-size:7px}.bp-ic{width:20px;height:20px}.bp li{grid-template-columns:20px 1fr auto;gap:5px}.bp-ic img{height:17px}.bp-ic svg{width:12px}.bp-n{font-size:10px}.bp ul{gap:3px}}
+.bc::before,.bp::before{display:none!important}
+.bc,.bp{padding:10% 10% 18%!important}
+.hero .fcv .fb{display:block!important}
+.bp{position:absolute!important;inset:0!important;width:auto!important;height:auto!important}
+.bc-win{border-radius:0!important;clip-path:inset(0 round 50% 50% 0 0 / 60% 60% 0 0);box-shadow:none!important;outline:none}
+.bc-win::after{content:"";position:absolute;inset:0;border-radius:50% 50% 0 0/60% 60% 0 0;box-shadow:inset 0 0 0 1.5px rgba(201,163,90,.75),inset 0 0 0 5px rgba(255,255,255,.9),inset 0 0 0 6px rgba(201,163,90,.35);pointer-events:none}
+.bp li{grid-template-columns:30px 1fr max-content}
+.bp li time{white-space:nowrap}
+.bp li b{white-space:nowrap}
+.bp ul{width:92%}
+.bc-ros.tl{top:auto;bottom:-4%;left:-5%;transform:scaleX(-1)}
+.bc-ros.tr{top:auto;bottom:-4%;right:-5%;transform:none}
+
+/* invitation pages: no tatreez band, no roses */
+.hero .fbase::after,.hero .fcv .fb::after,.hero .bc-ros{display:none!important}
+.bc,.bp{padding-bottom:12%!important}
+.bc{justify-content:center}
+.bc-win{width:78%}
+
+/* ── hero centre: one card + countdown & calendar ── */
+.hero .hstage.hc-on > :not(.hc){display:none!important}
+.hero .hstage.hc-on{display:flex!important;align-items:center;justify-content:center}
+.hc{display:flex;align-items:center;justify-content:center;gap:clamp(28px,4vw,64px)}
+.hc-card{position:relative;width:clamp(240px,20vw,300px);aspect-ratio:2/3;background:linear-gradient(180deg,#fffdfe,#fdf4f6 70%,#f6f1f9);
+  border-radius:50% 50% 14px 14px/34% 34% 14px 14px;box-shadow:0 0 0 1px rgba(179,32,47,.12),0 40px 60px -34px rgba(38,50,79,.45),0 10px 22px -14px rgba(38,50,79,.25);
+  animation:hpFloat 7s ease-in-out infinite}
+.hc-card::before{content:"";position:absolute;inset:12px;border-radius:50% 50% 8px 8px/33% 33% 8px 8px;border:1px solid rgba(179,32,47,.4);box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 5px rgba(201,163,90,.4);pointer-events:none}
+.hc-card .bc{padding:16% 12% 12%!important;justify-content:center}
+.hc-card .bc-win{width:76%}
+.hc-side{width:clamp(250px,20vw,300px);text-align:center;font-family:Cairo,sans-serif}
+.hc-t{margin:0 0 10px;font:700 clamp(24px,2.1vw,30px)/1.3 "Aref Ruqaa",serif;color:#9e1c2a}
+.hc-cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.hc-cd div{background:#fff;border-radius:14px;padding:10px 0 8px;box-shadow:0 0 0 1px rgba(179,32,47,.1),0 14px 24px -18px rgba(38,50,79,.4)}
+.hc-cd b{display:block;font:300 clamp(22px,2vw,30px)/1.1 Cairo,sans-serif;color:#26324f;font-variant-numeric:tabular-nums}
+.hc-cd small{font-size:11px;color:#8a8ea3}
+.hc-cal{background:#fff;border-radius:16px;padding:14px 14px 12px;box-shadow:0 0 0 1px rgba(179,32,47,.1),0 20px 30px -22px rgba(38,50,79,.4)}
+.hc-cal b{display:block;font:700 14px/1 Cairo;color:#26324f;margin-bottom:10px}
+.hc-cal ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,1fr);gap:5px 2px;font-size:12px;color:#4b5068}
+.hc-cal li{position:relative;height:22px;line-height:22px}
+.hc-cal li.h{color:#a3a6b8;font-size:11px}
+.hc-cal li.on{color:#fff;font-weight:700;z-index:0}
+.hc-cal li.on::before{content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;translate:-50% -50%;border-radius:50%;background:#b3202f;z-index:-1;animation:hcPulse 2.4s ease-in-out infinite}
+.hc-cal li.on i{position:absolute;right:-2px;top:-8px;font-style:normal;font-size:10px;color:#e08a9a}
+@keyframes hcPulse{0%,100%{box-shadow:0 0 0 0 rgba(179,32,47,.35)}50%{box-shadow:0 0 0 7px rgba(179,32,47,0)}}
+.hc-n{margin:14px 0 0;font-size:12.5px;line-height:1.8;color:#6b6f86}
+@media (max-width:820px){
+  .hc{flex-direction:column;gap:18px}
+  .hc-card{width:min(220px,58vw)}
+  .hc-side{width:min(320px,88vw)}
+  .hc-cal,.hc-n{display:none}
+}
+.hi-site{position:absolute;left:0;right:0;z-index:-1;pointer-events:none;overflow:hidden}
+.hi-site .hi-i{width:26px;opacity:.28!important}
+.hi-site .hi-heart{opacity:.4!important}
+@media (max-width:820px){.hi-site .hi-i{width:18px;opacity:.22!important}.hi-site .hi-i:nth-child(n){display:block}}
+/* phone: the card sits under the heading, not over it */
+@media (max-width:820px){
+  .hero .hstage.hc-on{height:auto!important;min-height:0!important;margin-top:18px!important;position:relative!important;top:auto!important;transform:none!important}
+  .hc-card{width:min(200px,52vw)}
+  .hero .hp-2,.hero .hp-4{display:none!important}
+}
+.hi-site .hi-i{opacity:.34!important}.hi-site .hi-heart{opacity:.48!important}
+
+/* hero: prints | card | countdown — three columns */
+.hc{gap:clamp(24px,3.4vw,56px)}
+.hc-prints{display:grid;grid-template-columns:repeat(2,auto);gap:clamp(10px,1.2vw,18px) clamp(8px,1vw,14px);width:clamp(260px,22vw,330px)}
+.hero .hc-prints .hp{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:100%!important;display:block!important}
+.hc-prints .hp-1{rotate:-6deg}.hc-prints .hp-2{rotate:5deg;margin-top:22px}
+.hc-prints .hp-3{rotate:4deg;margin-top:-10px}.hc-prints .hp-4{rotate:-5deg;margin-top:12px}
+.hero .hc-prints .hp figcaption{font-size:clamp(13px,1.05vw,16px)}
+@media (max-width:1100px) and (min-width:821px){.hc-prints{width:220px}.hc-side{width:230px}.hc-card{width:220px}}
+@media (max-width:820px){
+  .hc-prints{order:3;grid-template-columns:repeat(4,1fr);width:min(360px,92vw);gap:6px}
+  .hero .hc-prints .hp{display:block!important;padding:4px 4px 0}
+  .hero .hc-prints .hp figcaption{font-size:9px;padding:4px 0 6px}
+  .hc-prints .hp-2,.hc-prints .hp-3,.hc-prints .hp-4{margin-top:0}
+}
+
+/* hero heading moves to the bottom, as a wordmark: a thin word crossed by flowing calligraphy */
+.hero .w > h1{display:none!important}
+.hero .w{display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding-top:76px!important;box-sizing:border-box;height:100%!important}
+.hero .hstage.hc-on{margin-top:0!important}
+.hx-mark{position:relative;margin:clamp(6px,1.5vh,18px) 0 0;display:flex;align-items:center;justify-content:center;line-height:1;white-space:nowrap;pointer-events:none}
+.hm-a{font:200 clamp(64px,7.4vw,118px)/1 Cairo,sans-serif;color:#26324f;letter-spacing:-.01em}
+.hm-b{margin-inline-start:-.55em;translate:0 .26em;rotate:-6deg;font:700 clamp(64px,7vw,112px)/1 "Aref Ruqaa",serif;font-style:normal;color:#b3202f;
+  text-shadow:0 3px 0 #fff,0 0 2px #fff,0 18px 36px rgba(179,32,47,.22)}
+@media (max-width:820px){
+  .hero .w{padding-top:70px!important}
+  .hm-a{font-size:clamp(40px,12vw,58px)}.hm-b{font-size:clamp(40px,12vw,58px)}
+  .hx-mark{order:-1;margin:0 0 14px}
+}
+.hm-b{margin-inline-start:-.28em!important;translate:0 .5em!important;rotate:-4deg!important}
+.hx-mark{margin-bottom:.4em!important}
+@media (max-width:820px){.hx-mark{margin:0 0 46px!important}.hm-b{translate:0 .55em!important}}
+
+/* navbar: logo in the centre, links on both sides (like an invitation's header) */
+@media (min-width:900px){
+  header.nav > .w{position:relative;display:flex!important;align-items:center;justify-content:flex-start!important;gap:clamp(18px,2.4vw,36px)!important}
+  header.nav .nl{display:contents!important}
+  header.nav .logo{position:absolute!important;left:50%;top:50%;translate:-50% -50%;margin:0!important;order:0}
+  header.nav .nl .l:nth-child(3){margin-inline-end:auto!important}
+  header.nav .nl .l{order:1}
+  header.nav .cta-n{order:2;margin:0!important}
+}
+.hx-mark::before,.hx-mark::after,.hx-mark *::before,.hx-mark *::after{display:none!important;content:none!important}
+
+/* ── blossom branches crossing section edges, and vertical script on the sides ── */
+html body .bl-sec{position:relative}
+.bl-br{position:absolute;top:clamp(-170px,-11vw,-110px);width:clamp(230px,26vw,380px);z-index:0;pointer-events:none;filter:drop-shadow(0 10px 14px rgba(150,70,90,.12))}
+.bl-br svg{display:block;width:100%;height:auto;overflow:visible}
+.bl-br.bl-r{right:-2vw;transform:scaleX(-1)}
+.bl-br.bl-l{left:-2vw}
+.bl-br svg{animation:blSway 9s ease-in-out infinite;transform-origin:0 15%}
+.bl-br.bl-r svg{animation-delay:-4s}
+.bl-f{transform-box:fill-box}
+@keyframes blSway{0%,100%{rotate:-1.2deg}50%{rotate:1.6deg}}
+.bl-vt{position:absolute;top:clamp(90px,10vw,150px);writing-mode:vertical-rl;font:700 clamp(30px,2.8vw,44px)/1 "Aref Ruqaa",serif;color:#b3202f;opacity:.16;
+  pointer-events:none;z-index:0;white-space:nowrap;letter-spacing:.02em}
+.bl-vt-r{right:clamp(10px,2vw,36px)}
+.bl-vt-l{left:clamp(10px,2vw,36px);transform:rotate(180deg)}
+html body .bl-sec > :not(.bl-br):not(.bl-vt){position:relative;z-index:1}
+.is-off .bl-br svg{animation-play-state:paused}
+@media (max-width:820px){.bl-br{width:170px;top:-80px}.bl-vt{display:none}}
+@media (prefers-reduced-motion:reduce){.bl-br svg{animation:none}}
+
+/* hero v2: prints two each side, card centred with the countdown under it, small calendar bottom-left */
+.hc{flex-direction:column!important;gap:clamp(10px,1.6vh,18px)!important}
+.hc-card{width:clamp(210px,16.5vw,250px)!important}
+.hc-count{text-align:center}
+.hc-count .hc-t{font-size:clamp(18px,1.5vw,22px);margin:0 0 6px}
+.hc-count .hc-cd{width:clamp(250px,20vw,300px);margin:0 auto;gap:6px}
+.hc-count .hc-cd div{padding:6px 0 5px;border-radius:12px}
+.hc-count .hc-cd b{font-size:clamp(18px,1.6vw,24px)}
+.hc-count .hc-cd small{font-size:10px}
+.hero > .hp-1{top:17%!important}.hero > .hp-2{top:47%!important}
+.hero > .hp-3{top:15%!important}.hero > .hp-4{top:45%!important}
+.hero .hc-calw{position:absolute;left:clamp(20px,3vw,48px);bottom:clamp(18px,3vh,32px);width:190px;z-index:3;padding:10px 10px 8px;rotate:-3deg}
+.hero .hc-calw b{font-size:12px;margin-bottom:6px}
+.hero .hc-calw ol{gap:2px 1px;font-size:10px}
+.hero .hc-calw li{height:17px;line-height:17px}
+.hero .hc-calw li.h{font-size:9px}
+.hero .hc-calw li.on::before{width:20px;height:20px}
+.hx-mark{margin-top:clamp(2px,1vh,10px)!important}
+.hm-a{font-size:clamp(54px,6vw,96px)!important}.hm-b{font-size:clamp(54px,5.8vw,92px)!important}
+@media (max-width:1100px){.hero .hc-calw{display:none}}
+@media (max-width:820px){.hc-count .hc-cd{width:min(320px,88vw)}.hm-a,.hm-b{font-size:clamp(40px,12vw,56px)!important}}
+
+/* blossoms: keep them a modest size */
+.bl-br{position:absolute!important;width:clamp(200px,20vw,300px)!important;height:auto!important;top:clamp(-130px,-8vw,-80px)!important}
+.bl-br svg{width:100%!important;height:auto!important;max-width:none}
+@media (max-width:820px){.bl-br{width:150px!important;top:-60px!important}}
+
+/* bottom heading: our own calligraphy, one red, upright */
+.hero .hx-mark{font:700 clamp(56px,5.6vw,88px)/1.3 "Aref Ruqaa",serif!important;color:#b3202f!important;-webkit-text-fill-color:#b3202f!important;
+  text-shadow:0 14px 34px rgba(179,32,47,.18);margin:clamp(4px,1vh,12px) 0 0!important;rotate:0deg!important;font-style:normal!important}
+@media (max-width:820px){.hero .hx-mark{font-size:clamp(40px,11vw,54px)!important;margin:0 0 14px!important}}
+/* drawn blossoms off until we have a real painted branch */
+.bl-br{display:none!important}
+/* the card is the main actor: no countdown under it, card a little larger */
+.hero .hc-count{display:none!important}
+.hc-card{width:clamp(250px,20vw,310px)!important}
+@media (max-width:820px){.hc-card{width:min(240px,62vw)!important}}
+
+/* ── hero card, enhanced: bigger, the heading above it with the arch overlapping, gold filigree on the arch edge ── */
+.hero .hc-calw{display:none!important}
+.hero .w{justify-content:flex-start!important;padding-top:84px!important}
+.hero .hx-mark{order:-1;position:relative;z-index:0;margin:0 0 clamp(-46px,-3vw,-28px)!important;font-size:clamp(70px,7.6vw,124px)!important;line-height:1.25!important;
+  color:#b3202f!important;-webkit-text-fill-color:#b3202f!important;opacity:.95}
+.hero .hstage.hc-on{position:relative;z-index:1}
+.hc-card{width:clamp(300px,24vw,370px)!important}
+.hc-card .bc{padding:9% 11% 9%!important;justify-content:flex-start!important}
+.hc-card .bc-win{width:92%!important;aspect-ratio:1/.95;margin-top:2%}
+.hc-card .bc-lace{position:absolute;right:3%;top:6%;width:13%;height:auto;transform:none;opacity:1;filter:drop-shadow(0 1px 1px rgba(120,80,20,.25));z-index:2}
+.hc-card .bc-fam{margin-top:6%;font-size:11px;letter-spacing:.04em}
+.hc-card .bc-nm{gap:12px;margin-top:1%}
+.hc-card .bc-nm b{font-size:clamp(34px,3vw,44px)}
+.hc-card .bc-nm i{font-size:16px;color:#d8b56f}
+.hc-card .bc-inv{font-size:11.5px;max-width:86%}
+.hc-card .bc-dt{margin-top:5%;gap:10px}
+.hc-card .bc-dt b{font:600 15px/1 Cairo,sans-serif;color:#9e1c2a;letter-spacing:.12em}
+.hc-card .bc-dt span{font-size:10.5px}
+.hc-card .bc-v{display:none}
+@media (max-width:820px){
+  .hero .hx-mark{font-size:clamp(46px,13vw,64px)!important;margin:0 0 -14px!important}
+  .hc-card{width:min(280px,74vw)!important}
+  .hc-card .bc-nm b{font-size:28px}.hc-card .bc-fam,.hc-card .bc-inv{font-size:9px}.hc-card .bc-dt b{font-size:12px}.hc-card .bc-dt span{font-size:8.5px}
+}
+.hero .hx-mark{margin:0 0 -18px!important;font-size:clamp(64px,6.6vw,108px)!important}
+.hc-card .bc{justify-content:space-evenly!important;padding:8% 10% 10%!important}
+.hc-card .bc-win{margin-top:0}
+.hc-card .bc-fam,.hc-card .bc-nm,.hc-card .bc-inv,.hc-card .bc-dt{margin-top:0!important}
+.hc-card .bc-lace{width:20%!important;right:-2%!important;top:3%!important}
+@media (max-width:820px){.hero .hx-mark{font-size:clamp(40px,11.5vw,52px)!important;margin:0 0 -8px!important}.hero > .hp-1,.hero > .hp-3{top:120px!important}.hero .hx-mark{margin-top:0!important}}
+@media (max-width:820px){.hero > .hp-1,.hero > .hp-3{display:none!important}.hero > .hp-2,.hero > .hp-4{display:block!important;top:auto!important;bottom:40px!important;width:96px!important}.hero > .hp-2{left:28px!important}.hero > .hp-4{right:28px!important}}
+/* card: no gold scroll; a garden backdrop behind the couple, like an outdoor photo session */
+.hc-card .bc-lace{display:none!important}
+.hc-card .bc-win{background:url(../img/garden.svg) center/cover no-repeat!important}
+.hc-card .bc-win::before{content:"";position:absolute;left:0;right:0;bottom:0;height:26%;background:linear-gradient(transparent,rgba(255,255,255,.25));z-index:1;pointer-events:none}
+.hc-card .bc-cp{z-index:2;filter:drop-shadow(0 6px 10px rgba(30,40,20,.3))}
+.hc-card .bc-win::before{display:none!important}
+.hc-card .bc-cp{filter:drop-shadow(0 8px 12px rgba(120,60,80,.18))!important}

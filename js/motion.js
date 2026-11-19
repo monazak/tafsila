@@ -37,7 +37,6 @@
     gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, Flip);
     document.documentElement.classList.add('mo-on');
     smoothScroll();
-    headings();
     categoryGrow();
     parallax();
     if (finePointer) bookTilt();

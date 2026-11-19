@@ -11895,3 +11895,34 @@ html body .bl-sec > :not(.bl-br):not(.bl-vt){position:relative;z-index:1}
 .hc-face{--gx:inherit}
 @media (max-width:820px){.ho{gap:9px}.ho button{font-size:13px}.hc-card .hc-hint{bottom:-80px!important}}
 .hc-card .hc-hint{display:none!important}
+
+/* ══ headings written in ink ══ */
+.bl-vt{display:none!important}
+h2.ink{position:relative;display:inline-flex!important;flex-direction:column;align-items:flex-start;gap:2px;isolation:isolate;overflow:visible!important}
+#how h2.ink,#faq h2.ink{align-items:center}
+.ink-k{font:400 clamp(15px,1.25vw,19px)/1 Amiri,serif;color:#b8893b;letter-spacing:.02em;display:flex;align-items:center;gap:10px;
+  opacity:0;translate:0 8px;transition:opacity .8s ease .1s,translate .8s ease .1s}
+.ink-k::before{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,#c9a35a)}
+#how .ink-k::after,#faq .ink-k::after{content:"";width:28px;height:1px;background:linear-gradient(-90deg,transparent,#c9a35a)}
+.ink-n{position:absolute;z-index:-1;inset-inline-end:-.35em;top:-.32em;font:700 2.3em/1 "Aref Ruqaa",serif;color:#b3202f;opacity:0;transition:opacity 1.6s ease .3s;pointer-events:none}
+#how .ink-n,#faq .ink-n{inset-inline-end:auto;left:50%;translate:-50% 0}
+.ink-t{position:relative;display:inline-block;clip-path:inset(-20% -2% -30% 102%);
+  background:linear-gradient(100deg,#9e1c2a 0%,#b3202f 40%,#e4757f 50%,#b3202f 60%,#9e1c2a 100%) 100% 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent!important}
+.ink-pen{position:absolute;top:30%;right:0;width:7px;height:7px;border-radius:50%;background:#b3202f;box-shadow:0 0 0 3px rgba(179,32,47,.15),0 0 12px rgba(179,32,47,.5);opacity:0;pointer-events:none}
+h2.ink-on .ink-k{opacity:1;translate:0 0}
+h2.ink-on .ink-n{opacity:.06}
+h2.ink-on .ink-t{animation:inkWrite 1.9s cubic-bezier(.55,.1,.35,1) .35s forwards,inkShine 1.4s ease 2.3s forwards}
+h2.ink-on .ink-pen{animation:inkPen 1.9s cubic-bezier(.55,.1,.35,1) .35s forwards}
+@keyframes inkWrite{from{clip-path:inset(-20% -2% -30% 102%)}to{clip-path:inset(-20% -2% -30% -2%)}}
+@keyframes inkPen{0%{opacity:1;right:0;top:30%}25%{top:55%}50%{top:25%}75%{top:60%}96%{opacity:1}100%{opacity:0;right:100%;top:40%}}
+@keyframes inkShine{from{background-position:100% 0}to{background-position:0 0}}
+/* the red thread beside the title draws itself after the writing */
+#designs .sh::after,#packages .sh::after{transform-origin:right center;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.3,.7,.2,1) 2.1s}
+#designs .sh:has(h2.ink-on)::after,#packages .sh:has(h2.ink-on)::after{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){.ink-t{clip-path:none!important;animation:none!important}.ink-pen{display:none}}
+h2.ink{align-items:flex-start!important;display:inline-flex!important}
+#how h2.ink,#faq h2.ink,#contact h2.ink{align-items:center!important}
+.ink-n{inset-inline-end:auto!important;inset-inline-start:-.5em!important;top:-.38em!important}
+#how .ink-n,#faq .ink-n,#contact .ink-n{inset-inline-start:auto!important;left:50%!important}
+#contact h2.ink{align-items:flex-start!important}
+#contact .ink-n{left:auto!important;inset-inline-start:-.5em!important;translate:none!important}

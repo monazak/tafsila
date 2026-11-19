@@ -1165,7 +1165,22 @@
     card.addEventListener('click', function (e) { if (card.dataset.occ && card.dataset.occ !== 'wed') { e.stopImmediatePropagation(); } }, true);
   }
 
-  function scan() { decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decorateHeroOccasions(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* section headings, written in ink: a gold opening word above, the section's number large and faint behind,
+     and the calligraphy drawn in from right to left like a pen signing, once, when it comes into view */
+  function decorateInkHeadings() {
+    var M = { designs: ['بكل حب', '١'], packages: ['من القلب', '٢'], how: ['خطوة بخطوة', '٣'], faq: ['على بالكم', '٤'], contact: ['فرحتكم بتستنّى', '٥'] };
+    Object.keys(M).forEach(function (id) {
+      var h = document.querySelector('#' + id + ' h2'); if (!h || h.dataset.ink) return; h.dataset.ink = 1;
+      var txt = h.textContent.trim();
+      h.classList.add('ink');
+      h.innerHTML = '<span class="ink-k">' + M[id][0] + '</span><span class="ink-n" aria-hidden="true">' + M[id][1] + '</span><span class="ink-t">' + txt + '<i class="ink-pen" aria-hidden="true"></i></span>';
+      if (!('IntersectionObserver' in window) || reduce) { h.classList.add('ink-on'); return; }
+      new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { h.classList.add('ink-on'); o.disconnect(); } }); }, { threshold: .6 }).observe(h);
+    });
+  }
+
+  function scan() { decorateInkHeadings(); decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decorateHeroOccasions(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   /* run the decorators at most once per frame, however many DOM changes arrive */
   var scanQueued = false;

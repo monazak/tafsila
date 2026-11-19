@@ -990,6 +990,25 @@
     st.classList.add('hc-on');
     /* the card rises out of an open envelope sealed with wax */
     var card0 = st.querySelector('.hc-card');
+    if (card0 && !card0.querySelector('.hc-in')) {
+      var front = card0.querySelector('.bc'), inr = document.createElement('div'); inr.className = 'hc-in';
+      var f1 = document.createElement('div'); f1.className = 'hc-face hc-front'; f1.appendChild(front);
+      var ic = function (svg) { return '<span class="bp-ic"><svg viewBox="0 0 32 32">' + svg + '</svg></span>'; };
+      var row = function (t, h, i) { return '<li>' + i + '<b>' + t + '</b><time>' + h + '</time></li>'; };
+      var f2 = document.createElement('div'); f2.className = 'hc-face hc-back';
+      f2.innerHTML = '<div class="bp"><b class="bp-t">برنامج الحفل</b><i class="bp-orn"></i><ul>' +
+        row('الاستقبال', '٧:٠٠ م', ic('<path d="M16 27S5 20 5 12.5A5.5 5.5 0 0 1 16 10a5.5 5.5 0 0 1 11 2.5C27 20 16 27 16 27z"/>')) +
+        row('زفّة العرسان', '٨:٠٠ م', ic('<circle cx="12" cy="19" r="7"/><circle cx="20" cy="19" r="7"/>')) +
+        row('العشاء', '٩:٠٠ م', ic('<path d="M6 20h20M8 20a8 8 0 0 1 16 0M16 9v3M4 24h24"/>')) +
+        row('قطع الكعكة', '١٠:٣٠ م', ic('<rect x="7" y="16" width="18" height="10" rx="2"/><path d="M7 19c3 2 6 2 9 0s6-2 9 0M16 9v7"/>')) +
+        '</ul><p class="bp-n">فرحتنا بتكمل بوجودكم</p><small class="bp-back">اضغطوا لإغلاق الدعوة</small></div>';
+      inr.appendChild(f1); inr.appendChild(f2); card0.appendChild(inr);
+      card0.insertAdjacentHTML('beforeend', '<span class="hc-hint">اضغطوا لفتح الدعوة</span>');
+      card0.setAttribute('role', 'button'); card0.setAttribute('tabindex', '0'); card0.setAttribute('aria-label', 'افتح الدعوة');
+      var flip = function () { card0.classList.toggle('open'); };
+      card0.addEventListener('click', flip);
+      card0.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+    }
     if (card0 && !st.querySelector('.hc-env')) {
       var env = document.createElement('div'); env.className = 'hc-env';
       env.innerHTML = '<i class="env-bk"></i><i class="env-fl"></i>';
@@ -1005,7 +1024,7 @@
       cim.replaceWith(d);
       var gm = d.querySelector('.gm'), go = function () { d.classList.remove('kiss'); void d.offsetWidth; d.classList.add('kiss'); };
       if (gm) { gm.style.cursor = 'pointer'; gm.addEventListener('click', go); }
-      d.addEventListener('click', function (e) { if (!e.target.closest('.gm')) go(); });
+      if (gm) gm.addEventListener('click', function (e) { e.stopPropagation(); });
     }).catch(function () {});
     var hcx = st.querySelector('.hc'), side = hcx.querySelector('.hc-side'), cnt = document.createElement('div'); cnt.className = 'hc-count';
     cnt.appendChild(side.querySelector('.hc-t')); cnt.appendChild(side.querySelector('.hc-cd')); hcx.appendChild(cnt);

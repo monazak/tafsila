@@ -158,12 +158,12 @@
 
   /* 6. questions people ask (dark glass, after the prices) */
   var FAQ = [
-    ['كيف بتوصل الدعوة لضيوفنا؟', 'بنجهزلكم رابط خاص للدعوة، بلضيوفكم على واتساب أو أي تطبيق، وبيفتح مباشرة على الجوال بدون تحميل أي شي.'],
+    ['كيف بتوصل الدعوة لضيوفنا؟', 'بنجهّزلكم رابط خاص للدعوة، بتبعتوه لضيوفكم على واتساب أو أي تطبيق، وبيفتح مباشرة على الجوال بدون تحميل أي شي.'],
     ['بنقدر نعدّل على الدعوة بعد ما نشوفها؟', 'أكيد. بتوصلكم معاينة قبل التسليم، وبنعدّل عليها حسب ملاحظاتكم.'],
     ['كيف بيشتغل تأكيد الحضور؟', 'الضيف بيأكد حضوره من الدعوة نفسها، والتأكيد بيوصلكم على واتساب.'],
     ['شو اللي بيحدد سعر الدعوة؟', 'الأسعار بتبدأ من 50 ₪ لدعوة بتصميم جاهز مع عدّاد تنازلي ورابط مشاركة. السعر بيزيد إذا بدكم تأكيد حضور عبر واتساب وتعديل على النصوص والألوان، أو تصميم خاص حسب طلبكم مع دومين خاص وحركات مخصصة.'],
-    ['عندنا فكرة أو تصميم مختلف، بتقدروا تنفذوه؟', 'نعم، ابعتولنا فكرتكم على واتساب وبنجهزها إلكم بتصميم خاص.'],
-    ['بتشتغل الدعوة على كل الأجهزة؟', 'نعم، الدعوة صفحة ويب بتفتح على أي جوال أو تابلت أو كمبيوتر.']
+    ['عندنا فكرة أو تصميم مختلف، بتقدروا تنفّذوها؟', 'أكيد، ابعتولنا فكرتكم على واتساب وبنصمّملكم إياها من الصفر.'],
+    ['بتشتغل الدعوة على كل الأجهزة؟', 'آه، الدعوة رابط بيفتح على أي جوال أو تابلت أو كمبيوتر، بدون تحميل تطبيق.']
   ];
   var faqIO = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); faqIO.unobserve(e.target); } });
@@ -606,9 +606,9 @@
   /* how we work: three steps hanging from a tailor's measuring tape that unrolls across the top */
   var HOW = [
     ['اختاروا التصميم', 'تصفّحوا المعرض وعاينوا كل دعوة قبل ما تختاروا.'],
-    ['أرسلوا بياناتكم', 'الأسماء والتاريخ والمكان، وأي ألوان أو نصوص تحبّوها.'],
-    ['نجهّزها لكم', 'تصلكم معاينة، ونعدّل عليها حسب ملاحظاتكم.'],
-    ['شاركوا حكايتكم', 'رابط خاص تبعتوه لضيوفكم، وتأكيد الحضور بيوصلكم على واتساب.']
+    ['ابعتولنا التفاصيل', 'الأسماء والتاريخ والمكان، وأي لون أو جملة بتحبّوها.'],
+    ['بنجهّزها إلكم', 'بتوصلكم معاينة، وبنعدّل عليها لحد ما تعجبكم.'],
+    ['ابعتوها لضيوفكم', 'رابط واحد لكل الضيوف، وتأكيدات الحضور بتوصلكم على واتساب.']
   ];
   function decorateHow() {
     var sec = document.getElementById('how'), hw = sec && sec.querySelector('.hows');
@@ -748,7 +748,7 @@
     if (v.length < 4) return;
     v[0].innerHTML = SB +
       '<div class="rs-app"><div class="rs-ah"><b class="rs-logo">تفصيلة</b><svg class="rs-srch" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg></div>' +
-      '<div class="rs-ttl rs-a" style="--d:.05"><b>اختاروا تصميمكم</b><small>٤٨ تصميم لكل المناسبات</small></div>' +
+      '<div class="rs-ttl rs-a" style="--d:.05"><b>اختاروا تصميمكم</b><small>تصاميم لكل المناسبات</small></div>' +
       '<div class="rs-chips rs-a" style="--d:.15"><span class="on">الكل</span><span>زفاف</span><span>خطوبة</span><span>تخرج</span><span>مواليد</span></div>' +
       '<div class="rs-grid">' +
         '<button type="button" class="rs-card on rs-a" style="--d:.25">' + inv('p', 'أحمد و منال') + '<span class="rs-meta"><b>ورد الجوري</b><em>٥٠ ₪</em></span><i class="rs-chk">✓</i></button>' +
@@ -1188,7 +1188,7 @@
     if (document.querySelector('.cmp') || innerWidth < 1180 || reduce) return;
     var heroCard = document.querySelector('.hero .hc-card'), ids = ['designs', 'packages', 'how', 'faq', 'contact'];
     if (!heroCard || !ids.every(function (i) { return document.getElementById(i); })) return;
-    var LBL = { designs: 'اختاروا تصميمكم', packages: 'دعوة كاملة · ٥٠ ₪', how: 'عم نجهّزها لكم', faq: 'عندكم سؤال؟', contact: 'جاهزة للإرسال' };
+    var LBL = { designs: 'اختاروا تصميمكم', packages: 'دعوة كاملة · ٥٠ ₪', how: 'عم نجهّزها إلكم', faq: 'عندكم سؤال؟', contact: 'جاهزة للإرسال' };
     var c = document.createElement('a'); c.className = 'cmp'; c.href = '#contact'; c.setAttribute('aria-label', 'اطلبوا دعوتكم');
     c.innerHTML = '<span class="cmp-card"><span class="cmp-win"><img src="img/couple.svg" alt=""></span><b>أحمد <i>♥︎</i> منال</b><small>١٣ · ٠٢ · ٢٠٢٧</small></span><span class="cmp-l"></span>';
     document.body.appendChild(c);

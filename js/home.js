@@ -371,19 +371,19 @@
 
   /* 10. small invitations drawn as real invitation cards */
   var INV = {
-    wgold: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['ليان', 'آدم'], d: 'الخميس ١٢ آب ٢٠٢٧', v: 'قاعة الياسمين', seal: 1, em: 'rings' },
-    wrose: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['سلمى', 'عمر'], d: 'الجمعة ٩ تموز ٢٠٢٧', v: 'قاعة الورد', seal: 1, em: 'rings' },
-    wsage: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['ريم', 'كريم'], d: 'الجمعة ٢٠ آب ٢٠٢٧', v: 'حديقة الزيتون', seal: 1, em: 'rings' },
-    ish:   { t: 'يسعدنا دعوتكم لحفل إشهار زواج', n: ['نور', 'يزن'], d: 'الجمعة ٢ تموز ٢٠٢٧', v: 'حديقة الورد', em: 'ring' },
-    grad:  { t: 'بكل فخر ندعوكم لحفل تخرج', n: ['ريم خالد'], s: 'دفعة ٢٠٢٧', d: 'الخميس ٢٤ حزيران ٢٠٢٧', band: 1, em: 'cap' },
-    bday:  { t: 'تعالوا نحتفل بعيد ميلاد', n: ['جود'], s: 'خمس سنين من الفرح', d: 'السبت ١٤ أيار ٢٠٢٧', em: 'balloon' }
+    wgold: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['ليان', 'آدم'], d: 'الخميس ١٢ أغسطس ٢٠٢٧', v: 'قاعة الياسمين', seal: 1, em: 'rings' },
+    wrose: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['سلمى', 'عمر'], d: 'الجمعة ٩ يوليو ٢٠٢٧', v: 'قاعة الورد', seal: 1, em: 'rings' },
+    wsage: { t: 'بكل الحب ندعوكم لحضور حفل زفاف', n: ['ريم', 'كريم'], d: 'الجمعة ٢٠ أغسطس ٢٠٢٧', v: 'حديقة الزيتون', seal: 1, em: 'rings' },
+    ish:   { t: 'يسعدنا دعوتكم لحفل إشهار زواج', n: ['نور', 'يزن'], d: 'الجمعة ٢ يوليو ٢٠٢٧', v: 'حديقة الورد', em: 'ring' },
+    grad:  { t: 'بكل فخر ندعوكم لحفل تخرج', n: ['ريم خالد'], s: 'دفعة ٢٠٢٧', d: 'الخميس ٢٤ يونيو ٢٠٢٧', band: 1, em: 'cap' },
+    bday:  { t: 'تعالوا نحتفل بعيد ميلاد', n: ['جود'], s: 'خمس سنين من الفرح', d: 'السبت ١٤ مايو ٢٠٢٧', em: 'balloon' }
   };
   function invHTML(k) {
     if (k === 'grad') return '<div class="inv inv-g" aria-hidden="true">' +
       '<div class="g-top"><i class="g-cap"></i><span>حفل تخرج</span></div>' +
       '<span class="inv-t">بكل فخر ندعوكم لمشاركتنا فرحة تخرج</span>' +
       '<span class="inv-n">ريم خالد</span><span class="g-cls">دفعة ٢٠٢٧</span>' +
-      '<i class="inv-d"></i><span class="inv-dt">الخميس ٢٤ حزيران ٢٠٢٧</span><span class="inv-v">مسرح الجامعة</span>' +
+      '<i class="inv-d"></i><span class="inv-dt">الخميس ٢٤ يونيو ٢٠٢٧</span><span class="inv-v">مسرح الجامعة</span>' +
       '<i class="g-ros"></i></div>';
     if (k === 'wgold' || k === 'wrose' || k === 'wsage') {
       /* the wedding card: classic and modern — an arch in foil, fine glitter, the couple, names in calligraphy */
@@ -620,7 +620,7 @@
     var thumbs = ''; ['#fbeceb', '#eef1ea', '#f4ece0', '#eef0f6'].forEach(function (c, i) { thumbs += '<span class="ph-th' + (i === 0 ? ' on' : '') + '" style="background:' + c + '"><i></i><i></i><i></i></span>'; });
     var phone = '<div class="hw4-ph"><div class="ph-scr">' +
       '<div class="ph-v v0"><div class="ph-top">اختاروا تصميمكم</div><div class="ph-grid">' + thumbs + '</div><div class="ph-send">اختار هذا التصميم</div></div>' +
-      '<div class="ph-v v1"><div class="ph-top">واتساب · تفصيلة</div><div class="ph-chat"><div class="ph-msg m1"><b>أحمد و منال</b><span>الخميس ١٣ شباط ٢٠٢٧</span></div><div class="ph-msg m2"><span>قاعة الفرح · غزة</span></div><div class="ph-msg m3"><span>بدنا اللون الوردي لو سمحتوا 🌸</span></div><div class="ph-rsvp r0">وصلتنا بياناتكم ✓</div></div></div>' +
+      '<div class="ph-v v1"><div class="ph-top">واتساب · تفصيلة</div><div class="ph-chat"><div class="ph-msg m1"><b>أحمد و منال</b><span>الخميس ١٣ فبراير ٢٠٢٧</span></div><div class="ph-msg m2"><span>قاعة الفرح · غزة</span></div><div class="ph-msg m3"><span>بدنا اللون الوردي لو سمحتوا 🌸</span></div><div class="ph-rsvp r0">وصلتنا بياناتكم ✓</div></div></div>' +
       '<div class="ph-v v2"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٣ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
       '<div class="ph-v v3"><div class="ph-top">شاركوها</div><div class="ph-chat"><div class="ph-b"><span class="ph-link"><span class="ph-mini"></span><b>دعوة أحمد و منال</b><small>tafsila.ps/ahmad-manal</small></span></div>' +
       '<div class="ph-rsvp r1">✓ سارة أكدت حضورها</div><div class="ph-rsvp r2">✓ خالد أكد حضوره</div><div class="ph-rsvp r3">✓ ٤٢ ضيف أكدوا</div></div></div>' +
@@ -760,7 +760,7 @@
     v[1].innerHTML = SB + WAH('تفصيلة', 'متصل الآن', 'ت') +
       '<div class="rs-chat"><span class="rs-day">اليوم</span>' +
         '<p class="rs-m out rs-a" style="--d:.2">مرحبا 👋 بدنا دعوة عرس<time>٩:٤٠ ' + tick + '</time></p>' +
-        '<p class="rs-m out rs-a" style="--d:.7">العريس: أحمد<br>العروس: منال<br>الخميس ١٣ شباط ٢٠٢٧<br>قاعة الفرح · غزة<time>٩:٤٠ ' + tick + '</time></p>' +
+        '<p class="rs-m out rs-a" style="--d:.7">العريس: أحمد<br>العروس: منال<br>الخميس ١٣ فبراير ٢٠٢٧<br>قاعة الفرح · غزة<time>٩:٤٠ ' + tick + '</time></p>' +
         '<p class="rs-m out rs-a" style="--d:1.2">بنحب اللون الوردي 🌸<time>٩:٤١ ' + tick + '</time></p>' +
         '<p class="rs-m in rs-a" style="--d:2">أهلاً وألف مبروك! 🤍 وصلتنا البيانات، بنبعتلكم المعاينة اليوم<time>٩:٤١</time></p>' +
       '</div><div class="rs-inp"><span>رسالة</span><i class="rs-mic"><svg viewBox="0 0 12 16"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1.5 7.5a4.5 4.5 0 0 0 9 0M6 12v3"/></svg></i></div>' + HOME;
@@ -772,7 +772,7 @@
       '<div class="rs-acts"><span>طلب تعديل</span><span class="ok">اعتماد الدعوة</span></div></div>' + HOME;
     v[3].innerHTML = SB + WAH('العيلة 💍', 'سارة، خالد، ماما، و٤٥ آخرين', '💍') +
       '<div class="rs-chat"><span class="rs-day">اليوم</span>' +
-        '<div class="rs-m out link rs-a" style="--d:.15"><span class="rs-lp">' + inv('p', 'أحمد و منال') + '<span><b>دعوة أحمد و منال 💍</b><small>الخميس ١٣ شباط · قاعة الفرح</small><em>tafsila.ps</em></span></span><u>tafsila.ps/ahmad-manal</u><time>٩:٥٠ ' + tick + '</time></div>' +
+        '<div class="rs-m out link rs-a" style="--d:.15"><span class="rs-lp">' + inv('p', 'أحمد و منال') + '<span><b>دعوة أحمد و منال 💍</b><small>الخميس ١٣ فبراير · قاعة الفرح</small><em>tafsila.ps</em></span></span><u>tafsila.ps/ahmad-manal</u><time>٩:٥٠ ' + tick + '</time></div>' +
         '<p class="rs-m in rs-a" style="--d:.8"><b class="nm">سارة</b>مبروووك 🤍 أكيد جايين!<time>٩:٥١</time></p>' +
       '</div>' +
       '<div class="rs-ntf"><div class="rs-n rs-a" style="--d:1.3"><i>ت</i><span><b>تفصيلة <small>الآن</small></b>سارة أكدت حضورها ✓</span></div>' +
@@ -799,7 +799,7 @@
     function print(k, cls, depth) {
       return '<figure class="hx-p ' + cls + '" data-d="' + depth + '"><span class="hx-card" data-k="' + k + '"></span></figure>';
     }
-    var cal = '<div class="hx-cal hx-o" data-d="1.4"><b>شباط ٢٠٢٧</b><ol>' +
+    var cal = '<div class="hx-cal hx-o" data-d="1.4"><b>فبراير ٢٠٢٧</b><ol>' +
       ['س','ح','ن','ث','ر','خ','ج'].map(function (d) { return '<li class="h">' + d + '</li>'; }).join('') +
       (function () { var h = ''; for (var i = 0; i < 1; i++) h += '<li></li>'; for (var n = 1; n <= 21; n++) h += '<li' + (n === 13 ? ' class="on"' : '') + '>' + String(n).replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'[c]; }) + (n === 13 ? '<svg class="hx-ring" viewBox="0 0 60 40"><path d="M8 22C6 10 24 4 38 6s20 10 16 18-20 12-34 9S4 22 14 13"/></svg>' : '') + '</li>'; return h; })() +
       '</ol></div>';
@@ -941,7 +941,7 @@
       '<small class="bc-fam">مع عائلتيهما</small>' +
       '<div class="bc-nm"><b>أحمد</b><i>♥</i><b>منال</b></div>' +
       '<small class="bc-inv">يتشرّفان بدعوتكم لمشاركتهما فرحة العمر</small>' +
-      '<div class="bc-dt"><span>الخميس</span><b>١٣</b><span>شباط ٢٠٢٧</span></div>' +
+      '<div class="bc-dt"><span>الخميس</span><b>١٣</b><span>فبراير ٢٠٢٧</span></div>' +
       '<small class="bc-v">قاعة الفرح · غزة</small>' +
       corner('tl') + corner('br') + '</div>';
     var fig = '<img src="img/couple.svg" alt="" class="bp-f" decoding="async">';
@@ -983,7 +983,7 @@
         '<aside class="hc-side">' +
           '<p class="hc-t">باقي على الفرح</p>' +
           '<div class="hc-cd"><div><b data-u="d"></b><small>يوم</small></div><div><b data-u="h"></b><small>ساعة</small></div><div><b data-u="m"></b><small>دقيقة</small></div><div><b data-u="s"></b><small>ثانية</small></div></div>' +
-          '<div class="hc-cal"><b>شباط ٢٠٢٧</b><ol>' + ['س','ح','ن','ث','ر','خ','ج'].map(function (x) { return '<li class="h">' + x + '</li>'; }).join('') + days + '</ol></div>' +
+          '<div class="hc-cal"><b>فبراير ٢٠٢٧</b><ol>' + ['س','ح','ن','ث','ر','خ','ج'].map(function (x) { return '<li class="h">' + x + '</li>'; }).join('') + days + '</ol></div>' +
           '<p class="hc-n">عدّاد ورزنامة بكل دعوة، ليعرف ضيوفكم الموعد بلمسة 🤍</p>' +
         '</aside>' +
       '</div>');
@@ -999,7 +999,7 @@
       var fig = '<img src="img/couple.svg" alt="" decoding="async">';
       var balloons = '<svg class="ls-bal" viewBox="0 0 40 30"><g fill="#f08aa0"><path d="M10 12C4 6 10 0 14 5c4-5 10 1 4 7l-4 4z"/><path d="M24 9c-5-5 0-10 4-6 4-4 9 1 4 6l-4 3z" fill="#f6b0bf"/><path d="M17 4c-3-3 0-6 2-4 2-2 5 1 2 4l-2 2z" fill="#e8667f"/></g><path d="M14 16l6 14M28 12l-8 18M19 6l1 24" stroke="#c9a2ab" stroke-width=".6" fill="none"/></svg>';
       var rings = '<svg class="ls-rg" viewBox="0 0 40 26" fill="none" stroke="#c9a35a" stroke-width="1.6"><circle cx="15" cy="15" r="9"/><circle cx="25" cy="15" r="9"/><path d="M13 5l2-4 2 4z" fill="#eef3fb" stroke="#b9c9e6"/></svg>';
-      var ev = [['أول لقاء', 'تموز ٢٠٢٢', balloons + fig], ['أول موعد', 'أيلول ٢٠٢٢', fig], ['بدأت الحكاية', 'شباط ٢٠٢٣', fig], ['طلب الإيد', 'أيلول ٢٠٢٥', fig], ['الخطوبة', 'كانون الأول ٢٠٢٥', rings]];
+      var ev = [['أول لقاء', 'يوليو ٢٠٢٢', balloons + fig], ['أول موعد', 'سبتمبر ٢٠٢٢', fig], ['بدأت الحكاية', 'فبراير ٢٠٢٣', fig], ['طلب الإيد', 'سبتمبر ٢٠٢٥', fig], ['الخطوبة', 'ديسمبر ٢٠٢٥', rings]];
       f2.innerHTML = '<div class="ls"><b class="ls-t">حكايتنا</b><ol>' + ev.map(function (e, i) {
           return '<li class="' + (i % 2 ? 'r' : 'l') + '"><span class="ls-ev">' + e[0] + '</span><span class="ls-fg' + (e[2] === rings ? ' rg' : '') + '">' + e[2] + '</span><span class="ls-dt">' + e[1] + '</span></li>';
         }).join('') + '</ol><p class="ls-end">والفرح ١٣ · ٠٢ · ٢٠٢٧</p></div>';

@@ -1015,7 +1015,10 @@
       env.innerHTML = '<i class="env-bk"></i><i class="env-fl"></i>';
       card0.parentNode.insertBefore(env, card0); env.appendChild(card0);
       env.insertAdjacentHTML('beforeend', '<i class="env-pk"><b class="env-seal">ت</b></i><i class="hc-shine"></i>');
-      requestAnimationFrame(function () { setTimeout(function () { env.classList.add('up'); }, 350); });
+      /* the envelope shows closed; after two seconds (or a tap) the flap opens and the card rises out */
+      var opened = false, openEnv = function () { if (opened) return; opened = true; env.classList.add('open'); setTimeout(function () { env.classList.add('up'); }, 650); };
+      env.addEventListener('click', function (e) { if (!opened) { e.stopPropagation(); openEnv(); } }, true);
+      setTimeout(openEnv, 2000);
     }
     /* the couple are drawn inline so they can move: tap the groom and he kisses the bride */
     var cim = st.querySelector('.hc-card img.bc-cp');

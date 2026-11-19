@@ -1174,7 +1174,7 @@
       var h = document.querySelector('#' + id + ' h2'); if (!h || h.dataset.ink) return; h.dataset.ink = 1;
       var txt = h.textContent.trim();
       h.classList.add('ink');
-      h.innerHTML = '<span class="ink-k">' + M[id][0] + '</span><span class="ink-n" aria-hidden="true">' + M[id][1] + '</span><span class="ink-t">' + txt + '<i class="ink-pen" aria-hidden="true"></i></span>'+'<svg class="ink-sw" viewBox="0 0 220 26" aria-hidden="true"><path pathLength=\"1\" d=\"M216 15C180 9 140 20 100 16S50 10 26 16\"/><path class=\"h\" d=\"M14 22C5 16 3 9 8 6.5 11 5 13.5 7 14 9.5 14.5 7 17 5 20 6.5 25 9 23 16 14 22Z\"/></svg>';
+      h.innerHTML = '<span class="ink-k">' + M[id][0] + '</span><span class="ink-n" aria-hidden="true">' + M[id][1] + '</span><span class="ink-t">' + txt + '<i class="ink-pen" aria-hidden="true"></i></span>'+'<span class="ink-sw" aria-hidden="true"><svg class="ink-ln" viewBox="0 0 200 20" preserveAspectRatio="none"><path pathLength="1" d="M200 11C165 5 125 16 85 11S30 6 2 12"/></svg><svg class="ink-hr" viewBox="0 0 28 26"><path d="M14 23C4 16 1 9 6 5 10 2 13 4.5 14 8 15 4.5 18 2 22 5 27 9 24 16 14 23Z"/></svg></span>';
       if (!('IntersectionObserver' in window) || reduce) { h.classList.add('ink-on'); return; }
       new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { h.classList.add('ink-on'); o.disconnect(); } }); }, { threshold: .6 }).observe(h);
     });

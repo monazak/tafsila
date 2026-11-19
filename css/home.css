@@ -11766,3 +11766,6 @@ html body .bl-sec > :not(.bl-br):not(.bl-vt){position:relative;z-index:1}
 .ls-ev{font-size:14.5px!important;font-weight:700!important}
 .ls-dt{font-size:12px!important;letter-spacing:0!important}
 @media (max-width:820px){.hc-card .bc-fam{font-size:10.5px!important}.hc-card .bc-inv{font-size:11px!important}.hc-card .bc-dt span{font-size:10px!important}.hc-card .bc-dt b{font-size:12px!important}.ls-ev{font-size:12px!important}.ls-dt{font-size:10px!important}}
+.ls-t{margin-bottom:22px!important}
+.ls li:first-child .ls-fg{margin-top:6px}
+@media (max-width:820px){.ls-t{margin-bottom:14px!important}}

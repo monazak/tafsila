@@ -1115,7 +1115,57 @@
     });
   }
 
-  function scan() { decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* hero: switch the occasion right from the card. The card turns on its edge, comes back as the new occasion,
+     and the light of the hero shifts to that occasion's colour */
+  function decorateHeroOccasions() {
+    var env = document.querySelector('.hero .hc-env'), card = env && env.querySelector('.hc-card');
+    if (!card || document.querySelector('.hero .ho')) return;
+    var win = card.querySelector('.hc-front .bc-win'), bc = card.querySelector('.hc-front .bc');
+    if (!win || !bc) return;
+    var coupleNode = null;
+    var ART = {
+      eng: '<svg class="ho-art" viewBox="0 0 120 110"><g class="ho-r1"><circle cx="50" cy="66" r="24" fill="none" stroke="#d6b062" stroke-width="7"/><path d="M42 40l8-12 8 12z" fill="#eef4ff" stroke="#b9c9e6"/></g><g class="ho-r2"><circle cx="76" cy="70" r="22" fill="none" stroke="#c7ccd6" stroke-width="6"/></g><g fill="#d6b062" class="ho-sp"><path d="M24 28l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/><path d="M98 34l1.6 4.4 4.4 1.6-4.4 1.6-1.6 4.4-1.6-4.4-4.4-1.6 4.4-1.6z"/><path d="M92 96l1.2 3.2 3.2 1.2-3.2 1.2-1.2 3.2-1.2-3.2-3.2-1.2 3.2-1.2z"/></g></svg>',
+      grad: '<svg class="ho-art" viewBox="0 0 120 110"><g class="ho-cap"><path d="M14 46L60 28l46 18-46 18z" fill="#26324f"/><path d="M32 54v14c16 10 40 10 56 0V54L60 64z" fill="#1d2740"/><path d="M60 46Q86 50 92 56v16" fill="none" stroke="#b3202f" stroke-width="2.6"/><path d="M89 70h7l-1 11h-5z" fill="#b3202f"/></g><rect x="30" y="88" width="60" height="12" rx="6" fill="#fff" stroke="#e6d3a8"/><rect x="56" y="86" width="8" height="16" fill="#b3202f"/></svg>',
+      bday: '<svg class="ho-art" viewBox="0 0 120 110"><g class="ho-bl"><ellipse cx="24" cy="32" rx="12" ry="14" fill="#f3b6c2"/><path d="M24 46q-3 16 3 34" fill="none" stroke="#c9a2ab"/></g><g class="ho-bl b2"><ellipse cx="98" cy="28" rx="11" ry="13" fill="#bcd0ee"/><path d="M98 41q3 16-3 36" fill="none" stroke="#a9b6ca"/></g><rect x="36" y="64" width="48" height="30" rx="5" fill="#fff" stroke="#f0c8d0"/><path d="M36 73q6 7 12 0t12 0 12 0 12 0" fill="none" stroke="#e08a9a" stroke-width="2.2"/><rect x="32" y="92" width="56" height="6" rx="3" fill="#f3d5dc"/><rect x="58" y="48" width="4" height="16" rx="1" fill="#bcd0ee"/><path class="ho-fl" d="M60 34c5 6 5 10 0 13-5-3-5-7 0-13z" fill="#f2b84b"/></svg>'
+    };
+    var OCC = {
+      wed: { k: 'زفاف', fam: 'بكل الحب، ومع عائلتيهما', n: ['أحمد', 'منال'], inv: 'يتشرّفان بدعوتكم لمشاركتهما فرحة العمر', d: ['الخميس', '١٣ · ٠٢ · ٢٠٢٧', 'قاعة الفرح'] },
+      eng: { k: 'خطوبة', fam: 'بفرحة كبيرة، ومع عائلتيهما', n: ['نور', 'يزن'], inv: 'يسعدنا دعوتكم لمشاركتنا حفل خطوبتنا', d: ['الجمعة', '٠٢ · ٠٧ · ٢٠٢٧', 'حديقة الورد'] },
+      grad: { k: 'تخرج', fam: 'بكل فخر واعتزاز', n: ['ريم خالد'], inv: 'تدعوكم لمشاركتها فرحة التخرج · دفعة ٢٠٢٧', d: ['الخميس', '٢٤ · ٠٦ · ٢٠٢٧', 'مسرح الجامعة'] },
+      bday: { k: 'عيد ميلاد', fam: 'تعالوا نحتفل سوا', n: ['جود'], inv: 'بعيد ميلادها الخامس، والكيكة بتستنّاكم', d: ['السبت', '١٤ · ٠٥ · ٢٠٢٧', 'بيت العيلة'] }
+    };
+    var hero = document.querySelector('.hero'), cur = 'wed';
+    var tint = document.createElement('i'); tint.className = 'ho-tint'; tint.setAttribute('aria-hidden', 'true'); hero.insertBefore(tint, hero.firstChild);
+    var bar = document.createElement('div'); bar.className = 'ho'; bar.setAttribute('role', 'tablist');
+    bar.innerHTML = Object.keys(OCC).map(function (k) { return '<button type="button" role="tab" data-o="' + k + '"' + (k === cur ? ' aria-selected="true"' : '') + '>' + OCC[k].k + '</button>'; }).join('<i></i>');
+    env.parentNode.insertBefore(bar, env.nextSibling);
+    hero.dataset.occ = cur;
+    function fill(k) {
+      var o = OCC[k];
+      if (!coupleNode) coupleNode = win.querySelector('.bc-cp');
+      win.querySelectorAll('.ho-art').forEach(function (a) { a.remove(); });
+      if (k === 'wed') { if (coupleNode) coupleNode.style.display = ''; }
+      else { if (coupleNode) coupleNode.style.display = 'none'; win.insertAdjacentHTML('beforeend', ART[k === 'eng' ? 'eng' : k]); }
+      bc.querySelector('.bc-fam').textContent = o.fam;
+      bc.querySelector('.bc-nm').innerHTML = o.n.length > 1 ? '<b>' + o.n[0] + '</b><i>♥︎</i><b>' + o.n[1] + '</b>' : '<b>' + o.n[0] + '</b>';
+      bc.querySelector('.bc-inv').textContent = o.inv;
+      bc.querySelector('.bc-dt').innerHTML = '<span>' + o.d[0] + '</span><b>' + o.d[1] + '</b><span>' + o.d[2] + '</span>';
+      card.dataset.occ = k;
+    }
+    bar.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b || b.dataset.o === cur) return;
+      cur = b.dataset.o; hero.dataset.occ = cur;
+      bar.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      card.classList.remove('open'); env.classList.remove('flip');
+      card.classList.add('turn');
+      setTimeout(function () { fill(cur); card.classList.remove('turn'); card.classList.add('turned'); setTimeout(function () { card.classList.remove('turned'); }, 600); }, 420);
+    });
+    /* the love story on the back belongs to the wedding; other occasions keep their front */
+    card.addEventListener('click', function (e) { if (card.dataset.occ && card.dataset.occ !== 'wed') { e.stopImmediatePropagation(); } }, true);
+  }
+
+  function scan() { decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decorateHeroOccasions(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   /* run the decorators at most once per frame, however many DOM changes arrive */
   var scanQueued = false;

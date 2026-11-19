@@ -52,7 +52,44 @@
     var wa = ((window.TF_DATA || {}).wa) || '972566900092';
     try { var d = JSON.parse((document.getElementById('data') || {}).textContent || '{}'); if (d.wa) wa = d.wa; } catch (_) {}
     var pretty = '+' + wa.replace(/^(\d{3})(\d{2})(\d{3})(\d{4})$/, '$1 $2 $3 $4');
-    acts.insertAdjacentHTML('afterend', '<p class="ct-num">أو راسلونا مباشرة على <a href="https://wa.me/' + wa + '" target="_blank" rel="noopener" dir="ltr">' + pretty + '</a></p>');
+    /* a live WhatsApp conversation that plays (and replays) while the section is on screen */
+    var wa2 = document.createElement('div'); wa2.className = 'ct-wa'; wa2.setAttribute('aria-hidden', 'true');
+    wa2.innerHTML = '<div class="wa-h"><span class="wa-back">‹</span><i class="wa-av">ت</i><span class="wa-who"><b>تفصيلة</b><small class="wa-st">متصل الآن</small></span>' +
+      '<svg viewBox="0 0 20 14"><rect x="1" y="2" width="12" height="10" rx="2.5"/><path d="M13 6l5-3v8l-5-3z"/></svg><svg viewBox="0 0 16 16"><path d="M4 1.5l2.6 3-1.5 2a8 8 0 0 0 4.4 4.4l2-1.5 3 2.6-1.4 2.2c-.3.5-1 .8-1.6.6A13 13 0 0 1 1.2 4.4c-.2-.6.1-1.3.6-1.6z"/></svg></div>' +
+      '<div class="wa-b"><span class="wa-day">اليوم</span></div><div class="wa-in"><span>اكتبوا رسالة…</span><i class="wa-mic"><svg viewBox="0 0 12 16"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1.5 7.5a4.5 4.5 0 0 0 9 0M6 12v3"/></svg></i></div>';
+    cta.appendChild(wa2);
+    var TK = '<svg class="wa-tk" viewBox="0 0 16 10"><path d="M1 5.5l2.6 2.6L9 2.6M6.4 8.1L11.8 2.6"/></svg>';
+    var SCRIPT = [
+      ['me', 'مرحبا 👋 بدنا دعوة لعرسنا الشهر الجاي', '٩:٤١'],
+      ['us', 'أهلاً وسهلاً، وألف مبروك! 🤍 أي تصميم عجبكم؟', '٩:٤١'],
+      ['me', 'ورد الجوري، بس باللون الأزرق الفاتح 💙', '٩:٤٢'],
+      ['us', 'اختيار حلو! ابعتولنا الأسماء والتاريخ والمكان، وبتوصلكم المعاينة اليوم ✨', '٩:٤٢'],
+      ['me', 'تمام، شكراً كتير 🙏', '٩:٤٣']
+    ];
+    var body = wa2.querySelector('.wa-b'), st = wa2.querySelector('.wa-st'), timers = [], playing = false;
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function play() {
+      if (playing) return; playing = true; timers.forEach(clearTimeout); timers = [];
+      body.querySelectorAll('.wa-m,.wa-typing').forEach(function (n) { n.remove(); });
+      var t = 400;
+      SCRIPT.forEach(function (m) {
+        if (m[0] === 'us') {
+          later(function () { st.textContent = 'يكتب…'; var ty = document.createElement('div'); ty.className = 'wa-typing'; ty.innerHTML = '<i></i><i></i><i></i>'; body.appendChild(ty); }, t);
+          t += 1600;
+        }
+        later(function () {
+          var ty = body.querySelector('.wa-typing'); if (ty) ty.remove(); st.textContent = 'متصل الآن';
+          var el = document.createElement('p'); el.className = 'wa-m ' + m[0];
+          el.innerHTML = m[1] + '<time>' + m[2] + (m[0] === 'me' ? ' ' + TK : '') + '</time>';
+          body.appendChild(el);
+          if (m[0] === 'me') later(function () { el.classList.add('read'); }, 900);
+        }, t);
+        t += m[0] === 'me' ? 1500 : 1300;
+      });
+      later(function () { playing = false; if (wa2.__in) play(); }, t + 5000);
+    }
+    if (reduce || !('IntersectionObserver' in window)) { wa2.__in = true; play(); }
+    else new IntersectionObserver(function (es) { es.forEach(function (e) { wa2.__in = e.isIntersecting; if (e.isIntersecting) play(); }); }, { threshold: .3 }).observe(wa2);
   }
 
   /* 3. footer links */
@@ -284,7 +321,7 @@
   function decorateShowcase() {
     var grid = document.querySelector('#designs .grid');
     if (!grid) return;
-    var cards = [].slice.call(grid.querySelectorAll('.dc'));
+    var cards = [].slice.call(grid.querySelectorAll('.dc:not(.dc-ghost)'));
     if (!cards.length) return;
     var catEl = document.querySelector('#designs .cathead h3'), cat = catEl ? catEl.textContent.trim() : '';
     var key = cat + '|' + cards.map(function (d) { var h = d.querySelector('h3'); return h ? h.textContent : ''; }).join(',');
@@ -348,6 +385,15 @@
       '<span class="inv-n">ريم خالد</span><span class="g-cls">دفعة ٢٠٢٧</span>' +
       '<i class="inv-d"></i><span class="inv-dt">الخميس ٢٤ حزيران ٢٠٢٧</span><span class="inv-v">مسرح الجامعة</span>' +
       '<i class="g-ros"></i></div>';
+    if (k === 'wgold' || k === 'wrose' || k === 'wsage') {
+      /* the wedding card: classic and modern — an arch in foil, fine glitter, the couple, names in calligraphy */
+      var w = INV[k], sp = '';
+      [[14, 18, .2], [83, 12, 1.1], [90, 46, 2.1], [8, 58, .7], [20, 88, 1.6], [80, 84, 2.6], [50, 6, 1.9]].forEach(function (q) { sp += '<b class="w-sp" style="left:' + q[0] + '%;top:' + q[1] + '%;animation-delay:' + q[2] + 's"></b>'; });
+      return '<div class="inv inv-w" aria-hidden="true"><i class="w-glit"></i><i class="w-fr"></i><i class="w-fr w-fr2"></i>' + sp +
+        '<img class="w-cp" src="img/couple.svg" alt="" loading="lazy" decoding="async">' +
+        '<span class="inv-t">' + w.t + '</span><span class="inv-n">' + w.n[0] + '</span><span class="inv-and">و</span><span class="inv-n">' + w.n[1] + '</span>' +
+        '<i class="inv-d"></i><span class="inv-dt">' + w.d + '</span><span class="inv-v">' + w.v + '</span></div>';
+    }
     var c = INV[k], h = '<div class="inv" aria-hidden="true">';
     if (c.band) h += '<i class="inv-band"></i>';
     h += '<i class="inv-em em-' + c.em + '"></i><span class="inv-t">' + c.t + '</span>';
@@ -388,7 +434,7 @@
       if (k === 'grad') { var g3 = t.querySelector('.c3d'); if (g3 && !g3.querySelector('.gcap3')) g3.insertAdjacentHTML('beforeend', '<span class="gcap3" aria-hidden="true"></span>'); }
     });
     var catEl = document.querySelector('#designs .cathead h3'), cat = catEl ? catEl.textContent.trim() : '';
-    document.querySelectorAll('#designs .grid .dc').forEach(function (d) {
+    document.querySelectorAll('#designs .grid .dc:not(.dc-ghost)').forEach(function (d) {
       var k = CAT_INV[cat], h = d.querySelector('h3');
       if (k === 'wgold') k = weddingVariant(h ? h.textContent : '');
       if (k) setInv(d.querySelector('.mk'), k);
@@ -591,7 +637,7 @@
     x.__go = go;
     x.addEventListener('click', function (e) {
       var b = e.target.closest('.hw4-s'); if (b) return go(+b.dataset.i);
-      var th = e.target.closest('.ph-th'); if (th && cur === 0) { x.querySelectorAll('.ph-th').forEach(function (t) { t.classList.toggle('on', t === th); }); return; }
+      var th = e.target.closest('.ph-th, .rs-card'); if (th && cur === 0) { x.querySelectorAll('.ph-th, .rs-card').forEach(function (t) { t.classList.toggle('on', t === th); }); return; }
       if (e.target.closest('.hw4-ph')) go((cur + 1) % HOW.length);
     });
     var ph = x.querySelector('.hw4-ph'); ph.setAttribute('role', 'button'); ph.setAttribute('tabindex', '0'); ph.setAttribute('aria-label', 'الخطوة التالية');
@@ -665,6 +711,7 @@
   function decorateTagSwing() {
     var tag = document.querySelector('#packages .pk1-l');
     if (!tag || tag.dataset.sw) return; tag.dataset.sw = 1;
+    if (!tag.querySelector('.pk-tat')) tag.insertAdjacentHTML('afterbegin', '<i class="pk-tat" aria-hidden="true"></i>');
     var ang = 0, vel = 0, drag = null, raf = 0;
     function frame() {
       if (!drag) { vel += -ang * .012; vel *= .985; ang += vel; }
@@ -685,6 +732,54 @@
     function up() { if (!drag) return; drag = null; vel = Math.max(-6, Math.min(6, vel)); kick(); }
     tag.addEventListener('pointerup', up); tag.addEventListener('pointercancel', up);
   }
+
+  /* the four phone screens in "how we work", drawn like real apps: a design gallery, a WhatsApp chat,
+     an invitation preview with an edit, and the shared link with RSVPs arriving as notifications */
+  function decorateScreens() {
+    var ph = document.querySelector('#how .hw4-ph'); if (!ph || ph.dataset.rs) return; ph.dataset.rs = 1;
+    var SB = '<div class="rs-sb"><b>9:41</b><span><svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>' +
+      '<svg viewBox="0 0 16 12"><path d="M8 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0zM3.6 6.6a6.6 6.6 0 0 1 8.8 0l1.5-1.8a9 9 0 0 0-11.8 0zM.2 3.2a11.6 11.6 0 0 1 15.6 0L14.3 1.4A9.6 9.6 0 0 0 1.7 1.4z"/></svg>' +
+      '<i class="rs-bat"><i></i></i></span></div>';
+    var HOME = '<i class="rs-home"></i>';
+    function inv(cls, names) { return '<span class="rs-inv ' + cls + '"><span class="rs-arch"><i class="rs-spr"></i><small>بكل الحب ندعوكم</small><b>' + names + '</b><em>١٣ · ٠٢ · ٢٠٢٧</em><i class="rs-tat"></i></span></span>'; }
+    var tick = '<svg class="rs-tk" viewBox="0 0 16 10"><path d="M1 5.5l2.6 2.6L9 2.6M6.4 8.1L11.8 2.6" /></svg>';
+    var v = ph.querySelectorAll('.ph-v');
+    if (v.length < 4) return;
+    v[0].innerHTML = SB +
+      '<div class="rs-app"><div class="rs-ah"><b class="rs-logo">تفصيلة</b><svg class="rs-srch" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg></div>' +
+      '<div class="rs-ttl rs-a" style="--d:.05"><b>اختاروا تصميمكم</b><small>٤٨ تصميم لكل المناسبات</small></div>' +
+      '<div class="rs-chips rs-a" style="--d:.15"><span class="on">الكل</span><span>زفاف</span><span>خطوبة</span><span>تخرج</span><span>مواليد</span></div>' +
+      '<div class="rs-grid">' +
+        '<button type="button" class="rs-card on rs-a" style="--d:.25">' + inv('p', 'أحمد و منال') + '<span class="rs-meta"><b>ورد الجوري</b><em>٥٠ ₪</em></span><i class="rs-chk">✓</i></button>' +
+        '<button type="button" class="rs-card rs-a" style="--d:.33">' + inv('b', 'ليان و آدم') + '<span class="rs-meta"><b>سماء صافية</b><em>٥٠ ₪</em></span><i class="rs-chk">✓</i></button>' +
+        '<button type="button" class="rs-card rs-a" style="--d:.41">' + inv('l', 'نور و يزن') + '<span class="rs-meta"><b>لافندر</b><em>٥٠ ₪</em></span><i class="rs-chk">✓</i></button>' +
+        '<button type="button" class="rs-card rs-a" style="--d:.49">' + inv('w', 'ريم خالد') + '<span class="rs-meta"><b>تطريز أحمر</b><em>٥٠ ₪</em></span><i class="rs-chk">✓</i></button>' +
+      '</div><span class="rs-cta rs-a" style="--d:.6">اختاروا هذا التصميم</span></div>' + HOME;
+    var WAH = function (name, sub, av) { return '<div class="rs-wah"><span class="rs-back">‹</span><i class="rs-av">' + av + '</i><span class="rs-who"><b>' + name + '</b><small>' + sub + '</small></span>' +
+      '<svg viewBox="0 0 20 14"><rect x="1" y="2" width="12" height="10" rx="2.5"/><path d="M13 6l5-3v8l-5-3z"/></svg><svg viewBox="0 0 16 16"><path d="M4 1.5l2.6 3-1.5 2a8 8 0 0 0 4.4 4.4l2-1.5 3 2.6-1.4 2.2c-.3.5-1 .8-1.6.6A13 13 0 0 1 1.2 4.4c-.2-.6.1-1.3.6-1.6z"/></svg></div>'; };
+    v[1].innerHTML = SB + WAH('تفصيلة', 'متصل الآن', 'ت') +
+      '<div class="rs-chat"><span class="rs-day">اليوم</span>' +
+        '<p class="rs-m out rs-a" style="--d:.2">مرحبا 👋 بدنا دعوة عرس<time>٩:٤٠ ' + tick + '</time></p>' +
+        '<p class="rs-m out rs-a" style="--d:.7">العريس: أحمد<br>العروس: منال<br>الخميس ١٣ شباط ٢٠٢٧<br>قاعة الفرح · غزة<time>٩:٤٠ ' + tick + '</time></p>' +
+        '<p class="rs-m out rs-a" style="--d:1.2">بنحب اللون الوردي 🌸<time>٩:٤١ ' + tick + '</time></p>' +
+        '<p class="rs-m in rs-a" style="--d:2">أهلاً وألف مبروك! 🤍 وصلتنا البيانات، بنبعتلكم المعاينة اليوم<time>٩:٤١</time></p>' +
+      '</div><div class="rs-inp"><span>رسالة</span><i class="rs-mic"><svg viewBox="0 0 12 16"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1.5 7.5a4.5 4.5 0 0 0 9 0M6 12v3"/></svg></i></div>' + HOME;
+    v[2].innerHTML = SB +
+      '<div class="rs-pv"><div class="rs-pvh"><b>معاينة دعوتكم</b><span>نسخة ٢</span></div>' +
+      '<div class="rs-big">' + inv('p big', 'أحمد و منال').replace('<small>بكل الحب ندعوكم</small>', '<small>بكل الحب ندعوكم لحضور حفل زفاف</small>').replace('</em>', '</em><em class="rs-ven">قاعة الفرح · غزة</em>') + '</div>' +
+      '<span class="rs-note rs-a" style="--d:.5"><i>م</i>بدنا الاسم أكبر شوي 🙏</span>' +
+      '<span class="rs-toast rs-a" style="--d:1.9">✓ تم التعديل</span>' +
+      '<div class="rs-acts"><span>طلب تعديل</span><span class="ok">اعتماد الدعوة</span></div></div>' + HOME;
+    v[3].innerHTML = SB + WAH('العيلة 💍', 'سارة، خالد، ماما، و٤٥ آخرين', '💍') +
+      '<div class="rs-chat"><span class="rs-day">اليوم</span>' +
+        '<div class="rs-m out link rs-a" style="--d:.15"><span class="rs-lp">' + inv('p', 'أحمد و منال') + '<span><b>دعوة أحمد و منال 💍</b><small>الخميس ١٣ شباط · قاعة الفرح</small><em>tafsila.ps</em></span></span><u>tafsila.ps/ahmad-manal</u><time>٩:٥٠ ' + tick + '</time></div>' +
+        '<p class="rs-m in rs-a" style="--d:.8"><b class="nm">سارة</b>مبروووك 🤍 أكيد جايين!<time>٩:٥١</time></p>' +
+      '</div>' +
+      '<div class="rs-ntf"><div class="rs-n rs-a" style="--d:1.3"><i>ت</i><span><b>تفصيلة <small>الآن</small></b>سارة أكدت حضورها ✓</span></div>' +
+      '<div class="rs-n rs-a" style="--d:2"><i>ت</i><span><b>تفصيلة <small>الآن</small></b>خالد و٢ معه أكدوا الحضور ✓</span></div>' +
+      '<div class="rs-n big rs-a" style="--d:2.7"><i>ت</i><span><b>تفصيلة <small>الآن</small></b>٤٢ ضيف أكدوا حضورهم 🎉</span></div></div>' + HOME;
+    ph.classList.add('rs-on');
+  }
   /* speed: pause every looping animation in a section while it is off-screen */
   function decoratePerf() {
     if (!('IntersectionObserver' in window)) return;
@@ -695,7 +790,90 @@
       if (el.__perf) return; el.__perf = 1; io.observe(el);
     });
   }
-  function scan() { decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* the hero, editorial: a huge thin headline crossed by "تفصيلة" in calligraphy, and a collage of our own
+     invitations (wedding, engagement, graduation, birthday) laid on the page like prints, with a calendar,
+     an RSVP and a handwritten note */
+  function decorateHeroCollage() {
+    var hero = document.querySelector('.hero'); if (!hero || hero.querySelector('.hx')) return;
+    function print(k, cls, depth) {
+      return '<figure class="hx-p ' + cls + '" data-d="' + depth + '"><span class="hx-card" data-k="' + k + '"></span></figure>';
+    }
+    var cal = '<div class="hx-cal hx-o" data-d="1.4"><b>شباط ٢٠٢٧</b><ol>' +
+      ['س','ح','ن','ث','ر','خ','ج'].map(function (d) { return '<li class="h">' + d + '</li>'; }).join('') +
+      (function () { var h = ''; for (var i = 0; i < 1; i++) h += '<li></li>'; for (var n = 1; n <= 21; n++) h += '<li' + (n === 13 ? ' class="on"' : '') + '>' + String(n).replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'[c]; }) + (n === 13 ? '<svg class="hx-ring" viewBox="0 0 60 40"><path d="M8 22C6 10 24 4 38 6s20 10 16 18-20 12-34 9S4 22 14 13"/></svg>' : '') + '</li>'; return h; })() +
+      '</ol></div>';
+    var html = '<div class="hx" aria-hidden="false">' +
+      '<div class="hx-txt">' +
+        '<p class="hx-k">كل فرحة إلها تفصيلة</p>' +
+        '<h1 class="hx-h"><span class="hx-l1">دعوات</span><span class="hx-l2">إلكترونية</span><em class="hx-sc">تفصيلة</em></h1>' +
+        '<p class="hx-occ"><span>زفاف</span><span>خطوبة وإشهار</span><span>تخرج</span><span>عيد ميلاد</span><span>مواليد</span></p>' +
+        '<p class="hx-s">نصمّم دعوتكم برابط واحد يوصل لكل ضيوفكم على واتساب، بتصميم يشبه مناسبتكم.</p>' +
+      '</div>' +
+      '<div class="hx-col" aria-hidden="true">' +
+        print('grad', 'hx-g', 1.6) + print('bday', 'hx-b', 1.8) + print('ish', 'hx-i', 1.2) + print('wgold', 'hx-w', 2.2) +
+        cal +
+        '<div class="hx-rsvp hx-o" data-d="2.6"><i>ت</i><span><b>تفصيلة</b>سارة أكدت حضورها ✓</span></div>' +
+        '<p class="hx-note hx-o" data-d="2">يوم ما بننساه 🤍</p>' +
+        '<svg class="hx-spr hx-o" data-d=".8" viewBox="0 0 120 40" fill="none"><path d="M8 30C35 22 85 22 112 30" stroke="#8a6d55" stroke-width="1.2"/><g stroke="#7d9672" stroke-width="1.1"><ellipse cx="26" cy="20" rx="9" ry="3.4" transform="rotate(-28 26 20)"/><ellipse cx="48" cy="16" rx="9" ry="3.4" transform="rotate(-20 48 16)"/><ellipse cx="72" cy="16" rx="9" ry="3.4" transform="rotate(20 72 16)"/><ellipse cx="94" cy="20" rx="9" ry="3.4" transform="rotate(28 94 20)"/></g><circle cx="60" cy="23" r="3" fill="#7d9672"/></svg>' +
+      '</div></div>';
+    hero.insertAdjacentHTML('beforeend', html);
+    hero.classList.add('hx-on');
+    hero.querySelectorAll('.hx-card').forEach(function (c) { setInv(c, c.dataset.k); });
+  }
+
+
+  /* hero, centred: three arch frames like portraits (the middle one large), each holding one of our invitations.
+     Every few seconds they turn to the next occasion — زفاف، خطوبة، تخرج، عيد ميلاد — with the name below and a live
+     countdown, the way our invitations count down to the day. Olive and flowers wrap round the middle frame. */
+  function decorateHeroArches() {
+    var hero = document.querySelector('.hero'); if (!hero || hero.querySelector('.ha')) return;
+    var OCC = [['wgold', 'زفاف'], ['ish', 'خطوبة وإشهار'], ['grad', 'تخرج'], ['bday', 'عيد ميلاد']];
+    var AR = function (n) { return String(n).replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'[c]; }); };
+    var leaf = function (x, y, r, s) { return '<ellipse cx="' + x + '" cy="' + y + '" rx="' + (11 * s) + '" ry="' + (4.2 * s) + '" transform="rotate(' + r + ' ' + x + ' ' + y + ')"/>'; };
+    var bough = function (cls) {
+      var l = ''; [[30, 150, -40, 1], [44, 128, 30, 1.1], [52, 104, -35, 1], [70, 86, 20, 1.15], [78, 62, -30, .95], [98, 48, 15, 1], [104, 26, -25, .85]].forEach(function (q) { l += leaf(q[0], q[1], q[2], q[3]); });
+      return '<svg class="ha-bough ' + cls + '" viewBox="0 0 130 180" fill="none" aria-hidden="true"><path d="M20 172C40 130 60 96 112 18" stroke="#8a6d55" stroke-width="1.6" stroke-linecap="round"/><g fill="#a9bba2">' + l + '</g>' +
+        '<g fill="#7d9672"><circle cx="58" cy="114" r="3.6"/><circle cx="86" cy="72" r="3.2"/></g>' +
+        '<g transform="translate(26 160)"><circle r="11" fill="#f6cdd5"/><circle r="7" fill="#efb3bf"/><circle r="3.4" fill="#e08a9a"/></g>' +
+        '<g transform="translate(46 172) scale(.6)"><circle r="11" fill="#dfe8f6"/><circle r="6" fill="#c3d3ec"/></g></svg>';
+    };
+    var frame = function (cls) { return '<figure class="ha-f ' + cls + '"><span class="ha-in"></span></figure>'; };
+    hero.insertAdjacentHTML('beforeend',
+      '<div class="ha">' +
+        '<p class="ha-k">كل فرحة إلها تفصيلة</p>' +
+        '<h1 class="ha-h">دعوة تشبه فرحتكم</h1>' +
+        '<div class="ha-row">' + frame('ha-side ha-prev') +
+          '<div class="ha-mid">' + bough('b1') + bough('b2') + frame('ha-main') + '</div>' +
+          frame('ha-side ha-next') + '</div>' +
+        '<div class="ha-rib"><i></i><span class="ha-occ">زفاف</span><i></i></div>' +
+        '<div class="ha-cd" aria-label="عدّاد تنازلي"><div><b data-u="d">٤٢</b><small>يوم</small></div><div><b data-u="h">٢٠</b><small>ساعة</small></div><div><b data-u="m">٤٥</b><small>دقيقة</small></div><div><b data-u="s">١٦</b><small>ثانية</small></div></div>' +
+      '</div>');
+    hero.classList.add('ha-on');
+    var cur = 0, fr = { prev: hero.querySelector('.ha-prev .ha-in'), main: hero.querySelector('.ha-main .ha-in'), next: hero.querySelector('.ha-next .ha-in') }, occ = hero.querySelector('.ha-occ');
+    function put(host, k, instant) {
+      var c = document.createElement('span'); c.className = 'ha-card'; host.appendChild(c); setInv(c, k);
+      var olds = [].slice.call(host.querySelectorAll('.ha-card')).filter(function (o) { return o !== c; });
+      if (instant) { olds.forEach(function (o) { o.remove(); }); c.classList.add('on'); return; }
+      requestAnimationFrame(function () { requestAnimationFrame(function () { c.classList.add('on'); }); });
+      setTimeout(function () { olds.forEach(function (o) { o.remove(); }); }, 1200);
+    }
+    function show(i, instant) {
+      var n = OCC.length;
+      put(fr.main, OCC[i][0], instant); put(fr.prev, OCC[(i + n - 1) % n][0], instant); put(fr.next, OCC[(i + 1) % n][0], instant);
+      occ.classList.remove('on'); void occ.offsetWidth; occ.textContent = OCC[i][1]; occ.classList.add('on');
+    }
+    show(0, true);
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) setInterval(function () { if (hero.classList.contains('is-off') || document.hidden) return; cur = (cur + 1) % OCC.length; show(cur); }, 4200);
+    var target = Date.now() + ((42 * 24 + 20) * 60 + 45) * 60000 + 16000, els = {};
+    hero.querySelectorAll('.ha-cd b').forEach(function (b) { els[b.dataset.u] = b; });
+    function tick() { var t = Math.max(0, target - Date.now()) / 1000; var v = { d: Math.floor(t / 86400), h: Math.floor(t / 3600) % 24, m: Math.floor(t / 60) % 60, s: Math.floor(t) % 60 };
+      for (var u in v) { var txt = AR(v[u] < 10 && u !== 'd' ? '0' + v[u] : v[u]); if (els[u].textContent !== txt) els[u].textContent = txt; } }
+    tick(); setInterval(tick, 1000);
+  }
+
+  function scan() { decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   /* run the decorators at most once per frame, however many DOM changes arrive */
   var scanQueued = false;

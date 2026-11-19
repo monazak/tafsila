@@ -12157,3 +12157,71 @@ html,body{margin-bottom:0!important;padding-bottom:0!important}
 .hs-cn{display:none}
 .hs-ring{inset:-7px -6px -5px!important;width:calc(100% + 12px)!important;height:calc(100% + 12px)!important}
 @media (max-width:820px){.hero.hs2 .hs-cd{width:260px}}
+
+/* packages: one quiet colour for all the icons; the add-ons label in our red, not green */
+#packages .pk-ic{background:#fbeceb!important;color:#b3202f!important}
+#packages .pk-ic svg{stroke:#b3202f!important}
+#packages .pk1-g{color:#b3202f!important}
+#packages .pk1-g::before,#packages .pk1-g::after{background:currentColor!important;border-color:currentColor!important}
+
+/* hero: the heading sits level with the top of the card, the countdown/calendar and the prints run down beside it */
+@media (min-width:821px){
+  .hero.hs2 .w{align-items:stretch!important}
+  .hero.hs2 .hs-side{align-self:stretch;justify-content:space-between;padding-block:clamp(4px,1vh,12px) clamp(30px,5vh,56px)}
+  .hero.hs2 .hstage{align-self:center}
+}
+/* FAQ cards turned by hand */
+.fql-in{touch-action:pan-y;cursor:grab}
+.fql-in.fql-drag{transition:none!important;animation:none!important;cursor:grabbing}
+.fql-in.fql-drag *{user-select:none}
+
+/* graduation back: navy card, gold class year, details like a printed invitation */
+.hc-card[data-occ="grad"] .hc-back{background:linear-gradient(170deg,#2b3757,#1d2740)!important}
+.hc-card[data-occ="grad"] .hc-back::before{border-color:rgba(216,181,111,.55)!important}
+.bk-g{gap:0;padding:12% 10% 11%;color:#f5ead2}
+.bkg-k{font:400 clamp(12px,1vw,14px)/1 Amiri,serif;letter-spacing:.06em;color:#d8b56f}
+.bkg-y{font:700 clamp(46px,4vw,62px)/1.1 "Aref Ruqaa",serif;color:transparent;-webkit-text-stroke:1.2px #d8b56f;letter-spacing:.04em}
+.bkg-cap{width:clamp(40px,3.4vw,52px);margin:2px 0 8px}
+.bkg-n{font:700 clamp(24px,2.1vw,32px)/1.25 "Aref Ruqaa",serif;color:#fff}
+.bkg-d{font:400 clamp(11px,.9vw,13px)/1.5 Amiri,serif;color:#d8c9a5;margin-bottom:clamp(10px,1.8vh,18px)}
+.bkg-i{margin:0;width:100%;display:flex;flex-direction:column;gap:clamp(6px,1vh,10px);border-block:1px solid rgba(216,181,111,.35);padding-block:clamp(8px,1.4vh,14px)}
+.bkg-i div{display:flex;justify-content:space-between;gap:10px;font:400 clamp(11px,.92vw,13.5px)/1.4 Cairo,sans-serif}
+.bkg-i dt{color:#d8b56f}.bkg-i dd{margin:0;color:#fff;text-align:end}
+.bkg-e{margin:clamp(10px,1.8vh,16px) 0 0;font:700 clamp(14px,1.15vw,17px)/1.3 "Aref Ruqaa",serif;color:#f3dc96}
+/* birthday back: blush paper, confetti, the age big like a party card */
+.hc-card[data-occ="bday"] .hc-back{background:linear-gradient(175deg,#fff6f8,#fde4ea)!important}
+.bk-b{gap:0;padding:12% 9% 10%;isolation:isolate}
+.bkb-cf{position:absolute;inset:0;z-index:-1;border-radius:inherit;opacity:.9;background:
+  radial-gradient(circle at 12% 14%,#f3b6c2 0 3px,transparent 3.5px),radial-gradient(circle at 86% 10%,#bcd0ee 0 3px,transparent 3.5px),
+  radial-gradient(circle at 78% 30%,#f2d27c 0 2.5px,transparent 3px),radial-gradient(circle at 20% 40%,#bcd0ee 0 2px,transparent 2.5px),
+  radial-gradient(circle at 90% 62%,#f3b6c2 0 2.5px,transparent 3px),radial-gradient(circle at 8% 70%,#f2d27c 0 2.5px,transparent 3px),
+  radial-gradient(circle at 70% 90%,#bcd0ee 0 3px,transparent 3.5px),radial-gradient(circle at 28% 92%,#f3b6c2 0 2px,transparent 2.5px)}
+.bkb-k,.bkb-s{font:700 clamp(17px,1.4vw,21px)/1 "Aref Ruqaa",serif;color:#9e1c2a}
+.bkb-a{font:700 clamp(84px,7vw,112px)/.95 "Aref Ruqaa",serif;color:#e8738a;text-shadow:3px 3px 0 #fff,5px 5px 0 #f3c3cd}
+.bkb-i{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin:clamp(10px,1.8vh,16px) 0}
+.bkb-i div{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;background:#fff;border-radius:12px;box-shadow:0 0 0 1px #f6d0d8}
+.bkb-i small{font:500 10.5px/1 Cairo,sans-serif;color:#b8893b}
+.bkb-i b{font:700 clamp(11.5px,.95vw,14px)/1.3 Cairo,sans-serif;color:#3a2a2e}
+.bkb-i span{font:400 11px/1.2 Cairo,sans-serif;color:#7a6f7e}
+.bkb-t{margin:0;font:400 clamp(12px,1vw,14px)/1.4 Amiri,serif;color:#3a2a2e}
+.bkb-r{margin:6px 0 0;font:700 clamp(13px,1.1vw,16px)/1.3 "Aref Ruqaa",serif;color:#b3202f}
+.hc-card.still{animation-play-state:paused!important}
+@media (max-width:820px){.bkg-y{font-size:40px}.bkg-n{font-size:20px}.bkb-a{font-size:70px}.bkg-i div,.bkb-i b{font-size:10.5px}}
+/* countdown v3: a garland woven through the numbers, and numbers that roll instead of blinking */
+.hs-cd{aspect-ratio:300/170!important;width:clamp(270px,21vw,320px)!important;justify-content:flex-start!important;padding-top:6px!important;gap:clamp(18px,2.2vh,26px)!important}
+.hs-wr .hs-stem{fill:none;stroke:#9aae93;stroke-width:1.3;stroke-linecap:round}
+.hs-wr{z-index:0!important}
+.hs-tiles{position:relative;z-index:1}
+.hs-cl{position:relative;z-index:1}
+.hs-t{position:relative;display:block;height:1.2em;overflow:hidden;min-width:1.3em!important;text-align:center}
+.hs-t span{display:block}
+.hs-t span.out,.hs-t span.in{position:absolute;inset:0;animation:hsOut .65s cubic-bezier(.4,0,.2,1) forwards}
+.hs-t span.in{animation-name:hsIn}
+@keyframes hsOut{to{transform:translateY(-70%);opacity:0}}
+@keyframes hsIn{from{transform:translateY(70%);opacity:0}to{transform:none;opacity:1}}
+.hs-t.fd{animation:none!important}
+.hs-u small{position:relative;background:radial-gradient(closest-side,rgba(253,246,248,.9),transparent);padding:0 4px}
+.hs-cd{padding-top:0!important;gap:clamp(22px,2.8vh,32px)!important}
+.hs-u small{background:none!important}
+.hs-tiles{gap:clamp(12px,1.2vw,18px)!important}
+.hs-dot{display:none}

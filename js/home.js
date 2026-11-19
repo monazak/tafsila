@@ -223,6 +223,30 @@
       var c = e.target.closest('.fql-card'); if (!c || reduce || c.classList.contains('nudge')) return;
       c.classList.add('nudge'); setTimeout(function () { c.classList.remove('nudge'); }, 1400);
     });
+    /* turn a card over with your finger: it follows the drag like a sheet of paper and settles on the side
+       you leave it nearest; a plain tap still flips it */
+    var drag = null, dragged = false;
+    wrap.addEventListener('pointerdown', function (e) {
+      var b = e.target.closest('.fql-in'); if (!b || e.button > 0) return;
+      drag = { b: b, x: e.clientX, y: e.clientY, base: b.getAttribute('aria-expanded') === 'true' ? 180 : 0, a: 0, on: false, id: e.pointerId }; dragged = false;
+    });
+    wrap.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var dx = e.clientX - drag.x;
+      if (!drag.on) { if (Math.abs(dx) < 8 || Math.abs(dx) < Math.abs(e.clientY - drag.y)) return; drag.on = true; dragged = true; try { drag.b.setPointerCapture(e.pointerId); } catch (er) {} drag.b.classList.add('fql-drag'); }
+      drag.a = drag.base - dx * .7;
+      drag.b.style.setProperty('transform', 'rotateY(' + drag.a.toFixed(1) + 'deg)', 'important');
+      e.preventDefault();
+    });
+    var endDrag = function () {
+      if (!drag) return; var d = drag; drag = null; if (!d.on) return;
+      var a = ((d.a % 360) + 360) % 360, open = a > 90 && a < 270;
+      d.b.classList.remove('fql-drag'); d.b.style.removeProperty('transform');
+      if (open) wrap.querySelectorAll('.fql-in[aria-expanded="true"]').forEach(function (o) { if (o !== d.b) o.setAttribute('aria-expanded', 'false'); });
+      d.b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    wrap.addEventListener('pointerup', endDrag); wrap.addEventListener('pointercancel', endDrag);
+    wrap.addEventListener('click', function (e) { if (dragged) { e.stopPropagation(); e.preventDefault(); dragged = false; } }, true);
     wrap.addEventListener('click', function (e) {
       var b = e.target.closest('.fql-in'); if (!b) return;
       var open = b.getAttribute('aria-expanded') !== 'true';
@@ -576,7 +600,7 @@
       '<div class="cv2" aria-hidden="true"><span class="cv2-band"></span>' +
       '<div class="cv2-arch"><img class="cv2-cp" src="img/couple.svg" alt="">' +
       '<div class="cv2-names"><b class="cv2-n">' + (parts[0] || 'أحمد').trim() + '</b><i class="cv2-and">و</i><b class="cv2-n">' + (parts[1] || 'منال').trim() + '</b></div>' +
-      '<span class="cv2-star"></span><small class="cv2-d">١٣ · ٠٢ · ٢٠٢٧</small><span class="cv2-rose"></span></div>' +
+      '<span class="cv2-star"></span><small class="cv2-d">١٤ · ٠٢ · ٢٠٢٧</small><span class="cv2-rose"></span></div>' +
       '<i class="lg cv2-lg"></i></div>');
     fb.insertAdjacentHTML('afterbegin', '<span class="bk-sprig" aria-hidden="true"></span>');
     fb.insertAdjacentHTML('beforeend', '<span class="bk-rose" aria-hidden="true"></span>');
@@ -630,8 +654,8 @@
     var thumbs = ''; ['#fbeceb', '#eef1ea', '#f4ece0', '#eef0f6'].forEach(function (c, i) { thumbs += '<span class="ph-th' + (i === 0 ? ' on' : '') + '" style="background:' + c + '"><i></i><i></i><i></i></span>'; });
     var phone = '<div class="hw4-ph"><div class="ph-scr">' +
       '<div class="ph-v v0"><div class="ph-top">اختاروا تصميمكم</div><div class="ph-grid">' + thumbs + '</div><div class="ph-send">اختار هذا التصميم</div></div>' +
-      '<div class="ph-v v1"><div class="ph-top">واتساب · تفصيلة</div><div class="ph-chat"><div class="ph-msg m1"><b>أحمد و منال</b><span>الخميس ١٣ فبراير ٢٠٢٧</span></div><div class="ph-msg m2"><span>قاعة الفرح · غزة</span></div><div class="ph-msg m3"><span>بدنا اللون الوردي لو سمحتوا 🌸</span></div><div class="ph-rsvp r0">وصلتنا بياناتكم ✓</div></div></div>' +
-      '<div class="ph-v v2"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٣ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
+      '<div class="ph-v v1"><div class="ph-top">واتساب · تفصيلة</div><div class="ph-chat"><div class="ph-msg m1"><b>أحمد و منال</b><span>الأحد ١٤ فبراير ٢٠٢٧</span></div><div class="ph-msg m2"><span>قاعة الفرح · غزة</span></div><div class="ph-msg m3"><span>بدنا اللون الوردي لو سمحتوا 🌸</span></div><div class="ph-rsvp r0">وصلتنا بياناتكم ✓</div></div></div>' +
+      '<div class="ph-v v2"><div class="ph-top">معاينة دعوتكم</div><div class="ph-card"><span class="ph-arch"></span><small>بكل الحب ندعوكم</small><b>أحمد و منال</b><em>١٤ · ٠٢ · ٢٠٢٧</em><span class="ph-tat"></span></div><div class="ph-note"><i>✎</i> بدنا الاسم أكبر شوي</div><div class="ph-ok">تم التعديل ✓</div></div>' +
       '<div class="ph-v v3"><div class="ph-top">شاركوها</div><div class="ph-chat"><div class="ph-b"><span class="ph-link"><span class="ph-mini"></span><b>دعوة أحمد و منال</b><small>tafsila.ps/ahmad-manal</small></span></div>' +
       '<div class="ph-rsvp r1">✓ سارة أكدت حضورها</div><div class="ph-rsvp r2">✓ خالد أكد حضوره</div><div class="ph-rsvp r3">✓ ٤٢ ضيف أكدوا</div></div></div>' +
       '<span class="ph-glare"></span></div><span class="ph-notch"></span><span class="ph-ly" style="--z:1"></span><span class="ph-ly" style="--z:2"></span><span class="ph-ly" style="--z:3"></span><span class="ph-ly" style="--z:4"></span><span class="ph-ly" style="--z:5"></span><span class="ph-ly" style="--z:6"></span><span class="ph-ly" style="--z:7"></span><span class="ph-ly" style="--z:8"></span><span class="ph-ly" style="--z:9"></span><span class="ph-ly" style="--z:10"></span><span class="ph-ly" style="--z:11"></span><span class="ph-ly" style="--z:12"></span><i class="ph-btn b1"></i><i class="ph-btn b2"></i><i class="ph-btn b3"></i><i class="ph-btn b4"></i></div>';
@@ -751,7 +775,7 @@
       '<svg viewBox="0 0 16 12"><path d="M8 11.5l2.4-2.9a3.6 3.6 0 0 0-4.8 0zM3.6 6.6a6.6 6.6 0 0 1 8.8 0l1.5-1.8a9 9 0 0 0-11.8 0zM.2 3.2a11.6 11.6 0 0 1 15.6 0L14.3 1.4A9.6 9.6 0 0 0 1.7 1.4z"/></svg>' +
       '<i class="rs-bat"><i></i></i></span></div>';
     var HOME = '<i class="rs-home"></i>';
-    function inv(cls, names) { return '<span class="rs-inv ' + cls + '"><span class="rs-arch"><i class="rs-spr"></i><small>بكل الحب ندعوكم</small><b>' + names + '</b><em>١٣ · ٠٢ · ٢٠٢٧</em><i class="rs-tat"></i></span></span>'; }
+    function inv(cls, names) { return '<span class="rs-inv ' + cls + '"><span class="rs-arch"><i class="rs-spr"></i><small>بكل الحب ندعوكم</small><b>' + names + '</b><em>١٤ · ٠٢ · ٢٠٢٧</em><i class="rs-tat"></i></span></span>'; }
     var tick = '<svg class="rs-tk" viewBox="0 0 16 10"><path d="M1 5.5l2.6 2.6L9 2.6M6.4 8.1L11.8 2.6" /></svg>';
     var v = ph.querySelectorAll('.ph-v');
     if (v.length < 4) return;
@@ -770,7 +794,7 @@
     v[1].innerHTML = SB + WAH('تفصيلة', 'متصل الآن', 'ت') +
       '<div class="rs-chat"><span class="rs-day">اليوم</span>' +
         '<p class="rs-m out rs-a" style="--d:.2">مرحبا 👋 بدنا دعوة عرس<time>٩:٤٠ ' + tick + '</time></p>' +
-        '<p class="rs-m out rs-a" style="--d:.7">العريس: أحمد<br>العروس: منال<br>الخميس ١٣ فبراير ٢٠٢٧<br>قاعة الفرح · غزة<time>٩:٤٠ ' + tick + '</time></p>' +
+        '<p class="rs-m out rs-a" style="--d:.7">العريس: أحمد<br>العروس: منال<br>الأحد ١٤ فبراير ٢٠٢٧<br>قاعة الفرح · غزة<time>٩:٤٠ ' + tick + '</time></p>' +
         '<p class="rs-m out rs-a" style="--d:1.2">بنحب اللون الوردي 🌸<time>٩:٤١ ' + tick + '</time></p>' +
         '<p class="rs-m in rs-a" style="--d:2">أهلاً وألف مبروك! 🤍 وصلتنا البيانات، بنبعتلكم المعاينة اليوم<time>٩:٤١</time></p>' +
       '</div><div class="rs-inp"><span>رسالة</span><i class="rs-mic"><svg viewBox="0 0 12 16"><rect x="3.5" y="1" width="5" height="9" rx="2.5"/><path d="M1.5 7.5a4.5 4.5 0 0 0 9 0M6 12v3"/></svg></i></div>' + HOME;
@@ -782,7 +806,7 @@
       '<div class="rs-acts"><span>طلب تعديل</span><span class="ok">اعتماد الدعوة</span></div></div>' + HOME;
     v[3].innerHTML = SB + WAH('العيلة 💍', 'سارة، خالد، ماما، و٤٥ آخرين', '💍') +
       '<div class="rs-chat"><span class="rs-day">اليوم</span>' +
-        '<div class="rs-m out link rs-a" style="--d:.15"><span class="rs-lp">' + inv('p', 'أحمد و منال') + '<span><b>دعوة أحمد و منال 💍</b><small>الخميس ١٣ فبراير · قاعة الفرح</small><em>tafsila.ps</em></span></span><u>tafsila.ps/ahmad-manal</u><time>٩:٥٠ ' + tick + '</time></div>' +
+        '<div class="rs-m out link rs-a" style="--d:.15"><span class="rs-lp">' + inv('p', 'أحمد و منال') + '<span><b>دعوة أحمد و منال 💍</b><small>الأحد ١٤ فبراير · قاعة الفرح</small><em>tafsila.ps</em></span></span><u>tafsila.ps/ahmad-manal</u><time>٩:٥٠ ' + tick + '</time></div>' +
         '<p class="rs-m in rs-a" style="--d:.8"><b class="nm">سارة</b>مبروووك 🤍 أكيد جايين!<time>٩:٥١</time></p>' +
       '</div>' +
       '<div class="rs-ntf"><div class="rs-n rs-a" style="--d:1.3"><i>ت</i><span><b>تفصيلة <small>الآن</small></b>سارة أكدت حضورها ✓</span></div>' +
@@ -988,7 +1012,7 @@
           '<small class="bc-fam">بكل الحب، ومع عائلتيهما</small>' +
           '<div class="bc-nm"><b>أحمد</b><i>♥︎</i><b>منال</b></div>' +
           '<small class="bc-inv">يتشرّفان بدعوتكم لمشاركتهما فرحة العمر</small>' +
-          '<div class="bc-dt"><span>الخميس</span><b>١٣ · ٠٢ · ٢٠٢٧</b><span>قاعة الفرح</span></div>' +
+          '<div class="bc-dt"><span>الأحد</span><b>١٤ · ٠٢ · ٢٠٢٧</b><span>قاعة الفرح</span></div>' +
         '</div></article>' +
         '<aside class="hc-side">' +
           '<p class="hc-t">باقي على الفرح</p>' +
@@ -1012,7 +1036,7 @@
       var ev = [['أول لقاء', 'يوليو ٢٠٢٢', balloons + fig], ['أول موعد', 'سبتمبر ٢٠٢٢', fig], ['بدأت الحكاية', 'فبراير ٢٠٢٣', fig], ['طلب الإيد', 'سبتمبر ٢٠٢٥', fig], ['الخطوبة', 'ديسمبر ٢٠٢٥', rings]];
       f2.innerHTML = '<div class="ls"><b class="ls-t">حكايتنا</b><ol>' + ev.map(function (e, i) {
           return '<li class="' + (i % 2 ? 'r' : 'l') + '"><span class="ls-ev">' + e[0] + '</span><span class="ls-fg' + (e[2] === rings ? ' rg' : '') + '">' + e[2] + '</span><span class="ls-dt">' + e[1] + '</span></li>';
-        }).join('') + '</ol><p class="ls-end">والفرح ١٣ · ٠٢ · ٢٠٢٧</p></div>';
+        }).join('') + '</ol><p class="ls-end">والفرح ١٤ · ٠٢ · ٢٠٢٧</p></div>';
       inr.appendChild(f1); inr.appendChild(f2); card0.appendChild(inr);
       card0.insertAdjacentHTML('beforeend', '<span class="hc-hint">اضغطوا لفتح الدعوة</span>');
       card0.setAttribute('role', 'button'); card0.setAttribute('tabindex', '0'); card0.setAttribute('aria-label', 'افتح الدعوة');
@@ -1139,7 +1163,7 @@
       bday: '<svg class="ho-art" viewBox="0 0 120 110"><g class="ho-bl"><ellipse cx="24" cy="32" rx="12" ry="14" fill="#f3b6c2"/><path d="M24 46q-3 16 3 34" fill="none" stroke="#c9a2ab"/></g><g class="ho-bl b2"><ellipse cx="98" cy="28" rx="11" ry="13" fill="#bcd0ee"/><path d="M98 41q3 16-3 36" fill="none" stroke="#a9b6ca"/></g><rect x="36" y="64" width="48" height="30" rx="5" fill="#fff" stroke="#f0c8d0"/><path d="M36 73q6 7 12 0t12 0 12 0 12 0" fill="none" stroke="#e08a9a" stroke-width="2.2"/><rect x="32" y="92" width="56" height="6" rx="3" fill="#f3d5dc"/><rect x="58" y="48" width="4" height="16" rx="1" fill="#bcd0ee"/><path class="ho-fl" d="M60 34c5 6 5 10 0 13-5-3-5-7 0-13z" fill="#f2b84b"/></svg>'
     };
     var OCC = {
-      wed: { k: 'زفاف', fam: 'بكل الحب، ومع عائلتيهما', n: ['أحمد', 'منال'], inv: 'يتشرّفان بدعوتكم لمشاركتهما فرحة العمر', d: ['الخميس', '١٣ · ٠٢ · ٢٠٢٧', 'قاعة الفرح'] },
+      wed: { k: 'زفاف', fam: 'بكل الحب، ومع عائلتيهما', n: ['أحمد', 'منال'], inv: 'يتشرّفان بدعوتكم لمشاركتهما فرحة العمر', d: ['الأحد', '١٤ · ٠٢ · ٢٠٢٧', 'قاعة الفرح'] },
       eng: { k: 'إشهار', fam: 'بفرحة كبيرة، ومع عائلتيهما', n: ['نور', 'يزن'], inv: 'يسعدنا دعوتكم لمشاركتنا حفل إشهار زواجنا', d: ['الجمعة', '٠٢ · ٠٧ · ٢٠٢٧', 'حديقة الورد'] },
       grad: { k: 'تخرج', fam: 'بكل فخر واعتزاز', n: ['ريم خالد'], inv: 'تدعوكم لمشاركتها فرحة التخرج · دفعة ٢٠٢٧', d: ['الخميس', '٢٤ · ٠٦ · ٢٠٢٧', 'مسرح الجامعة'] },
       bday: { k: 'عيد ميلاد', fam: 'تعالوا نحتفل سوا', n: ['جود'], inv: 'بعيد ميلادها الخامس، والكيكة بتستنّاكم', d: ['السبت', '١٤ · ٠٥ · ٢٠٢٧', 'بيت العيلة'] }
@@ -1199,7 +1223,7 @@
     if (!heroCard || !ids.every(function (i) { return document.getElementById(i); })) return;
     var LBL = { designs: 'اختاروا تصميمكم', packages: 'دعوة كاملة · ٥٠ ₪', how: 'عم نجهّزها إلكم', faq: 'عندكم سؤال؟', contact: 'جاهزة للإرسال' };
     var c = document.createElement('a'); c.className = 'cmp'; c.href = '#contact'; c.setAttribute('aria-label', 'اطلبوا دعوتكم');
-    c.innerHTML = '<span class="cmp-card"><span class="cmp-win"><img src="img/couple.svg" alt=""></span><b>أحمد <i>♥︎</i> منال</b><small>١٣ · ٠٢ · ٢٠٢٧</small></span><span class="cmp-l"></span>';
+    c.innerHTML = '<span class="cmp-card"><span class="cmp-win"><img src="img/couple.svg" alt=""></span><b>أحمد <i>♥︎</i> منال</b><small>١٤ · ٠٢ · ٢٠٢٧</small></span><span class="cmp-l"></span>';
     document.body.appendChild(c);
     var lbl = c.querySelector('.cmp-l'), state = '', shown = false;
     function show(on) {
@@ -1249,7 +1273,7 @@
     if (!st || !mark || !ho || !back || hero.querySelector('.hs-side') || hero.querySelectorAll('.hp').length < 4) return;
     var AR = function (n) { return String(n).replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'[c]; }); };
     var MON = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
-    var D = { wed: [2027, 1, 13, 'الفرح'], eng: [2027, 6, 2, 'الإشهار'], grad: [2027, 5, 24, 'التخرج'], bday: [2027, 4, 14, 'عيد الميلاد'] };
+    var D = { wed: [2027, 1, 14, 'الفرح'], eng: [2027, 6, 2, 'الإشهار'], grad: [2027, 5, 24, 'التخرج'], bday: [2027, 4, 14, 'عيد الميلاد'] };
     var CAP = { wed: 'زفاف', eng: 'إشهار', grad: 'تخرج', bday: 'عيد ميلاد' };
     hero.classList.add('hs2');
     var side = document.createElement('div'); side.className = 'hs-side';
@@ -1278,31 +1302,56 @@
     /* flip tiles: two-digit cards that fall over when they change */
     var U = [['d', 'يوم'], ['h', 'ساعة'], ['m', 'دقيقة'], ['s', 'ثانية']];
     tiles.innerHTML = U.map(function (u, i) { return (i ? '<i class="hs-dot"></i>' : '') + '<div class="hs-u"><span class="hs-t" data-u="' + u[0] + '"></span><small>' + u[1] + '</small></div>'; }).join('');
-    /* the wreath: two olive sprigs meeting under a small cluster of roses */
-    var wr = '', leaf = function (x, y, a, c) { return '<ellipse cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" rx="7.5" ry="2.9" transform="rotate(' + a.toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')" fill="' + c + '"/>'; };
-    var cx = 150, cy = 100, rx = 140, ry = 92;
-    [1, -1].forEach(function (sd) {
-      var stem = 'M' + cx + ' ' + (cy + ry);
-      for (var t = 0; t <= 1.0001; t += .05) { var a = Math.PI / 2 + sd * t * Math.PI * .8; stem += 'L' + (cx + rx * Math.cos(a)).toFixed(1) + ' ' + (cy + ry * Math.sin(a)).toFixed(1); }
-      wr += '<path d="' + stem + '" fill="none" stroke="#9aae93" stroke-width="1.3" stroke-linecap="round"/>';
-      for (var k = 1; k < 15; k++) {
-        var tt = k / 15, an = Math.PI / 2 + sd * tt * Math.PI * .8, px = cx + rx * Math.cos(an), py = cy + ry * Math.sin(an), deg = an * 180 / Math.PI + 90;
-        var ox = Math.cos(an) * 6, oy = Math.sin(an) * 6;
-        wr += leaf(px + ox, py + oy, deg + sd * 35, k % 2 ? '#a9bba2' : '#8fa588') + leaf(px - ox, py - oy, deg - sd * 35, k % 2 ? '#b7c6ad' : '#9fb39a');
-        if (k % 4 === 2) wr += '<circle cx="' + (px + ox * 1.6).toFixed(1) + '" cy="' + (py + oy * 1.6).toFixed(1) + '" r="2.6" fill="#7d8a5c"/>';
+    /* a garland of roses and olive leaves woven through the numbers: it comes in under the days, rises over the
+       hours, dips under the minutes and climbs over the seconds */
+    var NS = 'http://www.w3.org/2000/svg', sv = document.createElementNS(NS, 'svg');
+    sv.setAttribute('class', 'hs-wr'); sv.setAttribute('aria-hidden', 'true');
+    tiles.parentNode.insertBefore(sv, tiles.parentNode.firstChild);
+    function vine() {
+      var box = sv.getBoundingClientRect(); if (!box.width) return;
+      var W = box.width, H = box.height, us = [].slice.call(tiles.querySelectorAll('.hs-u')).map(function (u) { var r = u.getBoundingClientRect(); return { l: r.left - box.left, r: r.right - box.left, t: r.top - box.top, b: r.bottom - box.top }; });
+      if (!us.length) return;
+      us.sort(function (a, b) { return b.l - a.l; }); /* right to left: days, hours, minutes, seconds */
+      var mid = (us[0].t + us[0].b) / 2, pts = [[W + 6, mid + 14]];
+      us.forEach(function (u, i) {
+        pts.push([(u.l + u.r) / 2, i % 2 ? u.t - 10 : u.b + 14]);
+        if (i < us.length - 1) pts.push([(u.l + us[i + 1].r) / 2, mid]);
+      });
+      pts.push([-6, mid - 6]);
+      var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+      for (var i = 0; i < pts.length - 1; i++) {
+        var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+        d += 'C' + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + ' ' + (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + ' ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
       }
-    });
-    var rose = function (x, y, r, c1, c2) { var p = ''; for (var i = 0; i < 5; i++) p += '<ellipse cx="0" cy="' + (-r * .5) + '" rx="' + (r * .55) + '" ry="' + (r * .6) + '" transform="rotate(' + (i * 72) + ')" fill="' + c1 + '"/>';
-      return '<g transform="translate(' + x + ' ' + y + ')">' + p + '<circle r="' + (r * .55) + '" fill="' + c2 + '"/><path d="M' + (-r * .25) + ' 0a' + (r * .25) + ' ' + (r * .25) + ' 0 1 1 ' + (r * .25) + ' ' + (r * .25) + 'a' + (r * .15) + ' ' + (r * .15) + ' 0 1 1 -' + (r * .1) + ' -' + (r * .24) + '" fill="none" stroke="#c76d80" stroke-width="1"/></g>'; };
-    wr += rose(cx - 15, cy + ry - 2, 10, '#f4c6cf', '#eaa9b6') + rose(cx + 14, cy + ry - 1, 9, '#f8d8de', '#f0b9c4') + rose(cx, cy + ry + 5, 12, '#f1b8c4', '#e595a6');
-    tiles.parentNode.insertAdjacentHTML('afterbegin', '<svg class="hs-wr" viewBox="-6 -6 312 220" aria-hidden="true">' + wr + '</svg>');
+      sv.setAttribute('viewBox', '0 0 ' + W.toFixed(1) + ' ' + H.toFixed(1));
+      sv.innerHTML = '<path class="hs-stem" d="' + d + '"/>';
+      var stem = sv.querySelector('.hs-stem'), L = stem.getTotalLength(), out = '', N = Math.round(L / 9);
+      var leaf = function (x, y, a, c) { return '<ellipse cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" rx="6.5" ry="2.5" transform="rotate(' + a.toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')" fill="' + c + '"/>'; };
+      var rose = function (x, y, r, c1, c2) { var q = ''; for (var i = 0; i < 5; i++) q += '<ellipse cx="0" cy="' + (-r * .5).toFixed(1) + '" rx="' + (r * .55).toFixed(1) + '" ry="' + (r * .6).toFixed(1) + '" transform="rotate(' + (i * 72) + ')" fill="' + c1 + '"/>';
+        return '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ')">' + q + '<circle r="' + (r * .55).toFixed(1) + '" fill="' + c2 + '"/><path d="M' + (-r * .25).toFixed(1) + ' 0a' + (r * .25).toFixed(1) + ' ' + (r * .25).toFixed(1) + ' 0 1 1 ' + (r * .25).toFixed(1) + ' ' + (r * .25).toFixed(1) + '" fill="none" stroke="#c76d80" stroke-width=".9"/></g>'; };
+      var RC = [['#f4c6cf', '#eaa9b6'], ['#f8d8de', '#f0b9c4'], ['#f1b8c4', '#e595a6']], roses = [];
+      for (var k = 1; k < N; k++) {
+        var t = k / N * L, p = stem.getPointAtLength(t), p2 = stem.getPointAtLength(Math.min(L, t + 1)), ang = Math.atan2(p2.y - p.y, p2.x - p.x) * 180 / Math.PI;
+        /* roses sit at the turns of the garland (over/under a number), never on top of one */
+        var near = us.some(function (u) { return p.x > u.l - 4 && p.x < u.r + 4 && p.y > u.t - 7 && p.y < u.b + 7; });
+        var sd = k % 2 ? 1 : -1, nx = Math.cos((ang + 90 * sd) * Math.PI / 180) * 4.5, ny = Math.sin((ang + 90 * sd) * Math.PI / 180) * 4.5;
+        if (near) continue;
+        if (k % 4 === 2) { var c = RC[k % 3]; roses.push(rose(p.x, p.y, 5 + (k % 5) * .9, c[0], c[1])); continue; }
+        out += leaf(p.x + nx, p.y + ny, ang + sd * 40, k % 3 ? '#a9bba2' : '#8fa588');
+        if (k % 5 === 2) out += '<circle cx="' + (p.x - nx * 1.3).toFixed(1) + '" cy="' + (p.y - ny * 1.3).toFixed(1) + '" r="2.2" fill="#7d8a5c"/>';
+      }
+      sv.insertAdjacentHTML('beforeend', out + roses.join(''));
+    }
+    requestAnimationFrame(vine); setTimeout(vine, 1200);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(vine);
+    var vt; addEventListener('resize', function () { clearTimeout(vt); vt = setTimeout(vine, 200); });
     var T = {}; tiles.querySelectorAll('.hs-t').forEach(function (t) { T[t.dataset.u] = t; });
     var target = 0;
     function setOcc(k) { var d = D[k]; target = new Date(d[0], d[1], d[2], 19, 0, 0).getTime(); cl.textContent = 'باقي على ' + d[3]; drawCal(k); tick(true);
       side.querySelectorAll('.hs-pol').forEach(function (p) { p.classList.toggle('on', p.dataset.o === k); p.setAttribute('aria-pressed', p.dataset.o === k ? 'true' : 'false'); }); }
     function tick(all) {
       var t = Math.max(0, target - Date.now()) / 1000, v = { d: Math.floor(t / 86400), h: Math.floor(t / 3600) % 24, m: Math.floor(t / 60) % 60, s: Math.floor(t) % 60 };
-      for (var u in v) { var x = AR(v[u] < 10 ? '0' + v[u] : v[u]); if (T[u].textContent !== x) { T[u].textContent = x; T[u].classList.remove('fd'); void T[u].offsetWidth; T[u].classList.add('fd'); } }
+      for (var u in v) { var x = AR(v[u] < 10 ? '0' + v[u] : v[u]); if (T[u].dataset.v !== x) { var first = !T[u].dataset.v; T[u].dataset.v = x; if (first || all === true) { T[u].innerHTML = '<span>' + x + '</span>'; continue; } var o = T[u].firstElementChild, n = document.createElement('span'); n.textContent = x; n.className = 'in'; if (o) o.className = 'out'; T[u].appendChild(n); setTimeout(function (o) { if (o) o.remove(); }.bind(null, o), 700); } }
     }
     setInterval(tick, 1000);
     /* the prints pick the occasion */
@@ -1315,17 +1364,29 @@
       eng: '<div class="bk"><b class="bk-t">ليلة الإشهار</b><ul class="bk-p">' +
         [['الاستقبال', '٧:٣٠ م'], ['الإشهار وقراءة الفاتحة', '٨:٠٠ م'], ['الزفّة والدبكة', '٨:٣٠ م'], ['العشاء', '٩:٣٠ م']].map(function (r) { return '<li><span>' + r[0] + '</span><i></i><time>' + r[1] + '</time></li>'; }).join('') +
         '</ul><p class="bk-e">حضوركم بيكمّل فرحتنا</p></div>',
-      grad: '<div class="bk"><b class="bk-t">شكرًا من القلب</b><ul class="bk-l">' +
-        ['لماما وبابا، اللي سهروا معي', 'لإخوتي، سندي بكل خطوة', 'لأصحابي، رفقة الطريق', 'ولكل أستاذ علّمني حرف'].map(function (r) { return '<li>' + r + '</li>'; }).join('') +
-        '</ul><p class="bk-e">ومنحتفل سوا · ٢٤ · ٠٦ · ٢٠٢٧</p></div>',
-      bday: '<div class="bk bk-b"><b class="bk-age">٥</b><b class="bk-t">أمنيات جود</b><ul class="bk-l">' +
-        ['كيكة فراولة كبيرة', 'بالونات بكل الألوان', 'كل أصحابي حواليّ', 'ونطفّي الشمعات سوا'].map(function (r) { return '<li>' + r + '</li>'; }).join('') +
-        '</ul><p class="bk-e">جيبوا معكم ضحكتكم</p></div>'
+      grad: '<div class="bk bk-g"><span class="bkg-k">حفل تخرج دفعة</span><b class="bkg-y">٢٠٢٧</b><svg class="bkg-cap" viewBox="0 0 60 34" aria-hidden="true"><path d="M2 12L30 2l28 10-28 10z" fill="#d8b56f"/><path d="M12 16v8c10 6 26 6 36 0v-8L30 22z" fill="#c9a35a"/><path d="M30 12q14 2 18 6v10" fill="none" stroke="#f3dc96" stroke-width="1.4"/><circle cx="48" cy="29" r="2.2" fill="#f3dc96"/></svg>' +
+        '<b class="bkg-n">ريم خالد</b><span class="bkg-d">بكالوريوس هندسة معمارية</span>' +
+        '<dl class="bkg-i"><div><dt>الموعد</dt><dd>الخميس ٢٤ يونيو · ٦:٠٠ مساءً</dd></div><div><dt>المكان</dt><dd>مسرح الجامعة</dd></div><div><dt>بعد الحفل</dt><dd>عشاء عائلي بالبيت</dd></div></dl>' +
+        '<p class="bkg-e">وجودكم أحلى هدية تخرّج</p></div>',
+      bday: '<div class="bk bk-b"><i class="bkb-cf" aria-hidden="true"></i><span class="bkb-k">جود صارت</span><b class="bkb-a">٥</b><span class="bkb-s">سنين!</span>' +
+        '<div class="bkb-i"><div><small>متى؟</small><b>السبت ١٤ مايو</b><span>٤:٠٠ العصر</span></div><div><small>وين؟</small><b>بيت العيلة</b><span>حديقة البيت</span></div></div>' +
+        '<p class="bkb-t">ثيم الحفلة: فراشات وردية 🦋</p><p class="bkb-r">أكّدوا حضوركم قبل ١٠ مايو</p></div>'
     };
     var cur = hero.dataset.occ || 'wed';
     new MutationObserver(function () { var k = hero.dataset.occ || 'wed'; if (k === cur) return; cur = k; setTimeout(function () { back.innerHTML = BK[k]; }, 420); setOcc(k); })
       .observe(hero, { attributes: true, attributeFilter: ['data-occ'] });
     setOcc(cur);
+    /* the occasions turn by themselves every few seconds, so visitors see there is more than weddings;
+       any touch on the hero pauses this for a while, and it never turns a card that is open */
+    var ORD = ['wed', 'eng', 'grad', 'bday'], idle = Date.now(), vis = true;
+    hero.addEventListener('pointerdown', function () { idle = Date.now() + 20000; });
+    hero.addEventListener('keydown', function () { idle = Date.now() + 20000; });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { vis = es[0].isIntersecting && es[0].intersectionRatio > .5; }, { threshold: [0, .5, 1] }).observe(hero);
+    if (!reduce) setInterval(function () {
+      if (!vis || document.hidden || Date.now() < idle || card.classList.contains('open')) return;
+      if (Date.now() - idle < 6500) return;
+      var b = ho.querySelector('[data-o="' + ORD[(ORD.indexOf(cur) + 1) % 4] + '"]'); if (b) { b.click(); idle = Date.now(); }
+    }, 500);
     /* a little moment on each front: the candle goes out and lights again, the cap is tossed, the rings meet */
     var win = card.querySelector('.hc-front .bc-win');
     win.addEventListener('click', function (e) {
@@ -1339,7 +1400,7 @@
         setTimeout(function () { var s = svg.querySelector('.ho-smk'); if (s) s.remove(); }, 1600);
         setTimeout(function () { svg.classList.remove('off'); }, 2600);
       } else if (a.classList.contains('ho-cap')) {
-        a.classList.remove('toss'); void a.getBoundingClientRect(); a.classList.add('toss');
+        a.classList.remove('toss'); card.classList.add('still'); requestAnimationFrame(function () { a.classList.add('toss'); }); setTimeout(function () { a.classList.remove('toss'); card.classList.remove('still'); }, 950);
       } else {
         if (svg.classList.contains('join')) return;
         svg.classList.add('join');

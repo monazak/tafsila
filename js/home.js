@@ -607,7 +607,7 @@
   var HOW = [
     ['اختاروا التصميم', 'تصفّحوا المعرض وعاينوا كل دعوة قبل ما تختاروا.'],
     ['ابعتولنا التفاصيل', 'الأسماء والتاريخ والمكان، وأي لون أو جملة بتحبّوها.'],
-    ['بنجهّزها إلكم', 'بتوصلكم معاينة، وبنعدّل عليها لحد ما تعجبكم.'],
+    ['بنجهّزها إلكم', 'خلال يومين بتوصلكم معاينة، وبنعدّل عليها لحد ما تعجبكم.'],
     ['ابعتوها لضيوفكم', 'رابط واحد لكل الضيوف، وتأكيدات الحضور بتوصلكم على واتساب.']
   ];
   function decorateHow() {
@@ -749,7 +749,7 @@
     v[0].innerHTML = SB +
       '<div class="rs-app"><div class="rs-ah"><b class="rs-logo">تفصيلة</b><svg class="rs-srch" viewBox="0 0 16 16"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg></div>' +
       '<div class="rs-ttl rs-a" style="--d:.05"><b>اختاروا تصميمكم</b><small>تصاميم لكل المناسبات</small></div>' +
-      '<div class="rs-chips rs-a" style="--d:.15"><span class="on">الكل</span><span>زفاف</span><span>خطوبة</span><span>تخرج</span><span>مواليد</span></div>' +
+      '<div class="rs-chips rs-a" style="--d:.15"><span class="on">الكل</span><span>زفاف</span><span>إشهار</span><span>تخرج</span><span>مواليد</span></div>' +
       '<div class="rs-grid">' +
         '<button type="button" class="rs-card on rs-a" style="--d:.25">' + inv('p', 'أحمد و منال') + '<span class="rs-meta"><b>ورد الجوري</b><em>٥٠ ₪</em></span><i class="rs-chk">✓</i></button>' +
         '<button type="button" class="rs-card rs-a" style="--d:.33">' + inv('b', 'ليان و آدم') + '<span class="rs-meta"><b>سماء صافية</b><em>٥٠ ₪</em></span><i class="rs-chk">✓</i></button>' +
@@ -808,7 +808,7 @@
       '<div class="hx-txt">' +
         '<p class="hx-k">كل فرحة إلها تفصيلة</p>' +
         '<h1 class="hx-h"><span class="hx-l1">دعوات</span><span class="hx-l2">إلكترونية</span><em class="hx-sc">تفصيلة</em></h1>' +
-        '<p class="hx-occ"><span>زفاف</span><span>خطوبة وإشهار</span><span>تخرج</span><span>عيد ميلاد</span><span>مواليد</span></p>' +
+        '<p class="hx-occ"><span>زفاف</span><span>إشهار</span><span>تخرج</span><span>عيد ميلاد</span><span>مواليد</span></p>' +
         '<p class="hx-s">نصمّم دعوتكم برابط واحد يوصل لكل ضيوفكم على واتساب، بتصميم يشبه مناسبتكم.</p>' +
       '</div>' +
       '<div class="hx-col" aria-hidden="true">' +
@@ -829,7 +829,7 @@
      countdown, the way our invitations count down to the day. Olive and flowers wrap round the middle frame. */
   function decorateHeroArches() {
     var hero = document.querySelector('.hero'); if (!hero || hero.querySelector('.ha')) return;
-    var OCC = [['wgold', 'زفاف'], ['ish', 'خطوبة وإشهار'], ['grad', 'تخرج'], ['bday', 'عيد ميلاد']];
+    var OCC = [['wgold', 'زفاف'], ['ish', 'إشهار'], ['grad', 'تخرج'], ['bday', 'عيد ميلاد']];
     var AR = function (n) { return String(n).replace(/\d/g, function (c) { return '٠١٢٣٤٥٦٧٨٩'[c]; }); };
     var leaf = function (x, y, r, s) { return '<ellipse cx="' + x + '" cy="' + y + '" rx="' + (11 * s) + '" ry="' + (4.2 * s) + '" transform="rotate(' + r + ' ' + x + ' ' + y + ')"/>'; };
     var bough = function (cls) {
@@ -1131,7 +1131,7 @@
     };
     var OCC = {
       wed: { k: 'زفاف', fam: 'بكل الحب، ومع عائلتيهما', n: ['أحمد', 'منال'], inv: 'يتشرّفان بدعوتكم لمشاركتهما فرحة العمر', d: ['الخميس', '١٣ · ٠٢ · ٢٠٢٧', 'قاعة الفرح'] },
-      eng: { k: 'خطوبة', fam: 'بفرحة كبيرة، ومع عائلتيهما', n: ['نور', 'يزن'], inv: 'يسعدنا دعوتكم لمشاركتنا حفل خطوبتنا', d: ['الجمعة', '٠٢ · ٠٧ · ٢٠٢٧', 'حديقة الورد'] },
+      eng: { k: 'إشهار', fam: 'بفرحة كبيرة، ومع عائلتيهما', n: ['نور', 'يزن'], inv: 'يسعدنا دعوتكم لمشاركتنا حفل إشهار زواجنا', d: ['الجمعة', '٠٢ · ٠٧ · ٢٠٢٧', 'حديقة الورد'] },
       grad: { k: 'تخرج', fam: 'بكل فخر واعتزاز', n: ['ريم خالد'], inv: 'تدعوكم لمشاركتها فرحة التخرج · دفعة ٢٠٢٧', d: ['الخميس', '٢٤ · ٠٦ · ٢٠٢٧', 'مسرح الجامعة'] },
       bday: { k: 'عيد ميلاد', fam: 'تعالوا نحتفل سوا', n: ['جود'], inv: 'بعيد ميلادها الخامس، والكيكة بتستنّاكم', d: ['السبت', '١٤ · ٠٥ · ٢٠٢٧', 'بيت العيلة'] }
     };

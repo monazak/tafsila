@@ -1027,8 +1027,7 @@
       var d = document.createElement('div'); d.className = 'bc-cp cv2-svg'; d.innerHTML = t; d.setAttribute('aria-hidden', 'true');
       cim.replaceWith(d);
       var gm = d.querySelector('.gm'), go = function () { d.classList.remove('kiss'); void d.offsetWidth; d.classList.add('kiss'); };
-      if (gm) { gm.style.cursor = 'pointer'; gm.addEventListener('click', go); }
-      if (gm) gm.addEventListener('click', function (e) { e.stopPropagation(); });
+      d.querySelectorAll('.gm, .br').forEach(function (g) { g.style.cursor = 'pointer'; g.addEventListener('click', function (e) { e.stopPropagation(); go(); }); });
     }).catch(function () {});
     var hcx = st.querySelector('.hc'), side = hcx.querySelector('.hc-side'), cnt = document.createElement('div'); cnt.className = 'hc-count';
     cnt.appendChild(side.querySelector('.hc-t')); cnt.appendChild(side.querySelector('.hc-cd')); hcx.appendChild(cnt);

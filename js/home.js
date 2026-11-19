@@ -1006,7 +1006,7 @@
       inr.appendChild(f1); inr.appendChild(f2); card0.appendChild(inr);
       card0.insertAdjacentHTML('beforeend', '<span class="hc-hint">اضغطوا لفتح الدعوة</span>');
       card0.setAttribute('role', 'button'); card0.setAttribute('tabindex', '0'); card0.setAttribute('aria-label', 'افتح الدعوة');
-      var flip = function () { card0.classList.toggle('open'); };
+      var flip = function () { card0.classList.toggle('open'); var e = card0.closest('.hc-env'); if (e) e.classList.toggle('flip', card0.classList.contains('open')); };
       card0.addEventListener('click', flip);
       card0.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
     }
@@ -1015,6 +1015,21 @@
       env.innerHTML = '<i class="env-bk"></i><i class="env-fl"></i>';
       card0.parentNode.insertBefore(env, card0); env.appendChild(card0);
       env.insertAdjacentHTML('beforeend', '<i class="env-pk"><b class="env-seal">ت</b></i><i class="hc-shine"></i>');
+      /* a laser-cut lace gate (two dentelle panels) wraps the card, with a vellum band carrying the names */
+      var INNER = 'M100 0C70 10 55 40 60 70C66 110 100 120 100 150C100 180 66 190 60 230C55 260 70 290 100 300';
+      var SHAPE = 'M0 300V102A100 102 0 0 1 100 0C70 10 55 40 60 70C66 110 100 120 100 150C100 180 66 190 60 230C55 260 70 290 100 300Z';
+      var ros = ''; for (var k = 0; k < 8; k++) ros += '<ellipse cx="13" cy="6.2" rx="1.9" ry="4.4" transform="rotate(' + (k * 45) + ' 13 13)"/>';
+      var laceSvg = '<svg viewBox="0 0 100 300" preserveAspectRatio="none"><defs>' +
+        '<pattern id="lcH" width="26" height="26" patternUnits="userSpaceOnUse"><g fill="#000">' + ros + '<circle cx="13" cy="13" r="1.8"/><path d="M0 -4C2 -1 2 2 0 4C-2 2 -2 -1 0 -4z"/><path d="M26 -4C28 -1 28 2 26 4C24 2 24 -1 26 -4z"/><path d="M0 22C2 25 2 28 0 30C-2 28 -2 25 0 22z"/><path d="M26 22C28 25 28 28 26 30C24 28 24 25 26 22z"/><circle cx="13" cy="0" r=".9"/><circle cx="0" cy="13" r=".9"/><circle cx="26" cy="13" r=".9"/><circle cx="13" cy="26" r=".9"/></g></pattern>' +
+        '<mask id="lcM" maskUnits="userSpaceOnUse" x="-10" y="-10" width="130" height="320"><path d="' + SHAPE + '" fill="#fff"/>' +
+        '<path d="' + INNER + '" fill="none" stroke="#fff" stroke-width="9" stroke-dasharray="0 7.5" stroke-linecap="round"/>' +
+        '<rect x="0" y="0" width="100" height="300" fill="url(#lcH)"/>' +
+        '<path d="' + INNER + '" fill="none" stroke="#fff" stroke-width="9"/>' +
+        '<path d="' + INNER + '" fill="none" stroke="#000" stroke-width="1.8" stroke-dasharray="0 6" stroke-linecap="round" transform="translate(-2 0)"/>' +
+        '<path d="M0 300V102A100 102 0 0 1 100 0" fill="none" stroke="#fff" stroke-width="7"/></mask></defs>' +
+        '<rect x="-10" y="-10" width="130" height="320" fill="currentColor" mask="url(#lcM)"/></svg>';
+      env.insertAdjacentHTML('beforeend', '<i class="lace l">' + laceSvg + '</i><i class="lace r">' + laceSvg + '</i>' +
+        '<i class="lace-band"><b>أحمد</b><em>♥</em><b>منال</b></i>');
       /* the envelope shows closed; after two seconds (or a tap) the flap opens and the card rises out */
       var opened = false, openEnv = function () { if (opened) return; opened = true; env.classList.add('open'); setTimeout(function () { env.classList.add('up'); }, 650); };
       env.addEventListener('click', function (e) { if (!opened) { e.stopPropagation(); openEnv(); } }, true);

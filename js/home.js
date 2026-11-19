@@ -592,14 +592,15 @@
 
   /* opened category: scale the design card so the section fits one screen */
   function fitShowcase() {
-    var dc = document.querySelector('#designs .grid .dc'), sec = document.getElementById('designs');
+    var g = document.querySelector('#designs .grid'), sec = document.getElementById('designs');
+    var dc = g && (g.querySelector('.dc.sel:not(.dc-ghost)') || g.querySelector('.dc'));
     if (!dc || !sec || !sec.querySelector('.cathead')) return;
-    dc.style.zoom = 1;
-    if (innerWidth < 900) return;
+    if (innerWidth < 900) { g.style.setProperty('--fz', 1); return; }
+    var cur = parseFloat(getComputedStyle(dc).zoom) || 1;
     var top = dc.getBoundingClientRect().top - sec.getBoundingClientRect().top;
-    var avail = innerHeight - top - 24, h = dc.offsetHeight;
+    var h = dc.getBoundingClientRect().height / cur, avail = innerHeight - top - 24;
     var z = Math.max(.7, Math.min(1, avail / h));
-    dc.style.zoom = z.toFixed(3);
+    if (Math.abs(z - cur) > .01) g.style.setProperty('--fz', z.toFixed(3));
   }
   var fitT; addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitShowcase, 120); });
   /* how we work: three steps hanging from a tailor's measuring tape that unrolls across the top */

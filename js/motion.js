@@ -125,29 +125,20 @@
     }, true);
   }
 
-  /* 4b. switching between categories (زفاف / إشهار / تخرج …): the card frame never moves. The old card stays
-         on top as a still picture and dissolves, while the new card's invitation and text appear one after another */
+  /* 4b. switching category or colour: nothing moves; only the titles write themselves in, letter by letter */
+  function typeIn(el) {
+    if (!el) return; var full = el.dataset.full && el.__typing ? el.dataset.full : el.textContent; el.dataset.full = full;
+    clearInterval(el.__typing); var ch = Array.from(full), i = 0; el.textContent = '';
+    el.__typing = setInterval(function () { i++; el.textContent = ch.slice(0, i).join(''); if (i >= ch.length) { clearInterval(el.__typing); el.__typing = 0; } }, 55);
+  }
   document.addEventListener('click', function (e) {
-    var b = e.target.closest && e.target.closest('#designs .tabs button'); if (!b || !window.gsap) return;
-    var before = document.querySelector('#designs .grid .dc.sel'), grid = document.querySelector('#designs .grid');
-    if (!before || !grid) return;
-    var r = before.getBoundingClientRect(), gr = grid.getBoundingClientRect();
-    var ghost = before.cloneNode(true); ghost.classList.add('dc-ghost'); ghost.setAttribute('aria-hidden', 'true');
-    ghost.style.cssText = 'position:absolute;left:' + (r.left - gr.left) + 'px;top:' + (r.top - gr.top) + 'px;width:' + r.width + 'px;height:' + r.height + 'px;margin:0;z-index:5;pointer-events:none;display:grid';
-    var cs = getComputedStyle(before);
-    grid.style.position = 'relative'; grid.appendChild(ghost);
-    ['background-image', 'background-color', 'background-size', 'background-position', 'background-repeat', 'box-shadow'].forEach(function (pr) { ghost.style.setProperty(pr, cs.getPropertyValue(pr), 'important'); });
-    var ib = before.querySelector('.in'), gi = ghost.querySelector('.in'); if (ib && gi) { var ics = getComputedStyle(ib); gi.style.setProperty('background', ics.background, 'important'); }
-    var tries = 0;
-    (function wait() {
-      var dc = document.querySelector('#designs .grid .dc.sel:not(.dc-ghost)');
-      if (!dc || (dc === before && tries < 3)) { if (tries++ < 40) return requestAnimationFrame(wait); ghost.remove(); return; }
-      var parts = [].slice.call(dc.querySelectorAll('.in > *')), mk = dc.querySelector('.pv .mk');
-      gsap.set(parts.concat(mk ? [mk] : []), { opacity: 0 });
-      gsap.to(ghost, { opacity: 0, duration: .45, ease: 'power1.inOut', onComplete: function () { ghost.remove(); } });
-      if (mk) gsap.to(mk, { opacity: 1, duration: .6, delay: .15, ease: 'power1.out', clearProps: 'opacity' });
-      gsap.fromTo(parts, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: .5, ease: 'power2.out', stagger: .06, delay: .25, clearProps: 'opacity,transform' });
-    })();
+    var tab = e.target.closest && e.target.closest('#designs .tabs button'), sw = e.target.closest && e.target.closest('#designs .grid button.sw');
+    if (!tab && !sw) return;
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      var dc = document.querySelector('#designs .grid .dc.sel');
+      if (tab) typeIn(document.querySelector('#designs .cathead h3'));
+      if (dc) typeIn(dc.querySelector('.in > h3'));
+    }); });
   }, true);
 
   /* 5. "how we work": on desktop the section stays in place while scrolling walks through the four steps */

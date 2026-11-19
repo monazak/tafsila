@@ -11851,3 +11851,7 @@ html body .bl-sec > :not(.bl-br):not(.bl-vt){position:relative;z-index:1}
 /* more air between the heading and the card */
 .hero .hx-mark{margin-bottom:clamp(30px,4.5vh,48px)!important}
 @media (max-width:820px){.hero .hx-mark{margin:0 0 34px!important}.hc-env{--cw:min(240px,62vw,40vh)!important}}
+/* designs: one zoom for every card (no size jump), no fades or slides when switching */
+#designs .grid .dc{zoom:var(--fz,1)!important}
+#designs .grid.showcase .dc,#designs .grid.showcase .dc *,#designs .grid .cw{animation:none!important;transition:none!important}
+#designs .grid .dc-ghost{display:none!important}

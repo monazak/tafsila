@@ -1028,8 +1028,20 @@
         '<path d="' + INNER + '" fill="none" stroke="#000" stroke-width="1.8" stroke-dasharray="0 6" stroke-linecap="round" transform="translate(-2 0)"/>' +
         '<path d="M0 300V102A100 102 0 0 1 100 0" fill="none" stroke="#fff" stroke-width="7"/></mask></defs>' +
         '<rect x="-10" y="-10" width="130" height="320" fill="currentColor" mask="url(#lcM)"/></svg>';
-      env.insertAdjacentHTML('beforeend', '<i class="lace l">' + laceSvg + '</i><i class="lace r">' + laceSvg + '</i>' +
-        '<i class="lace-band"><b>أحمد</b><em>♥</em><b>منال</b></i>');
+      /* a white lace pocket holds the card; the card rises up out of it */
+      var TOP = 'M0 10C20 10 40 26 60 26S100 10 120 10';
+      var POCKET = TOP + 'V60H0Z';
+      var pk = env.querySelector('.env-pk');
+      pk.innerHTML = '<svg viewBox="0 0 120 60" preserveAspectRatio="none"><defs>' +
+        '<pattern id="lpH" width="12" height="12" patternUnits="userSpaceOnUse"><g fill="#000">' +
+          [0, 60, 120, 180, 240, 300].map(function (a) { return '<ellipse cx="6" cy="3.1" rx=".75" ry="1.7" transform="rotate(' + a + ' 6 6)"/>'; }).join('') +
+          '<circle cx="6" cy="6" r=".7"/><circle cx="0" cy="0" r=".55"/><circle cx="12" cy="0" r=".55"/><circle cx="0" cy="12" r=".55"/><circle cx="12" cy="12" r=".55"/></g></pattern>' +
+        '<mask id="lpM" maskUnits="userSpaceOnUse" x="-4" y="0" width="128" height="64"><path d="' + POCKET + '" fill="#fff"/>' +
+          '<path d="' + TOP + '" fill="none" stroke="#fff" stroke-width="4.4" stroke-dasharray="0 3.4" stroke-linecap="round"/>' +
+          '<path d="M6 30C24 30 40 44 60 44S96 30 114 30V54H6Z" fill="url(#lpH)"/>' +
+          '<path d="' + TOP + '" fill="none" stroke="#000" stroke-width=".9" stroke-dasharray="0 2.6" stroke-linecap="round" transform="translate(0 3.6)"/>' +
+          '<path d="M10 22C26 22 42 36 60 36S94 22 110 22" fill="none" stroke="#000" stroke-width=".5"/></mask></defs>' +
+        '<rect x="-4" y="0" width="128" height="64" fill="currentColor" mask="url(#lpM)"/></svg>';
       /* the envelope shows closed; after two seconds (or a tap) the flap opens and the card rises out */
       var opened = false, openEnv = function () { if (opened) return; opened = true; env.classList.add('open'); setTimeout(function () { env.classList.add('up'); }, 650); };
       env.addEventListener('click', function (e) { if (!opened) { e.stopPropagation(); openEnv(); } }, true);

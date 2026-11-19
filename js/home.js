@@ -324,6 +324,7 @@
     var cards = [].slice.call(grid.querySelectorAll('.dc:not(.dc-ghost)'));
     if (!cards.length) return;
     var catEl = document.querySelector('#designs .cathead h3'), cat = catEl ? catEl.textContent.trim() : '';
+    if (!cat) return; /* mid-switch: the new category name isn't in yet — keep the current look */
     var key = cat + '|' + cards.map(function (d) { var h = d.querySelector('h3'); return h ? h.textContent : ''; }).join(',');
     grid.classList.add('showcase');
     var CK = { 'زفاف': 'wedding', 'إشهار': 'ishhar', 'تخرج': 'grad', 'عيد ميلاد': 'bday' };
@@ -368,6 +369,14 @@
     var on = grid.querySelector('.dc.sel .sw[data-i="' + sw.dataset.i + '"]'); if (on) on.focus({ preventScroll: true });
   }, true);
 
+
+  /* switching category or colour: dress the new card in the same tick, before it is painted, so it never shows
+     an undressed (red) frame or a size jump */
+  document.addEventListener('click', function (e) {
+    if (!(e.target.closest && e.target.closest('#designs .tabs button, #designs .ctile, #designs .sc-sw .sw, #designs .grid button'))) return;
+    var run = function () { try { decorateInvites(); decorateShowcase(); fitShowcase(); } catch (er) {} };
+    run(); queueMicrotask(run); requestAnimationFrame(run);
+  });
 
   /* 10. small invitations drawn as real invitation cards */
   var INV = {
@@ -1257,7 +1266,7 @@
       '<div class="hs-fan">' + pols + '</div>');
     w.insertBefore(side, st);
     var cal = side.querySelector('.hs-cal'), g = side.querySelector('.hs-g'), mEl = side.querySelector('.hs-m'), tiles = side.querySelector('.hs-tiles'), cl = side.querySelector('.hs-cl');
-    var ring = '<svg class="hs-ring" viewBox="0 0 40 40"><path pathLength="1" d="M30 8C22 2 7 6 5 19s9 19 18 17 14-9 12-18c-1-4-4-7-8-9"/></svg>';
+    var ring = '<svg class="hs-ring" viewBox="0 0 40 40"><path pathLength="1" d="M20 36C8 28 2 21 3 13 4 6 10 3 15 5c3 1 4.5 3 5 5 .5-2 2-4 5-5 5-2 11 1 12 8 1 8-5 15-17 23z"/></svg>';
     function drawCal(k) {
       var d = D[k], first = new Date(d[0], d[1], 1).getDay(), off = (first + 1) % 7, n = new Date(d[0], d[1] + 1, 0).getDate(), h = '';
       ['س', 'ح', 'ن', 'ث', 'ر', 'خ', 'ج'].forEach(function (x) { h += '<li class="h">' + x + '</li>'; });
@@ -1268,14 +1277,32 @@
     }
     /* flip tiles: two-digit cards that fall over when they change */
     var U = [['d', 'يوم'], ['h', 'ساعة'], ['m', 'دقيقة'], ['s', 'ثانية']];
-    tiles.innerHTML = U.map(function (u) { return '<div class="hs-u"><span class="hs-t" data-u="' + u[0] + '"></span><small>' + u[1] + '</small></div>'; }).join('');
+    tiles.innerHTML = U.map(function (u, i) { return (i ? '<i class="hs-dot"></i>' : '') + '<div class="hs-u"><span class="hs-t" data-u="' + u[0] + '"></span><small>' + u[1] + '</small></div>'; }).join('');
+    /* the wreath: two olive sprigs meeting under a small cluster of roses */
+    var wr = '', leaf = function (x, y, a, c) { return '<ellipse cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" rx="7.5" ry="2.9" transform="rotate(' + a.toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')" fill="' + c + '"/>'; };
+    var cx = 150, cy = 100, rx = 140, ry = 92;
+    [1, -1].forEach(function (sd) {
+      var stem = 'M' + cx + ' ' + (cy + ry);
+      for (var t = 0; t <= 1.0001; t += .05) { var a = Math.PI / 2 + sd * t * Math.PI * .8; stem += 'L' + (cx + rx * Math.cos(a)).toFixed(1) + ' ' + (cy + ry * Math.sin(a)).toFixed(1); }
+      wr += '<path d="' + stem + '" fill="none" stroke="#9aae93" stroke-width="1.3" stroke-linecap="round"/>';
+      for (var k = 1; k < 15; k++) {
+        var tt = k / 15, an = Math.PI / 2 + sd * tt * Math.PI * .8, px = cx + rx * Math.cos(an), py = cy + ry * Math.sin(an), deg = an * 180 / Math.PI + 90;
+        var ox = Math.cos(an) * 6, oy = Math.sin(an) * 6;
+        wr += leaf(px + ox, py + oy, deg + sd * 35, k % 2 ? '#a9bba2' : '#8fa588') + leaf(px - ox, py - oy, deg - sd * 35, k % 2 ? '#b7c6ad' : '#9fb39a');
+        if (k % 4 === 2) wr += '<circle cx="' + (px + ox * 1.6).toFixed(1) + '" cy="' + (py + oy * 1.6).toFixed(1) + '" r="2.6" fill="#7d8a5c"/>';
+      }
+    });
+    var rose = function (x, y, r, c1, c2) { var p = ''; for (var i = 0; i < 5; i++) p += '<ellipse cx="0" cy="' + (-r * .5) + '" rx="' + (r * .55) + '" ry="' + (r * .6) + '" transform="rotate(' + (i * 72) + ')" fill="' + c1 + '"/>';
+      return '<g transform="translate(' + x + ' ' + y + ')">' + p + '<circle r="' + (r * .55) + '" fill="' + c2 + '"/><path d="M' + (-r * .25) + ' 0a' + (r * .25) + ' ' + (r * .25) + ' 0 1 1 ' + (r * .25) + ' ' + (r * .25) + 'a' + (r * .15) + ' ' + (r * .15) + ' 0 1 1 -' + (r * .1) + ' -' + (r * .24) + '" fill="none" stroke="#c76d80" stroke-width="1"/></g>'; };
+    wr += rose(cx - 15, cy + ry - 2, 10, '#f4c6cf', '#eaa9b6') + rose(cx + 14, cy + ry - 1, 9, '#f8d8de', '#f0b9c4') + rose(cx, cy + ry + 5, 12, '#f1b8c4', '#e595a6');
+    tiles.parentNode.insertAdjacentHTML('afterbegin', '<svg class="hs-wr" viewBox="-6 -6 312 220" aria-hidden="true">' + wr + '</svg>');
     var T = {}; tiles.querySelectorAll('.hs-t').forEach(function (t) { T[t.dataset.u] = t; });
     var target = 0;
     function setOcc(k) { var d = D[k]; target = new Date(d[0], d[1], d[2], 19, 0, 0).getTime(); cl.textContent = 'باقي على ' + d[3]; drawCal(k); tick(true);
       side.querySelectorAll('.hs-pol').forEach(function (p) { p.classList.toggle('on', p.dataset.o === k); p.setAttribute('aria-pressed', p.dataset.o === k ? 'true' : 'false'); }); }
     function tick(all) {
       var t = Math.max(0, target - Date.now()) / 1000, v = { d: Math.floor(t / 86400), h: Math.floor(t / 3600) % 24, m: Math.floor(t / 60) % 60, s: Math.floor(t) % 60 };
-      for (var u in v) { var x = AR(v[u] < 10 ? '0' + v[u] : v[u]); if (T[u].textContent !== x) { T[u].textContent = x; T[u].classList.remove('fl'); void T[u].offsetWidth; T[u].classList.add('fl'); } }
+      for (var u in v) { var x = AR(v[u] < 10 ? '0' + v[u] : v[u]); if (T[u].textContent !== x) { T[u].textContent = x; T[u].classList.remove('fd'); void T[u].offsetWidth; T[u].classList.add('fd'); } }
     }
     setInterval(tick, 1000);
     /* the prints pick the occasion */

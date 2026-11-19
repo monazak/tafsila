@@ -1174,13 +1174,63 @@
       var h = document.querySelector('#' + id + ' h2'); if (!h || h.dataset.ink) return; h.dataset.ink = 1;
       var txt = h.textContent.trim();
       h.classList.add('ink');
-      h.innerHTML = '<span class="ink-k">' + M[id][0] + '</span><span class="ink-n" aria-hidden="true">' + M[id][1] + '</span><span class="ink-t">' + txt + '<i class="ink-pen" aria-hidden="true"></i></span>';
+      h.innerHTML = '<span class="ink-k">' + M[id][0] + '</span><span class="ink-n" aria-hidden="true">' + M[id][1] + '</span><span class="ink-t">' + txt + '<i class="ink-pen" aria-hidden="true"></i></span>'+'<svg class="ink-sw" viewBox="0 0 220 26" aria-hidden="true"><path pathLength=\"1\" d=\"M216 15C180 9 140 20 100 16S50 10 26 16\"/><path class=\"h\" d=\"M14 22C5 16 3 9 8 6.5 11 5 13.5 7 14 9.5 14.5 7 17 5 20 6.5 25 9 23 16 14 22Z\"/></svg>';
       if (!('IntersectionObserver' in window) || reduce) { h.classList.add('ink-on'); return; }
       new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { h.classList.add('ink-on'); o.disconnect(); } }); }, { threshold: .6 }).observe(h);
     });
   }
 
-  function scan() { decorateInkHeadings(); decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decorateHeroOccasions(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
+
+  /* the invitation travels with you: once the hero's card leaves the screen, a small copy of it flies to the
+     side and keeps you company through the page — chosen, priced, prepared — and at the end it is sent off
+     into the WhatsApp chat */
+  function decorateCompanion() {
+    if (document.querySelector('.cmp') || innerWidth < 1180 || reduce) return;
+    var heroCard = document.querySelector('.hero .hc-card'), ids = ['designs', 'packages', 'how', 'faq', 'contact'];
+    if (!heroCard || !ids.every(function (i) { return document.getElementById(i); })) return;
+    var LBL = { designs: 'اختاروا تصميمكم', packages: 'دعوة كاملة · ٥٠ ₪', how: 'عم نجهّزها لكم', faq: 'عندكم سؤال؟', contact: 'جاهزة للإرسال' };
+    var c = document.createElement('a'); c.className = 'cmp'; c.href = '#contact'; c.setAttribute('aria-label', 'اطلبوا دعوتكم');
+    c.innerHTML = '<span class="cmp-card"><span class="cmp-win"><img src="img/couple.svg" alt=""></span><b>أحمد <i>♥︎</i> منال</b><small>١٣ · ٠٢ · ٢٠٢٧</small></span><span class="cmp-l"></span>';
+    document.body.appendChild(c);
+    var lbl = c.querySelector('.cmp-l'), state = '', shown = false;
+    function show(on) {
+      if (on === shown) return; shown = on;
+      if (on) {
+        var r = heroCard.getBoundingClientRect(), d = c.getBoundingClientRect();
+        c.classList.add('on');
+        var to = c.getBoundingClientRect();
+        c.animate([{ transform: 'translate(' + (r.left + r.width / 2 - (to.left + to.width / 2)) + 'px,' + (r.top + r.height / 2 - (to.top + to.height / 2)) + 'px) scale(2.6) rotate(-4deg)', opacity: .2 },
+                   { transform: 'none', opacity: 1 }], { duration: 900, easing: 'cubic-bezier(.2,.75,.2,1)' });
+      } else c.classList.remove('on');
+    }
+    function set(id) {
+      if (id === state) return; state = id; c.dataset.s = id;
+      lbl.classList.remove('in'); void lbl.offsetWidth; lbl.textContent = LBL[id] || ''; lbl.classList.add('in');
+      c.querySelector('.cmp-card').animate([{ transform: 'rotate(-8deg) scale(.92)' }, { transform: 'rotate(4deg) scale(1.04)' }, { transform: 'none' }], { duration: 650, easing: 'ease-out' });
+    }
+    new IntersectionObserver(function (es) { es.forEach(function (e) { show(!e.isIntersecting); }); }, { threshold: 0 }).observe(heroCard);
+    var vis = {};
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { vis[e.target.id] = e.intersectionRatio; });
+      var best = ids.reduce(function (a, b) { return (vis[b] || 0) > (vis[a] || 0) ? b : a; }, ids[0]);
+      if ((vis[best] || 0) > 0) set(best);
+    }, { threshold: [0, .15, .3, .5, .7] });
+    ids.forEach(function (i) { io.observe(document.getElementById(i)); });
+    /* at the end: sent into the chat */
+    var wa = document.querySelector('#contact .ct-wa'), sent = false;
+    if (wa) new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting && e.intersectionRatio > .6 && !sent && shown) {
+          sent = true; var a = c.getBoundingClientRect(), b = wa.getBoundingClientRect();
+          c.classList.add('sent');
+          c.animate([{ transform: 'none', opacity: 1 }, { transform: 'translate(' + (b.left + b.width * .7 - a.left - a.width / 2) + 'px,' + (b.top + b.height * .55 - a.top - a.height / 2) + 'px) scale(.35) rotate(10deg)', opacity: 0 }],
+            { duration: 1100, easing: 'cubic-bezier(.5,0,.3,1)', fill: 'forwards' });
+        } else if (!e.isIntersecting && sent) { sent = false; c.classList.remove('sent'); c.getAnimations().forEach(function (an) { an.cancel(); }); }
+      });
+    }, { threshold: [0, .6] }).observe(wa);
+  }
+
+  function scan() { decorateInkHeadings(); decorateBlossoms(); decorateHeroPrints(); decorateHeroCard(); decorateHeroOccasions(); decorateCompanion(); decoratePerf(); decorateTagSwing(); decorateEdges(); inlineCouple(); decorateContactEnv(); decorateOliveFall(); decorateHow(); decorateScreens(); fitShowcase(); decorateBook(); decorateBookCard(); decorateHeroMotion(); decorateHeroStage(); decorateOrder(); decorateInvites(); decorateShowcase(); decoratePrice(); decoratePreviews(); decorateContact(); decorateFooter(); decorateAmbient(); decorateFaq(); decorateChrome(); }
   var root = document.getElementById('root') || document.body;
   /* run the decorators at most once per frame, however many DOM changes arrive */
   var scanQueued = false;

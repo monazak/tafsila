@@ -11807,3 +11807,41 @@ html body .bl-sec > :not(.bl-br):not(.bl-vt){position:relative;z-index:1}
 .hc-env.up .hc-card{transform:translateY(-4%)!important;pointer-events:auto!important}
 .hc-env.flip .hc-card{transform:translateY(-4%)!important}
 .hc-env:not(.open)::after{bottom:auto!important;top:-28px!important}
+
+/* ══ just the card: a real printed invitation in 3D (no envelope, no lace) ══ */
+.hc-env .env-pk,.hc-env .env-bk,.hc-env .env-fl,.hc-env .lace,.hc-env .lace-band{display:none!important}
+.hc-env{clip-path:none!important;padding:0 0 36px!important;perspective:1300px}
+.hc-env::after{display:none!important}
+.hc-env::before{content:"";position:absolute;left:50%;bottom:6px;width:calc(var(--cw) * .9);height:34px;translate:-50% 0;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(70,30,45,.32),rgba(70,30,45,.12) 55%,transparent);filter:blur(4px);animation:hcShadow 6s ease-in-out infinite;pointer-events:none}
+.hc-env .hc-card{opacity:1!important;pointer-events:auto!important;transform-style:preserve-3d;
+  transform:rotateX(var(--tx,4deg)) rotateY(var(--ty,-6deg))!important;transition:transform .9s cubic-bezier(.2,.8,.2,1)!important;animation:hcFloat3 6s ease-in-out infinite}
+@keyframes hcFloat3{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes hcShadow{0%,100%{opacity:1;scale:1}50%{opacity:.7;scale:.92}}
+/* paper thickness on the edges + layered depth */
+.hc-env .hc-face{box-shadow:0 0 0 1px rgba(201,163,90,.55),0 0 0 4px #fff,0 0 0 5px rgba(201,163,90,.35),
+  1px 1px 0 5px #f1e7ea,2px 2px 0 5px #eadde1,3px 3px 0 5px #e3d4d9,4px 4px 0 5px #dccbd1,
+  12px 22px 30px -10px rgba(70,30,45,.28),24px 44px 60px -24px rgba(70,30,45,.25)!important}
+/* soft light that moves across the paper with the pointer */
+.hc-env .hc-face::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.42) calc(var(--gx,40%) - 6%),rgba(255,255,255,0) calc(var(--gx,40%) + 14%));mix-blend-mode:soft-light}
+.hc-card .hc-face::after{--gx:inherit}
+.hc-card .hc-hint{opacity:1!important;animation:none!important;top:auto!important;bottom:-60px;font-family:Amiri,serif!important;font-size:14px!important}
+.hc-card.open .hc-hint{display:block!important}
+.hc-card.open .hc-hint{font-size:0!important}
+.hc-card.open .hc-hint::after{content:"اضغطوا لإغلاق الدعوة";font-size:14px}
+@media (prefers-reduced-motion:reduce){.hc-env .hc-card,.hc-env::before{animation:none}}
+/* medium screens: keep all four prints, smaller, in the side gaps */
+@media (max-width:1100px) and (min-width:821px){
+  .hero > .hp-2,.hero > .hp-4{display:block!important}
+  .hero > .hp{width:clamp(108px,12vw,130px)!important}
+  .hero > .hp-1{left:14px!important;top:20%!important}.hero > .hp-2{left:30px!important;top:52%!important}
+  .hero > .hp-3{right:14px!important;left:auto!important;top:18%!important}.hero > .hp-4{right:30px!important;left:auto!important;top:50%!important}
+}
+.hero .w{justify-content:center!important;padding-top:70px!important}
+.hero .hx-mark{margin-bottom:clamp(18px,2.4vh,30px)!important}
+@media (max-width:1100px) and (min-width:821px){.hc-env{--cw:clamp(250px,30vw,300px)!important}.hero .hx-mark{font-size:clamp(48px,6.4vw,70px)!important}}
+@media (min-width:821px) and (min-aspect-ratio:1/1.05){.hero .w{justify-content:center!important}}
+@media (min-width:821px){.hc-env{--cw:min(clamp(250px,22vw,330px),36vh)!important}}
+@media (max-width:1100px) and (min-width:821px){.hc-env{--cw:min(30vw,36vh)!important}.hero .hx-mark{font-size:min(6.4vw,8vh)!important}}
+@media (max-width:1100px) and (min-width:821px){.hero .hx-mark{margin-bottom:34px!important}}

@@ -1045,7 +1045,17 @@
       /* the envelope shows closed; after two seconds (or a tap) the flap opens and the card rises out */
       var opened = false, openEnv = function () { if (opened) return; opened = true; env.classList.add('open'); setTimeout(function () { env.classList.add('up'); }, 650); };
       env.addEventListener('click', function (e) { if (!opened) { e.stopPropagation(); openEnv(); } }, true);
-      setTimeout(openEnv, 2000);
+      openEnv();
+      /* the card tilts gently toward the pointer, like holding a real printed card */
+      var hero = document.querySelector('.hero');
+      if (hero && matchMedia('(hover: hover)').matches) {
+        hero.addEventListener('pointermove', function (e) {
+          var r = card0.getBoundingClientRect(), dx = (e.clientX - (r.left + r.width / 2)) / innerWidth, dy = (e.clientY - (r.top + r.height / 2)) / innerHeight;
+          card0.style.setProperty('--ty', (-6 + dx * 22).toFixed(2) + 'deg'); card0.style.setProperty('--tx', (4 - dy * 14).toFixed(2) + 'deg');
+          card0.style.setProperty('--gx', (50 + dx * 120).toFixed(1) + '%');
+        });
+        hero.addEventListener('pointerleave', function () { ['--tx', '--ty', '--gx'].forEach(function (v) { card0.style.removeProperty(v); }); });
+      }
     }
     /* the couple are drawn inline so they can move: tap the groom and he kisses the bride */
     var cim = st.querySelector('.hc-card img.bc-cp');

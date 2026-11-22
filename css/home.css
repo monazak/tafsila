@@ -12225,3 +12225,13 @@ html,body{margin-bottom:0!important;padding-bottom:0!important}
 .hs-u small{background:none!important}
 .hs-tiles{gap:clamp(12px,1.2vw,18px)!important}
 .hs-dot{display:none}
+
+/* countdown without the garland: just the numbers, small gold diamonds between them */
+.hs-wr{display:none!important}
+.hs-cd{aspect-ratio:auto!important;width:auto!important;gap:12px!important;padding:0!important}
+.hs-dot{display:block!important;margin-top:.7em!important}
+.hs-tiles{gap:clamp(10px,1vw,14px)!important;align-items:flex-start}
+/* calendar stays put; only the heart is drawn again on the new day */
+.hs-cal.turn{animation:none!important}
+.hs-ring{inset:-9px -8px -6px!important;width:calc(100% + 16px)!important;height:calc(100% + 16px)!important}
+.hs-ring path{fill:rgba(243,182,194,.35);stroke-width:1.5}

@@ -348,10 +348,10 @@
     var cards = [].slice.call(grid.querySelectorAll('.dc:not(.dc-ghost)'));
     if (!cards.length) return;
     var catEl = document.querySelector('#designs .cathead h3'), cat = catEl ? catEl.textContent.trim() : '';
-    if (!cat) return; /* mid-switch: the new category name isn't in yet — keep the current look */
+    var CK = { 'زفاف': 'wedding', 'إشهار': 'ishhar', 'تخرج': 'grad', 'عيد ميلاد': 'bday' };
+    if (!CK[cat]) return; /* mid-switch, or the title is still being typed: keep the current look */
     var key = cat + '|' + cards.map(function (d) { var h = d.querySelector('h3'); return h ? h.textContent : ''; }).join(',');
     grid.classList.add('showcase');
-    var CK = { 'زفاف': 'wedding', 'إشهار': 'ishhar', 'تخرج': 'grad', 'عيد ميلاد': 'bday' };
     if (grid.dataset.cat !== (CK[cat] || '')) grid.dataset.cat = CK[cat] || '';
     if (grid.dataset.key !== key) { grid.dataset.key = key; grid.dataset.sel = '0'; }
     var sel = Math.min(+grid.dataset.sel || 0, cards.length - 1);
@@ -1290,14 +1290,13 @@
       '<div class="hs-fan">' + pols + '</div>');
     w.insertBefore(side, st);
     var cal = side.querySelector('.hs-cal'), g = side.querySelector('.hs-g'), mEl = side.querySelector('.hs-m'), tiles = side.querySelector('.hs-tiles'), cl = side.querySelector('.hs-cl');
-    var ring = '<svg class="hs-ring" viewBox="0 0 40 40"><path pathLength="1" d="M20 36C8 28 2 21 3 13 4 6 10 3 15 5c3 1 4.5 3 5 5 .5-2 2-4 5-5 5-2 11 1 12 8 1 8-5 15-17 23z"/></svg>';
+    var ring = '<svg class="hs-ring" viewBox="0 0 40 40"><path pathLength="1" d="M20 37C10 30 1 23 1.5 13.5 2 6.5 7 2.5 12.5 3.2 16 3.6 18.6 6 20 9.5 21.4 6 24 3.6 27.5 3.2 33 2.5 38 6.5 38.5 13.5 39 23 30 30 20 37z"/></svg>';
     function drawCal(k) {
       var d = D[k], first = new Date(d[0], d[1], 1).getDay(), off = (first + 1) % 7, n = new Date(d[0], d[1] + 1, 0).getDate(), h = '';
       ['س', 'ح', 'ن', 'ث', 'ر', 'خ', 'ج'].forEach(function (x) { h += '<li class="h">' + x + '</li>'; });
       for (var i = 0; i < off; i++) h += '<li></li>';
       for (var j = 1; j <= n; j++) h += '<li' + (j === d[2] ? ' class="on"' : '') + '>' + AR(j) + (j === d[2] ? ring : '') + '</li>';
       mEl.textContent = MON[d[1]] + ' ' + AR(d[0]); g.innerHTML = h;
-      cal.classList.remove('turn'); void cal.offsetWidth; cal.classList.add('turn');
     }
     /* flip tiles: two-digit cards that fall over when they change */
     var U = [['d', 'يوم'], ['h', 'ساعة'], ['m', 'دقيقة'], ['s', 'ثانية']];
@@ -1306,7 +1305,7 @@
        hours, dips under the minutes and climbs over the seconds */
     var NS = 'http://www.w3.org/2000/svg', sv = document.createElementNS(NS, 'svg');
     sv.setAttribute('class', 'hs-wr'); sv.setAttribute('aria-hidden', 'true');
-    tiles.parentNode.insertBefore(sv, tiles.parentNode.firstChild);
+    
     function vine() {
       var box = sv.getBoundingClientRect(); if (!box.width) return;
       var W = box.width, H = box.height, us = [].slice.call(tiles.querySelectorAll('.hs-u')).map(function (u) { var r = u.getBoundingClientRect(); return { l: r.left - box.left, r: r.right - box.left, t: r.top - box.top, b: r.bottom - box.top }; });
@@ -1342,9 +1341,6 @@
       }
       sv.insertAdjacentHTML('beforeend', out + roses.join(''));
     }
-    requestAnimationFrame(vine); setTimeout(vine, 1200);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(vine);
-    var vt; addEventListener('resize', function () { clearTimeout(vt); vt = setTimeout(vine, 200); });
     var T = {}; tiles.querySelectorAll('.hs-t').forEach(function (t) { T[t.dataset.u] = t; });
     var target = 0;
     function setOcc(k) { var d = D[k]; target = new Date(d[0], d[1], d[2], 19, 0, 0).getTime(); cl.textContent = 'باقي على ' + d[3]; drawCal(k); tick(true);

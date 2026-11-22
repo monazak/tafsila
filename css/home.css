@@ -12235,3 +12235,10 @@ html,body{margin-bottom:0!important;padding-bottom:0!important}
 .hs-cal.turn{animation:none!important}
 .hs-ring{inset:-9px -8px -6px!important;width:calc(100% + 16px)!important;height:calc(100% + 16px)!important}
 .hs-ring path{fill:rgba(243,182,194,.35);stroke-width:1.5}
+
+/* performance: no per-frame repaint of the card (the glow) or of the icons; the timer rolls on the compositor */
+.hero .hc-env .hc-card{animation:hcSway 11s ease-in-out infinite!important}
+.hero .hc-env .hc-face::after{background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.12) 48%,transparent 60%)!important}
+.hi-i{animation:hiFloat 8s ease-in-out infinite!important}
+.hs-t span{will-change:transform,opacity}
+.hs-t span.out,.hs-t span.in{animation-duration:.5s!important;animation-timing-function:cubic-bezier(.25,.8,.25,1)!important}

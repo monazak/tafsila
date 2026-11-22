@@ -1349,7 +1349,8 @@
       var t = Math.max(0, target - Date.now()) / 1000, v = { d: Math.floor(t / 86400), h: Math.floor(t / 3600) % 24, m: Math.floor(t / 60) % 60, s: Math.floor(t) % 60 };
       for (var u in v) { var x = AR(v[u] < 10 ? '0' + v[u] : v[u]); if (T[u].dataset.v !== x) { var first = !T[u].dataset.v; T[u].dataset.v = x; if (first || all === true) { T[u].innerHTML = '<span>' + x + '</span>'; continue; } var o = T[u].firstElementChild, n = document.createElement('span'); n.textContent = x; n.className = 'in'; if (o) o.className = 'out'; T[u].appendChild(n); setTimeout(function (o) { if (o) o.remove(); }.bind(null, o), 700); } }
     }
-    setInterval(tick, 1000);
+    /* tick right on the second, so the numbers never stutter or skip */
+    (function loop() { tick(); setTimeout(function () { requestAnimationFrame(loop); }, 1000 - (Date.now() % 1000) + 5); })();
     /* the prints pick the occasion */
     side.querySelector('.hs-fan').addEventListener('click', function (e) {
       var p = e.target.closest('.hs-pol'); if (!p) return; var b = ho.querySelector('[data-o="' + p.dataset.o + '"]'); if (b) b.click();

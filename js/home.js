@@ -1341,36 +1341,59 @@
       }
       sv.insertAdjacentHTML('beforeend', out + roses.join(''));
     }
-    /* a little flower painter: roses, blossoms, daisies, bells and baby's breath, in blush, peach, lilac, white and red */
-    var FC = [['#f4c6cf', '#e595a6'], ['#f9d3c4', '#ee9f86'], ['#e3d3ef', '#b79bd2'], ['#ffffff', '#f2c96b'], ['#f1b8c4', '#c94f63'], ['#fbe1e6', '#e8a3b1']];
-    function flower(t, x, y, r, c, rot) {
-      var g = '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (rot || 0).toFixed(0) + ')">', i;
-      if (t === 0) { for (i = 0; i < 5; i++) g += '<ellipse cx="0" cy="' + (-r * .5).toFixed(2) + '" rx="' + (r * .55).toFixed(2) + '" ry="' + (r * .62).toFixed(2) + '" transform="rotate(' + i * 72 + ')" fill="' + c[0] + '"/>';
-        g += '<circle r="' + (r * .52).toFixed(2) + '" fill="' + c[1] + '"/><path d="M' + (-r * .22).toFixed(2) + ' 0a' + (r * .22).toFixed(2) + ' ' + (r * .22).toFixed(2) + ' 0 1 1 ' + (r * .22).toFixed(2) + ' ' + (r * .22).toFixed(2) + '" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width=".5"/>'; }
-      else if (t === 1) { for (i = 0; i < 5; i++) g += '<circle cx="0" cy="' + (-r * .55).toFixed(2) + '" r="' + (r * .45).toFixed(2) + '" transform="rotate(' + i * 72 + ')" fill="' + c[0] + '"/>'; g += '<circle r="' + (r * .28).toFixed(2) + '" fill="#e9b949"/>'; }
-      else if (t === 2) { for (i = 0; i < 8; i++) g += '<ellipse cx="0" cy="' + (-r * .6).toFixed(2) + '" rx="' + (r * .2).toFixed(2) + '" ry="' + (r * .5).toFixed(2) + '" transform="rotate(' + i * 45 + ')" fill="#fff" stroke="' + c[0] + '" stroke-width=".3"/>'; g += '<circle r="' + (r * .3).toFixed(2) + '" fill="#f2c14e"/>'; }
-      else if (t === 3) { g += '<path d="M0 ' + (r * .9).toFixed(2) + 'C' + (-r).toFixed(2) + ' ' + (r * .6).toFixed(2) + ' ' + (-r * .8).toFixed(2) + ' ' + (-r * .7).toFixed(2) + ' 0 ' + (-r * .3).toFixed(2) + 'C' + (r * .8).toFixed(2) + ' ' + (-r * .7).toFixed(2) + ' ' + r.toFixed(2) + ' ' + (r * .6).toFixed(2) + ' 0 ' + (r * .9).toFixed(2) + 'Z" fill="' + c[1] + '"/><path d="M0 ' + (r * .8).toFixed(2) + 'L0 ' + (-r * .2).toFixed(2) + '" stroke="' + c[0] + '" stroke-width=".5"/>'; }
-      else { for (i = 0; i < 3; i++) g += '<circle cx="' + ((i - 1) * r * .55).toFixed(2) + '" cy="' + (i === 1 ? -r * .35 : r * .15).toFixed(2) + '" r="' + (r * .32).toFixed(2) + '" fill="#fff" stroke="' + c[1] + '" stroke-width=".3"/>'; }
-      return g + '</g>';
+    /* painted flowers, drawn once as symbols: full roses with layered, shaded petals, tight rosebuds and
+       cherry blossoms, each in a few real flower colours; frames and garlands place them with <use> */
+    if (!document.getElementById('flw-defs')) {
+      var PAL = { pk: ['#b8435a', '#e7899c', '#f7c4ce', '#fde8ec'], pe: ['#c7684f', '#ee a184'.replace(' ', ''), '#f9cdb9', '#fdeee6'], cr: ['#c99b5e', '#efd2a4', '#f8e8cc', '#fffaf0'], rd: ['#7d1424', '#b3202f', '#d9566a', '#f19aa8'], li: ['#8c6aa8', '#c3a7d9', '#e3d3ef', '#f6f0fb'] };
+      var petal = 'M0 0C-5.6-1.6-6.8-8.2-2.6-10.4-1-11.2 1-11.2 2.6-10.4 6.8-8.2 5.6-1.6 0 0Z';
+      var d = '<svg id="flw-defs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>';
+      Object.keys(PAL).forEach(function (k) {
+        var c = PAL[k];
+        d += '<radialGradient id="fg-' + k + '" cx="0" cy="0" r="11" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="' + c[0] + '"/><stop offset=".35" stop-color="' + c[1] + '"/><stop offset=".78" stop-color="' + c[2] + '"/><stop offset="1" stop-color="' + c[3] + '"/></radialGradient>';
+        d += '<linearGradient id="fl-' + k + '" x1="0" y1="-11" x2="0" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="' + c[3] + '"/><stop offset="1" stop-color="' + c[1] + '"/></linearGradient>';
+        /* full rose: three rings of petals, a cupped heart, highlight edges */
+        var r = '<symbol id="fr-' + k + '" viewBox="-12 -12 24 24" overflow="visible"><circle r="10.5" fill="' + c[1] + '" opacity=".25"/>';
+        for (var a = 0; a < 5; a++) r += '<path d="' + petal + '" transform="rotate(' + (a * 72 + 8) + ')" fill="url(#fg-' + k + ')" stroke="' + c[3] + '" stroke-width=".35" stroke-opacity=".9"/>';
+        for (a = 0; a < 5; a++) r += '<path d="' + petal + '" transform="rotate(' + (a * 72 + 44) + ') scale(.74)" fill="url(#fg-' + k + ')" stroke="' + c[3] + '" stroke-width=".4"/>';
+        for (a = 0; a < 4; a++) r += '<path d="' + petal + '" transform="rotate(' + (a * 90 + 20) + ') scale(.48)" fill="url(#fl-' + k + ')" stroke="' + c[2] + '" stroke-width=".35"/>';
+        r += '<circle r="2.3" fill="' + c[0] + '"/><path d="M-1.6 .4C-1.8-1.4.2-2.2 1.3-1.1 2.2-.1 1.2 1.4-.1 1.2" fill="none" stroke="' + c[2] + '" stroke-width=".5" stroke-linecap="round"/><path d="M-2.6 1.6C-1 3.2 2 3 2.9.6" fill="none" stroke="' + c[2] + '" stroke-width=".4" stroke-opacity=".8"/></symbol>';
+        /* rosebud, seen from the side */
+        r += '<symbol id="fb-' + k + '" viewBox="-12 -12 24 24" overflow="visible"><path d="M0 9C-1 6-.6 4 0 3" stroke="#7f9a72" stroke-width=".9" fill="none"/>' +
+          '<path d="M0 4C-4.6 3.4-5.6-1.6-3.6-5.4-2.6-7.4-.8-8.6 0-9 1-8.4 2.8-7.2 3.8-5.2 5.6-1.6 4.4 3.4 0 4Z" fill="url(#fl-' + k + ')"/>' +
+          '<path d="M0 4C-3-.6-2.2-5.6 0-9" fill="none" stroke="' + c[0] + '" stroke-width=".5" stroke-opacity=".7"/><path d="M-3.8 1.4C-1.6 2.6 1.8 2.6 4 1" fill="none" stroke="' + c[3] + '" stroke-width=".5"/>' +
+          '<path d="M0 4.4C-2.4 4.2-4 2.6-4.6.6-2.6 2-1.4 2.6 0 3 1.4 2.6 2.6 2 4.6.6 4 2.6 2.4 4.2 0 4.4Z" fill="#8fa883"/></symbol>';
+        /* cherry blossom: five notched petals, a blush heart, stamens */
+        r += '<symbol id="fc-' + k + '" viewBox="-12 -12 24 24" overflow="visible">';
+        for (a = 0; a < 5; a++) r += '<path d="M0 0C-4.4-2-5.4-7.6-2.2-9.6-1.2-10.2-.4-9.4 0-8.6.4-9.4 1.2-10.2 2.2-9.6 5.4-7.6 4.4-2 0 0Z" transform="rotate(' + a * 72 + ')" fill="url(#fl-' + k + ')" stroke="' + c[2] + '" stroke-width=".3"/>';
+        r += '<circle r="2.2" fill="' + c[1] + '" opacity=".8"/>';
+        for (a = 0; a < 7; a++) { var an = a * 51 * Math.PI / 180; r += '<path d="M0 0L' + (Math.cos(an) * 3.2).toFixed(2) + ' ' + (Math.sin(an) * 3.2).toFixed(2) + '" stroke="' + c[0] + '" stroke-width=".3"/><circle cx="' + (Math.cos(an) * 3.4).toFixed(2) + '" cy="' + (Math.sin(an) * 3.4).toFixed(2) + '" r=".55" fill="#e9b949"/>'; }
+        d += r + '</symbol>';
+      });
+      document.body.insertAdjacentHTML('afterbegin', d + '</defs></svg>');
+    }
+    var FK = ['pk', 'cr', 'pe', 'pk', 'rd', 'li', 'pk', 'cr'];
+    function flower(t, x, y, r, k, rot) {
+      var id = ['fr-', 'fc-', 'fr-', 'fb-'][t] + k;
+      return '<use href="#' + id + '" x="' + (x - r).toFixed(1) + '" y="' + (y - r).toFixed(1) + '" width="' + (2 * r).toFixed(1) + '" height="' + (2 * r).toFixed(1) + '" transform="rotate(' + (rot || 0).toFixed(0) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')"/>';
     }
     function bloomAlong(path, n, size, seed) {
-      var L = path.getTotalLength(), out = '';
+      var L = path.getTotalLength(), big = [], small = [];
       for (var k = 0; k < n; k++) {
-        var p = path.getPointAtLength((k + .5) / n * L), h = (k * 7 + seed * 3) % 11, t = [0, 1, 2, 0, 3, 1, 0, 2, 1, 3, 0][h], c = FC[(k * 5 + seed) % FC.length];
-        var r = size * (t === 4 ? .7 : t === 0 ? 1.05 : .9) * (1 + ((k * 3) % 4) * .08);
-        out += flower(t, p.x, p.y, r, c, (k * 37 + seed * 11) % 360);
+        var p = path.getPointAtLength((k + .5) / n * L), h = (k * 7 + seed * 3) % 9, t = [0, 1, 3, 0, 1, 2, 3, 1, 0][h], key = FK[(k * 3 + seed) % FK.length];
+        var r = size * (t === 0 || t === 2 ? 1.2 : t === 3 ? .95 : .85) * (1 + ((k * 5) % 3) * .1);
+        (t === 0 || t === 2 ? big : small).push(flower(t, p.x, p.y, r, key, (k * 47 + seed * 13) % 360));
       }
-      return out;
+      return small.join('') + big.join('');
     }
     var T = {}; tiles.querySelectorAll('.hs-t').forEach(function (t) { T[t.dataset.u] = t; });
-    var spp = side.querySelector('.hs-spp'); if (spp) spp.insertAdjacentHTML('afterend', bloomAlong(spp, 15, 4.2, 2));
+    var spp = side.querySelector('.hs-spp'); if (spp) spp.insertAdjacentHTML('afterend', bloomAlong(spp, 10, 5.6, 2));
     /* a frame of tiny roses along each arch */
     tiles.querySelectorAll('.hs-u').forEach(function (u, ui) {
       var NS = 'http://www.w3.org/2000/svg', f = document.createElementNS(NS, 'svg');
       f.setAttribute('class', 'hs-fr'); f.setAttribute('viewBox', '0 0 60 80'); f.setAttribute('preserveAspectRatio', 'none'); f.setAttribute('aria-hidden', 'true');
       f.innerHTML = '<path class="hs-fp" d="M3 76V28C3 13 15 3 30 3S57 13 57 28V76Z" fill="none"/>';
       u.appendChild(f);
-      var fp = f.querySelector('.hs-fp'), out = bloomAlong(fp, 24, 3.4, ui * 5);
+      var fp = f.querySelector('.hs-fp'), out = bloomAlong(fp, 15, 5.2, ui * 5);
       f.insertAdjacentHTML('beforeend', out);
     });
     var target = 0;

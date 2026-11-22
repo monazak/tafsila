@@ -12244,3 +12244,22 @@ html,body{margin-bottom:0!important;padding-bottom:0!important}
 .hs-t span.out,.hs-t span.in{animation-duration:.5s!important;animation-timing-function:cubic-bezier(.25,.8,.25,1)!important}
 .hs-ring path{fill:none!important}
 .fql-star{display:none!important}
+
+/* FAQ cards, modern: clean white face, question at the top, a round flip button; deep red back */
+.fql-f,.fql-b{border-radius:18px!important;padding:24px 22px 18px!important;align-items:flex-start!important;text-align:start!important;overflow:hidden}
+.fql-f{justify-content:space-between!important;background:#fff!important;
+  box-shadow:0 0 0 1px rgba(158,28,42,.10),0 1px 2px rgba(58,42,46,.06),0 18px 34px -22px rgba(58,42,46,.35)!important;transition:box-shadow .3s}
+.fql-card:hover .fql-f{box-shadow:0 0 0 1px rgba(158,28,42,.22),0 1px 2px rgba(58,42,46,.06),0 24px 40px -22px rgba(58,42,46,.42)!important}
+.fql-f::before{content:"؟";position:absolute;inset-inline-end:14px;bottom:-26px;font:700 120px/1 "Aref Ruqaa",serif;color:#9e1c2a;opacity:.06;pointer-events:none}
+.fql-f b{font:600 17px/1.65 Cairo,sans-serif!important;color:#2b1d22!important}
+.fql-f small{display:flex!important;align-items:center;gap:10px;margin:0!important;opacity:1!important;font:500 13px/1 Cairo,sans-serif!important;color:#7a6f7e!important}
+.fql-f small::after{content:"";width:32px;height:32px;border-radius:50%;background:#9e1c2a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 12a8 8 0 0 1 14-5.3M20 4v4h-4M20 12a8 8 0 0 1-14 5.3M4 20v-4h4'/%3E%3C/svg%3E") center/16px no-repeat;
+  transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+.fql-card:hover .fql-f small::after{transform:rotate(180deg)}
+.fql-b{justify-content:center!important;background:#9e1c2a!important;box-shadow:0 18px 34px -20px rgba(110,20,30,.6)!important;font:400 15px/1.85 Cairo,sans-serif!important}
+.fql-b em{font:500 12px/1 Cairo,sans-serif!important;color:rgba(255,230,234,.7)!important;margin-bottom:10px!important;letter-spacing:.02em}
+@media (max-width:720px){.fql-f,.fql-b{padding:18px 16px 14px!important}.fql-f b{font-size:15px!important}.fql-b{font-size:13px!important}.fql-f small{font-size:12px!important}.fql-f small::after{width:28px;height:28px}}
+#faq .fql-row .fql-card .fql-f{background:#fff!important;padding-top:36px!important}
+#faq .fql-row .fql-card .fql-b{background:#9e1c2a!important;padding-top:36px!important}
+.hs-sp{display:block;width:clamp(120px,10vw,150px);height:auto;margin:-4px auto 0;overflow:visible}
+.hs-cd{align-items:center}

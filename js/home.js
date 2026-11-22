@@ -1285,7 +1285,7 @@
     side.insertAdjacentHTML('beforeend',
       '<div class="hs-row">' +
         '<div class="hs-cal" aria-hidden="true"><i class="hs-bind"></i><b class="hs-m"></b><ol class="hs-g"></ol></div>' +
-        '<div class="hs-cd"><p class="hs-cl"></p><svg class="hs-sp" viewBox="0 0 120 22" aria-hidden="true"><path d="M8 13Q34 7 60 9T112 13" fill="none" stroke="#e3b3bd" stroke-width=".8" stroke-linecap="round"/><circle cx="21" cy="13.6" r="1.5" fill="#e8a3b1"/><circle cx="36" cy="12.6" r="1.5" fill="#f0b9c4"/><circle cx="52" cy="12.4" r="1.5" fill="#e8a3b1"/><circle cx="68" cy="12.4" r="1.5" fill="#f0b9c4"/><circle cx="84" cy="12.6" r="1.5" fill="#e8a3b1"/><circle cx="99" cy="13.6" r="1.5" fill="#f0b9c4"/><g transform="translate(14 12.2)"><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(0)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(72)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(144)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(216)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(288)" fill="#f8d8de"/><circle r="1.65" fill="#f0b9c4"/><path d="M-0.75 0a0.75 0.75 0 1 1 0.75 0.75" fill="none" stroke="#c76d80" stroke-width=".5"/></g><g transform="translate(28 10.6)"><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(0)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(72)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(144)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(216)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(288)" fill="#f4c6cf"/><circle r="2.09" fill="#eaa9b6"/><path d="M-0.95 0a0.95 0.95 0 1 1 0.95 0.95" fill="none" stroke="#c76d80" stroke-width=".5"/></g><g transform="translate(44 9.4)"><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(0)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(72)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(144)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(216)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(288)" fill="#f1b8c4"/><circle r="2.53" fill="#e595a6"/><path d="M-1.15 0a1.15 1.15 0 1 1 1.15 1.15" fill="none" stroke="#c76d80" stroke-width=".5"/></g><g transform="translate(60 9)"><ellipse cx="0" cy="-2.80" rx="3.08" ry="3.47" transform="rotate(0)" fill="#f4c6cf"/><ellipse cx="0" cy="-2.80" rx="3.08" ry="3.47" transform="rotate(72)" fill="#f4c6cf"/><ellipse cx="0" cy="-2.80" rx="3.08" ry="3.47" transform="rotate(144)" fill="#f4c6cf"/><ellipse cx="0" cy="-2.80" rx="3.08" ry="3.47" transform="rotate(216)" fill="#f4c6cf"/><ellipse cx="0" cy="-2.80" rx="3.08" ry="3.47" transform="rotate(288)" fill="#f4c6cf"/><circle r="3.08" fill="#e595a6"/><path d="M-1.40 0a1.40 1.40 0 1 1 1.40 1.40" fill="none" stroke="#c76d80" stroke-width=".5"/></g><g transform="translate(76 9.4)"><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(0)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(72)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(144)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(216)" fill="#f1b8c4"/><ellipse cx="0" cy="-2.30" rx="2.53" ry="2.85" transform="rotate(288)" fill="#f1b8c4"/><circle r="2.53" fill="#e595a6"/><path d="M-1.15 0a1.15 1.15 0 1 1 1.15 1.15" fill="none" stroke="#c76d80" stroke-width=".5"/></g><g transform="translate(92 10.6)"><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(0)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(72)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(144)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(216)" fill="#f4c6cf"/><ellipse cx="0" cy="-1.90" rx="2.09" ry="2.36" transform="rotate(288)" fill="#f4c6cf"/><circle r="2.09" fill="#eaa9b6"/><path d="M-0.95 0a0.95 0.95 0 1 1 0.95 0.95" fill="none" stroke="#c76d80" stroke-width=".5"/></g><g transform="translate(106 12.2)"><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(0)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(72)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(144)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(216)" fill="#f8d8de"/><ellipse cx="0" cy="-1.50" rx="1.65" ry="1.86" transform="rotate(288)" fill="#f8d8de"/><circle r="1.65" fill="#f0b9c4"/><path d="M-0.75 0a0.75 0.75 0 1 1 0.75 0.75" fill="none" stroke="#c76d80" stroke-width=".5"/></g></svg><div class="hs-tiles"></div><small class="hs-cn">عدّاد ورزنامة بكل دعوة</small></div>' +
+        '<div class="hs-cd"><p class="hs-cl"></p><svg class="hs-sp" viewBox="0 0 120 22" aria-hidden="true"><path class="hs-spp" d="M6 13Q34 7 60 9T114 13" fill="none" stroke="#e3b3bd" stroke-width=".7" stroke-linecap="round"/></svg><div class="hs-tiles"></div><small class="hs-cn">عدّاد ورزنامة بكل دعوة</small></div>' +
       '</div>' +
       '<div class="hs-fan">' + pols + '</div>');
     w.insertBefore(side, st);
@@ -1341,7 +1341,38 @@
       }
       sv.insertAdjacentHTML('beforeend', out + roses.join(''));
     }
+    /* a little flower painter: roses, blossoms, daisies, bells and baby's breath, in blush, peach, lilac, white and red */
+    var FC = [['#f4c6cf', '#e595a6'], ['#f9d3c4', '#ee9f86'], ['#e3d3ef', '#b79bd2'], ['#ffffff', '#f2c96b'], ['#f1b8c4', '#c94f63'], ['#fbe1e6', '#e8a3b1']];
+    function flower(t, x, y, r, c, rot) {
+      var g = '<g transform="translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (rot || 0).toFixed(0) + ')">', i;
+      if (t === 0) { for (i = 0; i < 5; i++) g += '<ellipse cx="0" cy="' + (-r * .5).toFixed(2) + '" rx="' + (r * .55).toFixed(2) + '" ry="' + (r * .62).toFixed(2) + '" transform="rotate(' + i * 72 + ')" fill="' + c[0] + '"/>';
+        g += '<circle r="' + (r * .52).toFixed(2) + '" fill="' + c[1] + '"/><path d="M' + (-r * .22).toFixed(2) + ' 0a' + (r * .22).toFixed(2) + ' ' + (r * .22).toFixed(2) + ' 0 1 1 ' + (r * .22).toFixed(2) + ' ' + (r * .22).toFixed(2) + '" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width=".5"/>'; }
+      else if (t === 1) { for (i = 0; i < 5; i++) g += '<circle cx="0" cy="' + (-r * .55).toFixed(2) + '" r="' + (r * .45).toFixed(2) + '" transform="rotate(' + i * 72 + ')" fill="' + c[0] + '"/>'; g += '<circle r="' + (r * .28).toFixed(2) + '" fill="#e9b949"/>'; }
+      else if (t === 2) { for (i = 0; i < 8; i++) g += '<ellipse cx="0" cy="' + (-r * .6).toFixed(2) + '" rx="' + (r * .2).toFixed(2) + '" ry="' + (r * .5).toFixed(2) + '" transform="rotate(' + i * 45 + ')" fill="#fff" stroke="' + c[0] + '" stroke-width=".3"/>'; g += '<circle r="' + (r * .3).toFixed(2) + '" fill="#f2c14e"/>'; }
+      else if (t === 3) { g += '<path d="M0 ' + (r * .9).toFixed(2) + 'C' + (-r).toFixed(2) + ' ' + (r * .6).toFixed(2) + ' ' + (-r * .8).toFixed(2) + ' ' + (-r * .7).toFixed(2) + ' 0 ' + (-r * .3).toFixed(2) + 'C' + (r * .8).toFixed(2) + ' ' + (-r * .7).toFixed(2) + ' ' + r.toFixed(2) + ' ' + (r * .6).toFixed(2) + ' 0 ' + (r * .9).toFixed(2) + 'Z" fill="' + c[1] + '"/><path d="M0 ' + (r * .8).toFixed(2) + 'L0 ' + (-r * .2).toFixed(2) + '" stroke="' + c[0] + '" stroke-width=".5"/>'; }
+      else { for (i = 0; i < 3; i++) g += '<circle cx="' + ((i - 1) * r * .55).toFixed(2) + '" cy="' + (i === 1 ? -r * .35 : r * .15).toFixed(2) + '" r="' + (r * .32).toFixed(2) + '" fill="#fff" stroke="' + c[1] + '" stroke-width=".3"/>'; }
+      return g + '</g>';
+    }
+    function bloomAlong(path, n, size, seed) {
+      var L = path.getTotalLength(), out = '';
+      for (var k = 0; k < n; k++) {
+        var p = path.getPointAtLength((k + .5) / n * L), h = (k * 7 + seed * 3) % 11, t = [0, 1, 2, 4, 0, 3, 1, 4, 2, 0, 4][h], c = FC[(k * 5 + seed) % FC.length];
+        var r = size * (t === 4 ? .7 : t === 0 ? 1.05 : .9) * (1 + ((k * 3) % 4) * .08);
+        out += flower(t, p.x, p.y, r, c, (k * 37 + seed * 11) % 360);
+      }
+      return out;
+    }
     var T = {}; tiles.querySelectorAll('.hs-t').forEach(function (t) { T[t.dataset.u] = t; });
+    var spp = side.querySelector('.hs-spp'); if (spp) spp.insertAdjacentHTML('afterend', bloomAlong(spp, 15, 4.2, 2));
+    /* a frame of tiny roses along each arch */
+    tiles.querySelectorAll('.hs-u').forEach(function (u, ui) {
+      var NS = 'http://www.w3.org/2000/svg', f = document.createElementNS(NS, 'svg');
+      f.setAttribute('class', 'hs-fr'); f.setAttribute('viewBox', '0 0 60 80'); f.setAttribute('preserveAspectRatio', 'none'); f.setAttribute('aria-hidden', 'true');
+      f.innerHTML = '<path class="hs-fp" d="M3 76V28C3 13 15 3 30 3S57 13 57 28V76Z" fill="none"/>';
+      u.appendChild(f);
+      var fp = f.querySelector('.hs-fp'), out = bloomAlong(fp, 24, 3.4, ui * 5);
+      f.insertAdjacentHTML('beforeend', out);
+    });
     var target = 0;
     function setOcc(k) { var d = D[k]; target = new Date(d[0], d[1], d[2], 19, 0, 0).getTime(); cl.textContent = 'باقي على ' + d[3]; drawCal(k); tick(true);
       side.querySelectorAll('.hs-pol').forEach(function (p) { p.classList.toggle('on', p.dataset.o === k); p.setAttribute('aria-pressed', p.dataset.o === k ? 'true' : 'false'); }); }

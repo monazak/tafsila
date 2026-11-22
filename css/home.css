@@ -12275,3 +12275,9 @@ html,body{margin-bottom:0!important;padding-bottom:0!important}
 .hs-dot{display:none!important}
 .hs-cd{gap:14px!important}
 @media (max-width:820px){.hs-u{width:58px}}
+/* the arches are framed with roses, not gold */
+.hs-u{box-shadow:0 16px 24px -16px rgba(70,30,45,.4)!important;overflow:visible}
+.hs-u::before{display:none!important}
+.hs-fr{position:absolute;inset:-3px;width:calc(100% + 6px);height:calc(100% + 6px);overflow:visible;pointer-events:none}
+.hs-fr .hs-fp{stroke:#efc3cc;stroke-width:.8;vector-effect:non-scaling-stroke}
+.hs-tiles{gap:clamp(12px,1.1vw,16px)!important}

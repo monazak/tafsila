@@ -12243,3 +12243,4 @@ html,body{margin-bottom:0!important;padding-bottom:0!important}
 .hs-t span{will-change:transform,opacity}
 .hs-t span.out,.hs-t span.in{animation-duration:.5s!important;animation-timing-function:cubic-bezier(.25,.8,.25,1)!important}
 .hs-ring path{fill:none!important}
+.fql-star{display:none!important}

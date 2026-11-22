@@ -1356,7 +1356,7 @@
     function bloomAlong(path, n, size, seed) {
       var L = path.getTotalLength(), out = '';
       for (var k = 0; k < n; k++) {
-        var p = path.getPointAtLength((k + .5) / n * L), h = (k * 7 + seed * 3) % 11, t = [0, 1, 2, 4, 0, 3, 1, 4, 2, 0, 4][h], c = FC[(k * 5 + seed) % FC.length];
+        var p = path.getPointAtLength((k + .5) / n * L), h = (k * 7 + seed * 3) % 11, t = [0, 1, 2, 0, 3, 1, 0, 2, 1, 3, 0][h], c = FC[(k * 5 + seed) % FC.length];
         var r = size * (t === 4 ? .7 : t === 0 ? 1.05 : .9) * (1 + ((k * 3) % 4) * .08);
         out += flower(t, p.x, p.y, r, c, (k * 37 + seed * 11) % 360);
       }
